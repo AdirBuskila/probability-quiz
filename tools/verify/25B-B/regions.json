@@ -1,0 +1,16 @@
+{
+  "_note": "Region data for the Q1-type area items of 25B-B. RAW_SCHEMA has no `region` field, so it lives here. Ids are built question ids. Q1a (distribution), Q1c (empty strip), Q1e, Q1f need no region.",
+  "25B-B-Q1b": {
+    "sampleSpace": {"x1": [0, 1], "x2": [0, 1]},
+    "distribution": "uniform on the sample space (X1, X2 independent U(0,1)); X = |X1-X2|",
+    "event": ["x2 > x1 - 1/2", "x2 < x1 + 1/2"],
+    "area": "3/4", "probability": "3/4", "conditioning": null
+  },
+  "25B-B-Q1d": {
+    "sampleSpace": {"x1": [0, 1], "x2": [0, 1]},
+    "distribution": "uniform on the sample space",
+    "event": ["x2 >= x1 - t", "x2 <= x1 + t"],
+    "params": {"t": {"min": 0, "max": 1, "example": 0.4}},
+    "areaFormula": "2*t - t^2", "conditioning": null
+  }
+}

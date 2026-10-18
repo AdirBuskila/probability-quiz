@@ -76,6 +76,13 @@ Open questions for Adir. One entry per item; the orchestrator moves it to Resolv
 - Needed: the solver route (no-key); nothing from Adir unless a key exists.
 - Status: hold (no-key)
 
+### 25B-B Q2 f - bonus (disjoint events): official key s = q is wrong or incomplete
+- Path: official PDF of sitting 25B-B (handwritten solutions), see sitting code only
+- Page: exam p.2 (Q2 d, printed as the bonus part "disjoint"); solution p.8 (last box)
+- Question: given P(not-A | B) = p, P(A | not-B) = q, P(A or B) = s, the official answer for "A and B disjoint" is s = q (from P(A and B) = (1-p)(s-q)/(1-q) = 0). But s = q makes P(B) = (s-q)/(1-q) = 0 (B has probability zero). For a non-trivial B (P(B) > 0), disjoint events have P(not-A | B) = 1, so the true condition is p = 1, with s and q free (check.py Q2f: A,B disjoint with p=1, q=5/16, s=9/20, while s != q). The other factor (1-p) = 0 was missed.
+- Needed: keep the official key (s = q) with the p = 1 caveat, or ship p = 1 (official:false, solved)? Not decided by the transcriber.
+- Status: hold (key disagreement; question text transcribed, not in the bank)
+
 ## Resolved
 
 ### 26A-B Q3 a, b, d - official key uses different q2/q4 labels than the printed question
