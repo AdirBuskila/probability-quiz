@@ -8,7 +8,7 @@ Every CHOICE step whose options are formulas or probabilities is evaluated numer
 the exact value and every distractor must differ. Pure reasoning choices are listed as ARGUED (their distractor claims
 are verified by the explicit claim checks at the bottom). Exits 1 on any failure. ASCII output.
 """
-import itertools, json, math, pathlib, sys
+import itertools, json, math, pathlib, re, sys
 from fractions import Fraction as Fr
 import numpy as np
 import sympy as sp
@@ -24,10 +24,14 @@ N = 1_000_000
 rng = np.random.default_rng(20240716)
 rows = []
 fails = 0
+COVERED = set()
 
 
 def rec(tag, ok, info):
     global fails
+    m = re.match(r"(Q\w+) step(\d+)", tag)
+    if m:
+        COVERED.add((m.group(1), int(m.group(2))))
     rows.append((tag, ok, info))
     if not ok:
         fails += 1
@@ -38,6 +42,7 @@ def se_p(p, n=N):
 
 
 def num(qid, idx, exact, mc=None, se=None):
+    COVERED.add((qid, idx))
     s = BYID[qid]["steps"][idx]
     assert s["type"] == "numeric", (qid, idx, s["type"])
     ex = float(exact)
@@ -52,6 +57,7 @@ def num(qid, idx, exact, mc=None, se=None):
 
 def opts(qid, idx, vals, target):
     """choice step whose options are numbers: vals[i] is the numeric value of option i."""
+    COVERED.add((qid, idx))
     s = BYID[qid]["steps"][idx]
     assert s["type"] == "choice" and len(vals) == len(s["options"]), (qid, idx)
     ci = "abcdefgh".index(s["correctId"])
@@ -61,6 +67,7 @@ def opts(qid, idx, vals, target):
 
 
 def argued(qid, idx):
+    COVERED.add((qid, idx))
     s = BYID[qid]["steps"][idx]
     assert s["type"] == "choice"
     rec("%s step%d choice-argued" % (qid, idx), True, "reasoning choice; claims verified below")
@@ -254,6 +261,11 @@ rec("Q6 formulas", prob(Q1f) == p_ ** 2 * (1 + p_ - p_ ** 2) and prob(both) == p
 for tag, ok, info in rows:
     print("%s %-26s %s" % ("ok  " if ok else "FAIL", tag, info))
 steps_total = sum(len(q.get("steps", [])) for q in RAW["questions"])
-covered = sum(1 for t, _, _ in rows if " step" in t)
+allsteps = {(k, i) for k, q in BYID.items() for i in range(len(q.get("steps", [])))}
+missing = sorted(allsteps - COVERED)
+if missing:
+    print("UNCHECKED STEPS:", missing)
+    fails += 1
+covered = len(COVERED)
 print("steps in raw: %d; checked step rows: %d; failures: %d" % (steps_total, covered, fails))
 sys.exit(1 if fails else 0)
