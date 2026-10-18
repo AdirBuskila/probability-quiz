@@ -70,7 +70,9 @@ $$P(X+Y\le\tfrac32L)=\frac{L^2-\frac12\cdot\frac{L^2}{4}}{L^2}=\frac78.$$""",
 questions.append(Q(
     1, "ד", "minmax_transform",
     Q1_B + "\n" + r"**ב-1:** חשבו את ההסתברות $P(Z<L/3)$.",
-    r"""נפצל לפי איזה גפרור ארוך יותר:
+    r"""הערה: בניסוח המילולי של השאלה כתוב "הגפרור הקצר", אך הנוסחה מגדירה $Z=\max(X,Y)$, והפתרון הרשמי משתמש במקסימום, ולכן זה הפתרון שלפניכם. אילו $Z$ היה אורך הגפרור הקצר, $\min(X,Y)$, התשובה הייתה $\frac59$.
+
+נפצל לפי איזה גפרור ארוך יותר:
 $$P(Z<\tfrac L3)=P(Z<\tfrac L3\cap X<Y)+P(Z<\tfrac L3\cap X\ge Y).$$
 כאשר $X<Y$ מתקיים $Z=Y$, ולכן $|\{Z<\frac L3\cap X<Y\}|=|\{Y<\frac L3\cap Y>X\}|=\frac12\cdot\frac{L^2}{9}=\frac{L^2}{18}$, וההסתברות היא $\frac{1}{18}$ (חלוקה ב-$|\Omega|=L^2$).
 כאשר $X\ge Y$ מתקיים $Z=X$, ובאופן סימטרי $|\{Z<\frac L3\cap X\ge Y\}|=|\{X<\frac L3\cap Y\le X\}|=\frac{L^2}{18}$, וההסתברות היא $\frac1{18}$.
@@ -81,7 +83,9 @@ $$P(Z<\tfrac L3)=\frac1{18}+\frac1{18}=\frac19.$$""",
 questions.append(Q(
     1, "ה", "minmax_transform",
     Q1_B + "\n" + r"**ב-2:** חשבו את ההסתברות המותנית $P(Z<L/2\ /\ X>L/4)$.",
-    r"""לפי הגדרת ההסתברות המותנית:
+    r"""הערה: בניסוח המילולי של השאלה כתוב "הגפרור הקצר", אך הנוסחה מגדירה $Z=\max(X,Y)$, והפתרון הרשמי משתמש במקסימום, ולכן זה הפתרון שלפניכם. אילו $Z$ היה אורך הגפרור הקצר, $\min(X,Y)$, התשובה הייתה $\frac23$.
+
+לפי הגדרת ההסתברות המותנית:
 $$P(Z<\tfrac L2\mid X>\tfrac L4)=\frac{P(Z<\frac L2\cap X>\frac L4)}{P(X>\frac L4)},\qquad P(X>\tfrac L4)=\frac{L-L/4}{L}=\frac34.$$
 נפצל את המונה לפי $X<Y$ ו-$X\ge Y$ ונחשב שטחים (חלקי $|\Omega|=L^2$): האזורים $\{X<\frac L2,\ X>\frac L4,\ Y<\frac L2\}$ מרכיבים יחד אזור בגודל $\frac L4\cdot\frac L2$, ולכן
 $$P(Z<\tfrac L2\cap X>\tfrac L4)=\frac1{L^2}\left(\frac L4\cdot\frac L2\right)=\frac18.$$
@@ -225,7 +229,9 @@ questions.append(Q(
 $$B=\frac{\mathbb{E}[X^2]}{\mathbb{E}[X]}=\frac{\operatorname{Var}[X]+(\mathbb{E}[X])^2}{\mathbb{E}[X]}.$$
 נחלק ב-$\mathbb{E}[X]$:
 $$\frac{B}{A}=1+\frac{\operatorname{Var}[X]}{(\mathbb{E}[X])^2}\ge1.$$
-מכאן $B\ge A$ (התשובה הרשמית), והטענה $B<A$ אינה נכונה.""",
+מכאן $B\ge A$ (התשובה הרשמית), והטענה $B<A$ אינה נכונה.
+
+הערה: הנתון $n_1\ne n_2\ne\cdots\ne n_N$ אומר שהמספרים $n_i$ שונים זה מזה, ולכן $\operatorname{Var}[X]>0$ ו-$\frac{B}{A}>1$. כלומר $B>A$ ממש (לא רק $B\ge A$).""",
     5, contextId="c5"))
 
 # ------------------------------------------------------------------ Q6

@@ -61,7 +61,14 @@
      "y == x"
     ],
     "exact": 0,
-    "caption": "האירוע X_R=X_L: קו, ושטחו 0 (יחידות של האורך)"
+    "caption": "האירוע X_R=X_L הוא הקו y=x, ולקו אין שטח: S(A)=0, ולכן P=0",
+    "lines": [
+     {
+      "a": -1,
+      "b": 1,
+      "c": 0
+     }
+    ]
    },
    "sim": {
     "kind": "area",
@@ -131,8 +138,8 @@
      "explain": "לקו אין עובי ולכן אין שטח; $P=\\frac02=0$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -228,8 +235,8 @@
      "explain": "$\\frac{3/2}{2}=\\frac34$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -318,8 +325,8 @@
      "explain": "$\\frac{1/2}{2}=\\frac14$ (וגם $1-\\frac34$)."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -414,8 +421,8 @@
      "explain": "$\\frac{1/3}{2}=\\frac16$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -491,8 +498,8 @@
      "explain": "$\\frac7{36}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -568,8 +575,8 @@
      "explain": "$\\frac4{36}=\\frac19$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -653,8 +660,8 @@
      "explain": "$\\frac{4/36}{29/36}=\\frac4{29}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -745,8 +752,8 @@
      "explain": "$y=-3\\pm\\sqrt{9-5}$: השורשים $-1$ ו-$-5$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -844,8 +851,8 @@
      "explain": "$1-p^2=0.91$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -943,8 +950,8 @@
      "explain": "$p^2=0.09$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1075,8 +1082,8 @@
      "explain": "$\\binom31(0.09)(0.91)^2\\approx0.22359$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1214,8 +1221,8 @@
      "explain": "$\\binom62(0.3)^2(0.7)^4=15\\cdot0.09\\cdot0.2401\\approx0.32414$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1361,8 +1368,8 @@
      "explain": "$n\\cdot0.126=0.378$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1445,8 +1452,8 @@
      "explain": "$\\frac3{16}-\\frac3{16}=0$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1533,8 +1540,8 @@
      "explain": "$a=\\frac34$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1607,8 +1614,8 @@
      "explain": "$\\frac14\\left(2-\\frac32+\\frac18\\right)=\\frac5{32}$ (וגם $1-\\frac{27}{32}$ בסימטריה)."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1682,8 +1689,8 @@
      "explain": "$\\frac{1-245/256}{1}=\\frac{11}{256}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -1751,8 +1758,8 @@
      "explain": "$e^{-p\\lambda}=e^{-1.2}\\approx0.30119$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -1819,8 +1826,8 @@
      "explain": "$1$, כנדרש."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -1888,8 +1895,8 @@
      "explain": "$p\\lambda=1.2$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -1964,8 +1971,8 @@
      "explain": "$\\frac{0.058069}{0.21686}\\approx0.26778=\\frac{1.8^2}{2!}e^{-1.8}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2066,8 +2073,8 @@
      "explain": "$0.6\\cdot0.744=0.4464$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2168,8 +2175,8 @@
      "explain": "$0.6\\cdot0.84=0.504=p^2(2-p)$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2278,8 +2285,8 @@
      "explain": "$\\frac{0.3888}{0.4464}\\approx0.87097$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2388,8 +2395,8 @@
      "explain": "$\\frac{0.1296}{0.3888}=\\frac13=\\frac{p}{3-2p}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   }
  ]
 }

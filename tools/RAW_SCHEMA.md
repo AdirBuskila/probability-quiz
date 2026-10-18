@@ -110,7 +110,8 @@ object, or a list of them (one figure each). The figure is generated from this d
   "labels": {"x": "X", "y": "Y"},                 // optional axis names
   "exact":  0.25,                                 // optional: the probability P(A) or P(A|B), shown and CHECKED
   "caption": "text",                              // optional heading (plain text, Hebrew ok)
-  "ticks":  {"x": [0, 0.5, 1], "y": [0, 1, 2]}    // optional; default: nice steps, labelled as fractions
+  "ticks":  {"x": [0, 0.5, 1], "y": [0, 1, 2]},   // optional; default: nice steps, labelled as fractions
+  "lines":  [{"a": -1, "b": 1, "c": 0}]           // optional; zero-area event (a line a*x+b*y=c, e.g. "y == x"): drawn solid, area exactly 0
 }
 ```
 - `ineq`: linear `{"a": 1, "b": -1, "c": 0.5, "op": "<"}` meaning a·x + b·y op c (`a`/`b` default 0, at least one

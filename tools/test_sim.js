@@ -50,6 +50,11 @@ for (const [name, spec, ex, poly] of regionCases) {
 }
 assert(Region.check({ space: U2, event: [{ a: 1, b: 1, c: 1, op: "<" }], exact: 0.4 }).length === 1, "a wrong region exact is reported");
 assert(/rg-given/.test(Region.figure(regionCases[3][1])) && /rg-both/.test(Region.figure(regionCases[3][1])), "conditional figure has the hatched given and the intersection");
+{ const z = { space: { x: [0, 2], y: [0, 2] }, event: ["y == x"], lines: [{ a: -1, b: 1, c: 0 }], exact: 0 };
+  const rz = Region.compute(z); const hz = Region.figure(z);
+  assert(rz.p === 0 && rz.exactGeom, "zero-area line event: P = 0, exact");
+  assert(Region.check(z).length === 0, "zero-area line event: Region.check passes");
+  assert(/class="rg-evline"/.test(hz) && !/≈/.test(hz), "zero-area line event: the line is drawn, no approx sign"); }
 assert(/rg-error/.test(Region.figure({ space: U2, event: [{ a: 1, op: "~" }] })), "a bad region renders an error box, not a crash");
 
 /* ---------- simulations, one or more per kind ---------- */

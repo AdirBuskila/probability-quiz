@@ -246,13 +246,15 @@
     const omega = (s.x1 - s.x0) * (s.y1 - s.y0);
     const e = setArea(E, s, o);
     const r = { omega, pE: e.area, exactGeom: e.exact };
+    // a zero-area event (a line such as y = x): spec.lines declares it, so its area is exactly 0
+    if (Array.isArray(spec.lines) && spec.lines.length && !G && e.area < 1e-9) { r.pE = 0; r.exactGeom = true; }
     if (G) {
       const g = setArea(G, s, o), eg = setArea(andSets(E, G), s, o);
       Object.assign(r, { pG: g.area, pEG: eg.area, p: g.area > 0 ? eg.area / g.area : NaN, exactGeom: e.exact && g.exact && eg.exact });
     } else r.p = e.area / omega;
     return r;
   }
-  const KEYS = new Set(["space", "event", "given", "labels", "exact", "caption", "ticks"]);
+  const KEYS = new Set(["space", "event", "given", "labels", "exact", "caption", "ticks", "lines"]);
   function check(spec) {
     const out = [];
     if (!spec || typeof spec !== "object" || Array.isArray(spec)) return ["region must be an object"];
@@ -275,7 +277,7 @@
     maxDen = maxDen || 10000;
     if (!isFinite(v)) return null;
     if (Math.abs(v - Math.round(v)) < 1e-9) return String(Math.round(v));
-    for (let d = 2; d <= maxDen; d++) { const n = Math.round(v * d); if (Math.abs(v - n / d) < 1e-9 * Math.max(1, Math.abs(v))) return `${n}/${d}`; }
+    for (let d = 2; d <= maxDen; d++) { const n = Math.round(v * d); if (Math.abs(v - n / d) < 1e-12 * Math.max(1, Math.abs(v))) return `${n}/${d}`; }
     return null;
   }
   const dec = (v, k) => (Math.round(v * Math.pow(10, k)) / Math.pow(10, k)).toString();
@@ -341,6 +343,15 @@
         if (Math.hypot(A[0] - B[0], A[1] - B[1]) > 1e-9) lines += `<line class="rg-bound" x1="${f1(X(A[0]))}" y1="${f1(Y(A[1]))}" x2="${f1(X(B[0]))}" y2="${f1(Y(B[1]))}"/>`;
       }
     }
+    // zero-area event: solid line(s) a*x + b*y = c, clipped to the plot
+    let evLines = "";
+    for (const q of (Array.isArray(spec.lines) ? spec.lines : [])) {
+      const a = constant(q.a == null ? 0 : q.a), b = constant(q.b == null ? 0 : q.b), c = constant(q.c == null ? 0 : q.c), pts = [];
+      if (Math.abs(b) > 1e-12) for (const x of [s.x0, s.x1]) pts.push([x, (c - a * x) / b]);
+      if (Math.abs(a) > 1e-12) for (const y of [s.y0, s.y1]) pts.push([(c - b * y) / a, y]);
+      const ins = pts.filter(p => p[0] >= s.x0 - 1e-9 && p[0] <= s.x1 + 1e-9 && p[1] >= s.y0 - 1e-9 && p[1] <= s.y1 + 1e-9).sort((u, v) => u[0] - v[0] || u[1] - v[1]);
+      if (ins.length >= 2) { const A = ins[0], B = ins[ins.length - 1]; evLines += `<line class="rg-evline" x1="${f1(X(A[0]))}" y1="${f1(Y(A[1]))}" x2="${f1(X(B[0]))}" y2="${f1(Y(B[1]))}"/>`; }
+    }
     const dE = setD(E), dG = G ? setD(G) : "", dEG = G ? setD(andSets(E, G)) : "";
     const svg =
       `<svg class="rg-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${f1(W)} ${f1(H)}" width="${f1(W)}" height="${f1(H)}" direction="ltr" role="img" aria-label="${esc(spec.caption || "region")}">` +
@@ -351,7 +362,7 @@
       (dE ? `<path class="rg-event${G ? " rg-event-soft" : ""}" d="${dE}"/>` : "") +
       (dG ? `<path class="rg-given" d="${dG}" fill="url(#${id}h)"/>` : "") +
       (dEG ? `<path class="rg-both" d="${dEG}"/>` : "") +
-      (dG ? `<path class="rg-given-line" d="${dG}"/>` : "") + lines + `</g>` +
+      (dG ? `<path class="rg-given-line" d="${dG}"/>` : "") + lines + evLines + `</g>` +
       `<rect class="rg-frame" x="${ML}" y="${MT}" width="${f1(PW)}" height="${f1(PH)}"/>` +
       `<text class="rg-ax" x="${f1(ML + PW + 4)}" y="${f1(MT + PH + 28)}" text-anchor="end">${esc(lab.x || "x")}</text>` +
       `<text class="rg-ax" x="${ML - 30}" y="${MT + 4}" text-anchor="start">${esc(lab.y || "y")}</text>` +
@@ -375,7 +386,7 @@
         nums = `<span>|Ω| = ${esc(om)}</span><span>S(A) ${ap}= ${esc(sh(r.pE))}</span><span class="rg-p">P(A) = S(A) / |Ω| ${ap}= ${esc(sh(r.p))}</span>`;
       }
       const exact = typeof spec.exact === "number"
-        ? `<div class="rg-exact">התשובה המדויקת: <bdi dir="ltr">${esc(nice(spec.exact))}${frac(spec.exact) ? ` ≈ ${esc(dec(spec.exact, 4))}` : ""}</bdi></div>` : "";
+        ? `<div class="rg-exact">התשובה המדויקת: <bdi dir="ltr">${esc(nice(spec.exact))}${(frac(spec.exact) && !Number.isInteger(spec.exact)) ? ` ≈ ${esc(dec(spec.exact, 4))}` : ""}</bdi></div>` : "";
       const legend = `<div class="rg-legend">` +
         `<span class="rg-key"><i class="rg-sw rg-sw-e${r.pG != null ? " soft" : ""}"></i>המאורע A</span>` +
         (r.pG != null ? `<span class="rg-key"><i class="rg-sw rg-sw-g"></i>התנאי B</span><span class="rg-key"><i class="rg-sw rg-sw-eg"></i>A∩B</span>` : "") +

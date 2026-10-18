@@ -127,8 +127,8 @@
      "explain": "$\\frac{2/5}{2}=\\frac15$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -228,8 +228,8 @@
      "explain": "$\\frac{3/2}{2}=\\frac34$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -318,8 +318,8 @@
      "explain": "$\\frac{1/2}{2}=\\frac14$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -414,8 +414,8 @@
      "explain": "$0.3\\cdot1+0.7\\cdot\\frac12=0.65=\\frac{1+p}{2}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -490,8 +490,8 @@
      "explain": "$0.3\\cdot\\frac12+0.7\\cdot\\frac12=\\frac12$ (לכל $p$)."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -564,8 +564,8 @@
      "explain": "$\\frac DN=\\frac3{10}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -660,8 +660,8 @@
      "explain": "$\\frac3{10}\\cdot\\frac29+\\frac7{10}\\cdot\\frac13=\\frac{6+21}{90}=\\frac3{10}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -749,8 +749,8 @@
      "explain": "ארבעת המקרים: $\\frac1{120}+\\frac7{120}+\\frac7{120}+\\frac{21}{120}=\\frac{36}{120}=\\frac3{10}$ (כל אחד משני המקרים המעורבים הוא $\\frac7{120}$)."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -843,8 +843,8 @@
      "explain": "$\\frac{1/15}{3/10}=\\frac29=\\frac{D-1}{N-1}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -932,8 +932,8 @@
      "explain": "$\\frac{32}{72}=\\frac49$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1021,8 +1021,8 @@
      "explain": "$\\frac{24}{72}=\\frac13$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1110,8 +1110,8 @@
      "explain": "$\\frac8{72}=\\frac19$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1198,8 +1198,8 @@
      "explain": "$\\frac{5/18}{5/9}=\\frac12$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1297,8 +1297,8 @@
      "explain": "$a^2=1-\\frac89=\\frac19$, ולכן $a=\\frac13$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1378,8 +1378,8 @@
      "explain": "בקטע הזה $F_Z(t)=t$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1471,8 +1471,8 @@
      "explain": "$\\frac{41/96}{3/4}=\\frac{41}{72}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -1589,15 +1589,15 @@
      "explain": "$\\binom53(0.6)^3(0.4)^2=10\\cdot0.216\\cdot0.16=0.3456$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
    "kind": "computation",
    "topic": "special_discrete",
    "question": "**ב:** יהי $Y$ משתנה מקרי המתאר את מספר התלמידים **מתוך אלה שהגיעו לכיתה** – אשר נולדו **ב-1 בספטמבר**. מצאו את פונקציית ההסתברות של משתנה זה.\n**הערה:** לידיעתך,\n$$\\sum_{j=m}^{N}C_j^mC_N^ja^j=C_N^ma^m(1+a)^{N-m}$$\n(ייתכן ואין צורך להשתמש בנוסחה זו).",
-   "solution": "נסמן ב-$Q=\\frac1{365}$ את ההסתברות שתלמיד נולד ב-1 בספטמבר. $Y$ יכול לקבל ערכים $k=0,1,\\ldots,N$. לפי נוסחת ההסתברות השלמה לפי $X$ (בהינתן $X=j$ התלמידים שהגיעו הם $j$, וכל אחד נולד באותו תאריך בהסתברות $Q$):\n$$P(Y=k)=\\sum_{j=k}^{N}P(Y=k\\mid X=j)P(X=j)=\\sum_{j=k}^{N}\\binom jkQ^k(1-Q)^{j-k}\\binom Njp^j(1-p)^{N-j}$$\n$$=\\frac{Q^k}{(1-Q)^k}(1-p)^N\\sum_{j=k}^{N}\\binom jk\\binom Nj\\left\\{\\frac{p(1-Q)}{1-p}\\right\\}^j.$$\nנשתמש בנוסחה שבהערה עם $m=k$ ו-$a=\\frac{p(1-Q)}{1-p}$. אז $1+a=\\frac{1-pQ}{1-p}$ ומתקבל\n$$\\sum_{j=k}^{N}\\binom jk\\binom Nj a^j=\\binom Nka^k(1+a)^{N-k}=\\binom Nk\\frac{p^k(1-Q)^k}{(1-p)^k}\\cdot\\frac{(1-pQ)^{N-k}}{(1-p)^{N-k}}=\\binom Nk\\frac{p^k(1-Q)^k}{(1-p)^N}(1-pQ)^{N-k}.$$\nהצבה חזרה:\n$$P(Y=k)=\\binom Nk(pQ)^k(1-pQ)^{N-k},\\qquad k=0,1,\\ldots,N.$$\nבמילים אחרות, $Y\\sim\\mathrm{Bin}(N,pQ)$: כל תלמיד מגיע **וגם** נולד ב-1 בספטמבר בהסתברות $pQ$.",
+   "solution": "נסמן ב-$Q=\\frac1{365}$ את ההסתברות שתלמיד נולד ב-1 בספטמבר. זו הנחה שאינה כתובה בשאלה: כל תלמיד נולד באחד מ-$365$ ימי השנה בהסתברות שווה, וללא תלות בשאר. $Y$ יכול לקבל ערכים $k=0,1,\\ldots,N$. לפי נוסחת ההסתברות השלמה לפי $X$ (בהינתן $X=j$ התלמידים שהגיעו הם $j$, וכל אחד נולד באותו תאריך בהסתברות $Q$):\n$$P(Y=k)=\\sum_{j=k}^{N}P(Y=k\\mid X=j)P(X=j)=\\sum_{j=k}^{N}\\binom jkQ^k(1-Q)^{j-k}\\binom Njp^j(1-p)^{N-j}$$\n$$=\\frac{Q^k}{(1-Q)^k}(1-p)^N\\sum_{j=k}^{N}\\binom jk\\binom Nj\\left\\{\\frac{p(1-Q)}{1-p}\\right\\}^j.$$\nנשתמש בנוסחה שבהערה עם $m=k$ ו-$a=\\frac{p(1-Q)}{1-p}$. אז $1+a=\\frac{1-pQ}{1-p}$ ומתקבל\n$$\\sum_{j=k}^{N}\\binom jk\\binom Nj a^j=\\binom Nka^k(1+a)^{N-k}=\\binom Nk\\frac{p^k(1-Q)^k}{(1-p)^k}\\cdot\\frac{(1-pQ)^{N-k}}{(1-p)^{N-k}}=\\binom Nk\\frac{p^k(1-Q)^k}{(1-p)^N}(1-pQ)^{N-k}.$$\nהצבה חזרה:\n$$P(Y=k)=\\binom Nk(pQ)^k(1-pQ)^{N-k},\\qquad k=0,1,\\ldots,N.$$\nבמילים אחרות, $Y\\sim\\mathrm{Bin}(N,pQ)$: כל תלמיד מגיע **וגם** נולד ב-1 בספטמבר בהסתברות $pQ$.",
    "solutionSource": "official-pdf",
    "official": true,
    "confidence": "high",
@@ -1780,15 +1780,15 @@
      "explain": "$5\\,pQ\\,(1-pQ)^4\\approx0.0081653$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
    "kind": "computation",
    "topic": "conditional_bayes",
    "question": "**ג:** אם ידוע כי בין כל התלמידים אשר הגיעו לכיתה בדיוק $k$ נולדו ב-1 בספטמבר, מהי ההסתברות שבדיוק $n$ תלמידים הגיעו לכיתה?",
-   "solution": "לפי נוסחת בייס:\n$$P(X=n\\mid Y=k)=\\frac{P(Y=k\\mid X=n)P(X=n)}{P(Y=k)}=\\frac{\\binom nkQ^k(1-Q)^{n-k}\\cdot\\binom Nnp^n(1-p)^{N-n}}{\\binom Nk(pQ)^k(1-pQ)^{N-k}}.$$\nמהזהות $\\binom nk\\binom Nn=\\binom Nk\\binom{N-k}{n-k}$ ומצמצום מתקבל\n$$P(X=n\\mid Y=k)=\\binom{N-k}{N-n}\\tilde p^{\\,N-n}(1-\\tilde p)^{(N-k)-(N-n)},\\qquad \\tilde p=\\frac{1-p}{1-pQ}.$$\nכלומר, בהינתן $Y=k$, מספר התלמידים שלא הגיעו מבין $N-k$ התלמידים שנותרו הוא $\\mathrm{Bin}(N-k,\\tilde p)$.",
+   "solution": "לפי נוסחת בייס:\n$$P(X=n\\mid Y=k)=\\frac{P(Y=k\\mid X=n)P(X=n)}{P(Y=k)}=\\frac{\\binom nkQ^k(1-Q)^{n-k}\\cdot\\binom Nnp^n(1-p)^{N-n}}{\\binom Nk(pQ)^k(1-pQ)^{N-k}}.$$\nמהזהות $\\binom nk\\binom Nn=\\binom Nk\\binom{N-k}{n-k}$ ומצמצום מתקבל\n$$P(X=n\\mid Y=k)=\\binom{N-k}{N-n}\\tilde p^{\\,N-n}(1-\\tilde p)^{(N-k)-(N-n)},\\qquad \\tilde p=\\frac{1-p}{1-pQ}.$$\nכלומר, בהינתן $Y=k$, מספר התלמידים שלא הגיעו מבין $N-k$ התלמידים שנותרו הוא $\\mathrm{Bin}(N-k,\\tilde p)$.\nכאן $Q=\\frac1{365}$ לפי אותה הנחה כמו בסעיף ב: כל תלמיד נולד בכל אחד מ-$365$ ימי השנה בהסתברות שווה, וללא תלות בשאר.",
    "solutionSource": "official-pdf",
    "official": true,
    "confidence": "high",
@@ -1968,8 +1968,8 @@
      "explain": "היחס $\\frac{0.0012590}{0.0081653}\\approx0.1542=\\binom43\\tilde p^3(1-\\tilde p)$ עם $\\tilde p=\\frac{0.4}{1-pQ}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2082,8 +2082,8 @@
      "explain": "$0.6\\cdot0.7056+0.4\\cdot0.5904=0.65952$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2196,8 +2196,8 @@
      "explain": "$0.84\\cdot0.936=0.78624$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2311,8 +2311,8 @@
      "explain": "$\\frac{0.57888}{0.78624}\\approx0.7363$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   }
  ]
 }

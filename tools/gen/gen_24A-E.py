@@ -443,7 +443,7 @@ _PU = _p6 ** 2 * (2 - _p6)
 _PI = _p6 ** 3 * (3 - 2 * _p6)
 
 EXTRAS.update({
-    (1, "א"): {"region": REG(["y == x"], 0, "האירוע X_R=X_L: קו, ושטחו 0 (יחידות של האורך)", space=S12, labels=LLR),
+    (1, "א"): {"region": dict(REG(["y == x"], 0, "האירוע X_R=X_L הוא הקו y=x, ולקו אין שטח: S(A)=0, ולכן P=0", space=S12, labels=LLR), lines=[{"a": -1, "b": 1, "c": 0}]),
                "sim": AREA("P(X_R=X_L)", 0, space=S12, event="y == x")},
     (1, "ב"): {"region": REG([lin(-1, 1, 0, ">")], 3 / 4, "האירוע X_R>X_L", space=S12, labels=LLR), "sim": AREA("P(X_R>X_L)", 3 / 4)},
     (1, "ג"): {"region": REG([lin(-1, 1, 0, "<")], 1 / 4, "האירוע X_R<X_L", space=S12, labels=LLR), "sim": AREA("P(X_R<X_L)", 1 / 4)},

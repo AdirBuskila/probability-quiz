@@ -330,7 +330,7 @@ def check_step(w, s, P, root):
 
 
 # ---------------------------------------------------------------- region / sim (probability extras)
-REGION_KEYS = {"space", "event", "given", "labels", "exact", "caption", "ticks"}
+REGION_KEYS = {"space", "event", "given", "labels", "exact", "caption", "ticks", "lines"}
 INEQ_OPS = {"<", "<=", ">", ">="}
 SIM_KINDS = {"area", "pdf", "circuit", "dice", "urn", "bernoulli_matrix", "custom_discrete"}
 SIM_KEYS = {"kind", "params", "estimate", "exact", "trials", "seed"}

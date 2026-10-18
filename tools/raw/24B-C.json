@@ -119,8 +119,8 @@
      "explain": "$\\frac{1/5}{1}=\\frac15$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -201,8 +201,8 @@
      "explain": "$\\frac{2/3}{1}=\\frac23$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -295,15 +295,15 @@
      "explain": "$1-\\frac18=\\frac78$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
    "kind": "computation",
    "topic": "minmax_transform",
    "question": "יהי $Z$ אורך הגפרור הקצר בין השניים: $Z=\\max(X,Y)$.\n**ב-1:** חשבו את ההסתברות $P(Z<L/3)$.",
-   "solution": "נפצל לפי איזה גפרור ארוך יותר:\n$$P(Z<\\tfrac L3)=P(Z<\\tfrac L3\\cap X<Y)+P(Z<\\tfrac L3\\cap X\\ge Y).$$\nכאשר $X<Y$ מתקיים $Z=Y$, ולכן $|\\{Z<\\frac L3\\cap X<Y\\}|=|\\{Y<\\frac L3\\cap Y>X\\}|=\\frac12\\cdot\\frac{L^2}{9}=\\frac{L^2}{18}$, וההסתברות היא $\\frac{1}{18}$ (חלוקה ב-$|\\Omega|=L^2$).\nכאשר $X\\ge Y$ מתקיים $Z=X$, ובאופן סימטרי $|\\{Z<\\frac L3\\cap X\\ge Y\\}|=|\\{X<\\frac L3\\cap Y\\le X\\}|=\\frac{L^2}{18}$, וההסתברות היא $\\frac1{18}$.\nלכן\n$$P(Z<\\tfrac L3)=\\frac1{18}+\\frac1{18}=\\frac19.$$",
+   "solution": "הערה: בניסוח המילולי של השאלה כתוב \"הגפרור הקצר\", אך הנוסחה מגדירה $Z=\\max(X,Y)$, והפתרון הרשמי משתמש במקסימום, ולכן זה הפתרון שלפניכם. אילו $Z$ היה אורך הגפרור הקצר, $\\min(X,Y)$, התשובה הייתה $\\frac59$.\n\nנפצל לפי איזה גפרור ארוך יותר:\n$$P(Z<\\tfrac L3)=P(Z<\\tfrac L3\\cap X<Y)+P(Z<\\tfrac L3\\cap X\\ge Y).$$\nכאשר $X<Y$ מתקיים $Z=Y$, ולכן $|\\{Z<\\frac L3\\cap X<Y\\}|=|\\{Y<\\frac L3\\cap Y>X\\}|=\\frac12\\cdot\\frac{L^2}{9}=\\frac{L^2}{18}$, וההסתברות היא $\\frac{1}{18}$ (חלוקה ב-$|\\Omega|=L^2$).\nכאשר $X\\ge Y$ מתקיים $Z=X$, ובאופן סימטרי $|\\{Z<\\frac L3\\cap X\\ge Y\\}|=|\\{X<\\frac L3\\cap Y\\le X\\}|=\\frac{L^2}{18}$, וההסתברות היא $\\frac1{18}$.\nלכן\n$$P(Z<\\tfrac L3)=\\frac1{18}+\\frac1{18}=\\frac19.$$",
    "solutionSource": "official-pdf",
    "official": true,
    "confidence": "high",
@@ -404,15 +404,15 @@
      "explain": "$\\left(\\frac13\\right)^2=\\frac19$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
    "kind": "computation",
    "topic": "minmax_transform",
    "question": "יהי $Z$ אורך הגפרור הקצר בין השניים: $Z=\\max(X,Y)$.\n**ב-2:** חשבו את ההסתברות המותנית $P(Z<L/2\\ /\\ X>L/4)$.",
-   "solution": "לפי הגדרת ההסתברות המותנית:\n$$P(Z<\\tfrac L2\\mid X>\\tfrac L4)=\\frac{P(Z<\\frac L2\\cap X>\\frac L4)}{P(X>\\frac L4)},\\qquad P(X>\\tfrac L4)=\\frac{L-L/4}{L}=\\frac34.$$\nנפצל את המונה לפי $X<Y$ ו-$X\\ge Y$ ונחשב שטחים (חלקי $|\\Omega|=L^2$): האזורים $\\{X<\\frac L2,\\ X>\\frac L4,\\ Y<\\frac L2\\}$ מרכיבים יחד אזור בגודל $\\frac L4\\cdot\\frac L2$, ולכן\n$$P(Z<\\tfrac L2\\cap X>\\tfrac L4)=\\frac1{L^2}\\left(\\frac L4\\cdot\\frac L2\\right)=\\frac18.$$\nומכאן\n$$P(Z<\\tfrac L2\\mid X>\\tfrac L4)=\\frac{1/8}{3/4}=\\frac16.$$",
+   "solution": "הערה: בניסוח המילולי של השאלה כתוב \"הגפרור הקצר\", אך הנוסחה מגדירה $Z=\\max(X,Y)$, והפתרון הרשמי משתמש במקסימום, ולכן זה הפתרון שלפניכם. אילו $Z$ היה אורך הגפרור הקצר, $\\min(X,Y)$, התשובה הייתה $\\frac23$.\n\nלפי הגדרת ההסתברות המותנית:\n$$P(Z<\\tfrac L2\\mid X>\\tfrac L4)=\\frac{P(Z<\\frac L2\\cap X>\\frac L4)}{P(X>\\frac L4)},\\qquad P(X>\\tfrac L4)=\\frac{L-L/4}{L}=\\frac34.$$\nנפצל את המונה לפי $X<Y$ ו-$X\\ge Y$ ונחשב שטחים (חלקי $|\\Omega|=L^2$): האזורים $\\{X<\\frac L2,\\ X>\\frac L4,\\ Y<\\frac L2\\}$ מרכיבים יחד אזור בגודל $\\frac L4\\cdot\\frac L2$, ולכן\n$$P(Z<\\tfrac L2\\cap X>\\tfrac L4)=\\frac1{L^2}\\left(\\frac L4\\cdot\\frac L2\\right)=\\frac18.$$\nומכאן\n$$P(Z<\\tfrac L2\\mid X>\\tfrac L4)=\\frac{1/8}{3/4}=\\frac16.$$",
    "solutionSource": "official-pdf",
    "official": true,
    "confidence": "high",
@@ -519,8 +519,8 @@
      "explain": "$\\frac{1/8}{3/4}=\\frac16$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -609,8 +609,8 @@
      "explain": "$\\frac4{10}=\\frac25$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -699,8 +699,8 @@
      "explain": "$\\frac{36}{90}=\\frac25$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -808,8 +808,8 @@
      "explain": "$\\frac{1/5}{2/5}=\\frac12$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -898,8 +898,8 @@
      "explain": "$\\frac{288}{720}=\\frac25$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -997,8 +997,8 @@
      "explain": "$1-p^2=0.91$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1096,8 +1096,8 @@
      "explain": "$p^2=0.09$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1228,8 +1228,8 @@
      "explain": "$\\binom31(0.09)(0.91)^2\\approx0.22359$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1367,8 +1367,8 @@
      "explain": "$\\binom62(0.3)^2(0.7)^4=15\\cdot0.09\\cdot0.2401\\approx0.32414$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1514,8 +1514,8 @@
      "explain": "$n\\cdot0.126=0.378$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1608,8 +1608,8 @@
      "explain": "$\\frac{4+2-2}{15}=\\frac4{15}$, כנדרש."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1684,8 +1684,8 @@
      "explain": "$1-\\frac{(2-\\frac32)^2}{5}=1-\\frac1{20}=\\frac{19}{20}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1772,8 +1772,8 @@
      "explain": "$\\frac{7/20}{19/20}=\\frac7{19}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -1855,8 +1855,8 @@
      "explain": "$\\frac{2+3+7}3=4$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -1948,15 +1948,15 @@
      "explain": "$\\frac{2^2+3^2+7^2}{12}=\\frac{62}{12}=\\frac{31}6$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
    "kind": "computation",
    "topic": "discrete_rv",
    "question": "נסמן ב-$A$ את תשובתך בסעיף א' וב-$B$ את תשובתך בסעיף ב'. האם $B\\ge A$? האם $B<A$? נמקו **היטב!**",
-   "solution": "מהסעיפים הקודמים $A=\\mathbb{E}[X]$, $B=\\mathbb{E}[Y]$ ו-$\\mathbb{E}[X^2]=\\frac{n_1^2+\\cdots+n_N^2}{N}$, ולכן\n$$B=\\frac{\\mathbb{E}[X^2]}{\\mathbb{E}[X]}=\\frac{\\operatorname{Var}[X]+(\\mathbb{E}[X])^2}{\\mathbb{E}[X]}.$$\nנחלק ב-$\\mathbb{E}[X]$:\n$$\\frac{B}{A}=1+\\frac{\\operatorname{Var}[X]}{(\\mathbb{E}[X])^2}\\ge1.$$\nמכאן $B\\ge A$ (התשובה הרשמית), והטענה $B<A$ אינה נכונה.",
+   "solution": "מהסעיפים הקודמים $A=\\mathbb{E}[X]$, $B=\\mathbb{E}[Y]$ ו-$\\mathbb{E}[X^2]=\\frac{n_1^2+\\cdots+n_N^2}{N}$, ולכן\n$$B=\\frac{\\mathbb{E}[X^2]}{\\mathbb{E}[X]}=\\frac{\\operatorname{Var}[X]+(\\mathbb{E}[X])^2}{\\mathbb{E}[X]}.$$\nנחלק ב-$\\mathbb{E}[X]$:\n$$\\frac{B}{A}=1+\\frac{\\operatorname{Var}[X]}{(\\mathbb{E}[X])^2}\\ge1.$$\nמכאן $B\\ge A$ (התשובה הרשמית), והטענה $B<A$ אינה נכונה.\n\nהערה: הנתון $n_1\\ne n_2\\ne\\cdots\\ne n_N$ אומר שהמספרים $n_i$ שונים זה מזה, ולכן $\\operatorname{Var}[X]>0$ ו-$\\frac{B}{A}>1$. כלומר $B>A$ ממש (לא רק $B\\ge A$).",
    "solutionSource": "official-pdf",
    "official": true,
    "confidence": "high",
@@ -2017,8 +2017,8 @@
      "explain": "$\\frac BA=1+\\frac{\\operatorname{Var}[X]}{(\\mathbb E[X])^2}\\ge1$. בדוגמה היחס $\\frac{31}{24}>1$, ולכן שתי הטענות האחרות נכשלות."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2131,8 +2131,8 @@
      "explain": "$0.6\\cdot0.7056+0.4\\cdot0.5904=0.65952$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2246,8 +2246,8 @@
      "explain": "$\\frac{0.8016\\cdot0.6}{0.65952}\\approx0.72926$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2354,8 +2354,8 @@
      "explain": "$\\frac55=1$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   }
  ]
 }

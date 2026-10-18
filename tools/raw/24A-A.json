@@ -128,8 +128,8 @@
      "explain": "$\\frac{1+\\ln2}{2}\\approx0.8466$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -218,8 +218,8 @@
      "explain": "$\\frac{1/2}{2}=\\frac14$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -326,8 +326,8 @@
      "explain": "$\\frac{(1/2+\\ln2)/2}{3/4}=\\frac13+\\frac23\\ln2\\approx0.7954$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -425,8 +425,8 @@
      "explain": "$\\frac49-\\frac14=\\frac7{36}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -520,8 +520,8 @@
      "explain": "$4\\left(\\frac1{12}+\\frac13\\right)=\\frac53$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -605,8 +605,8 @@
      "explain": "$p+2p^2+p^3=\\frac13+\\frac29+\\frac1{27}=\\frac{16}{27}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -690,8 +690,8 @@
      "explain": "$p+3p^2+3p^3+p^4=\\frac14\\left(\\frac54\\right)^3=\\frac{125}{256}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -782,8 +782,8 @@
      "explain": "$p(1+p)^4=\\frac15\\left(\\frac65\\right)^4=\\frac{1296}{3125}\\approx0.41472$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -859,8 +859,8 @@
      "explain": "$\\frac16\\left(\\frac76\\right)^5=\\frac{16807}{46656}\\approx0.36023$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -964,8 +964,8 @@
      "explain": "$\\binom32(0.3)^2(0.7)=0.189$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1069,8 +1069,8 @@
      "explain": "$\\binom52(0.3)^2(0.7)^3=10\\cdot0.09\\cdot0.343=0.3087$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1182,8 +1182,8 @@
      "explain": "$\\frac{0.18522}{0.3087}=0.6=\\frac{\\binom31\\binom21}{\\binom52}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1288,8 +1288,8 @@
      "explain": "$\\frac{nN_1}{N_1+N_2}=\\frac{2\\cdot3}{5}=1.2$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1380,8 +1380,8 @@
      "explain": "$a=1$ (ואז $b=\\frac32$, $c=1$)."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1456,8 +1456,8 @@
      "explain": "$t-\\frac12=\\frac34$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1545,8 +1545,8 @@
      "explain": "$1-0.4592\\approx0.5408$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -1663,15 +1663,15 @@
      "explain": "$\\binom53(0.6)^3(0.4)^2=10\\cdot0.216\\cdot0.16=0.3456$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
    "kind": "computation",
    "topic": "special_discrete",
    "question": "**ב.** יהי $Y$ משתנה מקרי המתאר את מספר הסטודנטים – **מתוך אלה שהגיעו למבחן** – אשר נולדו **היום** (כלומר, בתאריך המבחן). מצאו את פונקציית ההסתברות של משתנה זה.\n**הערה:** לידיעתך,\n$$\\sum_{j=m}^{N}C_j^mC_N^ja^j=C_N^m\\,a^m(1+a)^{N-m}.$$\n(יכול להיות שאין צורך להשתמש בנוסחה זו.)",
-   "solution": "לפי נוסחת ההסתברות השלמה:\n$$P(Y=k)=\\sum_{j=k}^{N}P(Y=k/X=j)\\,P(X=j).$$\nידוע כי בהינתן $X=j$, ההסתברות שבדיוק $k$ מהם נולדו בתאריך המבחן היא $\\binom jk Q^k(1-Q)^{j-k}$ עם $Q=\\dfrac1{365}$. לכן\n$$P(Y=k)=\\sum_{j=k}^{N}\\binom jk Q^k(1-Q)^{j-k}\\binom Nj p^j(1-p)^{N-j}=\\frac{Q^k}{(1-Q)^k}(1-p)^N\\sum_{j=k}^{N}\\binom jk\\binom Nj\\left(\\frac{p}{1-p}(1-Q)\\right)^j.\\qquad(*)$$\nהסכום כפי שהוא שווה בדיוק לסכום המופיע ברמז, עם $m=k$ ו-$a=\\dfrac p{1-p}(1-Q)$:\n$$\\sum_{j=k}^N\\binom jk\\binom Nj\\left(\\frac p{1-p}(1-Q)\\right)^j=\\binom Nk\\frac{(1-pQ)^{N-k}p^k(1-Q)^k}{(1-p)^N}.$$\nהצבה חזרה ל-$(*)$ ופישוט נותנים:\n$$P(Y=k)=\\binom Nk(pQ)^k(1-pQ)^{N-k},\\qquad k=0,1,\\dots,N.$$\n**קיים פתרון חלופי קצר ללא שימוש ברמז:** נסתכל על כל אחד מ-$N$ הסטודנטים על ידי זוג משתני ברנולי: $X_j=1$ אם הגיע למבחן (הסתברות $p$), $\\tilde X_j=1$ אם נולד בתאריך המבחן (הסתברות $Q$). אם רוצים לספור את אלה שגם הגיעו למבחן וגם נולדו בתאריך המבחן, ניתן לעשות זאת בעזרת משתנה ברנולי $Y_j=X_j\\cdot\\tilde X_j\\sim\\mathrm{Ber}(pQ)$ (גם הגיע וגם נולד בתאריך המבחן). לכן $Y=\\sum_{j=1}^NY_j\\sim\\mathrm{Bin}(N,pQ)$ (לפי משפט הפירוק).",
+   "solution": "לפי נוסחת ההסתברות השלמה:\n$$P(Y=k)=\\sum_{j=k}^{N}P(Y=k/X=j)\\,P(X=j).$$\nהנחה (שאינה כתובה בשאלה): כל תלמיד נולד באחד מ-$365$ ימי השנה בהסתברות שווה, וללא תלות בשאר, ולכן ההסתברות שנולד בתאריך נתון היא $Q=\\frac1{365}$.\nידוע כי בהינתן $X=j$, ההסתברות שבדיוק $k$ מהם נולדו בתאריך המבחן היא $\\binom jk Q^k(1-Q)^{j-k}$ עם $Q=\\dfrac1{365}$. לכן\n$$P(Y=k)=\\sum_{j=k}^{N}\\binom jk Q^k(1-Q)^{j-k}\\binom Nj p^j(1-p)^{N-j}=\\frac{Q^k}{(1-Q)^k}(1-p)^N\\sum_{j=k}^{N}\\binom jk\\binom Nj\\left(\\frac{p}{1-p}(1-Q)\\right)^j.\\qquad(*)$$\nהסכום כפי שהוא שווה בדיוק לסכום המופיע ברמז, עם $m=k$ ו-$a=\\dfrac p{1-p}(1-Q)$:\n$$\\sum_{j=k}^N\\binom jk\\binom Nj\\left(\\frac p{1-p}(1-Q)\\right)^j=\\binom Nk\\frac{(1-pQ)^{N-k}p^k(1-Q)^k}{(1-p)^N}.$$\nהצבה חזרה ל-$(*)$ ופישוט נותנים:\n$$P(Y=k)=\\binom Nk(pQ)^k(1-pQ)^{N-k},\\qquad k=0,1,\\dots,N.$$\n**קיים פתרון חלופי קצר ללא שימוש ברמז:** נסתכל על כל אחד מ-$N$ הסטודנטים על ידי זוג משתני ברנולי: $X_j=1$ אם הגיע למבחן (הסתברות $p$), $\\tilde X_j=1$ אם נולד בתאריך המבחן (הסתברות $Q$). אם רוצים לספור את אלה שגם הגיעו למבחן וגם נולדו בתאריך המבחן, ניתן לעשות זאת בעזרת משתנה ברנולי $Y_j=X_j\\cdot\\tilde X_j\\sim\\mathrm{Ber}(pQ)$ (גם הגיע וגם נולד בתאריך המבחן). לכן $Y=\\sum_{j=1}^NY_j\\sim\\mathrm{Bin}(N,pQ)$ (לפי משפט הפירוק).",
    "solutionSource": "official-pdf",
    "official": true,
    "confidence": "high",
@@ -1854,15 +1854,15 @@
      "explain": "$5\\,pQ\\,(1-pQ)^4\\approx0.0081653$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
    "kind": "computation",
    "topic": "conditional_bayes",
    "question": "**ג.** **אם ידוע** כי בין כל הסטודנטים שהגיעו למבחן בדיוק $k$ נולדו בתאריך המבחן, מהי ההסתברות שבדיוק $n$ סטודנטים הגיעו למבחן?",
-   "solution": "הסתברות מותנית (נוסחת בייס):\n$$P(X=n/Y=k)=\\frac{P(Y=k/X=n)\\,P(X=n)}{P(Y=k)}=\\frac{\\binom nk Q^k(1-Q)^{n-k}\\cdot\\binom Nn p^n(1-p)^{N-n}}{\\binom Nk(pQ)^k(1-pQ)^{N-k}}.$$\nלאחר הצמצום ופישוט מתקבל\n$$P(X=n/Y=k)=\\binom{N-k}{N-n}\\,(\\tilde p)^{N-n}(1-\\tilde p)^{N-k-(N-n)},\\qquad \\tilde p=\\frac{1-p}{1-pQ}.$$",
+   "solution": "הסתברות מותנית (נוסחת בייס):\n$$P(X=n/Y=k)=\\frac{P(Y=k/X=n)\\,P(X=n)}{P(Y=k)}=\\frac{\\binom nk Q^k(1-Q)^{n-k}\\cdot\\binom Nn p^n(1-p)^{N-n}}{\\binom Nk(pQ)^k(1-pQ)^{N-k}}.$$\nלאחר הצמצום ופישוט מתקבל\n$$P(X=n/Y=k)=\\binom{N-k}{N-n}\\,(\\tilde p)^{N-n}(1-\\tilde p)^{N-k-(N-n)},\\qquad \\tilde p=\\frac{1-p}{1-pQ}.$$\nכאן $Q=\\frac1{365}$ לפי אותה הנחה כמו בסעיף ב: כל תלמיד נולד בכל אחד מ-$365$ ימי השנה בהסתברות שווה, וללא תלות בשאר.",
    "solutionSource": "official-pdf",
    "official": true,
    "confidence": "high",
@@ -2042,8 +2042,8 @@
      "explain": "היחס $\\frac{0.0012590}{0.0081653}\\approx0.1542=\\binom43\\tilde p^3(1-\\tilde p)$ עם $\\tilde p=\\frac{0.4}{1-pQ}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2155,8 +2155,8 @@
      "explain": "$0.6\\cdot0.7056+0.4\\cdot0.5904=0.65952$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2277,8 +2277,8 @@
      "explain": "$\\frac{0.60192}{0.65952}\\approx0.91266$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2390,8 +2390,8 @@
      "explain": "$1.31904-0.60192=0.71712$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   }
  ]
 }

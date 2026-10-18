@@ -934,6 +934,7 @@ pre.code-block code{font:inherit;white-space:pre;direction:ltr;text-align:left;b
 .rg-both{fill:var(--brand);fill-opacity:.78;stroke:none}
 .rg-given-line{fill:none;stroke:var(--brand2);stroke-width:1.8}
 .rg-bound{stroke:var(--ink);stroke-opacity:.45;stroke-width:1;stroke-dasharray:4 3}
+.rg-evline{stroke:var(--brand);stroke-width:3;stroke-linecap:round}
 .rg-legend{display:flex;flex-wrap:wrap;justify-content:center;gap:.25rem .9rem;font-size:.8rem;color:var(--muted);margin-top:.35rem}
 .rg-key{display:inline-flex;align-items:center;gap:.3rem}
 .rg-sw{display:inline-block;width:14px;height:10px;border-radius:2px;border:1px solid var(--line-strong)}
@@ -974,3 +975,5 @@ pre.code-block code{font:inherit;white-space:pre;direction:ltr;text-align:left;b
 .mc-verdict.good{color:var(--ok)}
 .mc-verdict.bad{color:var(--warn)}
 .mc-err{color:var(--bad)}
+
+.crs-post{margin-top:.8rem}
