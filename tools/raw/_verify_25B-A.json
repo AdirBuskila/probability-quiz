@@ -1,0 +1,305 @@
+{
+ "examCode": "25B-A",
+ "refuter": "refuter (blind, own derivation first)",
+ "derivation": "Own derivations (written before opening the claims, scripts tools/verify/25B-A/refute_derive.py): Q1 X,Y iid U(0,1): P(L<1)=pi/4, P(S<1/4)=(1+ln2)/2, cond=pi/(2(1+ln2)) (quarter disc lies inside xy<1/2), E[S]=1/8, var[S]=7/576. Q2 P(B)=(q+s-1)/q, P(AB)=p(q+s-1)/q, P(A)=s-(1-p)P(B); q<1-s impossible; independent iff p+q=1 (s free). Q3 1-prod(1-p^Ni), cond p^N2/P. Q4 c=g=0 (finite variance), a=6(1-2mu)/5, b=(2+6mu)/5, mu in [-1/3,1/2], cond prob =1. Q5 P(Q0)=2p^2-p^3, both=(4p^2-p^3)/3, cond (4-p)/(3(2-p)), 2p^2/(3(1+p-p^2)). Q6 Bin(N,1/365), Poisson(lam/365), n-k~Poisson(lam*364/365). Each cross-checked by 4e6-sample Monte Carlo.",
+ "counts": {
+  "items": 25,
+  "agree_claims": 104,
+  "disagree_claims": 1
+ },
+ "items": {
+  "1א": {
+   "solution": "agree",
+   "rubric": "agree (points sum to the item points; every point matches a step of the derivation)",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree (numeric)",
+    "1": "agree (choice)"
+   }
+  },
+  "1ב": {
+   "solution": "agree",
+   "rubric": "agree (points sum to the item points; every point matches a step of the derivation)",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree (choice)",
+    "1": "agree (numeric)",
+    "2": "agree (choice)",
+    "3": "agree (numeric)"
+   },
+   "region": "agree (inequalities match the printed event/sample space; own MC matches `exact`; rendered through region.js for a sample)",
+   "sim": "agree (own MC 1000000 samples + own enumeration where discrete matches `exact`; spec models the question's experiment; `estimate` label and sample values correct)"
+  },
+  "1ג": {
+   "solution": "agree",
+   "rubric": "agree (points sum to the item points; every point matches a step of the derivation)",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree (numeric)",
+    "1": "agree (numeric)",
+    "2": "agree (numeric)",
+    "3": "agree (numeric)"
+   },
+   "region": "agree (inequalities match the printed event/sample space; own MC matches `exact`; rendered through region.js for a sample)",
+   "sim": "agree (own MC 1000000 samples + own enumeration where discrete matches `exact`; spec models the question's experiment; `estimate` label and sample values correct)"
+  },
+  "1ד": {
+   "solution": "agree",
+   "rubric": "agree (points sum to the item points; every point matches a step of the derivation)",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree (numeric)",
+    "1": "agree (numeric)",
+    "2": "agree (choice)",
+    "3": "agree (numeric)"
+   },
+   "region": "agree (inequalities match the printed event/sample space; own MC matches `exact`; rendered through region.js for a sample)",
+   "sim": "agree (own MC 1000000 samples + own enumeration where discrete matches `exact`; spec models the question's experiment; `estimate` label and sample values correct)"
+  },
+  "1ה": {
+   "solution": "agree",
+   "rubric": "agree (points sum to the item points; every point matches a step of the derivation)",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree (choice)",
+    "1": "agree (numeric)",
+    "2": "agree (numeric)",
+    "3": "agree (numeric)",
+    "4": "agree (numeric)"
+   },
+   "sim": "agree (own MC 1000000 samples + own enumeration where discrete matches `exact`; spec models the question's experiment; `estimate` label and sample values correct)"
+  },
+  "2א": {
+   "solution": "agree",
+   "rubric": "agree (points sum to the item points; every point matches a step of the derivation)",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree (choice)",
+    "1": "agree (numeric)",
+    "2": "agree (numeric)"
+   },
+   "sim": "agree (own MC 1000000 samples + own enumeration where discrete matches `exact`; spec models the question's experiment; `estimate` label and sample values correct)"
+  },
+  "2ב": {
+   "solution": "agree",
+   "rubric": "agree (points sum to the item points; every point matches a step of the derivation)",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree (choice)",
+    "1": "agree (numeric)",
+    "2": "agree (numeric)"
+   },
+   "sim": "agree (own MC 1000000 samples + own enumeration where discrete matches `exact`; spec models the question's experiment; `estimate` label and sample values correct)"
+  },
+  "2ג": {
+   "solution": "agree",
+   "rubric": "agree (points sum to the item points; every point matches a step of the derivation)",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree (choice)",
+    "1": "agree (numeric)",
+    "2": "agree (numeric)"
+   },
+   "sim": "agree (own MC 1000000 samples + own enumeration where discrete matches `exact`; spec models the question's experiment; `estimate` label and sample values correct)"
+  },
+  "2ד": {
+   "solution": "agree",
+   "rubric": "agree (points sum to the item points; every point matches a step of the derivation)",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree (numeric)",
+    "1": "agree (choice)"
+   },
+   "flags": [
+    "[minor] step 1 option d ('no: then P(A)>1') answers the question correctly but with a reason that is false in general; the intended key (a) is still the only option with a correct reason."
+   ]
+  },
+  "2ה": {
+   "solution": "agree",
+   "rubric": "agree (points sum to the item points; every point matches a step of the derivation)",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree (choice)",
+    "1": "agree (numeric)"
+   },
+   "flags": [
+    "[gap] solution proves only necessity (independent => p+q=1); sufficiency (p+q=1 => independent, s free) is not shown. Final answer p+q=1 is right (identity P(AB)-P(A)P(B) = -(s-1)(p+q-1)(q+s-1)/q^2)."
+   ]
+  },
+  "3א": {
+   "solution": "agree",
+   "rubric": "agree (points sum to the item points; every point matches a step of the derivation)",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree (choice)",
+    "1": "agree (numeric)",
+    "2": "agree (numeric)",
+    "3": "agree (numeric)"
+   },
+   "sim": "agree (own MC 1000000 samples + own enumeration where discrete matches `exact`; spec models the question's experiment; `estimate` label and sample values correct)"
+  },
+  "3ב": {
+   "solution": "agree",
+   "rubric": "agree (points sum to the item points; every point matches a step of the derivation)",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree (choice)",
+    "1": "agree (numeric)",
+    "2": "agree (numeric)"
+   },
+   "sim": "agree (own MC 1000000 samples + own enumeration where discrete matches `exact`; spec models the question's experiment; `estimate` label and sample values correct)",
+   "flags": [
+    "[explain-typo] step 2 explain says 0.64/0.964864 ~ 0.663317; correct is 0.663306 (the stored answer 0.66330592 is right)."
+   ]
+  },
+  "3ג": {
+   "solution": "agree",
+   "rubric": "agree (points sum to the item points; every point matches a step of the derivation)",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree (choice)",
+    "1": "agree (numeric)"
+   },
+   "sim": "agree (own MC 1000000 samples + own enumeration where discrete matches `exact`; spec models the question's experiment; `estimate` label and sample values correct)",
+   "flags": [
+    "[explain-typo] step 1 explain says 1-0.663317=0.336683; correct is 0.336694 (stored answer right)."
+   ]
+  },
+  "4א": {
+   "solution": "agree",
+   "rubric": "agree (points sum to the item points; every point matches a step of the derivation)",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree (choice)",
+    "1": "agree (choice)",
+    "2": "agree (numeric)",
+    "3": "agree (numeric)"
+   },
+   "sim": "agree (own MC 1000000 samples + own enumeration where discrete matches `exact`; spec models the question's experiment; `estimate` label and sample values correct)"
+  },
+  "4ב": {
+   "solution": "agree",
+   "rubric": "agree (points sum to the item points; every point matches a step of the derivation)",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree (choice)",
+    "1": "agree (numeric)",
+    "2": "agree (numeric)"
+   }
+  },
+  "4ג": {
+   "solution": "agree",
+   "rubric": "agree (points sum to the item points; every point matches a step of the derivation)",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree (choice)",
+    "1": "agree (numeric)",
+    "2": "agree (numeric)",
+    "3": "agree (numeric)"
+   },
+   "sim": "agree (own MC 1000000 samples + own enumeration where discrete matches `exact`; spec models the question's experiment; `estimate` label and sample values correct)"
+  },
+  "4ד": {
+   "solution": "agree",
+   "rubric": "agree (points sum to the item points; every point matches a step of the derivation)",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree (numeric)",
+    "1": "agree (numeric)",
+    "2": "agree (numeric)"
+   }
+  },
+  "5א": {
+   "solution": "agree",
+   "rubric": "agree (points sum to the item points; every point matches a step of the derivation)",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree (choice)",
+    "1": "agree (numeric)",
+    "2": "agree (numeric)"
+   },
+   "sim": "agree (own MC 1000000 samples + own enumeration where discrete matches `exact`; spec models the question's experiment; `estimate` label and sample values correct)"
+  },
+  "5ב": {
+   "solution": "agree",
+   "rubric": "agree (points sum to the item points; every point matches a step of the derivation)",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "disagree: options a ('same topology, every place holds a unit with prob p regardless of identity') and d ('the arrangement does not change the structure') are both correct statements for why P(Q')=P(Q0); only 'a' is keyed. Fix: reword d to something false (e.g. 'because every arrangement gives the identical circuit').",
+    "1": "agree (numeric)"
+   },
+   "sim": "agree (own MC 1000000 samples + own enumeration where discrete matches `exact`; spec models the question's experiment; `estimate` label and sample values correct)"
+  },
+  "5ג": {
+   "solution": "agree",
+   "rubric": "agree (points sum to the item points; every point matches a step of the derivation)",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree (choice)",
+    "1": "agree (numeric)",
+    "2": "agree (numeric)",
+    "3": "agree (numeric)"
+   },
+   "sim": "agree (own MC 1000000 samples + own enumeration where discrete matches `exact`; spec models the question's experiment; `estimate` label and sample values correct)"
+  },
+  "5ד": {
+   "solution": "agree",
+   "rubric": "agree (points sum to the item points; every point matches a step of the derivation)",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree (numeric)",
+    "1": "agree (numeric)",
+    "2": "agree (numeric)"
+   },
+   "sim": "agree (own MC 1000000 samples + own enumeration where discrete matches `exact`; spec models the question's experiment; `estimate` label and sample values correct)"
+  },
+  "5ה": {
+   "solution": "agree",
+   "rubric": "agree (points sum to the item points; every point matches a step of the derivation)",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree (choice)",
+    "1": "agree (numeric)",
+    "2": "agree (numeric)",
+    "3": "agree (numeric)"
+   },
+   "sim": "agree (own MC 1000000 samples + own enumeration where discrete matches `exact`; spec models the question's experiment; `estimate` label and sample values correct)"
+  },
+  "6א": {
+   "solution": "agree",
+   "rubric": "agree (points sum to the item points; every point matches a step of the derivation)",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree (choice)",
+    "1": "agree (numeric)"
+   },
+   "sim": "agree (own MC 1000000 samples + own enumeration where discrete matches `exact`; spec models the question's experiment; `estimate` label and sample values correct)",
+   "flags": [
+    "[assumption] question text never states the 1/365 birthday probability; solution states it as an assumption (leap years ignored). 6ב/6ג solution reuse the symbol p for 1/365 without restating it."
+   ]
+  },
+  "6ב": {
+   "solution": "agree",
+   "rubric": "agree (points sum to the item points; every point matches a step of the derivation)",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree (choice)",
+    "1": "agree (choice)",
+    "2": "agree (numeric)",
+    "3": "agree (numeric)"
+   },
+   "sim": "agree (own MC 1000000 samples + own enumeration where discrete matches `exact`; spec models the question's experiment; `estimate` label and sample values correct)"
+  },
+  "6ג": {
+   "solution": "agree",
+   "rubric": "agree (points sum to the item points; every point matches a step of the derivation)",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree (choice)",
+    "1": "agree (numeric)",
+    "2": "agree (numeric)"
+   },
+   "sim": "agree (own MC 1000000 samples + own enumeration where discrete matches `exact`; spec models the question's experiment; `estimate` label and sample values correct)"
+  }
+ }
+}
