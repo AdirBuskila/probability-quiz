@@ -1,0 +1,21 @@
+{
+  "_note": "Region data for area-type items of 24B-B. RAW_SCHEMA has no `region` field, so it lives here. Ids are built question ids. X1~U(0,L), X2~U(0,2L) independent; coordinates in units of L (x = X1/L, y = X2/L).",
+  "24B-B-Q1b": {
+    "sampleSpace": {"x": [0, 1], "y": [0, 2]},
+    "distribution": "uniform on the sample space (X1~U(0,L), X2~U(0,2L) independent)",
+    "event": ["x + y > 1"],
+    "eventBoundary": "line y = 1 - x",
+    "params": {},
+    "areaFormula": "3/2 of total area 2, probability 3/4",
+    "conditioning": null
+  },
+  "24B-B-Q1c": {
+    "sampleSpace": {"x": [0, 1], "y": [0, 2]},
+    "distribution": "uniform on the sample space (X1~U(0,L), X2~U(0,2L) independent)",
+    "event": ["x > y"],
+    "eventBoundary": "diagonal y = x",
+    "params": {},
+    "areaFormula": "1/2 of total area 2, probability 1/4",
+    "conditioning": null
+  }
+}
