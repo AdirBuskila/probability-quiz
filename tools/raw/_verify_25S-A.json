@@ -1,0 +1,712 @@
+{
+ "examCode": "25S-A",
+ "refuter": "independent exact (sympy/fractions/enumeration) + own Monte Carlo; scripts tools/verify/25S-A/refute_*.py",
+ "counts": {
+  "agree": 26,
+  "disagree": 0,
+  "unclear": 0
+ },
+ "items": {
+  "Q1א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": "agree",
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q1ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": "agree",
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": "Region = union x1<1/2 or x2<1/2, area 1.25/2=0.625: matches the printed event."
+  },
+  "Q1ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": "agree",
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q1ד": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": "agree",
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q2א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": null,
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q2ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": null,
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q2ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": null,
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": "Agree; edge case s=q gives P(B)=1 and P(~B)=0 so the conditional is undefined (not mentioned, minor)."
+  },
+  "Q2ד": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": null,
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q2ה": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": null,
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q2ו": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": null,
+   "sim": null,
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q2ז": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": null,
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q3א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": null,
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q3ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": null,
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q3ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": null,
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q3ד": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": null,
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q3ה": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": null,
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": "D(D-1)/(N(N-1)) verified by full enumeration of ordered draws (4 parameter sets) and MC."
+  },
+  "Q4א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": null,
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q4ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": null,
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q4ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": null,
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q5א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": null,
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q5ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": null,
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q5ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": null,
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q5ד": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": null,
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": "Agree under the stated reading: both travel via the pub only if all four roads are open, P4=p^4/P2=p^2/(1+2p-2p^2). Ambiguity flag: if 'via the pub' means forced (their only route), the event is impossible for both at once (A closed vs B closed) so P4 would be 0; the solution's reading is the only non-trivial one."
+  },
+  "Q6א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": null,
+   "sim": null,
+   "steps": [
+    {
+     "index": 0,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q6ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": null,
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q6ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": null,
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 4,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": "C(X+Y,X)C(m+n-X-Y,m-X)/C(m+n,m), p cancels: enumeration for 3 grids and MC at p=.3,.7."
+  }
+ }
+}
