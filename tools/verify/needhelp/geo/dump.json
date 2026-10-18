@@ -1,0 +1,671 @@
+{
+ "courseId": "geo",
+ "levels": [
+  {
+   "id": "C01",
+   "order": 1,
+   "boss": false,
+   "questions": [
+    {
+     "id": "geo-C01-Q1",
+     "step": {
+      "type": "numeric",
+      "prompt": "$X\\sim U_c(0,1)$ ו-$Y\\sim U_c(0,2)$ בלתי תלויים, והנקודה $(X,Y)$ נבחרת אחיד במלבן $\\Omega$. מהו $|\\Omega|$, שטח מרחב המדגם?"
+     }
+    },
+    {
+     "id": "geo-C01-Q2",
+     "step": {
+      "type": "numeric",
+      "prompt": "$X\\sim U_c(0,3)$ ו-$Y\\sim U_c(0,2)$ בלתי תלויים. מהו $|\\Omega|$?"
+     }
+    },
+    {
+     "id": "geo-C01-Q3",
+     "question": "$X\\sim U_c(0,3)$ ו-$Y\\sim U_c(0,2)$ בלתי תלויים. מהי $P(X<1)$ ?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "$\\frac13$"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "$\\frac12$"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "$\\frac23$"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "$2$"
+      }
+     ]
+    },
+    {
+     "id": "geo-C01-Q4",
+     "step": {
+      "type": "numeric",
+      "prompt": "$X$ ו-$Y$ בלתי תלויים, שניהם $U_c(0,1)$. מהי ההסתברות $P\\left(X<\\frac14,\\ Y>\\frac12\\right)$ ? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "geo-C01-Q5",
+     "question": "$X\\sim U_c(0,1)$ ו-$Y\\sim U_c(0,2)$ בלתי תלויים. מהי $P(Y<\\frac12)$ ?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "$\\frac12$"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "$\\frac14$"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "$\\frac34$"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "$1$"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "C02",
+   "order": 2,
+   "boss": false,
+   "questions": [
+    {
+     "id": "geo-C02-Q1",
+     "question": "$X$ ו-$Y$ בלתי תלויים, שניהם $U_c(0,1)$. מהי $P(Y>X)$ ?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "$\\frac14$"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "$\\frac12$"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "$\\frac13$"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "$\\frac34$"
+      }
+     ]
+    },
+    {
+     "id": "geo-C02-Q2",
+     "step": {
+      "type": "numeric",
+      "prompt": "$X$ ו-$Y$ בלתי תלויים, שניהם $U_c(0,1)$. חשבו את $P\\left(X+Y<\\frac23\\right)$ (אפשר שבר או עשרוני)."
+     }
+    },
+    {
+     "id": "geo-C02-Q3",
+     "question": "$X$ ו-$Y$ בלתי תלויים, שניהם $U_c(0,1)$. מהי $P\\left(X+Y<\\frac54\\right)$ ?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "$\\frac{23}{32}$"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "$\\frac{9}{32}$"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "$\\frac{25}{32}$"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "$\\frac{15}{16}$"
+      }
+     ]
+    },
+    {
+     "id": "geo-C02-Q4",
+     "step": {
+      "type": "numeric",
+      "prompt": "$X\\sim U_c(0,1)$ ו-$Y\\sim U_c(0,2)$ בלתי תלויים. מהי $P(Y>X)$ ? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "geo-C02-Q5",
+     "question": "$X$ ו-$Y$ בלתי תלויים, שניהם $U_c(0,1)$. מהי $P(Y>2X)$ ?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "$\\frac12$"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "$\\frac14$"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "$\\frac18$"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "$\\frac13$"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "C03",
+   "order": 3,
+   "boss": false,
+   "questions": [
+    {
+     "id": "geo-C03-Q1",
+     "step": {
+      "type": "numeric",
+      "prompt": "$X$ ו-$Y$ בלתי תלויים, שניהם $U_c(0,1)$. מהי $P\\left(\\lvert X-Y\\rvert<\\frac13\\right)$ ? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "geo-C03-Q2",
+     "question": "$X$ ו-$Y$ בלתי תלויים, שניהם $U_c(0,1)$. מהי $P\\left(\\lvert X-Y\\rvert>\\frac14\\right)$ ?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "$\\frac{9}{16}$"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "$\\frac{7}{16}$"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "$\\frac{3}{4}$"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "$\\frac{9}{32}$"
+      }
+     ]
+    },
+    {
+     "id": "geo-C03-Q3",
+     "step": {
+      "type": "numeric",
+      "prompt": "$X$ ו-$Y$ בלתי תלויים, שניהם $U_c(0,1)$. מהי ההסתברות שמתקיימים גם $X<Y$ וגם $X+Y<\\frac12$ ? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "geo-C03-Q4",
+     "question": "$X$ ו-$Y$ בלתי תלויים, שניהם $U_c(0,1)$. מהי $P\\left(\\frac12<X+Y<\\frac32\\right)$ ?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "$\\frac34$"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "$\\frac12$"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "$\\frac78$"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "$\\frac14$"
+      }
+     ]
+    },
+    {
+     "id": "geo-C03-Q5",
+     "step": {
+      "type": "numeric",
+      "prompt": "$X\\sim U_c(0,1)$ ו-$Y\\sim U_c(0,2)$ בלתי תלויים. מהי $P\\left(\\lvert X-Y\\rvert<\\frac12\\right)$ ? (אפשר שבר או עשרוני)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "C04",
+   "order": 4,
+   "boss": false,
+   "questions": [
+    {
+     "id": "geo-C04-Q1",
+     "step": {
+      "type": "numeric",
+      "prompt": "$X$ ו-$Y$ בלתי תלויים, שניהם $U_c(0,1)$. מחשבים $P\\left(X<\\frac14\\mid X+Y<1\\right)$. מהו שטח אזור התנאי $\\{X+Y<1\\}$, כלומר המכנה? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "geo-C04-Q2",
+     "step": {
+      "type": "numeric",
+      "prompt": "באותו ניסוי ($X,Y\\sim U_c(0,1)$ בלתי תלויים), מחשבים $P\\left(X<\\frac14\\mid X+Y<1\\right)$. מהו שטח החיתוך $\\{X<\\frac14\\}\\cap\\{X+Y<1\\}$, כלומר המונה? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "geo-C04-Q3",
+     "question": "$X,Y\\sim U_c(0,1)$ בלתי תלויים. מהי $P\\left(X<\\frac14\\mid X+Y<1\\right)$ ?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "$\\frac{7}{16}$"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "$\\frac{7}{32}$"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "$\\frac14$"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "$\\frac{7}{8}$"
+      }
+     ]
+    },
+    {
+     "id": "geo-C04-Q4",
+     "step": {
+      "type": "numeric",
+      "prompt": "$X\\sim U_c(0,1)$ ו-$Y\\sim U_c(0,2)$ בלתי תלויים. חשבו את $P\\left(Y<1\\mid X+Y>1\\right)$. (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "geo-C04-Q5",
+     "step": {
+      "type": "numeric",
+      "prompt": "$X,Y\\sim U_c(0,1)$ בלתי תלויים. חשבו את $P\\left(X>\\frac12\\mid Y>X\\right)$. (אפשר שבר או עשרוני)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "C05",
+   "order": 5,
+   "boss": false,
+   "questions": [
+    {
+     "id": "geo-C05-Q1",
+     "question": "$X,Y\\sim U_c(0,1)$ בלתי תלויים. מהי $P(Y<X^2)$ ?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "$\\frac13$"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "$\\frac23$"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "$\\frac12$"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "$\\frac14$"
+      }
+     ]
+    },
+    {
+     "id": "geo-C05-Q2",
+     "step": {
+      "type": "numeric",
+      "prompt": "$X,Y\\sim U_c(0,1)$ בלתי תלויים. חשבו את $P\\left(XY<\\frac15\\right)$. (עשרוני, אפשר לעגל לשלוש ספרות)"
+     }
+    },
+    {
+     "id": "geo-C05-Q3",
+     "question": "$X,Y\\sim U_c(0,1)$ בלתי תלויים. מהי $P\\left(XY<\\frac13\\right)$ ?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "$\\frac{1+\\ln3}{3}$"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "$\\frac{\\ln3}{3}$"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "$\\frac13+\\ln3$"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "$1-\\frac{\\ln3}{3}$"
+      }
+     ]
+    },
+    {
+     "id": "geo-C05-Q4",
+     "step": {
+      "type": "numeric",
+      "prompt": "$X,Y\\sim U_c(0,1)$ בלתי תלויים. חשבו את ההסתברות שהמרחק של הנקודה $(X,Y)$ מהראשית קטן מ-$\\frac13$. (עשרוני, ארבע ספרות אחרי הנקודה)"
+     }
+    },
+    {
+     "id": "geo-C05-Q5",
+     "step": {
+      "type": "numeric",
+      "prompt": "$X\\sim U_c(0,1)$ ו-$Y\\sim U_c(0,2)$ בלתי תלויים. חשבו את $P\\left(Y>X^2\\right)$. (אפשר שבר או עשרוני)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "C06",
+   "order": 6,
+   "boss": false,
+   "questions": [
+    {
+     "id": "geo-C06-Q1",
+     "step": {
+      "type": "numeric",
+      "prompt": "$X,Y\\sim U_c(0,1)$ בלתי תלויים. מהי $P\\left(\\max(X,Y)<\\frac23\\right)$ ? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "geo-C06-Q2",
+     "question": "$X,Y\\sim U_c(0,1)$ בלתי תלויים. מהי $P\\left(\\min(X,Y)>\\frac14\\right)$ ?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "$\\frac{9}{16}$"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "$\\frac{7}{16}$"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "$\\frac34$"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "$\\frac1{16}$"
+      }
+     ]
+    },
+    {
+     "id": "geo-C06-Q3",
+     "step": {
+      "type": "numeric",
+      "prompt": "$X,Y\\sim U_c(0,1)$ בלתי תלויים. מהי $P\\left(\\min(X,Y)<\\frac14\\right)$ ? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "geo-C06-Q4",
+     "question": "$X,Y\\sim U_c(0,1)$ בלתי תלויים ו-$Z=\\min(X,Y)$. מהי ההתפלגות המצטברת $F_Z(t)$ עבור $0\\le t\\le1$ ?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "$t^2$"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "$2t-t^2$"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "$1-t^2$"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "$t$"
+      }
+     ]
+    },
+    {
+     "id": "geo-C06-Q5",
+     "step": {
+      "type": "numeric",
+      "prompt": "$X\\sim U_c(0,1)$ ו-$Y\\sim U_c(0,2)$ בלתי תלויים. מהי $P\\left(\\max(X,Y)<\\frac12\\right)$ ? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "geo-C06-Q6",
+     "step": {
+      "type": "numeric",
+      "prompt": "$X,Y\\sim U_c(0,1)$ בלתי תלויים ו-$Z=\\max(X,Y)$. מהי התוחלת $E[Z]$ ? (אפשר שבר או עשרוני)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "C07",
+   "order": 7,
+   "boss": false,
+   "questions": [
+    {
+     "id": "geo-C07-Q1",
+     "step": {
+      "type": "numeric",
+      "prompt": "$X,Y\\sim U_c(0,1)$ בלתי תלויים. מהי $P\\left(\\frac XY<\\frac13\\right)$ ? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "geo-C07-Q2",
+     "step": {
+      "type": "numeric",
+      "prompt": "$X,Y\\sim U_c(0,1)$ בלתי תלויים. מהי $P\\left(\\frac XY>2\\right)$ ? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "geo-C07-Q3",
+     "question": "$X,Y\\sim U_c(0,1)$ בלתי תלויים ו-$Z=\\frac XY$. מהי $F_Z(t)$ עבור $t>1$ ?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "$1-\\frac{1}{2t}$"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "$\\frac t2$"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "$\\frac{1}{2t}$"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "$1-\\frac t2$"
+      }
+     ]
+    },
+    {
+     "id": "geo-C07-Q4",
+     "step": {
+      "type": "numeric",
+      "prompt": "$X,Y\\sim U_c(0,1)$ בלתי תלויים. חשבו את $P\\left(XY<\\frac1{10}\\right)$. (עשרוני, ארבע ספרות)"
+     }
+    },
+    {
+     "id": "geo-C07-Q5",
+     "step": {
+      "type": "numeric",
+      "prompt": "$X,Y\\sim U_c(0,1)$ בלתי תלויים. חשבו את $P\\left(XY>\\frac12\\right)$. (עשרוני, ארבע ספרות)"
+     }
+    },
+    {
+     "id": "geo-C07-Q6",
+     "step": {
+      "type": "numeric",
+      "prompt": "$X\\sim U_c(0,1)$ ו-$Y\\sim U_c(0,2)$ בלתי תלויים. מהי $P\\left(\\frac YX<1\\right)$ ? (אפשר שבר או עשרוני)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "C08",
+   "order": 8,
+   "boss": false,
+   "questions": [
+    {
+     "id": "geo-C08-Q1",
+     "step": {
+      "type": "numeric",
+      "prompt": "שני חברים מגיעים לפגישה בזמן אקראי בשעה אחת, כל אחד בזמן אחיד ובלתי תלוי בשני, והם ממתינים זה לזה עד רבע שעה. הם נפגשים אם ההפרש בין זמני ההגעה קטן מרבע שעה. מהי ההסתברות שהם נפגשים? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "geo-C08-Q2",
+     "question": "מקל באורך $1$ נשבר בשתי נקודות בלתי תלויות, שכל אחת מהן אחידה על המקל. מהי ההסתברות שאפשר להרכיב משולש משלושת החלקים ?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "$\\frac14$"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "$\\frac18$"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "$\\frac12$"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "$\\frac13$"
+      }
+     ]
+    },
+    {
+     "id": "geo-C08-Q3",
+     "step": {
+      "type": "numeric",
+      "prompt": "מלבן נבנה כך שרוחבו $X\\sim U_c(0,1)$ וגובהו $Y\\sim U_c(0,2)$, בלתי תלויים. מהי ההסתברות שהיקפו $2(X+Y)$ קטן מ-$3$ ? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "geo-C08-Q4",
+     "question": "מלבן נבנה כך שרוחבו $X$ וגובהו $Y$ הם בלתי תלויים, שניהם $U_c(0,1)$. המלבן \"כמעט ריבוע\" אם כל צלע קצרה מפי $2$ מהצלע השנייה, כלומר $\\frac X2<Y<2X$. מהי ההסתברות לכך ?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "$\\frac12$"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "$\\frac34$"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "$\\frac14$"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "$\\frac23$"
+      }
+     ]
+    },
+    {
+     "id": "geo-C08-Q5",
+     "step": {
+      "type": "numeric",
+      "prompt": "נקודה $(X,Y)$ נבחרת אחיד בריבוע היחידה, כש-$X,Y\\sim U_c(0,1)$ בלתי תלויים. מהי ההסתברות שמרחקה מהצלע הקרובה ביותר של הריבוע קטן מ-$\\frac14$ ? (אפשר שבר או עשרוני)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "C09",
+   "order": 9,
+   "boss": true,
+   "questions": [
+    {
+     "id": "bank:24A-B-Q1d",
+     "bankId": "24A-B-Q1d"
+    },
+    {
+     "id": "bank:24S-A-Q1c",
+     "bankId": "24S-A-Q1c"
+    },
+    {
+     "id": "bank:24B-A-Q1d",
+     "bankId": "24B-A-Q1d"
+    },
+    {
+     "id": "bank:25A-A-Q1b",
+     "bankId": "25A-A-Q1b"
+    },
+    {
+     "id": "bank:24S-B-Q1c",
+     "bankId": "24S-B-Q1c"
+    },
+    {
+     "id": "bank:25B-A-Q1d",
+     "bankId": "25B-A-Q1d"
+    }
+   ]
+  }
+ ]
+}

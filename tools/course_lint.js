@@ -33,9 +33,9 @@ const isInt = x => Number.isInteger(x);
 const SOURCES = new Set(["ai-draft", "ai-verified"]);
 const OPT_IDS = ["a", "b", "c", "d", "e", "f", "g", "h"], OPT_TYPES = new Set(["text", "math", "image"]);
 const LEVEL_KEYS = new Set(["id", "order", "icon", "title", "goal", "boss", "source", "lesson", "questions"]);
-const OWN_KEYS = new Set(["id", "question", "options", "correctId", "acceptedIds", "explanation", "recap", "image"]);
+const OWN_KEYS = new Set(["id", "question", "options", "correctId", "acceptedIds", "explanation", "recap", "image", "region", "sim"]);
 const BANK_KEYS = new Set(["bankId", "recap"]);
-const STEP_Q_KEYS = new Set(["id", "step", "recap"]);
+const STEP_Q_KEYS = new Set(["id", "step", "recap", "region", "sim", "image"]);
 const STEP_TYPES = new Set(["choice", "numeric", "text", "order", "findbug", "fillblank"]);
 const STEP_KEYS = new Set(["type", "prompt", "explain", "code", "options", "correctId", "answer", "tol", "accept", "normalize", "lines", "bugIndex", "blankIndex", "region"]);
 
@@ -130,6 +130,7 @@ function lintStepQuestion(w, q, label, ctx) {
   else if (ctx.qids.has(q.id)) ERR(w, `question ${label}: duplicate question id in this course`);
   else ctx.qids.add(q.id);
   if (!nonblank(q.recap)) WARN(w, `question ${label}: no recap (the summary shows it when the question is missed)`);
+  if (q.image && !fs.existsSync(path.join(ROOT, q.image))) ERR(w, `question ${label}: image file missing ${q.image}`);
   const s = q.step, sw = `question ${label} step`;
   if (!s || typeof s !== "object") return ERR(w, `${sw}: must be an object`);
   if (!STEP_TYPES.has(s.type)) return ERR(w, `${sw}: type '${s.type}' is not one of ${[...STEP_TYPES]}`);

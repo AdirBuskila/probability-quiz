@@ -132,9 +132,21 @@
     if(it.answered) return;
     it.answered = true;
     if(!(it.key in S.run)) S.run[it.key] = !!ok;
+    postExtras(it);
     const nb = $("#crsNextBtn");
     nb.classList.remove("hidden");
     nb.focus({ preventScroll: true });
+  }
+  // probability extras, shown once the item is settled (they print the answer): the area figure of an own
+  // question (`region`) and the "simulate it" box (`sim`, own questions and real exam questions alike)
+  function postExtras(it){
+    const q = it.q, reg = !it.bank && q.region && window.Region, sim = q.sim && window.Sim;
+    if(!reg && !sim) return;
+    const d = document.createElement("div");
+    d.className = "crs-post";
+    d.innerHTML = (reg ? window.Region.figure(q.region) : "") + (sim ? `<div class="mc-slot"></div>` : "");
+    $("#crsQBody").appendChild(d);
+    if(sim) window.Sim.mount(d.querySelector(".mc-slot"), q.sim, { item: q });
   }
   const solutionPanel = (q, open) => (q.solutionHtml || q.solution)
     ? `<details class="panel crs-sol"${open ? " open" : ""}><summary><span class="sum-t">פתרון מלא</span></summary><div class="panel-body">${q.region && window.Region ? window.Region.figure(q.region) : ""}<div class="solution-text">${isolate(q.solutionHtml || esc(q.solution))}</div>${srcNote(q)}</div></details>` : "";
@@ -149,7 +161,7 @@
     qt.innerHTML = it.type === "step" ? "" : (it.bank ? APP.questionHtml(q) : html(q.questionHtml || esc(q.question || "")));
     qt.dataset.key = it.key; qt.dataset.type = it.type;
     if(it.bank) qt.dataset.bank = q.id; else delete qt.dataset.bank;
-    $("#crsQExtras").innerHTML = it.type === "step" ? "" : APP.extrasHtml(q);
+    $("#crsQExtras").innerHTML = APP.extrasHtml(q);
     if(window.Feedback) window.Feedback.slot($("#crsQExtras"), "crs", {
       id: `${C.id}-L${S.L.order}-Q${S.i + 1}`,
       exam: `${C.meta.titleHe} · ${levelName(S.L)}` + (it.bank ? ` · ${APP.examLabelOf(q)} (${q.id})` : ""),

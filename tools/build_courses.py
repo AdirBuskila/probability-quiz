@@ -99,6 +99,10 @@ def main():
                     q["recapHtml"] = rich_html(q["recap"], bank, qw + " recap", errs)
                 qs.append(q)
                 continue
+            if q.get("region") is not None:
+                validate.check_region(qw, q["region"], step_problems.append)
+            if q.get("sim") is not None:
+                validate.check_sim(qw, q["sim"], step_problems.append, has_region=q.get("region") is not None)
             if "step" in q:
                 sp = []
                 validate.check_step(qw + " step", q["step"], sp.append, OUT)
