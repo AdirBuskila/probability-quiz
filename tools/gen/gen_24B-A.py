@@ -9,7 +9,7 @@ Transcription notes
 - Part keys are single letters. Q1 prints a-1, a-2, a-3, b-1, b-2; stored as a b c d e (the printed label is the
   first bold token of each question text). Map: Q1 a=א-1, b=א-2, c=א-3, d=ב-1, e=ב-2.
 - Math never holds Hebrew.
-- Q1 area items (c, d, e) have region data in tools/verify/24B-A/regions.json (no `region` field in RAW_SCHEMA).
+- Q1 area items carry `region` (area figure) and, with the other numeric parts, `sim`: see EXTRAS near the end.
 - Q3(ה) (independent?): the handwritten reason is only partly legible ("dependent"); the shipped reasoning uses the
   official joint table of the same solution (a zero cell), confidence med. Q3(ו) is the official cov != 0.
 - Q5(ג): the official solution concludes E[Y] >= E[X] (via Var >= 0); it is transcribed as printed.
@@ -282,6 +282,73 @@ exam = {
     },
     "questions": questions,
 }
+
+# ---- area figures (region.js) and "simulate it" specs (sim.js), keyed by (num, part).
+# Regions were moved here from the old verify regions file; every sim exact is the shipped final answer.
+from math import pi, log, e as _E
+U = {"x": [0, 1], "y": [0, 1]}
+XY = {"x": "X", "y": "Y"}
+
+
+def lin(a, b, c, op):
+    return {"a": a, "b": b, "c": c, "op": op}
+
+
+def REG(event, exact, caption, given=None, space=U):
+    r = {"space": space, "labels": XY, "event": event, "exact": exact, "caption": caption}
+    if given:
+        r["given"] = given
+    return r
+
+
+def AREA(label, exact, **kw):
+    return {"kind": "area", "estimate": label, "exact": exact, "params": dict(kw) if kw else {"fromRegion": True}}
+
+
+def DICE(label, exact, n, event, given=None, weights=None):
+    p = {"n": n, "event": event}
+    if given:
+        p["given"] = given
+    if weights:
+        p["weights"] = weights
+    return {"kind": "dice", "estimate": label, "exact": exact, "params": p}
+
+
+def PDF(label, exact, pieces, event, given=None):
+    p = {"pieces": [{"from": a, "to": b, "expr": x} for a, b, x in pieces], "event": event}
+    if given:
+        p["given"] = given
+    return {"kind": "pdf", "estimate": label, "exact": exact, "params": p}
+
+
+EXTRAS = {
+    (1, "א"): {"region": REG([lin(1, 0, "1/3", "<")], 1 / 3, "האירוע X<L/3 (יחידות של L)"),
+               "sim": AREA("P(X<L/3)", 1 / 3)},
+    (1, "ב"): {"region": REG([lin(0, 1, "1/4", ">")], 3 / 4, "האירוע Y>L/4 (יחידות של L)"),
+               "sim": AREA("P(Y>L/4)", 3 / 4)},
+    (1, "ג"): {"region": REG([lin(1, 1, "4/3", "<=")], 7 / 9, "האירוע X+Y<=4L/3 (יחידות של L)"),
+               "sim": AREA("P(X+Y<=4L/3)", 7 / 9)},
+    (1, "ד"): {"region": REG({"any": [[lin(1, 0, "1/3", "<")], [lin(0, 1, "1/3", "<")]]}, 5 / 9, "האירוע min(X,Y)<L/3 (יחידות של L)"),
+               "sim": AREA("P(Z<L/3)", 5 / 9)},
+    (1, "ה"): {"region": REG({"any": [[lin(1, 0, "1/2", "<")], [lin(0, 1, "1/2", "<")]]}, 2 / 3, "האירוע min(X,Y)<L/2 בהינתן X>L/4 (יחידות של L)",
+                             given=[lin(1, 0, "1/4", ">")]),
+               "sim": AREA("P(Z<L/2 | X>L/4)", 2 / 3)},
+    (2, "א"): {"sim": {"kind": "urn", "estimate": "P(1st digit = 3)", "exact": 1 / 10,
+                       "params": {"values": list(range(10)), "draws": 1, "event": "v1 == 3"}}},
+    (2, "ב"): {"sim": {"kind": "urn", "estimate": "P(2nd digit = 3)", "exact": 1 / 10,
+                       "params": {"values": list(range(10)), "draws": 2, "event": "v2 == 3"}}},
+    (2, "ג"): {"sim": {"kind": "urn", "estimate": "P(3rd digit = 3)", "exact": 1 / 10,
+                       "params": {"values": list(range(10)), "draws": 3, "event": "v3 == 3"}}},
+    (2, "ד"): {"sim": {"kind": "urn", "estimate": "P(10th digit = 3)", "exact": 1 / 10,
+                       "params": {"values": list(range(10)), "draws": 10, "event": "v10 == 3"}}},
+    (4, "ג"): {"sim": PDF("P(Z>1/4 | |Z|<1/2)", 3 / 8,
+                          [("-1/2", 0, "-2*x"), (0, "1/2", "2*x"), ("1/2", 1, "1")], "x > 1/4", "abs(x) < 1/2")},
+}
+for _q in questions:
+    _x = EXTRAS.get((_q["num"], _q.get("part")))
+    if _x:
+        _q.update(_x)
+
 
 OUT.parent.mkdir(parents=True, exist_ok=True)
 OUT.write_text(json.dumps(exam, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
