@@ -76,7 +76,87 @@
      "y": "Y"
     },
     "caption": "האזור xy<2/3"
-   }
+   },
+   "sim": {
+    "kind": "area",
+    "params": {
+     "fromRegion": true
+    },
+    "estimate": "P(S<2/3)",
+    "exact": 0.6995374295560367
+   },
+   "rubric": [
+    {
+     "text": "גישה גאומטרית: הסתברות = שטח האירוע חלקי $|\\Omega|=2$",
+     "points": 1
+    },
+    {
+     "text": "נקודת החיתוך $x=\\frac13$ של ההיפרבולה $y=\\frac2{3x}$ עם $y=2$ ופיצול התחום",
+     "points": 1
+    },
+    {
+     "text": "שטח האירוע $\\frac23+\\frac23\\ln3$ (מלבן ועוד אינטגרל)",
+     "points": 2
+    },
+    {
+     "text": "חלוקה ב-$2$: $\\frac{1+\\ln3}{3}$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לשכוח לחלק ב-$|\\Omega|=2$ ולדווח על השטח $\\frac23(1+\\ln3)\\approx1.40$ כהסתברות (גדולה מ-$1$)",
+    "להתעלם מהחלק $0<x<\\frac13$ שבו כל $0<y<2$ מתאים ולאנטגרל על כל $(0,1)$ בלבד"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "מהו שטח מרחב המדגם $|\\Omega|$ של הזוג $(X,Y)$, כאשר $X\\sim U(0,1)$ ו-$Y\\sim U(0,2)$?",
+     "answer": 2.0,
+     "tol": 0,
+     "explain": "המלבן $(0,1)\\times(0,2)$ הוא מרחב המדגם, ושטחו $1\\cdot2=2$. ההסתברות היא שטח האירוע חלקי $2$, לא שטח האירוע לבדו."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו שטח האירוע $\\{xy<\\frac23\\}$ בתוך המלבן? ($\\ln3\\approx1.0986$) (שבר או עשרוני)",
+     "answer": 1.3991,
+     "tol": 0.0006,
+     "explain": "עבור $0<x<\\frac13$ כל $0<y<2$ מתאים (שטח $\\frac23$), ועבור $\\frac13<x<1$ מתקבל $y<\\frac2{3x}$ (שטח $\\frac23\\ln3$). סך הכול $\\frac23(1+\\ln3)\\approx1.399$.",
+     "region": {
+      "space": {
+       "x": [
+        0,
+        1
+       ],
+       "y": [
+        0,
+        2
+       ]
+      },
+      "event": [
+       {
+        "expr": "x*y",
+        "op": "<",
+        "c": "2/3"
+       }
+      ],
+      "exact": 0.6995374295560367,
+      "labels": {
+       "x": "X",
+       "y": "Y"
+      },
+      "caption": "האזור xy<2/3"
+     }
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(S<\\frac23)$? (שבר או עשרוני)",
+     "answer": 0.6995,
+     "tol": 0.0006,
+     "explain": "$\\frac{1.399}{2}=\\frac{1+\\ln3}{3}\\approx0.6995$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 1,
@@ -116,7 +196,58 @@
      "y": "Y"
     },
     "caption": "האזור x+y<1 (L<2)"
-   }
+   },
+   "sim": {
+    "kind": "area",
+    "params": {
+     "fromRegion": true
+    },
+    "estimate": "P(L<2)",
+    "exact": 0.25
+   },
+   "rubric": [
+    {
+     "text": "תרגום $L<2$ ל-$X+Y<1$",
+     "points": 1
+    },
+    {
+     "text": "האירוע הוא משולש ישר-זווית עם ניצבים $1$ ו-$1$ בתוך המלבן (כי $Y<1-X\\le 1<2$)",
+     "points": 2
+    },
+    {
+     "text": "שטח $\\frac12$, חלוקה ב-$|\\Omega|=2$ ותשובה $\\frac14$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לחלק ב-$1$ (שטח הריבוע) במקום ב-$2$ ולקבל $\\frac12$",
+    "לחשוב שהמשולש מגיע עד $y=2$, אף שהישר $y=1-x$ יוצא מהמלבן ב-$y=1$"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "מהו שטח מרחב המדגם $|\\Omega|$ של הזוג $(X,Y)$, כאשר $X\\sim U(0,1)$ ו-$Y\\sim U(0,2)$?",
+     "answer": 2.0,
+     "tol": 0,
+     "explain": "המלבן $(0,1)\\times(0,2)$ הוא מרחב המדגם, ושטחו $1\\cdot2=2$. ההסתברות היא שטח האירוע חלקי $2$, לא שטח האירוע לבדו."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו שטח האירוע $\\{x+y<1\\}$ בתוך המלבן?",
+     "answer": 0.5,
+     "tol": 0,
+     "explain": "משולש ישר-זווית עם ניצבים $1$ ו-$1$: שטח $\\frac12$. הוא מוכל כולו במלבן."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(L<2)$?",
+     "answer": 0.25,
+     "tol": 0,
+     "explain": "$\\frac{1/2}{2}=\\frac14$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 1,
@@ -163,7 +294,102 @@
      "y": "Y"
     },
     "caption": "S<2/3 בהינתן L>2"
-   }
+   },
+   "sim": {
+    "kind": "area",
+    "params": {
+     "fromRegion": true
+    },
+    "estimate": "P(S<2/3 | L>2)",
+    "exact": 0.5993832394080488
+   },
+   "rubric": [
+    {
+     "text": "הגדרת ההסתברות המותנית $P(A\\cap B)/P(B)$",
+     "points": 1
+    },
+    {
+     "text": "$P(L>2)=1-\\frac14=\\frac34$",
+     "points": 1
+    },
+    {
+     "text": "$P(S<\\frac23\\cap L>2)=P(S<\\frac23)-\\frac14$ כי המשולש $x+y<1$ מוכל ב-$\\{S<\\frac23\\}$",
+     "points": 2
+    },
+    {
+     "text": "היחס $\\frac{1+4\\ln3}{9}$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לחשב $P(S<\\frac23)/P(L>2)$ בלי לחתוך עם התנאי",
+    "לטעות בכיוון התנאי ולחשב $P(L>2\\mid S<\\frac23)$"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "מהו שטח מרחב המדגם $|\\Omega|$ של הזוג $(X,Y)$, כאשר $X\\sim U(0,1)$ ו-$Y\\sim U(0,2)$?",
+     "answer": 2.0,
+     "tol": 0,
+     "explain": "המלבן $(0,1)\\times(0,2)$ הוא מרחב המדגם, ושטחו $1\\cdot2=2$. ההסתברות היא שטח האירוע חלקי $2$, לא שטח האירוע לבדו."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי הסתברות התנאי $P(L>2)$?",
+     "answer": 0.75,
+     "tol": 0,
+     "explain": "המשלים $\\{x+y<1\\}$ הוא משולש ששטחו $\\frac12$, כלומר הסתברות $\\frac14$; לכן $P(L>2)=\\frac34$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(S<\\frac23\\cap L>2)$? (שבר או עשרוני)",
+     "answer": 0.4495,
+     "tol": 0.0006,
+     "explain": "המשולש $x+y<1$ מוכל ב-$\\{xy<\\frac23\\}$ (שם $xy\\le\\frac14$), לכן מחסרים: $\\frac{1+\\ln3}{3}-\\frac14\\approx0.4495$.",
+     "region": {
+      "space": {
+       "x": [
+        0,
+        1
+       ],
+       "y": [
+        0,
+        2
+       ]
+      },
+      "event": [
+       {
+        "expr": "x*y",
+        "op": "<",
+        "c": "2/3"
+       }
+      ],
+      "given": [
+       {
+        "a": 1,
+        "b": 1,
+        "c": 1,
+        "op": ">"
+       }
+      ],
+      "exact": 0.5993832394080488,
+      "labels": {
+       "x": "X",
+       "y": "Y"
+      },
+      "caption": "S<2/3 בהינתן L>2"
+     }
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(S<\\frac23\\mid L>2)$? (שבר או עשרוני)",
+     "answer": 0.5994,
+     "tol": 0.0006,
+     "explain": "$\\frac{0.4495}{0.75}=\\frac{1+4\\ln3}{9}\\approx0.5994$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 1,
@@ -176,7 +402,86 @@
    "confidence": "high",
    "points": 5,
    "part": "ד",
-   "contextId": "c1"
+   "contextId": "c1",
+   "sim": {
+    "kind": "area",
+    "params": {
+     "space": {
+      "x": [
+       0,
+       1
+      ],
+      "y": [
+       0,
+       2
+      ]
+     },
+     "measure": "var",
+     "expr": "2*(x+y)"
+    },
+    "estimate": "Var[L]",
+    "exact": 1.6666666666666667
+   },
+   "rubric": [
+    {
+     "text": "אי-תלות: שונות של סכום = סכום שונויות",
+     "points": 1
+    },
+    {
+     "text": "$\\mathbb{E}[L]=2(\\frac12+1)=3$",
+     "points": 1
+    },
+    {
+     "text": "$\\operatorname{Var}[X]=\\frac1{12}$, $\\operatorname{Var}[Y]=\\frac4{12}$",
+     "points": 1
+    },
+    {
+     "text": "הוצאת הקבוע בריבוע: $\\operatorname{Var}[L]=4\\cdot\\frac5{12}=\\frac53$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לכתוב $\\operatorname{Var}[2(X+Y)]=2\\operatorname{Var}[X+Y]$ (הקבוע עולה בריבוע)",
+    "להשתמש ב-$\\operatorname{Var}[Y]=\\frac1{12}$ במקום $\\frac{2^2}{12}$"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איזה נימוק מצדיק לחשב את $\\operatorname{Var}[L]$ מתוך $\\operatorname{Var}[X]$ ו-$\\operatorname{Var}[Y]$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$X,Y$ בלתי תלויים, ולכן $\\operatorname{Var}[X+Y]=\\operatorname{Var}[X]+\\operatorname{Var}[Y]$, והקבוע $2$ מוצא בריבוע"
+      },
+      {
+       "id": "b",
+       "value": "תמיד $\\operatorname{Var}[X+Y]=\\operatorname{Var}[X]+\\operatorname{Var}[Y]$, גם בלי אי-תלות"
+      },
+      {
+       "id": "c",
+       "value": "$\\operatorname{Var}[2(X+Y)]=2\\operatorname{Var}[X+Y]$, כי קבוע מוצא מהשונות בלי שינוי"
+      }
+     ],
+     "correctId": "a",
+     "explain": "האפשרות השנייה שגויה: בלי אי-תלות מתווסף $2\\operatorname{Cov}[X,Y]$. השלישית שגויה: $\\operatorname{Var}[cW]=c^2\\operatorname{Var}[W]$, כלומר הקבוע מוצא בריבוע."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $\\mathbb{E}[L]$?",
+     "answer": 3.0,
+     "tol": 0,
+     "explain": "$2(\\mathbb{E}[X]+\\mathbb{E}[Y])=2(\\frac12+1)=3$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $\\operatorname{Var}[L]$? (שבר או עשרוני)",
+     "answer": 1.6667,
+     "tol": 0.0006,
+     "explain": "$4(\\frac1{12}+\\frac{4}{12})=4\\cdot\\frac5{12}=\\frac53$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 1,
@@ -189,7 +494,73 @@
    "confidence": "high",
    "points": 5,
    "part": "ה",
-   "contextId": "c1"
+   "contextId": "c1",
+   "sim": {
+    "kind": "area",
+    "params": {
+     "space": {
+      "x": [
+       0,
+       1
+      ],
+      "y": [
+       0,
+       2
+      ]
+     },
+     "measure": "var",
+     "expr": "x*y"
+    },
+    "estimate": "Var[S]",
+    "exact": 0.19444444444444445
+   },
+   "rubric": [
+    {
+     "text": "אי-תלות: $\\mathbb{E}[XY]=\\mathbb{E}[X]\\mathbb{E}[Y]$",
+     "points": 1
+    },
+    {
+     "text": "$\\mathbb{E}[S]=\\frac12\\cdot1=\\frac12$",
+     "points": 1
+    },
+    {
+     "text": "$\\mathbb{E}[S^2]=\\mathbb{E}[X^2]\\mathbb{E}[Y^2]=\\frac13\\cdot\\frac43$",
+     "points": 2
+    },
+    {
+     "text": "$\\operatorname{Var}[S]=\\frac49-\\frac14=\\frac7{36}$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לכתוב $\\operatorname{Var}[XY]=\\operatorname{Var}[X]\\operatorname{Var}[Y]$ (נכון רק לשונות של סכום)",
+    "לחשב $\\mathbb{E}[Y^2]=\\frac13$ במקום $\\frac{2^2}{3}=\\frac43$"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "מהי $\\mathbb{E}[S]=\\mathbb{E}[XY]$?",
+     "answer": 0.5,
+     "tol": 0,
+     "explain": "אי-תלות: $\\frac12\\cdot1=\\frac12$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו הרגע השני $\\mathbb{E}[S^2]=\\mathbb{E}[X^2]\\,\\mathbb{E}[Y^2]$? (זכרו ש-$Y\\sim U(0,2)$) (שבר או עשרוני)",
+     "answer": 0.4444,
+     "tol": 0.0006,
+     "explain": "$\\mathbb{E}[X^2]=\\frac13$, $\\mathbb{E}[Y^2]=\\frac43$, המכפלה $\\frac49$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $\\operatorname{Var}[S]$? (שבר או עשרוני)",
+     "answer": 0.1944,
+     "tol": 0.0006,
+     "explain": "$\\frac49-\\frac14=\\frac{16-9}{36}=\\frac7{36}$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -202,7 +573,101 @@
    "confidence": "high",
    "points": 4,
    "part": "א",
-   "contextId": "c2"
+   "contextId": "c2",
+   "sim": {
+    "kind": "custom_discrete",
+    "params": {
+     "joint": [
+      {
+       "p": 0.3,
+       "A": 1,
+       "B": 1
+      },
+      {
+       "p": 0.1,
+       "A": 1,
+       "B": 0
+      },
+      {
+       "p": 0.2,
+       "A": 0,
+       "B": 1
+      },
+      {
+       "p": 0.4,
+       "A": 0,
+       "B": 0
+      }
+     ],
+     "event": "A == 1",
+     "given": "B == 1"
+    },
+    "estimate": "P(A|B) ב-p=0.4,q=0.5,s=0.6",
+    "exact": 0.6
+   },
+   "rubric": [
+    {
+     "text": "הגדרת ההסתברות המותנית",
+     "points": 1
+    },
+    {
+     "text": "$P(A\\cap B)=p+q-s$ מכלל החיבור",
+     "points": 2
+    },
+    {
+     "text": "התשובה $\\frac{p+q-s}{q}$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לחלק ב-$P(A)$ במקום ב-$P(B)$ (המכנה הוא אירוע התנאי)",
+    "להניח $P(A\\cap B)=pq$ בלי שנתון שהאירועים בלתי תלויים"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "כיצד מחשבים את $P(A\\mid B)$ מהנתונים $P(A),P(B),P(A\\cup B)$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$\\dfrac{P(A\\cap B)}{P(B)}$ עם $P(A\\cap B)=P(A)+P(B)-P(A\\cup B)$"
+      },
+      {
+       "id": "b",
+       "value": "$\\dfrac{P(A\\cap B)}{P(A)}$ עם $P(A\\cap B)=P(A)+P(B)-P(A\\cup B)$"
+      },
+      {
+       "id": "c",
+       "value": "$\\dfrac{P(A)P(B)}{P(B)}=P(A)$, כי האירועים בלתי תלויים"
+      }
+     ],
+     "correctId": "a",
+     "explain": "השנייה מחלקת באירוע הלא נכון (זה $P(B\\mid A)$, ושווה $0.75\\ne0.6$ כאן). השלישית מניחה אי-תלות שלא נתונה (ואז $s$ היה חייב להיות $0.7$, לא $0.6$)."
+    },
+    {
+     "type": "numeric",
+     "prompt": "נקבע לשם החישוב $p=0.4$, $q=0.5$, $s=0.6$. מהי $P(A\\cap B)$?",
+     "answer": 0.3,
+     "tol": 0,
+     "explain": "$p+q-s=0.4+0.5-0.6=0.3$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי הסתברות התנאי $P(B)$ (המכנה)?",
+     "answer": 0.5,
+     "tol": 0,
+     "explain": "נתון: $P(B)=q=0.5$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(A\\mid B)$?",
+     "answer": 0.6,
+     "tol": 0,
+     "explain": "$\\frac{0.3}{0.5}=0.6$, כלומר $\\frac{p+q-s}{q}$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -215,7 +680,101 @@
    "confidence": "high",
    "points": 4,
    "part": "ב",
-   "contextId": "c2"
+   "contextId": "c2",
+   "sim": {
+    "kind": "custom_discrete",
+    "params": {
+     "joint": [
+      {
+       "p": 0.3,
+       "A": 1,
+       "B": 1
+      },
+      {
+       "p": 0.1,
+       "A": 1,
+       "B": 0
+      },
+      {
+       "p": 0.2,
+       "A": 0,
+       "B": 1
+      },
+      {
+       "p": 0.4,
+       "A": 0,
+       "B": 0
+      }
+     ],
+     "event": "B == 1",
+     "given": "A == 0"
+    },
+    "estimate": "P(B|not A) ב-p=0.4,q=0.5,s=0.6",
+    "exact": 0.3333333333333333
+   },
+   "rubric": [
+    {
+     "text": "הגדרת ההסתברות המותנית עם התנאי $\\overline A$",
+     "points": 1
+    },
+    {
+     "text": "$P(B\\cap\\overline A)=P(A\\cup B)-P(A)=s-p$",
+     "points": 2
+    },
+    {
+     "text": "$P(\\overline A)=1-p$ והתשובה $\\frac{s-p}{1-p}$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לחשב $P(B)/P(\\overline A)$ ולכלול את $A\\cap B$ במונה",
+    "לחלק ב-$P(A)$ במקום ב-$P(\\overline A)$"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איך מבטאים את $P(B\\cap\\overline A)$ באמצעות $p,q,s$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$P(A\\cup B)-P(A)=s-p$: האיחוד פחות החלק של $A$"
+      },
+      {
+       "id": "b",
+       "value": "$P(B)-P(A)=q-p$"
+      },
+      {
+       "id": "c",
+       "value": "$P(B)\\,P(\\overline A)=q(1-p)$, כי $A,B$ בלתי תלויים"
+      }
+     ],
+     "correctId": "a",
+     "explain": "השנייה כוללת חיסור שאינו מתאים לשום מאורע (ובדוגמה: $q-p=0.1\\ne0.2$). השלישית מניחה אי-תלות שלא נתונה."
+    },
+    {
+     "type": "numeric",
+     "prompt": "נקבע לשם החישוב $p=0.4$, $q=0.5$, $s=0.6$. מהי הסתברות התנאי $P(\\overline A)$?",
+     "answer": 0.6,
+     "tol": 0,
+     "explain": "$1-p=0.6$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(B\\cap\\overline A)$?",
+     "answer": 0.2,
+     "tol": 0,
+     "explain": "$s-p=0.2$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(B\\mid\\overline A)$? (שבר או עשרוני)",
+     "answer": 0.3333,
+     "tol": 0.0006,
+     "explain": "$\\frac{0.2}{0.6}=\\frac13$, כלומר $\\frac{s-p}{1-p}$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -228,7 +787,101 @@
    "confidence": "high",
    "points": 4,
    "part": "ג",
-   "contextId": "c2"
+   "contextId": "c2",
+   "sim": {
+    "kind": "custom_discrete",
+    "params": {
+     "joint": [
+      {
+       "p": 0.3,
+       "A": 1,
+       "B": 1
+      },
+      {
+       "p": 0.1,
+       "A": 1,
+       "B": 0
+      },
+      {
+       "p": 0.2,
+       "A": 0,
+       "B": 1
+      },
+      {
+       "p": 0.4,
+       "A": 0,
+       "B": 0
+      }
+     ],
+     "event": "A == 1",
+     "given": "B == 0"
+    },
+    "estimate": "P(A|not B) ב-p=0.4,q=0.5,s=0.6",
+    "exact": 0.2
+   },
+   "rubric": [
+    {
+     "text": "הגדרת ההסתברות המותנית עם התנאי $\\overline B$",
+     "points": 1
+    },
+    {
+     "text": "$P(A\\cap\\overline B)=s-q$",
+     "points": 2
+    },
+    {
+     "text": "$P(\\overline B)=1-q$ והתשובה $\\frac{s-q}{1-q}$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "להשתמש ב-$P(A)-P(A\\cap B)$ בלי לפשט, ולטעות באחד המחוברים",
+    "לחלק ב-$q$ במקום ב-$1-q$"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איזו הצגה של $P(A\\cap\\overline B)$ נכונה?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$P(A\\cup B)-P(B)=s-q$"
+      },
+      {
+       "id": "b",
+       "value": "$P(A)-P(B)=p-q$"
+      },
+      {
+       "id": "c",
+       "value": "$P(A)\\,P(\\overline B)=p(1-q)$ (אי-תלות)"
+      }
+     ],
+     "correctId": "a",
+     "explain": "השנייה אינה הסתברות של מאורע בדוגמה ($p-q=-0.1<0$). השלישית מניחה אי-תלות שלא נתונה."
+    },
+    {
+     "type": "numeric",
+     "prompt": "נקבע לשם החישוב $p=0.4$, $q=0.5$, $s=0.6$. מהי הסתברות התנאי $P(\\overline B)$?",
+     "answer": 0.5,
+     "tol": 0,
+     "explain": "$1-q=0.5$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(A\\cap\\overline B)$?",
+     "answer": 0.1,
+     "tol": 0,
+     "explain": "$s-q=0.1$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(A\\mid\\overline B)$?",
+     "answer": 0.2,
+     "tol": 0,
+     "explain": "$\\frac{0.1}{0.5}=0.2$, כלומר $\\frac{s-q}{1-q}$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -241,7 +894,101 @@
    "confidence": "high",
    "points": 4,
    "part": "ד",
-   "contextId": "c2"
+   "contextId": "c2",
+   "sim": {
+    "kind": "custom_discrete",
+    "params": {
+     "joint": [
+      {
+       "p": 0.3,
+       "A": 1,
+       "B": 1
+      },
+      {
+       "p": 0.1,
+       "A": 1,
+       "B": 0
+      },
+      {
+       "p": 0.2,
+       "A": 0,
+       "B": 1
+      },
+      {
+       "p": 0.4,
+       "A": 0,
+       "B": 0
+      }
+     ],
+     "event": "A == 0",
+     "given": "B == 0"
+    },
+    "estimate": "P(not A|not B) ב-p=0.4,q=0.5,s=0.6",
+    "exact": 0.8
+   },
+   "rubric": [
+    {
+     "text": "$P(\\overline A\\cap\\overline B)=1-P(A\\cup B)$ (דה-מורגן)",
+     "points": 2
+    },
+    {
+     "text": "$P(\\overline B)=1-q$",
+     "points": 1
+    },
+    {
+     "text": "התשובה $\\frac{1-s}{1-q}$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לכתוב $P(\\overline A\\cap\\overline B)=1-p-q$ (שוכחים ש-$A,B$ יכולים לחפוף)",
+    "לחלק ב-$1-p$ (התנאי הוא $\\overline B$)"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איזה ביטוי נכון עבור $P(\\overline A\\cap\\overline B)$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$1-P(A\\cup B)=1-s$, לפי דה-מורגן"
+      },
+      {
+       "id": "b",
+       "value": "$1-p-q$"
+      },
+      {
+       "id": "c",
+       "value": "$(1-p)(1-q)$ (אי-תלות)"
+      }
+     ],
+     "correctId": "a",
+     "explain": "השני נכון רק אם $A,B$ זרים ($0.1\\ne0.4$ בדוגמה). השלישי מניח אי-תלות שלא נתונה."
+    },
+    {
+     "type": "numeric",
+     "prompt": "נקבע לשם החישוב $p=0.4$, $q=0.5$, $s=0.6$. מהי $P(\\overline A\\cap\\overline B)$?",
+     "answer": 0.4,
+     "tol": 0,
+     "explain": "$1-s=0.4$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי הסתברות התנאי $P(\\overline B)$?",
+     "answer": 0.5,
+     "tol": 0,
+     "explain": "$1-q=0.5$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(\\overline A\\mid\\overline B)$?",
+     "answer": 0.8,
+     "tol": 0,
+     "explain": "$\\frac{0.4}{0.5}=0.8$, כלומר $\\frac{1-s}{1-q}$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -254,7 +1001,92 @@
    "confidence": "high",
    "points": 4,
    "part": "ה",
-   "contextId": "c2"
+   "contextId": "c2",
+   "sim": {
+    "kind": "custom_discrete",
+    "params": {
+     "joint": [
+      {
+       "p": 0.2,
+       "A": 1,
+       "B": 1
+      },
+      {
+       "p": 0.2,
+       "A": 1,
+       "B": 0
+      },
+      {
+       "p": 0.3,
+       "A": 0,
+       "B": 1
+      },
+      {
+       "p": 0.3,
+       "A": 0,
+       "B": 0
+      }
+     ],
+     "event": "A == 1 and B == 1"
+    },
+    "estimate": "P(A and B)=pq ב-p=0.4,q=0.5,s=0.7",
+    "exact": 0.2
+   },
+   "rubric": [
+    {
+     "text": "תנאי אי-תלות $P(A\\cap B)=P(A)P(B)$",
+     "points": 2
+    },
+    {
+     "text": "$P(A\\cap B)=p+q-s$",
+     "points": 1
+    },
+    {
+     "text": "פתרון ל-$s=p+q-pq$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לבלבל בין אי-תלות ($P(A\\cap B)=pq$) לבין זרות ($P(A\\cap B)=0$)"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איזה תנאי מבטא אי-תלות של $A$ ו-$B$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$P(A\\cap B)=P(A)\\,P(B)$"
+      },
+      {
+       "id": "b",
+       "value": "$P(A\\cap B)=0$"
+      },
+      {
+       "id": "c",
+       "value": "$P(A\\cup B)=P(A)+P(B)$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "שני התנאים האחרים מתארים זרות ($P(A\\cap B)=0$): כשההסתברויות חיוביות, $0\\ne P(A)P(B)$, ולכן זרות סותרת אי-תלות."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $p=0.4$ ו-$q=0.5$: מהי $P(A\\cap B)$ הנדרשת לאי-תלות?",
+     "answer": 0.2,
+     "tol": 0,
+     "explain": "$pq=0.2$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור אותם $p,q$: איזה $s$ נותן אי-תלות? ($s=p+q-P(A\\cap B)$)",
+     "answer": 0.7,
+     "tol": 0,
+     "explain": "$0.4+0.5-0.2=0.7$, כלומר $s=p+q-pq$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -267,7 +1099,86 @@
    "confidence": "high",
    "points": 5,
    "part": "ו",
-   "contextId": "c2"
+   "contextId": "c2",
+   "sim": {
+    "kind": "custom_discrete",
+    "params": {
+     "joint": [
+      {
+       "p": 0.0,
+       "A": 1,
+       "B": 1
+      },
+      {
+       "p": 0.3,
+       "A": 1,
+       "B": 0
+      },
+      {
+       "p": 0.4,
+       "A": 0,
+       "B": 1
+      },
+      {
+       "p": 0.3,
+       "A": 0,
+       "B": 0
+      }
+     ],
+     "event": "A == 1 or B == 1"
+    },
+    "estimate": "P(A or B)=s ב-p=0.3,q=0.4",
+    "exact": 0.7
+   },
+   "rubric": [
+    {
+     "text": "זרות: $P(A\\cap B)=0$",
+     "points": 2
+    },
+    {
+     "text": "$P(A\\cap B)=p+q-s$",
+     "points": 2
+    },
+    {
+     "text": "$s=p+q$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לכתוב $s=p+q-pq$ (זה אי-תלות)",
+    "לשכוח ש-$P(A\\cap B)=p+q-s$"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מהו המאפיין של שני מאורעות זרים?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$P(A\\cap B)=0$"
+      },
+      {
+       "id": "b",
+       "value": "$P(A\\cap B)=P(A)P(B)$"
+      },
+      {
+       "id": "c",
+       "value": "$P(A)+P(B)=1$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "השני הוא אי-תלות; השלישי הוא משלימות ולא זרות (זרים אינם חייבים להשלים זה את זה)."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $p=0.3$ ו-$q=0.4$ זרים: מהו $s=P(A\\cup B)$?",
+     "answer": 0.7,
+     "tol": 0,
+     "explain": "$P(A\\cap B)=0$, ולכן $s=p+q=0.7$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -280,7 +1191,84 @@
    "confidence": "high",
    "points": 10,
    "part": "א",
-   "contextId": "c3"
+   "contextId": "c3",
+   "sim": {
+    "kind": "pdf",
+    "params": {
+     "pieces": [
+      {
+       "from": -1,
+       "to": 0,
+       "expr": "1.5*(1+x)"
+      },
+      {
+       "from": 0,
+       "to": 40,
+       "expr": "0.25*exp(-x)"
+      }
+     ],
+     "measure": "mean",
+     "expr": "x"
+    },
+    "estimate": "E[X]",
+    "exact": 0.0
+   },
+   "rubric": [
+    {
+     "text": "נרמול: $\\frac a2+b=1$",
+     "points": 3
+    },
+    {
+     "text": "תנאי התוחלת: $-\\frac a6+b=0$",
+     "points": 3
+    },
+    {
+     "text": "פתרון המערכת: $a=\\frac32$, $b=\\frac14$",
+     "points": 4
+    }
+   ],
+   "pitfalls": [
+    "לדרוש רציפות ב-$x=0$ ($a=b$), אף שהצפיפות אינה חייבת להיות רציפה",
+    "לחשב $\\int_{-1}^0x(1+x)\\,dx$ בסימן שגוי"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "אילו תנאים קובעים את שני הנעלמים $a,b$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "נרמול $\\int f=1$ ותנאי התוחלת $\\mathbb{E}[X]=0$: שתי משוואות"
+      },
+      {
+       "id": "b",
+       "value": "נרמול בלבד: משוואה אחת מספיקה"
+      },
+      {
+       "id": "c",
+       "value": "רציפות הצפיפות ב-$x=0$ ($a=b$) ונרמול"
+      }
+     ],
+     "correctId": "a",
+     "explain": "נרמול בלבד נותן משוואה אחת לשני נעלמים. רציפות לא נתונה, ואם $a=b$ אז $a=b=\\frac23$ והתוחלת $-\\frac19+\\frac23\\ne0$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו $a$?",
+     "answer": 1.5,
+     "tol": 0,
+     "explain": "מ-$b=\\frac a6$ ו-$\\frac a2+b=1$: $\\frac{2a}3=1$, כלומר $a=\\frac32$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו $b$?",
+     "answer": 0.25,
+     "tol": 0,
+     "explain": "$b=\\frac a6=\\frac14$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -293,7 +1281,70 @@
    "confidence": "high",
    "points": 10,
    "part": "ב",
-   "contextId": "c3"
+   "contextId": "c3",
+   "sim": {
+    "kind": "pdf",
+    "params": {
+     "pieces": [
+      {
+       "from": -1,
+       "to": 0,
+       "expr": "1.5*(1+x)"
+      },
+      {
+       "from": 0,
+       "to": 40,
+       "expr": "0.25*exp(-x)"
+      }
+     ],
+     "event": "x <= -0.5"
+    },
+    "estimate": "F_X(-1/2)",
+    "exact": 0.1875
+   },
+   "rubric": [
+    {
+     "text": "פיצול לשני תחומים ואינטגרציה של $\\frac32(1+x)$ ושל $\\frac14e^{-x}$",
+     "points": 4
+    },
+    {
+     "text": "הענף $\\frac34(1+t)^2$ עד $F(0)=\\frac34$",
+     "points": 3
+    },
+    {
+     "text": "הענף $1-\\frac14e^{-t}$ והמשכיות",
+     "points": 3
+    }
+   ],
+   "pitfalls": [
+    "לשכוח את קבוע האינטגרציה בענף השני ולהתחיל מ-$0$ ב-$t=0$",
+    "לכתוב $1-\\frac14e^{-t}$ כבר עבור $t<0$"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "מהו $F_X(-\\frac12)$?",
+     "answer": 0.1875,
+     "tol": 0,
+     "explain": "$\\frac34(1+t)^2=\\frac34\\cdot\\frac14=\\frac3{16}$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו $F_X(0)$ (ערך החיבור בין שני הענפים)?",
+     "answer": 0.75,
+     "tol": 0,
+     "explain": "$\\frac34(1+0)^2=\\frac34$; מצד שני $1-\\frac14e^0=\\frac34$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו $F_X(1)$? (שבר או עשרוני)",
+     "answer": 0.908,
+     "tol": 0.0006,
+     "explain": "$1-\\frac14e^{-1}\\approx0.9080$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -306,7 +1357,75 @@
    "confidence": "high",
    "points": 5,
    "part": "ג",
-   "contextId": "c3"
+   "contextId": "c3",
+   "sim": {
+    "kind": "pdf",
+    "params": {
+     "pieces": [
+      {
+       "from": -1,
+       "to": 0,
+       "expr": "1.5*(1+x)"
+      },
+      {
+       "from": 0,
+       "to": 40,
+       "expr": "0.25*exp(-x)"
+      }
+     ],
+     "event": "x < 0.5",
+     "given": "x > -0.5"
+    },
+    "estimate": "P(X<1/2 | X>-1/2)",
+    "exact": 0.813375181626882
+   },
+   "rubric": [
+    {
+     "text": "הגדרת ההסתברות המותנית",
+     "points": 1
+    },
+    {
+     "text": "$P(X>-\\frac12)=1-F(-\\frac12)=\\frac{13}{16}$",
+     "points": 1
+    },
+    {
+     "text": "$P(-\\frac12<X<\\frac12)=F(\\frac12)-F(-\\frac12)$",
+     "points": 2
+    },
+    {
+     "text": "התשובה המתוקנת $1-\\frac4{13}e^{-1/2}\\approx0.81$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "להתייחס לתנאי כאילו הוא רק $X>0$",
+    "להסתמך על הערך הרשמי $1-\\frac1e$ שאינו מתאים לנוסחה"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "מהי הסתברות התנאי $P(X>-\\frac12)$?",
+     "answer": 0.8125,
+     "tol": 0,
+     "explain": "$1-F_X(-\\frac12)=1-\\frac3{16}=\\frac{13}{16}$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(-\\frac12<X<\\frac12)$? (שבר או עשרוני)",
+     "answer": 0.6609,
+     "tol": 0.0006,
+     "explain": "$F(\\frac12)-F(-\\frac12)=\\left(1-\\frac14e^{-1/2}\\right)-\\frac3{16}\\approx0.6609$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(X<\\frac12\\mid X>-\\frac12)$? (שבר או עשרוני)",
+     "answer": 0.8134,
+     "tol": 0.0006,
+     "explain": "$\\frac{0.6609}{13/16}=1-\\frac4{13}e^{-1/2}\\approx0.8134$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 4,
@@ -319,7 +1438,124 @@
    "confidence": "high",
    "points": 8,
    "part": "א",
-   "contextId": "c4"
+   "contextId": "c4",
+   "sim": {
+    "kind": "circuit",
+    "params": {
+     "edges": [
+      {
+       "id": "A",
+       "from": "s",
+       "to": "u1",
+       "p": 0.5
+      },
+      {
+       "id": "B",
+       "from": "s",
+       "to": "d1",
+       "p": 0.5
+      },
+      {
+       "id": "E",
+       "from": "u1",
+       "to": "d1",
+       "p": 0.5
+      },
+      {
+       "id": "C",
+       "from": "u1",
+       "to": "u2",
+       "p": 0.5
+      },
+      {
+       "id": "D",
+       "from": "d1",
+       "to": "d2",
+       "p": 0.5
+      },
+      {
+       "id": "F",
+       "from": "u2",
+       "to": "d2",
+       "p": 0.5
+      },
+      {
+       "id": "G",
+       "from": "u2",
+       "to": "t",
+       "p": 0.5
+      }
+     ],
+     "source": "s",
+     "sink": "t",
+     "event": "S"
+    },
+    "estimate": "P(Q1) ב-p=0.5",
+    "exact": 0.203125
+   },
+   "rubric": [
+    {
+     "text": "זיהוי הגשר $E$ ושימוש בנוסחת ההסתברות השלמה עליו",
+     "points": 3
+    },
+    {
+     "text": "$P(Q_1/E)$ ו-$P(Q_1/\\overline E)$ מהפישוטים הטוריים-מקביליים",
+     "points": 3
+    },
+    {
+     "text": "הרכבה ופישוט ל-$p^3(1+2p-4p^3+2p^4)$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לנסות לצמצם את המעגל לטור-מקביל בלי להתנות על $E$",
+    "להתייחס ל-$E$ כאל מקביל בין $A$ ל-$B$"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "באיזו שיטה חוסכים חישוב במעגל $Q_1$ (עם יחידה $E$ המחברת בין שני הענפים)?",
+     "options": [
+      {
+       "id": "a",
+       "value": "נוסחת ההסתברות השלמה על $E$: עם $E$ ובלעדיה המעגל הופך לטורי-מקבילי"
+      },
+      {
+       "id": "b",
+       "value": "כפל כל ההסתברויות: $p^7$"
+      },
+      {
+       "id": "c",
+       "value": "$1-(1-p)^7$, כאילו כל היחידות במקביל"
+      }
+     ],
+     "correctId": "a",
+     "explain": "אין אפשרות לצמצם ישירות בגלל $E$. $p^7=0.0078$ ו-$1-(1-p)^7=0.992$ רחוקים משני הצדדים מהערך הנכון $0.203$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $p=0.5$: מהו $P(Q_1/E)=(2p-p^2)(p+p^2-p^3)\\,p$? (שבר או עשרוני)",
+     "answer": 0.2344,
+     "tol": 0.0006,
+     "explain": "$0.75\\cdot0.625\\cdot0.5=0.234375$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו $P(Q_1/\\overline E)=(p^2+p^3-p^5)\\,p$? (שבר או עשרוני)",
+     "answer": 0.1719,
+     "tol": 0.0006,
+     "explain": "$(0.25+0.125-0.03125)\\cdot0.5=0.171875$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(Q_1)$? (שבר או עשרוני)",
+     "answer": 0.2031,
+     "tol": 0.0006,
+     "explain": "$0.5\\cdot0.234375+0.5\\cdot0.171875=0.203125$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 4,
@@ -332,7 +1568,127 @@
    "confidence": "high",
    "points": 8,
    "part": "ב",
-   "contextId": "c4"
+   "contextId": "c4",
+   "sim": {
+    "kind": "circuit",
+    "params": {
+     "edges": [
+      {
+       "id": "A",
+       "from": "s",
+       "to": "u1",
+       "p": 0.5
+      },
+      {
+       "id": "B",
+       "from": "s",
+       "to": "d1",
+       "p": 0.5
+      },
+      {
+       "id": "E",
+       "from": "u1",
+       "to": "d1",
+       "p": 0.5
+      },
+      {
+       "id": "C",
+       "from": "u1",
+       "to": "u2",
+       "p": 0.5
+      },
+      {
+       "id": "D",
+       "from": "d1",
+       "to": "d2",
+       "p": 0.5
+      },
+      {
+       "id": "F",
+       "from": "u2",
+       "to": "d2",
+       "p": 0.5
+      },
+      {
+       "id": "G",
+       "from": "u2",
+       "to": "t",
+       "p": 0.5
+      },
+      {
+       "id": "H",
+       "from": "d2",
+       "to": "t",
+       "p": 0.4
+      }
+     ],
+     "source": "s",
+     "sink": "t",
+     "event": "S"
+    },
+    "estimate": "P(Q2) ב-p=0.5,q=0.4",
+    "exact": 0.30312500000000003
+   },
+   "rubric": [
+    {
+     "text": "התניה על $H$",
+     "points": 2
+    },
+    {
+     "text": "$P(Q_2/H)=p^2(1+3p-9p^3+8p^4-2p^5)$",
+     "points": 3
+    },
+    {
+     "text": "$P(Q_2/\\overline H)=P(Q_1)$",
+     "points": 1
+    },
+    {
+     "text": "הרכבה עם $P(H)=q$ (התיקון)",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "להציב $P(H)=p$ כמו בפתרון הרשמי כשהשאלה מגדירה $q$",
+    "לכתוב $P(Q_2)=q\\,P(Q_1)$ (בטור)"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "כיצד מחשבים את $P(Q_2)$ מתוך $P(Q_1)$ כאשר מוסיפים את היחידה $H$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "התניה על $H$: $P(Q_2)=q\\,P(Q_2/H)+(1-q)\\,P(Q_1)$"
+      },
+      {
+       "id": "b",
+       "value": "$P(Q_2)=1-(1-P(Q_1))(1-q)$, כאילו $H$ במקביל לכל המעגל"
+      },
+      {
+       "id": "c",
+       "value": "$P(Q_2)=q\\,P(Q_1)$, כאילו $H$ בטור"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$H$ מחברת רק נקודות פנימיות ולא את כל המעגל, ולכן אינה במקביל או בטור למעגל כולו (הערכים המתקבלים, $0.522$ ו-$0.081$, שונים מהנכון $0.303$)."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $p=0.5$: מהי $P(Q_2/H)=p^2(1+3p-9p^3+8p^4-2p^5)$? (שבר או עשרוני)",
+     "answer": 0.4531,
+     "tol": 0.0006,
+     "explain": "$0.25\\cdot1.8125=0.453125$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $p=0.5$, $q=0.4$: מהי $P(Q_2)$? (שבר או עשרוני)",
+     "answer": 0.3031,
+     "tol": 0.0006,
+     "explain": "$0.4\\cdot0.453125+0.6\\cdot0.203125=0.303125$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 4,
@@ -345,7 +1701,123 @@
    "confidence": "high",
    "points": 6,
    "part": "ג",
-   "contextId": "c4"
+   "contextId": "c4",
+   "sim": {
+    "kind": "circuit",
+    "params": {
+     "edges": [
+      {
+       "id": "A",
+       "from": "s",
+       "to": "u1",
+       "p": 0.5
+      },
+      {
+       "id": "B",
+       "from": "s",
+       "to": "d1",
+       "p": 0.5
+      },
+      {
+       "id": "E",
+       "from": "u1",
+       "to": "d1",
+       "p": 0.5
+      },
+      {
+       "id": "C",
+       "from": "u1",
+       "to": "u2",
+       "p": 0.5
+      },
+      {
+       "id": "D",
+       "from": "d1",
+       "to": "d2",
+       "p": 0.5
+      },
+      {
+       "id": "F",
+       "from": "u2",
+       "to": "d2",
+       "p": 0.5
+      },
+      {
+       "id": "G",
+       "from": "u2",
+       "to": "t",
+       "p": 0.5
+      },
+      {
+       "id": "H",
+       "from": "d2",
+       "to": "t",
+       "p": 0.4
+      }
+     ],
+     "source": "s",
+     "sink": "t",
+     "event": "S"
+    },
+    "estimate": "P(Q1 u Q2)=P(Q2) ב-p=0.5,q=0.4",
+    "exact": 0.30312500000000003
+   },
+   "rubric": [
+    {
+     "text": "זיהוי $Q_1\\subseteq Q_2$ (הוספת $H$ רק מוסיפה מסלולים)",
+     "points": 3
+    },
+    {
+     "text": "$P(Q_1\\cup Q_2)=P(Q_2)$",
+     "points": 1
+    },
+    {
+     "text": "הצבת הביטוי של $P(Q_2)$ מסעיף ב",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לחבר $P(Q_1)+P(Q_2)$ ולחרוג מהסתברות הקרובה ל-$1$",
+    "להניח ש-$Q_1,Q_2$ בלתי תלויים"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מה הקשר בין המאורעות $Q_1$ ו-$Q_2$, ומהו $P(Q_1\\cup Q_2)$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$Q_1\\subseteq Q_2$ (הוספת $H$ מוסיפה מסלולים בלבד), ולכן $P(Q_1\\cup Q_2)=P(Q_2)$"
+      },
+      {
+       "id": "b",
+       "value": "בלתי תלויים: $P(Q_1\\cup Q_2)=P(Q_1)+P(Q_2)-P(Q_1)P(Q_2)$"
+      },
+      {
+       "id": "c",
+       "value": "זרים: $P(Q_1\\cup Q_2)=P(Q_1)+P(Q_2)$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "הם תלויים ביותר (אותן יחידות), ואינם זרים (ביניהם חיתוך שלם, $Q_1$)."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $p=0.5$: מהי $P(Q_1\\cap Q_2)$? (שבר או עשרוני)",
+     "answer": 0.2031,
+     "tol": 0.0006,
+     "explain": "$Q_1\\subseteq Q_2$, ולכן החיתוך הוא $Q_1$: $0.203125$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $p=0.5$, $q=0.4$: מהי $P(Q_1\\cup Q_2)=P(Q_1)+P(Q_2)-P(Q_1\\cap Q_2)$? (שבר או עשרוני)",
+     "answer": 0.3031,
+     "tol": 0.0006,
+     "explain": "$0.203125+0.303125-0.203125=0.303125$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 4,
@@ -358,7 +1830,110 @@
    "confidence": "high",
    "points": 3,
    "part": "ד",
-   "contextId": "c4"
+   "contextId": "c4",
+   "sim": {
+    "kind": "circuit",
+    "params": {
+     "edges": [
+      {
+       "id": "A",
+       "from": "s",
+       "to": "u1",
+       "p": 0.5
+      },
+      {
+       "id": "B",
+       "from": "s",
+       "to": "d1",
+       "p": 0.5
+      },
+      {
+       "id": "E",
+       "from": "u1",
+       "to": "d1",
+       "p": 0.5
+      },
+      {
+       "id": "C",
+       "from": "u1",
+       "to": "u2",
+       "p": 0.5
+      },
+      {
+       "id": "D",
+       "from": "d1",
+       "to": "d2",
+       "p": 0.5
+      },
+      {
+       "id": "F",
+       "from": "u2",
+       "to": "d2",
+       "p": 0.5
+      },
+      {
+       "id": "G",
+       "from": "u2",
+       "to": "t",
+       "p": 0.5
+      },
+      {
+       "id": "H",
+       "from": "d2",
+       "to": "t",
+       "p": 0.4
+      }
+     ],
+     "source": "s",
+     "sink": "t",
+     "event": "S",
+     "given": "G == 1 and ((E == 1 and (A == 1 or B == 1) and (C == 1 or (D == 1 and F == 1))) or (E == 0 and ((A == 1 and C == 1) or (B == 1 and D == 1 and F == 1))))"
+    },
+    "estimate": "P(Q2|Q1) ב-p=0.5,q=0.4",
+    "exact": 1.0
+   },
+   "rubric": [
+    {
+     "text": "הגדרת ההסתברות המותנית",
+     "points": 1
+    },
+    {
+     "text": "$Q_1\\subseteq Q_2$ ולכן החיתוך הוא $Q_1$",
+     "points": 1
+    },
+    {
+     "text": "היחס $1$ ונימוק",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לענות $P(Q_2)$ או $q$ בלי לשים לב שהחיתוך הוא $Q_1$"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "עבור $p=0.5$: מהי הסתברות התנאי $P(Q_1)$? (שבר או עשרוני)",
+     "answer": 0.2031,
+     "tol": 0.0006,
+     "explain": "$0.203125$ (סעיף א)."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(Q_1\\cap Q_2)$? (שבר או עשרוני)",
+     "answer": 0.2031,
+     "tol": 0.0006,
+     "explain": "$Q_1\\subseteq Q_2$, ולכן $P(Q_1\\cap Q_2)=P(Q_1)$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(Q_2\\mid Q_1)$?",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "היחס $\\frac{P(Q_1)}{P(Q_1)}=1$: אם $Q_1$ פועל אז גם $Q_2$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 5,
@@ -371,7 +1946,91 @@
    "confidence": "high",
    "points": 8,
    "part": "א",
-   "contextId": "c5"
+   "contextId": "c5",
+   "sim": {
+    "kind": "urn",
+    "params": {
+     "values": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ],
+     "draws": 3,
+     "event": "min == 2"
+    },
+    "estimate": "P(Xmin=2) ב-N=10,n=3",
+    "exact": 0.23333333333333334
+   },
+   "rubric": [
+    {
+     "text": "מרחב המדגם: $\\binom Nn$ תת-קבוצות שוות הסתברות",
+     "points": 2
+    },
+    {
+     "text": "$X_{\\min}=k$: $k$ נבחר והשאר $n-1$ מהמספרים הגדולים מ-$k$, כלומר $\\binom{N-k}{n-1}$",
+     "points": 4
+    },
+    {
+     "text": "תחום הערכים $1\\le k\\le N-n+1$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לספור $\\binom{N-k}{n}$ (מבלי לכלול את $k$ עצמו)",
+    "לטעות בתחום: $k$ עד $N$ (אבל צריכים עוד $n-1$ מספרים גדולים יותר)"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "כיצד סופרים את התת-קבוצות שבהן המינימום הוא בדיוק $k$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "בוחרים את $k$, ואת $n-1$ האחרים מבין $N-k$ המספרים הגדולים מ-$k$: $\\binom{N-k}{n-1}$"
+      },
+      {
+       "id": "b",
+       "value": "בוחרים $n$ מספרים מבין $N-k$ הגדולים מ-$k$: $\\binom{N-k}{n}$"
+      },
+      {
+       "id": "c",
+       "value": "בוחרים $n-1$ מבין $N-1$ המספרים השונים מ-$k$: $\\binom{N-1}{n-1}$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "השנייה אינה כוללת את $k$ (בדוגמה $\\binom83=56\\ne28$). השלישית מרשה מספרים קטנים מ-$k$, ואז $k$ אינו המינימום."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $N=10$ ו-$n=3$: כמה בחירות (תת-קבוצות) של $3$ מספרים אפשריות מתוך $\\{1,\\ldots,10\\}$?",
+     "answer": 120.0,
+     "tol": 0,
+     "explain": "$\\binom{10}{3}=120$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "כמה בחירות נותנות $X_{\\min}=2$?",
+     "answer": 28.0,
+     "tol": 0,
+     "explain": "$\\binom{10-2}{3-1}=\\binom82=28$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(X_{\\min}=2)$? (שבר או עשרוני)",
+     "answer": 0.2333,
+     "tol": 0.0006,
+     "explain": "$\\frac{28}{120}=\\frac7{30}$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 5,
@@ -384,7 +2043,84 @@
    "confidence": "high",
    "points": 8,
    "part": "ב",
-   "contextId": "c5"
+   "contextId": "c5",
+   "sim": {
+    "kind": "urn",
+    "params": {
+     "values": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ],
+     "draws": 3,
+     "event": "max == 7"
+    },
+    "estimate": "P(Xmax=7) ב-N=10,n=3",
+    "exact": 0.125
+   },
+   "rubric": [
+    {
+     "text": "מרחב המדגם $\\binom Nn$",
+     "points": 2
+    },
+    {
+     "text": "$X_{\\max}=\\ell$: $\\ell$ נבחר והשאר $n-1$ מבין $\\ell-1$ הקטנים ממנו: $\\binom{\\ell-1}{n-1}$",
+     "points": 4
+    },
+    {
+     "text": "תחום הערכים $n\\le\\ell\\le N$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לספור $\\binom{\\ell}{n-1}$ (כולל את $\\ell$ בין הקטנים)",
+    "לשכוח שחייבים לפחות $n$ מספרים, לכן $\\ell\\ge n$"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "כיצד סופרים את התת-קבוצות שבהן המקסימום הוא בדיוק $\\ell$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "בוחרים את $\\ell$, ואת $n-1$ האחרים מבין $\\ell-1$ הקטנים ממנו: $\\binom{\\ell-1}{n-1}$"
+      },
+      {
+       "id": "b",
+       "value": "בוחרים $n-1$ מבין $\\ell$ המספרים $1,\\ldots,\\ell$: $\\binom{\\ell}{n-1}$"
+      },
+      {
+       "id": "c",
+       "value": "בוחרים $n$ מבין $\\ell-1$ הקטנים מ-$\\ell$: $\\binom{\\ell-1}{n}$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "השנייה מרשה לבחור שוב את $\\ell$ (ב-$\\ell=7$: $\\binom72=21\\ne15$). השלישית אינה כוללת את $\\ell$ בתת-הקבוצה."
+    },
+    {
+     "type": "numeric",
+     "prompt": "כמה בחירות נותנות $X_{\\max}=7$ (עבור $N=10$, $n=3$)?",
+     "answer": 15.0,
+     "tol": 0,
+     "explain": "$\\binom{6}{2}=15$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(X_{\\max}=7)$?",
+     "answer": 0.125,
+     "tol": 0,
+     "explain": "$\\frac{15}{120}=\\frac18$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 5,
@@ -397,7 +2133,91 @@
    "confidence": "high",
    "points": 9,
    "part": "ג",
-   "contextId": "c5"
+   "contextId": "c5",
+   "sim": {
+    "kind": "urn",
+    "params": {
+     "values": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ],
+     "draws": 3,
+     "event": "min == 2 and max == 7"
+    },
+    "estimate": "P(Xmin=2,Xmax=7) ב-N=10,n=3",
+    "exact": 0.03333333333333333
+   },
+   "rubric": [
+    {
+     "text": "בחירת המינימום והמקסימום (שני מספרים קבועים)",
+     "points": 3
+    },
+    {
+     "text": "$n-2$ המספרים האחרים נבחרים מהמספרים שבין $k$ ל-$\\ell$: $\\binom{\\ell-k-1}{n-2}$",
+     "points": 4
+    },
+    {
+     "text": "חלוקה ב-$\\binom Nn$ ותחום $k<\\ell$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לספור $\\binom{\\ell-k}{n-2}$ (כולל את הקצוות)",
+    "לשכוח את התנאי $k<\\ell$"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "כמה מספרים אפשר לבחור לשאר הקבוצה, כאשר המינימום הוא $k$ והמקסימום $\\ell$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$\\ell-k-1$ מספרים (המספרים שבין $k$ ל-$\\ell$, לא כולל הקצוות)"
+      },
+      {
+       "id": "b",
+       "value": "$\\ell-k$ מספרים"
+      },
+      {
+       "id": "c",
+       "value": "$N-2$ מספרים"
+      }
+     ],
+     "correctId": "a",
+     "explain": "השני סופר גם אחד הקצוות. השלישי מרשה מספרים מחוץ ל-$[k,\\ell]$, ואז $k$ או $\\ell$ אינו הקיצון."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $k=2$, $\\ell=7$: כמה מספרים נמצאים בין $k$ ל-$\\ell$?",
+     "answer": 4.0,
+     "tol": 0,
+     "explain": "$7-2-1=4$ (המספרים $3,4,5,6$)."
+    },
+    {
+     "type": "numeric",
+     "prompt": "כמה בחירות נותנות $X_{\\min}=2$ ו-$X_{\\max}=7$ (עם $n=3$)?",
+     "answer": 4.0,
+     "tol": 0,
+     "explain": "בוחרים $n-2=1$ מתוך $4$: $\\binom41=4$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(X_{\\min}=2,\\,X_{\\max}=7)$? (שבר או עשרוני)",
+     "answer": 0.0333,
+     "tol": 0.0006,
+     "explain": "$\\frac4{120}=\\frac1{30}$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 5,
@@ -410,7 +2230,78 @@
    "confidence": "high",
    "points": 5,
    "part": "ד",
-   "contextId": "c5"
+   "contextId": "c5",
+   "sim": {
+    "kind": "urn",
+    "params": {
+     "values": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ],
+     "draws": 3,
+     "measure": "mean",
+     "expr": "min"
+    },
+    "estimate": "E[Xmin] ב-N=10,n=3",
+    "exact": 2.75
+   },
+   "rubric": [
+    {
+     "text": "שימוש בהתפלגות $\\binom{N-k}{n-1}/\\binom Nn$ או בסימטריה",
+     "points": 2
+    },
+    {
+     "text": "סכום ישיר או זהות הוקי-סטיק",
+     "points": 2
+    },
+    {
+     "text": "התשובה $\\frac{N+1}{n+1}$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "להניח $\\mathbb{E}[X_{\\min}]=\\frac N2$ כמו ביחיד",
+    "לטעות בזהות הסיכום"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איזו תוצאה סבירה עבור $\\mathbb{E}[X_{\\min}]$ כשבוחרים $n=3$ מספרים מתוך $1,\\ldots,10$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$\\dfrac{N+1}{n+1}=2.75$: ככל שיותר מספרים נבחרים, המינימום קרוב יותר ל-$1$"
+      },
+      {
+       "id": "b",
+       "value": "$\\dfrac N2=5$, כמו התוחלת של מספר בודד"
+      },
+      {
+       "id": "c",
+       "value": "$\\dfrac{N}{n}=3.33$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "המינימום של $3$ מספרים קטן בהכרח מהתוחלת של מספר בודד, לכן $5$ אינו יתכן. הערך $\\frac Nn$ אינו מקיים את המקרה $n=1$ ($\\mathbb{E}=\\frac{N+1}2$), בעוד ש-$\\frac{N+1}{n+1}$ כן."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו $\\mathbb{E}[X_{\\min}]$ עבור $N=10$, $n=3$ (חישוב ישיר $\\sum k\\,P(X_{\\min}=k)$)?",
+     "answer": 2.75,
+     "tol": 0,
+     "explain": "$\\frac{N+1}{n+1}=\\frac{11}4=2.75$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 5,
@@ -423,7 +2314,77 @@
    "confidence": "high",
    "points": 5,
    "part": "ה",
-   "contextId": "c5"
+   "contextId": "c5",
+   "sim": {
+    "kind": "urn",
+    "params": {
+     "values": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ],
+     "draws": 3,
+     "measure": "mean",
+     "expr": "max"
+    },
+    "estimate": "E[Xmax] ב-N=10,n=3",
+    "exact": 8.25
+   },
+   "rubric": [
+    {
+     "text": "סימטריה: $X_{\\max}\\overset d=N+1-X_{\\min}$",
+     "points": 2
+    },
+    {
+     "text": "$\\mathbb{E}[X_{\\max}]=N+1-\\mathbb{E}[X_{\\min}]$",
+     "points": 2
+    },
+    {
+     "text": "התשובה $n\\frac{N+1}{n+1}$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לכתוב $\\mathbb{E}[X_{\\max}]=N-\\mathbb{E}[X_{\\min}]$ (חסר $1$)"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איזה קשר מצדיק לחשב את $\\mathbb{E}[X_{\\max}]$ מתוך $\\mathbb{E}[X_{\\min}]$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "הפיכת המספרים $i\\mapsto N+1-i$: $X_{\\max}$ מתפלג כמו $N+1-X_{\\min}$"
+      },
+      {
+       "id": "b",
+       "value": "$X_{\\max}$ ו-$X_{\\min}$ בלתי תלויים"
+      },
+      {
+       "id": "c",
+       "value": "$X_{\\max}=X_{\\min}+n$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "הם תלויים (המקסימום תמיד גדול מהמינימום), והקשר $X_{\\max}=X_{\\min}+n$ שגוי (תלוי במספרים שנבחרו)."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו $\\mathbb{E}[X_{\\max}]$ עבור $N=10$, $n=3$?",
+     "answer": 8.25,
+     "tol": 0,
+     "explain": "$11-\\frac{11}4=\\frac{33}4=8.25$, כלומר $n\\frac{N+1}{n+1}$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 6,
@@ -457,7 +2418,79 @@
      "y": "Y/L"
     },
     "caption": "האזור min/max ≤ t עבור t=0.4 (אחרי חלוקה ב-L)"
-   }
+   },
+   "sim": {
+    "kind": "area",
+    "params": {
+     "fromRegion": true
+    },
+    "estimate": "F_Z(0.4)=P(Z<=0.4)",
+    "exact": 0.4
+   },
+   "rubric": [
+    {
+     "text": "מרחב המדגם והסימטריה בין $X$ ל-$Y$",
+     "points": 3
+    },
+    {
+     "text": "פיצול לפי מי גדול ושטח המשולש $\\frac t2$",
+     "points": 7
+    },
+    {
+     "text": "הרכבה $F_Z(t)=t$ והמקרים $t<0$, $t\\ge1$",
+     "points": 5
+    }
+   ],
+   "pitfalls": [
+    "לשכוח לכפול ב-$2$ בגלל הסימטריה (ולקבל $\\frac t2$)",
+    "לחשב את השטח של $\\{Y\\le tX\\}$ בלי להגביל ל-$Y<X$"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "נקבע $L=1$ (היחס אינו תלוי ב-$L$). מהו שטח מרחב המדגם $|\\Omega|$?",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "הריבוע $(0,1)^2$, שטחו $1$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו שטח האירוע $\\{\\min(x,y)\\le0.4\\max(x,y)\\}$ (שני משולשים)?",
+     "answer": 0.4,
+     "tol": 0,
+     "explain": "בכל חצי של הריבוע משולש ששטחו $\\frac{0.4}2=0.2$, יחד $0.4$.",
+     "region": {
+      "space": {
+       "x": [
+        0,
+        1
+       ],
+       "y": [
+        0,
+        1
+       ]
+      },
+      "event": [
+       "min(x,y) <= 0.4*max(x,y)"
+      ],
+      "exact": 0.4,
+      "labels": {
+       "x": "X/L",
+       "y": "Y/L"
+      },
+      "caption": "האזור min/max ≤ t עבור t=0.4 (אחרי חלוקה ב-L)"
+     }
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $F_Z(0.4)=P(Z\\le0.4)$?",
+     "answer": 0.4,
+     "tol": 0,
+     "explain": "$\\frac{0.4}{1}=0.4=t$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 6,
@@ -470,7 +2503,56 @@
    "confidence": "high",
    "points": 5,
    "part": "ב",
-   "contextId": "c6"
+   "contextId": "c6",
+   "sim": {
+    "kind": "area",
+    "params": {
+     "space": {
+      "x": [
+       0,
+       1
+      ],
+      "y": [
+       0,
+       1
+      ]
+     },
+     "event": "min(x,y) > 0.2*max(x,y) and min(x,y) <= 0.5*max(x,y)"
+    },
+    "estimate": "P(0.2<Z<=0.5)",
+    "exact": 0.3
+   },
+   "rubric": [
+    {
+     "text": "גזירה: $f_Z=F_Z'$",
+     "points": 3
+    },
+    {
+     "text": "$f_Z(t)=1$ על $[0,1]$ ו-$0$ אחרת",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לשכוח לאפס את הצפיפות מחוץ ל-$[0,1]$"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "מהו $f_Z(0.5)$?",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "$F_Z(t)=t$ על $[0,1]$, לכן הנגזרת היא $1$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(0.2<Z\\le0.5)=\\int_{0.2}^{0.5}f_Z$?",
+     "answer": 0.3,
+     "tol": 0,
+     "explain": "$0.5-0.2=0.3$ (התפלגות אחידה)."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 6,
@@ -483,7 +2565,62 @@
    "confidence": "high",
    "points": 5,
    "part": "ג",
-   "contextId": "c6"
+   "contextId": "c6",
+   "sim": {
+    "kind": "area",
+    "params": {
+     "space": {
+      "x": [
+       0,
+       1
+      ],
+      "y": [
+       0,
+       1
+      ]
+     },
+     "measure": "var",
+     "expr": "y/x",
+     "given": "y < x"
+    },
+    "estimate": "Var[Z] = Var[Y/X | Y<X] (סימטריה)",
+    "exact": 0.08333333333333333
+   },
+   "rubric": [
+    {
+     "text": "$Z\\sim U(0,1)$ ולכן $\\mathbb{E}[Z]=\\frac12$",
+     "points": 2
+    },
+    {
+     "text": "$\\mathbb{E}[Z^2]=\\frac13$",
+     "points": 2
+    },
+    {
+     "text": "$\\operatorname{Var}[Z]=\\frac13-\\frac14=\\frac1{12}$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לשכוח להעלות את התוחלת בריבוע"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "מהו $\\mathbb{E}[Z^2]=\\int_0^1z^2\\,dz$? (שבר או עשרוני)",
+     "answer": 0.3333,
+     "tol": 0.0006,
+     "explain": "$\\frac13$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $\\operatorname{Var}[Z]$? (שבר או עשרוני)",
+     "answer": 0.0833,
+     "tol": 0.0006,
+     "explain": "$\\frac13-\\left(\\frac12\\right)^2=\\frac1{12}$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   }
  ]
 }
