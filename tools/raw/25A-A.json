@@ -156,8 +156,8 @@
      "explain": "$\\frac{1/18}{2/9}=\\frac14$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -286,8 +286,8 @@
      "explain": "$\\frac{1/18}{2/9}=\\frac14$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -407,8 +407,8 @@
      "explain": "$P(\\text{triangle}\\cap X_1>X_2)=\\frac{1/144}{2/9}=\\frac1{32}$, ואז $\\frac{1/32}{1/4}=\\frac18$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -2261,7 +2261,7 @@
     }
    ],
    "pitfalls": [
-    "לקחת $|\\Omega|=1000$ (לספור גם מספרים שמתחילים ב-$0$).",
+    "הערת קריאה: הקריאה הטבעית היא $\\Omega=\\{100,\\ldots,999\\}$. אם סופרים גם מחרוזות המתחילות ב-$0$ ($|\\Omega|=1000$), משתנה רק $P(A_8)$, שיוצא $\\frac18$.",
     "להסיק $P(A_8)=\\frac18$ מכך ש-$8$ מחלק כל שמיני מספר. $900$ אינו מתחלק ב-$8$, ולכן מקבלים $112$ ולא $112.5$."
    ],
    "steps": [
@@ -2311,8 +2311,8 @@
      "explain": "$\\frac{112}{900}=\\frac{28}{225}\\approx0.1244$, שונה מ-$\\frac18=0.125$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -2407,8 +2407,8 @@
      "explain": "אי-שוויון בין החיתוך למכפלה פירושו תלות."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -2480,8 +2480,8 @@
      "explain": "החיתוך גדול פי $4$ מהמכפלה, ולכן אין אי-תלות."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -2552,8 +2552,8 @@
      "explain": "דוגמה נגדית חייבת להיות בקבוצה אחת ולא בשנייה. $100\\in A_4=A_2\\cap A_4$ אבל $100\\notin A_8$. ב-$102$ ו-$101$ וב-$104$ שתי הקבוצות מסכימות."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -2657,8 +2657,8 @@
      "explain": "$b=\\frac65(\\mu+1)=\\frac65$. בדיקה: $\\frac25+\\frac35=1$ ו-$-\\frac25+\\frac25=0$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -2722,8 +2722,8 @@
      "explain": "פתירות המשוואות אינה מספיקה; הצפיפות חייבת להיות $\\ge0$. כאן $a=-\\frac15$ ו-$b=\\frac{12}5>0$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -2806,8 +2806,8 @@
      "explain": "הצפיפות מתאפסת מימין ל-$1$, ולכן $F_X$ נשארת $1$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -2861,8 +2861,8 @@
      "explain": "$\\frac{3/5}{3/5}=1$: כל המסה של $X>0$ נמצאת ב-$(0,1)$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -2987,8 +2987,8 @@
      "explain": "$0.6\\cdot0.7056+0.4\\cdot0.5904=0.65952$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -3108,15 +3108,15 @@
      "explain": "$0.6\\cdot0.84^2=0.42336$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
    "kind": "computation",
    "topic": "circuits",
    "question": "**אם ידוע** כי מעגל $Q_2$ פועל, מהי ההסתברות שגם המעגל $Q_1$ פועל? (7 נק׳)",
-   "solution": "$$P(Q_1/Q_2)=\\frac{P(Q_1\\cap Q_2)}{P(Q_2)}.$$\nנסמן $\\widetilde Q=Q_1\\cap Q_2$ ונפעל לפי נוסחת ההסתברות השלמה על $A\\cap E$ וארבעת המקרים: $A\\cap E$, $A\\cap\\overline E$, $\\overline A\\cap E$, $\\overline A\\cap\\overline E$. כאשר $A$ לא פועלת $Q_2$ אינו פועל, ולכן שני המקרים האחרונים תורמים $0$.\n- $A\\cap E$: $Q_1$ הופך ל-$B\\cup D$ ו-$Q_2$ ל-$B\\cup C$ (כש-$E$ פועלת $D\\cup E$ מתקיים). המאורע המשותף הוא $(B\\cup D)\\cap(B\\cup C)=B\\cup(C\\cap D)$, ולכן $P(\\widetilde Q/A\\cap E)=p+p^2-p^3$.\n- $A\\cap\\overline E$: $Q_1$ הופך ל-$B\\cap D$ ו-$Q_2$ ל-$(B\\cup C)\\cap D$. המשותף: $(B\\cup C)\\cap D$, ולכן $P(\\widetilde Q/A\\cap\\overline E)=(2p-p^2)p$.\n\nמכאן\n$$P(\\widetilde Q)=p^2\\cdot p(1+p-p^2)+p(1-p)\\cdot p^2(2-p)=p^3(3-2p),$$\nולכן\n$$P(Q_1/Q_2)=\\frac{p^3(3-2p)}{p^3(2-p)^2}=\\frac{3-2p}{(2-p)^2}.$$",
+   "solution": "$$P(Q_1/Q_2)=\\frac{P(Q_1\\cap Q_2)}{P(Q_2)}.$$\nנסמן $\\widetilde Q=Q_1\\cap Q_2$ ונפעל לפי נוסחת ההסתברות השלמה על $A\\cap E$ וארבעת המקרים: $A\\cap E$, $A\\cap\\overline E$, $\\overline A\\cap E$, $\\overline A\\cap\\overline E$. כאשר $A$ לא פועלת $Q_2$ אינו פועל, ולכן שני המקרים האחרונים תורמים $0$.\n- $A\\cap E$: $Q_1$ הופך ל-$B\\cup D$ ו-$Q_2$ ל-$B\\cup C$ (כש-$E$ פועלת $D\\cup E$ מתקיים). המאורע המשותף הוא $(B\\cup D)\\cap(B\\cup C)=B\\cup(C\\cap D)$, ולכן $P(\\widetilde Q/A\\cap E)=p+p^2-p^3$.\n- $A\\cap\\overline E$: $Q_1$ הופך ל-$B\\cup(C\\cap D)$ ו-$Q_2$ ל-$(B\\cup C)\\cap D$. המשותף: $(B\\cup C)\\cap D$, ולכן $P(\\widetilde Q/A\\cap\\overline E)=(2p-p^2)p$.\n\nמכאן\n$$P(\\widetilde Q)=p^2\\cdot p(1+p-p^2)+p(1-p)\\cdot p^2(2-p)=p^3(3-2p),$$\nולכן\n$$P(Q_1/Q_2)=\\frac{p^3(3-2p)}{p^3(2-p)^2}=\\frac{3-2p}{(2-p)^2}.$$",
    "solutionSource": "official-pdf",
    "official": true,
    "confidence": "high",
@@ -3235,8 +3235,8 @@
      "explain": "$\\frac{0.3888}{0.42336}=\\frac{3-2p}{(2-p)^2}=\\frac{1.8}{1.96}\\approx0.9184$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -3350,8 +3350,8 @@
      "explain": "$1-0.9184=\\frac{(1-p)^2}{(2-p)^2}=\\frac{0.16}{1.96}\\approx0.0816$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -3466,8 +3466,8 @@
      "explain": "$\\omega\\in\\left(\\frac12,\\frac32\\right)$: $e^{-1}-e^{-3}\\approx0.3181$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -3706,7 +3706,7 @@
      "prompt": "$\\sum_{k\\ge1}kq^k=\\frac{q}{(1-q)^2}$ עבור אותו $q$.",
      "answer": 0.18101541524157763,
      "tol": 0.0003620308304831553,
-     "explain": "$\\frac{0.135335}{(0.864665)^2}\\approx0.181019$."
+     "explain": "$\\frac{0.135335}{(0.864665)^2}\\approx0.181015$."
     },
     {
      "type": "numeric",
@@ -3716,8 +3716,8 @@
      "explain": "$\\frac1{e-e^{-1}}\\approx0.4254$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -3815,8 +3815,8 @@
      "explain": "$\\frac{0.0431}{0.0498}=1-e^{-2}\\approx0.8647$ (תכונת חוסר הזיכרון של המעריכי)."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -3895,8 +3895,8 @@
      "explain": "$\\binom52\\cdot0.3^2\\cdot0.7^3=10\\cdot0.09\\cdot0.343=0.3087$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -3993,8 +3993,8 @@
      "explain": "$4\\cdot0.1\\cdot0.9^3=0.2916$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -4113,8 +4113,8 @@
      "explain": "$\\frac{0.2}{1\\cdot0.6}=\\frac13$, וגם $\\sqrt{\\frac{p(1-q)}{1-pq}}=\\sqrt{\\frac19}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -4174,8 +4174,8 @@
      "explain": "$Y=X$ ולכן המתאם $\\rho[X,X]=1$. אי-תלות היתה נותנת $0$, ו-$Y=0$ היה נותן שונות $0$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   }
  ]
 }

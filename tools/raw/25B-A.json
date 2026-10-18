@@ -104,8 +104,8 @@
      "explain": "נקודה אקראית על צלע באורך $1$ אחידה על $(0,1)$. $\\sqrt2$ הוא אורך היתר, שעליו לא נבחרות הנקודות."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -234,8 +234,8 @@
      "explain": "$\\frac\\pi4\\approx0.785$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -334,8 +334,8 @@
      "explain": "$\\frac12+\\frac{\\ln2}2\\approx0.8466$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -454,8 +454,8 @@
      "explain": "$\\frac{\\pi/4}{\\frac12(1+\\ln2)}=\\frac{\\pi}{2(1+\\ln2)}\\approx0.928$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -564,8 +564,8 @@
      "explain": "$\\frac14\\cdot\\frac7{144}=\\frac7{576}\\approx0.01215$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -671,8 +671,8 @@
      "explain": "$0.8-0.4\\cdot\\frac57=\\frac{18}{35}\\approx0.514286$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -773,8 +773,8 @@
      "explain": "$1-\\frac27=\\frac57$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -876,8 +876,8 @@
      "explain": "$0.6\\cdot\\frac57=\\frac37\\approx0.428571$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -941,15 +941,15 @@
      "explain": "$P(B)\\ge0$ שקול ל-$q\\ge1-s$. אם $q<1-s$ מתקבל $P(B)<0$, בלתי אפשרי, וזה לא תלוי ב-$p$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
    "kind": "computation",
    "topic": "independence",
    "question": "עבור אילו פרמטרים $p$, $q$ ו-$s$ המאורעות $A$ ו-$B$ יהיו מאורעות **בלתי תלויים**? (5 נק׳)",
-   "solution": "אם $A$ ו-$B$ בלתי תלויים, אז\n$$P(A/B)=P(A)=p,$$\nוגם\n$$P(\\overline A/\\overline B)=P(\\overline A)=q.$$\nמכאן $q=P(\\overline A)=1-P(A)=1-p$, כלומר\n$$p=1-q.$$",
+   "solution": "אם $A$ ו-$B$ בלתי תלויים, אז\n$$P(A/B)=P(A)=p,$$\nוגם\n$$P(\\overline A/\\overline B)=P(\\overline A)=q.$$\nמכאן $q=P(\\overline A)=1-P(A)=1-p$, כלומר\n$$p=1-q.$$\nלהפך, אם $p=1-q$ אז $P(A)=s-(1-p)P(B)=s-q\\cdot\\frac{q+s-1}q=1-q=p=P(A/B)$, ולכן $A$ ו-$B$ בלתי תלויים (לכל $s$).",
    "solutionSource": "official-pdf",
    "official": true,
    "confidence": "high",
@@ -1007,8 +1007,8 @@
      "explain": "$p=1-q=0.7$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1144,8 +1144,8 @@
      "explain": "$1-0.035136=0.964864$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1267,11 +1267,11 @@
      "prompt": "מהי $P(A_2/Q)$? (עד שש ספרות)",
      "answer": 0.6633059166887768,
      "tol": 0.0013266118333775537,
-     "explain": "$\\frac{0.64}{0.964864}\\approx0.663317$."
+     "explain": "$\\frac{0.64}{0.964864}\\approx0.663306$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1382,11 +1382,11 @@
      "prompt": "ב-$p=0.8$, $N=(1,2,3)$: מהי $P(\\overline{A_2}/Q)$?",
      "answer": 0.33669408331122314,
      "tol": 0.0006733881666224463,
-     "explain": "$1-0.663317=0.336683$."
+     "explain": "$1-0.663306=0.336694$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1507,8 +1507,8 @@
      "explain": "$b=\\frac25(1+3\\mu)=\\frac25$. בדיקה: $\\frac a2+b=\\frac35+\\frac25=1$ ו-$-\\frac a6+\\frac b2=-\\frac15+\\frac15=0$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1579,8 +1579,8 @@
      "explain": "$1+3\\mu\\ge0\\Rightarrow\\mu\\ge-\\frac13$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1683,8 +1683,8 @@
      "explain": "$0.6+0.4\\cdot0.5=0.8$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1738,8 +1738,8 @@
      "explain": "$\\frac{0.85}{0.85}=1$: כל המסה שמימין ל-$-\\frac12$ נמצאת מתחת ל-$1$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -1843,8 +1843,8 @@
      "explain": "$0.6\\cdot0.84=0.504$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -1928,11 +1928,11 @@
       },
       {
        "id": "d",
-       "value": "כי הסידור לא משנה את המבנה"
+       "value": "כי כל סידור נותן בדיוק את אותו מעגל"
       }
      ],
      "correctId": "a",
-     "explain": "ההסתברות תלויה רק במבנה ובהסתברויות, שלא משתנים. 'תמיד זהה ל-$Q_0$' שגוי: חלק מהסידורים נותנים מעגל שונה, אך אותה הסתברות."
+     "explain": "ההסתברות תלויה רק במבנה ובהסתברויות, שלא משתנים. 'כל סידור נותן בדיוק את אותו מעגל' שגוי: חלק מהסידורים נותנים מעגל שונה (המבנה כן משתנה), אך ההסתברות זהה."
     },
     {
      "type": "numeric",
@@ -1942,8 +1942,8 @@
      "explain": "$p^2(2-p)=0.504$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -2085,8 +2085,8 @@
      "explain": "$\\frac16\\{2\\cdot0.504+4\\cdot0.36\\}=0.408=\\frac{p^2}3(4-p)$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -2200,8 +2200,8 @@
      "explain": "$\\frac{0.408}{0.504}=\\frac{4-p}{3(2-p)}\\approx0.809524$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -2339,15 +2339,15 @@
      "explain": "$\\frac{0.096}{0.496}\\approx0.193548$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
    "kind": "computation",
    "topic": "special_discrete",
    "question": "**אם ידוע** כי בדיוק $N$ מועמדים מילאו את טופס ההרשמה, מהי ההסתברות שמתוכם בדיוק $k$ נולדו ביום ההרשמה? (10 נק׳)",
-   "solution": "נסמן ב-$W$ את מספר המועמדים, מבין $N$ שמילאו את הטופס, שנולדו ביום ההרשמה.\nנניח, בקירוב הסטנדרטי, שלכל מועמד ההסתברות להיוולד בתאריך נתון היא $\\frac1{365}$, ללא תלות באחרים (הסבר: ניסוי ברנולי חוזר $N$ פעמים). אז\n$$W\\sim\\mathrm{Bin}\\left(N,\\ p=\\tfrac1{365}\\right),$$\nכלומר\n$$P(W=k)=\\binom Nk p^k(1-p)^{N-k},\\qquad k=0,1,\\ldots,N.$$",
+   "solution": "נסמן ב-$W$ את מספר המועמדים, מבין $N$ שמילאו את הטופס, שנולדו ביום ההרשמה.\nנניח, בקירוב הסטנדרטי (בהנחה שההסתברות להיוולד ביום מסוים היא $\\frac1{365}$), שלכל מועמד ההסתברות להיוולד בתאריך נתון היא $\\frac1{365}$, ללא תלות באחרים (הסבר: ניסוי ברנולי חוזר $N$ פעמים). אז\n$$W\\sim\\mathrm{Bin}\\left(N,\\ p=\\tfrac1{365}\\right),$$\nכלומר\n$$P(W=k)=\\binom Nk p^k(1-p)^{N-k},\\qquad k=0,1,\\ldots,N.$$",
    "solutionSource": "official-pdf",
    "official": true,
    "confidence": "high",
@@ -2419,8 +2419,8 @@
      "explain": "$\\binom52\\cdot0.2^2\\cdot0.8^3=10\\cdot0.04\\cdot0.512=0.2048$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -3685,15 +3685,15 @@
      "explain": "$\\frac{(\\lambda p)^2}{2!}e^{-\\lambda p}=\\frac{e^{-1}}2\\approx0.18394$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
    "kind": "computation",
    "topic": "conditional_bayes",
    "question": "**ב-2:** **אם ידוע** כי בין ממלאי טופס ההרשמה בדיוק $k$ נולדו בתאריך ההרשמה, מהי ההסתברות שבדיוק $n$ מועמדים מילאו את הטופס? (5 נק׳)",
-   "solution": "לפי נוסחת בייס\n$$P(X=n/Y=k)=\\frac{P(Y=k/X=n)\\,P(X=n)}{P(Y=k)}.$$\nהצבה:\n$$=\\frac{\\binom nk p^k(1-p)^{n-k}\\cdot\\frac{\\lambda^n}{n!}e^{-\\lambda}}{\\frac{(\\lambda p)^k}{k!}e^{-\\lambda p}}=\\frac{[\\lambda(1-p)]^{n-k}}{(n-k)!}e^{-\\lambda(1-p)}.$$\nולכן\n$$P(X=n/Y=k)=\\frac{[\\lambda(1-p)]^{n-k}}{(n-k)!}e^{-\\lambda(1-p)},\\qquad n=k,k+1,\\ldots$$\n(התפלגות פואסון עם פרמטר $\\lambda(1-p)$, מוסטת ב-$k$).",
+   "solution": "לפי נוסחת בייס\n$$P(X=n/Y=k)=\\frac{P(Y=k/X=n)\\,P(X=n)}{P(Y=k)}.$$\nהצבה:\n$$=\\frac{\\binom nk p^k(1-p)^{n-k}\\cdot\\frac{\\lambda^n}{n!}e^{-\\lambda}}{\\frac{(\\lambda p)^k}{k!}e^{-\\lambda p}}=\\frac{[\\lambda(1-p)]^{n-k}}{(n-k)!}e^{-\\lambda(1-p)}.$$\nולכן\n$$P(X=n/Y=k)=\\frac{[\\lambda(1-p)]^{n-k}}{(n-k)!}e^{-\\lambda(1-p)},\\qquad n=k,k+1,\\ldots$$\n(התפלגות פואסון עם פרמטר $\\lambda(1-p)$, מוסטת ב-$k$). כאן $p$ היא ההסתברות שמועמד נולד ביום ההרשמה (בהנחה שההסתברות להיוולד ביום מסוים היא $\\frac1{365}$, כלומר $p=\\frac1{365}$).",
    "solutionSource": "official-pdf",
    "official": true,
    "confidence": "high",
@@ -4923,8 +4923,8 @@
      "explain": "$\\frac{1^{2}}{2!}e^{-1}=\\frac{e^{-1}}2\\approx0.18394$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   }
  ]
 }

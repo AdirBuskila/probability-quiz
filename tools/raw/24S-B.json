@@ -137,8 +137,8 @@
      "explain": "$\\frac12+\\frac{\\ln2}2\\approx0.8466$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -243,8 +243,8 @@
      "explain": "$\\frac\\pi{16}\\approx0.19635$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -351,8 +351,8 @@
      "explain": "$\\frac{\\ln2/5}{1/2}=\\frac25\\ln2\\approx0.27726$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -454,8 +454,8 @@
      "explain": "$\\frac19-\\frac1{16}=\\frac7{144}\\approx0.04861$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -535,8 +535,8 @@
      "explain": "$\\frac6{36}=\\frac16\\approx0.16667$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -607,8 +607,8 @@
      "explain": "השורשים הם $X_1$ ו-$X_2$, תמיד שלמים."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -701,8 +701,8 @@
      "explain": "$\\frac{6/36}{5/6}=\\frac15=0.2$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -795,8 +795,8 @@
      "explain": "$\\frac{12/36}{5/6}=\\frac25=0.4$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -919,8 +919,8 @@
      "explain": "$X=2$ ו-$X_3=0$: $p^2(1-p)=0.063$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1031,8 +1031,8 @@
      "explain": "$3\\cdot0.3\\cdot0.49=0.441$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1140,8 +1140,8 @@
      "explain": "$3\\cdot0.3\\cdot0.7=0.63$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1216,8 +1216,8 @@
      "explain": "זוג אחד שבו המכפלה שונה מההסתברות המשותפת מספיק להוכחת תלות."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1300,8 +1300,8 @@
      "explain": "$a=b=\\frac e4\\approx0.679570$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1384,15 +1384,15 @@
      "explain": "הצפיפות קבועה $\\frac14$ על הקטע, ולכן $F_X$ ליניארית."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
    "kind": "computation",
    "topic": "continuous_rv",
    "question": "**ג:** מהי ההסתברות המותנית $P(X>-2\\ /\\ X<3)$?",
-   "solution": "$$P\\left(X>-2\\ \\Big|\\ X<3\\right)=\\frac{P(-2<X<3)}{P(X<3)}=\\frac{F_X(3)-F_X(-2)}{F_X(3)}.$$\n$F_X(3)=1-\\frac1{4e^2}$ ו-$F_X(-2)=\\frac1{4e}$, לכן\n$$=\\frac{4e^2-e-1}{4e^2-1}\\approx0.99.$$",
+   "solution": "$$P\\left(X>-2\\ \\Big|\\ X<3\\right)=\\frac{P(-2<X<3)}{P(X<3)}=\\frac{F_X(3)-F_X(-2)}{F_X(3)}.$$\n$F_X(3)=1-\\frac1{4e^2}$ ו-$F_X(-2)=\\frac1{4e}$, לכן\n$$=\\frac{4e^2-e-1}{4e^2-1}\\approx0.905.$$",
    "solutionSource": "official-pdf",
    "official": true,
    "confidence": "high",
@@ -1465,8 +1465,8 @@
      "explain": "$\\frac{0.87420}{0.96617}=\\frac{4e^2-e-1}{4e^2-1}\\approx0.90481$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -1613,8 +1613,8 @@
      "explain": "$\\frac{3+4}{18}=\\frac7{18}\\approx0.388889$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -1758,8 +1758,8 @@
      "explain": "$\\frac{\\frac14\\cdot\\frac5{18}}{\\frac7{18}}=\\frac5{28}\\approx0.17857$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -1912,8 +1912,8 @@
      "explain": "$P(E)+0.5904\\,(1-P(E))=0.65952+0.20102=0.86054$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2058,8 +2058,8 @@
      "explain": "$\\frac{0.77325\\cdot0.4}{0.86054}\\approx0.35942$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   }
  ]
 }

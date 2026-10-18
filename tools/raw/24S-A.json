@@ -97,8 +97,8 @@
      "explain": "הנקודה נבחרת באקראי (אחיד) על קטע באורך $1$. בינומית ומעריכית אינן אחידות על קטע."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -263,8 +263,8 @@
      "explain": "$\\frac\\pi4-\\frac\\pi{16}=\\frac{3\\pi}{16}\\approx0.589$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -387,8 +387,8 @@
      "explain": "$1-\\frac49=\\frac59\\approx0.55556$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -479,8 +479,8 @@
      "explain": "$\\frac16+4\\cdot\\frac1{6^2}+6\\cdot\\frac1{6^3}+4\\cdot\\frac1{6^4}+\\frac1{6^5}=\\frac{7^4}{6^5}\\approx0.3088$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -559,8 +559,8 @@
      "explain": "$\\frac4{36}\\approx0.11111$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -622,8 +622,8 @@
      "explain": "$\\frac6{216}=\\frac1{36}\\approx0.02778$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -715,8 +715,8 @@
      "explain": "$\\frac{1/108}{1/18}=\\frac16\\approx0.16667$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -839,8 +839,8 @@
      "explain": "$X_1=X_2=1$ ו-$X_3=0$: $p^2(1-p)=0.063$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -951,8 +951,8 @@
      "explain": "$p^2=0.09$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1060,8 +1060,8 @@
      "explain": "$2\\cdot0.3\\cdot0.7=0.42$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1136,8 +1136,8 @@
      "explain": "מספיק זוג אחד שבו המכפלה שונה מההסתברות המשותפת כדי להוכיח תלות."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1237,8 +1237,8 @@
      "explain": "$b=\\frac a2=\\frac13$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1297,8 +1297,8 @@
      "explain": "$1-\\frac13e^{-2}\\approx0.955$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1373,8 +1373,8 @@
      "explain": "$\\frac{0.5440}{0.8774}=\\frac{2e-1}{3e-1}\\approx0.620$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -1452,15 +1452,15 @@
      "explain": "$\\binom52\\cdot0.3^2\\cdot0.7^3=0.3087$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
    "kind": "computation",
    "topic": "special_discrete",
    "question": "**ב:** יהי $Y$ משתנה מקרי המתאר את מספר הסטודנטים – **מתוך אלה שהגיעו למבחן** – אשר נולדו **היום** (כלומר, בתאריך המבחן). מצאו את פונקציית ההסתברות של משתנה זה.\n**הערה:** לידיעתך,\n$$\\sum_{j=m}^{N}C_j^mC_N^ja^j=C_N^ma^m(1+a)^{N-m}$$\n(יכול להיות שאין צורך להשתמש בנוסחה זו).",
-   "solution": "**פתרון בעזרת ההערה.** נסמן ב-$Q=\\frac1{365}$ את ההסתברות שסטודנט נולד בתאריך המבחן. בהינתן ש-$j$ סטודנטים הגיעו, ההסתברות שבדיוק $k$ מהם נולדו בתאריך המבחן היא $\\binom jkQ^k(1-Q)^{j-k}$. לפי נוסחת ההסתברות השלמה:\n$$P(Y=k)=\\sum_{j=k}^{N}P(Y=k\\mid X=j)P(X=j)=\\sum_{j=k}^{N}\\binom jkQ^k(1-Q)^{j-k}\\binom Njp^j(1-p)^{N-j}$$\n$$=\\frac{Q^k}{(1-Q)^k}(1-p)^N\\sum_{j=k}^{N}\\binom jk\\binom Nj\\left(\\frac{p}{1-p}(1-Q)\\right)^j.\\qquad(*)$$\nהסכום הוא בדיוק הסכום שבהערה עם $m=k$ ו-$a=\\frac p{1-p}(1-Q)$. אז $1+a=\\frac{1-pQ}{1-p}$ ו\n$$\\sum_{j=k}^{N}\\binom jk\\binom Nja^j=\\binom Nk\\frac{(1-pQ)^{N-k}p^k(1-Q)^k}{(1-p)^N}.$$\nהצבה חזרה ב-$(*)$ נותנת\n$$P(Y=k)=\\binom Nk(pQ)^k(1-pQ)^{N-k},\\qquad k=0,1,\\ldots,N.$$\n\n**פתרון חלופי, ללא שימוש בהערה.** נאפיין כל אחד מ-$N$ הסטודנטים על ידי זוג משתני ברנולי בלתי תלויים: $X_j=1$ (בהסתברות $p$) אם הגיע למבחן, ו-$\\tilde X_j=1$ (בהסתברות $Q$) אם נולד בתאריך המבחן. כדי לספור את מי שהגיע וגם נולד בתאריך הנדרש, נשתמש במשתנה ברנולי $Y_j=X_j\\tilde X_j$:\n$$Y_j=\\begin{cases}1,&pQ\\ (\\text{arrived and born on the exam date})\\\\0,&\\text{else}\\end{cases}\\sim\\mathrm{Ber}(pQ).$$\nולכן, לפי משפט הפירוק,\n$$Y=\\sum_{j=1}^NY_j\\sim\\mathrm{Bin}(N,pQ).$$",
+   "solution": "**פתרון בעזרת ההערה.** נסמן ב-$Q=\\frac1{365}$ (בהנחה שההסתברות להיוולד ביום מסוים היא $\\frac1{365}$) את ההסתברות שסטודנט נולד בתאריך המבחן. בהינתן ש-$j$ סטודנטים הגיעו, ההסתברות שבדיוק $k$ מהם נולדו בתאריך המבחן היא $\\binom jkQ^k(1-Q)^{j-k}$. לפי נוסחת ההסתברות השלמה:\n$$P(Y=k)=\\sum_{j=k}^{N}P(Y=k\\mid X=j)P(X=j)=\\sum_{j=k}^{N}\\binom jkQ^k(1-Q)^{j-k}\\binom Njp^j(1-p)^{N-j}$$\n$$=\\frac{Q^k}{(1-Q)^k}(1-p)^N\\sum_{j=k}^{N}\\binom jk\\binom Nj\\left(\\frac{p}{1-p}(1-Q)\\right)^j.\\qquad(*)$$\nהסכום הוא בדיוק הסכום שבהערה עם $m=k$ ו-$a=\\frac p{1-p}(1-Q)$. אז $1+a=\\frac{1-pQ}{1-p}$ ו\n$$\\sum_{j=k}^{N}\\binom jk\\binom Nja^j=\\binom Nk\\frac{(1-pQ)^{N-k}p^k(1-Q)^k}{(1-p)^N}.$$\nהצבה חזרה ב-$(*)$ נותנת\n$$P(Y=k)=\\binom Nk(pQ)^k(1-pQ)^{N-k},\\qquad k=0,1,\\ldots,N.$$\n\n**פתרון חלופי, ללא שימוש בהערה.** נאפיין כל אחד מ-$N$ הסטודנטים על ידי זוג משתני ברנולי בלתי תלויים: $X_j=1$ (בהסתברות $p$) אם הגיע למבחן, ו-$\\tilde X_j=1$ (בהסתברות $Q$) אם נולד בתאריך המבחן. כדי לספור את מי שהגיע וגם נולד בתאריך הנדרש, נשתמש במשתנה ברנולי $Y_j=X_j\\tilde X_j$:\n$$Y_j=\\begin{cases}1,&pQ\\ (\\text{arrived and born on the exam date})\\\\0,&\\text{else}\\end{cases}\\sim\\mathrm{Ber}(pQ).$$\nולכן, לפי משפט הפירוק,\n$$Y=\\sum_{j=1}^NY_j\\sim\\mathrm{Bin}(N,pQ).$$",
    "solutionSource": "official-pdf",
    "official": true,
    "confidence": "high",
@@ -1550,8 +1550,8 @@
      "explain": "$5\\cdot0.1\\cdot0.9^4=0.32805$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -1742,8 +1742,8 @@
      "explain": "$\\binom{4}{2}\\tilde p^2(1-\\tilde p)^2=6\\cdot0.30864\\cdot0.19753\\approx0.36580$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -1874,8 +1874,8 @@
      "explain": "$0.6\\cdot0.88224+0.4\\cdot0.83616=0.863808=p(1+2p-7p^3+7p^4-2p^5)$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2002,8 +2002,8 @@
      "explain": "$\\frac{0.83616\\cdot0.4}{0.863808}\\approx0.38720$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2100,8 +2100,8 @@
      "explain": "בכל אחד מששת המצבים השווי-הסתברות המעגל פועל."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2204,8 +2204,8 @@
      "explain": "$\\frac{0.046656}{0.863808}\\approx0.05401$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   }
  ]
 }
