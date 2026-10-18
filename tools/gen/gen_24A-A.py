@@ -15,7 +15,7 @@ Transcription notes
 - Q5(ב) has the main solution and the official short alternative (sum of Bernoulli).
 - Q6(ב): the official solution has two methods (conditioning on A,E and on A alone); both are given.
 - The thumbnail of the exam cover in Q5 is decoration and is not shipped.
-- Q1 region data is in tools/verify/24A-A/regions.json (RAW_SCHEMA has no `region` field).
+- Q1 area items (a-c) carry a `region` (moved from the old regions.json); sims are checked by check_sim_specs; steps by tools/verify/24A-A/steps_check.py.
 """
 import json, pathlib
 
@@ -298,6 +298,431 @@ questions.append(Q(
 לאחר הצבה ופישוט מתקבל
 $$P(Q_1\cup Q_2)=p^2\bigl(3-4p^2+2p^3\bigr).$$""",
     6, contextId="c6"))
+
+# ---- regions (region.js), "simulate it" specs (sim.js) and rubric / pitfalls / guided steps (ai-draft) -----------------
+# Regions were moved here from tools/verify/<CODE>/regions.json. Every sim `exact` is the shipped final answer (symbolic
+# answers are simulated at a sample value stated in `estimate`). Every expected step value is re-derived independently,
+# exactly and by Monte Carlo, in tools/verify/<CODE>/steps_check.py (which reads the generated raw JSON back).
+import math
+from fractions import Fraction as Fr
+
+U01 = {"x": [0, 1], "y": [0, 1]}
+XY = {"x": "X", "y": "Y"}
+
+
+def lin(a, b, c, op):
+    return {"a": a, "b": b, "c": c, "op": op}
+
+
+def REG(event, exact, caption, given=None, space=U01, labels=XY):
+    r = {"space": space, "labels": labels, "event": event, "exact": exact, "caption": caption}
+    if given:
+        r["given"] = given
+    return r
+
+
+def AREA(label, exact, **kw):
+    return {"kind": "area", "estimate": label, "exact": exact, "params": dict(kw) if kw else {"fromRegion": True}}
+
+
+def PDF(label, exact, pieces, event=None, given=None, measure=None, expr=None):
+    p = {"pieces": [{"from": a, "to": b, "expr": x} for a, b, x in pieces]}
+    if event:
+        p["event"] = event
+    if given:
+        p["given"] = given
+    if measure:
+        p["measure"] = measure
+        p["expr"] = expr
+    return {"kind": "pdf", "estimate": label, "exact": exact, "params": p}
+
+
+def URN(label, exact, draws, event=None, given=None, values=None, counts=None, measure=None, expr=None):
+    p = {"draws": draws}
+    if values is not None:
+        p["values"] = values
+    else:
+        p["counts"] = counts
+    if event:
+        p["event"] = event
+    if given:
+        p["given"] = given
+    if measure:
+        p["measure"] = measure
+        p["expr"] = expr
+    return {"kind": "urn", "estimate": label, "exact": exact, "params": p}
+
+
+def DICE(label, exact, n, event, given=None, faces=None):
+    p = {"n": n, "event": event}
+    if faces:
+        p["faces"] = faces
+    if given:
+        p["given"] = given
+    return {"kind": "dice", "estimate": label, "exact": exact, "params": p}
+
+
+def CUST(label, exact, vs, event=None, given=None, measure=None, expr=None, trials=None):
+    """vs: {name: (values, probs)}."""
+    p = {"vars": {k: {"values": v, "probs": pr} for k, (v, pr) in vs.items()}}
+    if event:
+        p["event"] = event
+    if given:
+        p["given"] = given
+    if measure:
+        p["measure"] = measure
+        p["expr"] = expr
+    s = {"kind": "custom_discrete", "estimate": label, "exact": exact, "params": p}
+    if trials:
+        s["trials"] = trials
+    return s
+
+
+def CIRC(label, exact, probs, event, given=None):
+    """probs: {component id: p}; the network only declares the components, the event is the structure function."""
+    p = {"event": event, "network": {"type": "series", "children": [{"type": "comp", "id": c, "p": v} for c, v in probs.items()]}}
+    if given:
+        p["given"] = given
+    return {"kind": "circuit", "estimate": label, "exact": exact, "params": p}
+
+
+def BER(p, *names):
+    return {n: ([0, 1], [1 - p, p]) for n in names}
+
+
+def BIN(n, p):
+    from math import comb
+    return (list(range(n + 1)), [comb(n, k) * p ** k * (1 - p) ** (n - k) for k in range(n + 1)])
+
+
+EXTRAS = {}
+
+
+def O(*v):
+    return [{"id": "abcdefgh"[i], "value": t} for i, t in enumerate(v)]
+
+
+def CH(prompt, opts, ans, explain):
+    return {"type": "choice", "prompt": prompt, "options": O(*opts), "correctId": "abcdefgh"[ans], "explain": explain}
+
+
+def NU(prompt, val, explain, tol=None):
+    """numeric step: exact (tol 0) when the value has <= 4 decimals, else 6 significant digits with a small tolerance."""
+    v = float(val)
+    r = round(v, 4)
+    if abs(v - r) < 1e-12:
+        return {"type": "numeric", "prompt": prompt, "answer": r, "tol": 0, "explain": explain}
+    a = float("%.6g" % v)
+    t = tol if tol is not None else min(0.0006, abs(a) * 0.005)
+    return {"type": "numeric", "prompt": prompt + " (שבר או עשרוני)", "answer": a, "tol": t, "explain": explain}
+
+
+def RB(*r):
+    return [{"text": t, "points": p} for t, p in r]
+
+
+S = {}
+
+
+def ADD(num, part, rub, pit, steps):
+    S[(num, part)] = (rub, pit, steps)
+
+
+def APPLY(questions):
+    for q in questions:
+        k = (q["num"], q.get("part"))
+        x = EXTRAS.get(k)
+        if x:
+            q.update(x)
+        s = S.get(k)
+        if s and not q.get("hold"):
+            tot = sum(r["points"] for r in s[0])
+            assert tot == q["points"], (k, tot, q["points"])
+            assert 2 <= len(s[2]) <= 5, (k, len(s[2]))
+            q["rubric"], q["pitfalls"], q["steps"] = s[0], s[1], s[2]
+            q["rubricSource"] = "ai-draft"
+            q["stepsSource"] = "ai-draft"
+    assert set(S) <= {(q["num"], q.get("part")) for q in questions}, "steps for unknown items"
+
+
+# ---- 24A-A specifics: area figures, simulations, steps
+S12 = {"x": [0, 1], "y": [0, 2]}
+_pq = 0.6 / 365                             # p*Q at p=0.6, Q=1/365 (Q5)
+
+
+def _pY(k):
+    from math import comb
+    return comb(5, k) * _pq ** k * (1 - _pq) ** (5 - k)
+
+
+_pt = (1 - 0.6) / (1 - _pq)                 # p-tilde of part c at p=0.6
+_ABs = BER(0.6, *["A%d" % i for i in range(1, 6)]) | BER(1 / 365, *["B%d" % i for i in range(1, 6)])
+_SA = "+".join("A%d" % i for i in range(1, 6))
+_SY = "+".join("A%d*B%d" % (i, i) for i in range(1, 6))
+_c = 4 * _pt ** 3 * (1 - _pt)
+_L2 = math.log(2)
+
+
+def _runs(N):
+    """event 'the running sum of an N-faced die ever equals N' as an expression over d1..dN"""
+    return " or ".join("+".join("d%d" % j for j in range(1, k + 1)) + " == %d" % N for k in range(1, N + 1))
+
+
+def _P(N):
+    return (1 / N) * (1 + 1 / N) ** (N - 1)
+
+
+_B1 = "(A and B) or (C and D) or (A and E and D) or (C and E and B)"
+_B2 = "(E and B) or (C and D) or (E and A and D) or (C and A and B)"
+_p6 = 0.6
+_PQ1 = _p6 ** 2 * (2 + 2 * _p6 - 5 * _p6 ** 2 + 2 * _p6 ** 3)
+_PI = _p6 ** 2 * (1 + 4 * _p6 - 6 * _p6 ** 2 + 2 * _p6 ** 3)
+_PU = _p6 ** 2 * (3 - 4 * _p6 ** 2 + 2 * _p6 ** 3)
+_pAB = {c: _p6 for c in "ABCDE"}
+_pdf4 = [(0, 1, "x"), (1, "3/2", "1")]
+_X1, _X2 = BIN(3, 0.3), BIN(2, 0.3)
+_XX = {"X1": _X1, "X2": _X2}
+
+EXTRAS.update({
+    (1, "א"): {"region": REG([{"expr": "x*y", "op": "<", "c": 1}], (1 + _L2) / 2, "האירוע S=XY<1 (עקום y=1/x)", space=S12), "sim": AREA("P(S<1)", (1 + _L2) / 2)},
+    (1, "ב"): {"region": REG([lin(1, 1, 1, "<")], 1 / 4, "האירוע L<2, כלומר X+Y<1", space=S12), "sim": AREA("P(L<2)", 1 / 4)},
+    (1, "ג"): {"region": REG([{"expr": "x*y", "op": "<", "c": 1}], 1 / 3 + 2 * _L2 / 3, "האירוע S<1 בהינתן L>2 (X+Y>1)", given=[lin(1, 1, 1, ">")], space=S12),
+               "sim": AREA("P(S<1 | L>2)", 1 / 3 + 2 * _L2 / 3)},
+    (1, "ד"): {"sim": AREA("Var[S]", 7 / 36, space=S12, measure="var", expr="x*y")},
+    (1, "ה"): {"sim": AREA("Var[L]", 5 / 3, space=S12, measure="var", expr="2*(x+y)")},
+    (2, "א"): {"sim": DICE("P_3 (קובייה בעלת 3 פאות)", _P(3), 3, _runs(3), faces=3)},
+    (2, "ב"): {"sim": DICE("P_4 (קובייה בעלת 4 פאות)", _P(4), 4, _runs(4), faces=4)},
+    (2, "ג"): {"sim": DICE("P_5 (קובייה בעלת 5 פאות)", _P(5), 5, _runs(5), faces=5)},
+    (2, "ד"): {"sim": DICE("P_N ב-N=6", _P(6), 6, _runs(6), faces=6)},
+    (3, "א"): {"sim": CUST("P(X1=2) ב-N1=3, p=0.3", 0.189, _XX, event="X1 == 2")},
+    (3, "ב"): {"sim": CUST("P(X=2) ב-N1=3, N2=2, p=0.3", 0.3087, _XX, event="X1 + X2 == 2")},
+    (3, "ג"): {"sim": CUST("P(X1=1 | X=2) ב-N1=3, N2=2, p=0.3", 0.6, _XX, event="X1 == 1", given="X1 + X2 == 2")},
+    (3, "ד"): {"sim": CUST("E[X1 | X=2] ב-N1=3, N2=2, p=0.3", 1.2, _XX, given="X1 + X2 == 2", measure="mean", expr="X1")},
+    (4, "א"): {"sim": PDF("E[X] ב-a=1, b=3/2, c=1", 23 / 24, _pdf4, measure="mean", expr="x")},
+    (4, "ב"): {"sim": PDF("F_X(5/4)=P(X<=5/4)", 3 / 4, _pdf4, "x <= 5/4")},
+    (4, "ג"): {"sim": PDF("P(X>E[X])", 1 - 0.5 * (23 / 24) ** 2, _pdf4, "x > 23/24")},
+    (5, "א"): {"sim": CUST("P(X=3) ב-N=5, p=0.6", 0.3456, BER(0.6, *["A%d" % i for i in range(1, 6)]), event=_SA + " == 3")},
+    (5, "ב"): {"sim": CUST("P(Y=1) ב-N=5, p=0.6, Q=1/365", _pY(1), _ABs, event=_SY + " == 1", trials=400000)},
+    (5, "ג"): {"sim": CUST("P(X=2 | Y=1) ב-N=5, p=0.6, Q=1/365", _c, _ABs, event=_SA + " == 2", given=_SY + " == 1", trials=1000000)},
+    (6, "א"): {"sim": CIRC("P(Q1) ב-p=0.6", _PQ1, _pAB, _B1)},
+    (6, "ב"): {"sim": CIRC("P(Q2 | Q1) ב-p=0.6", _PI / _PQ1, _pAB, _B2, _B1)},
+    (6, "ג"): {"sim": CIRC("P(Q1 או Q2) ב-p=0.6", _PU, _pAB, "(" + _B1 + ") or (" + _B2 + ")")},
+})
+
+OMR = r"מהו שטח מרחב המדגם $|\Omega|$ של הזוג $(X,Y)$, כלומר המלבן $(0,1)\times(0,2)$?"
+OMR_X = r"המלבן ברוחב $1$ ובגובה $2$ הוא מרחב המדגם, ושטחו $2$. ההסתברות היא שטח האירוע חלקי $2$."
+
+ADD(1, "א",
+    RB((r"גישה גאומטרית: $|\Omega|=2$", 1), (r"גבול האירוע $y=\frac1x$ חותך את $y=2$ ב-$x=\frac12$", 1), (r"שטח $=2\cdot\frac12+\int_{1/2}^1\frac{dx}{x}=1+\ln2$", 2), (r"התשובה $\frac12(1+\ln2)$", 1)),
+    [r"לשכוח שהעקום חותך את $y=2$ (שטח הקטע הראשון הוא $2\cdot\frac12$)", r"לחלק ב-$1$ ולא ב-$2$"],
+    [NU(OMR, 2, OMR_X),
+     NU(r"באיזה $x$ העקום $y=\frac1x$ חותך את הקו $y=2$ (קצה המלבן העליון)?", Fr(1, 2), r"$\frac1x=2\Rightarrow x=\frac12$. עבור $x<\frac12$ כל גובה המלבן בתוך האירוע."),
+     NU(r"מהו שטח האירוע $\{xy<1\}$ בתוך המלבן?", 1 + math.log(2), r"$2\cdot\frac12+\int_{1/2}^1\frac{dx}{x}=1+\ln2\approx1.6931$."),
+     NU(r"מהי $P(S<1)$?", (1 + math.log(2)) / 2, r"$\frac{1+\ln2}{2}\approx0.8466$.")])
+
+ADD(1, "ב",
+    RB((r"הגדרת $L=2(X+Y)<2$ כ-$X+Y<1$", 1), (r"האירוע הוא משולש בפינה $(0,0)$ בשטח $\frac12$ (בתוך המלבן)", 3), (r"התשובה $\frac14$", 1)),
+    [r"לשכוח שהיקף הוא $2(X+Y)$ ולכתוב $X+Y<2$", r"לחלק ב-$\frac12$ או ב-$1$ במקום ב-$2$"],
+    [NU(OMR, 2, OMR_X),
+     NU(r"מהו שטח האירוע $\{x+y<1\}$ בתוך המלבן? (משולש בפינה $(0,0)$)", Fr(1, 2), r"הישר חותך את הצירים ב-$(1,0)$ וב-$(0,1)$, שניהם בתוך המלבן: ניצבים $1$ ו-$1$, שטח $\frac12$."),
+     NU(r"מהי $P(L<2)$?", Fr(1, 4), r"$\frac{1/2}{2}=\frac14$.")])
+
+ADD(1, "ג",
+    RB((r"הגדרת הסתברות מותנית $\frac{P(S<1\cap L>2)}{P(L>2)}$", 1), (r"$P(L>2)=1-\frac14=\frac34$", 1), (r"שטח החיתוך $\frac12+\ln2$", 2), (r"התשובה $\frac13+\frac23\ln2$", 1)),
+    [r"לחלק ב-$P(S<1)$ במקום ב-$P(L>2)$", r"לשכוח להחסיר את שטח המשולש מהאזור מתחת לעקום"],
+    [NU(OMR, 2, OMR_X),
+     NU(r"מהי $P(L>2)$? (אירוע התנאי; המכנה)", Fr(3, 4), r"$1-\frac14=\frac34$, כלומר שטח $\frac32$."),
+     NU(r"מהו שטח החיתוך $\{xy<1\}\cap\{x+y>1\}$ בתוך המלבן?", 0.5 + math.log(2), r"$(1+\ln2)-\frac12=\frac12+\ln2\approx1.1931$."),
+     NU(r"מהי $P(S<1\mid L>2)$?", 1 / 3 + 2 * math.log(2) / 3, r"$\frac{(1/2+\ln2)/2}{3/4}=\frac13+\frac23\ln2\approx0.7954$.")])
+
+ADD(1, "ד",
+    RB((r"אי-תלות: $\mathbb E[XY]=\mathbb E[X]\mathbb E[Y]$", 1), (r"$\mathbb E[S]=\frac12$", 1), (r"$\mathbb E[S^2]=\mathbb E[X^2]\mathbb E[Y^2]=\frac49$", 2), (r"$\operatorname{Var}[S]=\frac7{36}$", 1)),
+    [r"לחשב $\operatorname{Var}[S]=\operatorname{Var}[X]\operatorname{Var}[Y]$ (אינו נכון)", r"לטעות ב-$\mathbb E[Y^2]=\frac43$"],
+    [CH(r"מדוע $\mathbb E[S]=\mathbb E[X]\,\mathbb E[Y]$?",
+        [r"כי $X$ ו-$Y$ בלתי תלויים", r"כי התוחלת ליניארית ולכן $\mathbb E[XY]=\mathbb E[X]+\mathbb E[Y]$", r"כי זה נכון תמיד, גם בלי אי-תלות"], 0,
+        r"התוחלת ליניארית לסכומים בלבד; למכפלה נדרשת אי-תלות (או חוסר מתאם). ב-$X,Y$ הנתונים הסכום היה נותן $\frac32$ ולא $\frac12$."),
+     NU(r"מהי $\mathbb E[S]$?", Fr(1, 2), r"$\frac12\cdot1=\frac12$."),
+     NU(r"מהי $\mathbb E[S^2]=\mathbb E[X^2]\,\mathbb E[Y^2]$?", Fr(4, 9), r"$\frac13\cdot\frac43=\frac49$."),
+     NU(r"מהי $\operatorname{Var}[S]$?", Fr(7, 36), r"$\frac49-\frac14=\frac7{36}$.")])
+
+ADD(1, "ה",
+    RB((r"ליניאריות התוחלת: $\mathbb E[L]=2(\mathbb E[X]+\mathbb E[Y])=3$", 2), (r"שונות סכום בלתי תלויים: $\operatorname{Var}[X+Y]=\operatorname{Var}[X]+\operatorname{Var}[Y]$ ומקדם $4$ מהכפלה ב-$2$", 2), (r"$\operatorname{Var}[L]=\frac53$", 1)),
+    [r"לכתוב $\operatorname{Var}[2(X+Y)]=2(\operatorname{Var}[X]+\operatorname{Var}[Y])$ (מקדם $2$ במקום $4$)", r"לטעות בשונות של $U(0,2)$: $\frac13$ ולא $\frac1{12}$"],
+    [CH(r"איך מחשבים את $\operatorname{Var}[2(X+Y)]$?",
+        [r"$4\bigl(\operatorname{Var}[X]+\operatorname{Var}[Y]\bigr)$", r"$2\bigl(\operatorname{Var}[X]+\operatorname{Var}[Y]\bigr)$", r"$4\operatorname{Var}[X]\operatorname{Var}[Y]$"], 0,
+        r"קבוע מוצא מהשונות בריבוע ($2^2=4$), ושונות סכום של בלתי תלויים היא סכום השונויות. הנוסחה השנייה נותנת $\frac56$ והשלישית $\frac1{9}$, בעוד הנכון $\frac53$."),
+     NU(r"מהי $\operatorname{Var}[X]$ של $X\sim U(0,1)$?", Fr(1, 12), r"$\frac{1^2}{12}$."),
+     NU(r"מהי $\operatorname{Var}[Y]$ של $Y\sim U(0,2)$?", Fr(1, 3), r"$\frac{2^2}{12}=\frac13$."),
+     NU(r"מהי $\operatorname{Var}[L]$?", Fr(5, 3), r"$4\left(\frac1{12}+\frac13\right)=\frac53$.")])
+
+# ---- Q2: running sum of a fair N-faced die ever hits N: P_N = p(1+p)^(N-1), p = 1/N
+ADD(2, "א",
+    RB((r"פיצול לפי מספר ההטלות: $\{3\}$, $\{2,1\},\{1,2\}$, $\{1,1,1\}$", 3), (r"הסתברות $p^k$ לכל מסלול באורך $k$ ($p=\frac13$)", 2), (r"סכום: $p(1+p)^2=\frac{16}{27}$", 2)),
+    [r"לכתוב $P_3=\frac13$ (רק הטלה אחת)", r"להסיק ש-$P_3=1$ כי הסכום ״בסוף מגיע״ (אפשר לדלג על $3$)"],
+    [CH(r"קובייה בעלת $3$ פאות. איך מחשבים את ההסתברות שהסכום הרץ ייעצר בדיוק על $3$ בשלב כלשהו?",
+        [r"מפצלים לפי מספר ההטלות $k$: כל סדרה של $k$ תוצאות חיוביות שסכומן $3$ מתקבלת בהסתברות $p^k$, והמקרים זרים",
+         r"$p=\frac13$, כי צריך לקבל $3$ בהטלה אחת", r"$1$, כי הסכום עולה ובסוף מגיע ל-$3$"], 0,
+        r"גם סדרות כמו $(1,2)$ ו-$(1,1,1)$ מגיעות ל-$3$, ולכן $\frac13$ נמוך מדי ($P_3=\frac{16}{27}$). הסכום יכול לדלג מעל $3$ (למשל $2$ ואז $2$), ולכן ההסתברות קטנה מ-$1$."),
+     NU(r"כמה סדרות של שתי הטלות נותנות סכום $3$?", 2, r"$(1,2)$ ו-$(2,1)$."),
+     NU(r"כמה סדרות של שלוש הטלות נותנות סכום $3$?", 1, r"$(1,1,1)$."),
+     NU(r"מהי $P_3$?", Fr(16, 27), r"$p+2p^2+p^3=\frac13+\frac29+\frac1{27}=\frac{16}{27}$.")])
+
+ADD(2, "ב",
+    RB((r"פיצול לפי מספר ההטלות: מספר הסדרות לכל $k$ הוא $\binom{3}{k-1}$", 3), (r"הסתברות $p^k$ לכל מסלול ($p=\frac14$)", 3), (r"סכום: $p(1+p)^3=\frac{125}{256}$", 2)),
+    [r"לספור סדרות כקבוצות ללא סדר ($\{3,1\}$ ו-$\{1,3\}$ כאחת)", r"לשכוח את מסלול הארבע הטלות"],
+    [CH(r"קובייה בעלת $4$ פאות. איך סופרים את המסלולים שמגיעים ל-$4$?",
+        [r"סדרות סדורות של $k$ מספרים חיוביים שסכומם $4$ (הסדר חשוב), בהסתברות $p^k$ כל אחת", r"קבוצות ללא סדר: $\{3,1\}$ ו-$\{1,3\}$ נספרות כאחת", r"כל $4^k$ הסדרות באורך $k$"], 0,
+        r"$(3,1)$ ו-$(1,3)$ הן תוצאות שונות, כל אחת בהסתברות $p^2$. ספירה ללא סדר נותנת $0.3945$ (נמוך מהנכון $0.4883$), ו-$4^k$ סופר גם סדרות שסכומן אינו $4$."),
+     NU(r"כמה סדרות של שתי הטלות נותנות סכום $4$?", 3, r"$(2,2),(3,1),(1,3)$."),
+     NU(r"כמה סדרות של שלוש הטלות נותנות סכום $4$?", 3, r"$(1,1,2),(1,2,1),(2,1,1)$."),
+     NU(r"מהי $P_4$?", Fr(125, 256), r"$p+3p^2+3p^3+p^4=\frac14\left(\frac54\right)^3=\frac{125}{256}$.")])
+
+ADD(2, "ג",
+    RB((r"פיצול לפי מספר ההטלות $k=1,\dots,5$ עם $\binom4{k-1}$ סדרות", 4), (r"הסתברות $p^k$ לכל מסלול ($p=\frac15$)", 4), (r"סכום: $p(1+p)^4=\frac{1296}{3125}$", 2)),
+    [r"לשכוח סדרות מעורבות כמו $(1,2,2)$", r"לחשב $p^5$ בלבד"],
+    [CH(r"קובייה בעלת $5$ פאות. איך מחשבים את ההסתברות להגיע לסכום $5$?",
+        [r"סוכמים על $k=1,\dots,5$ את מספר הסדרות הסדורות עם סכום $5$ כפול $p^k$", r"רק המסלול של חמש יחידות: $p^5$", r"רק המסלול של הטלה אחת: $p$"], 0,
+        r"יש מסלולים מכל אורך $1$ עד $5$. $p^5=0.00032$ ו-$p=0.2$ רחוקים מהנכון $0.41472$."),
+     NU(r"כמה סדרות של שתי הטלות נותנות סכום $5$?", 4, r"$(1,4),(4,1),(2,3),(3,2)$."),
+     NU(r"כמה סדרות של שלוש הטלות נותנות סכום $5$?", 6, r"$\binom42=6$: שלוש תמורות של $(1,1,3)$ ושלוש של $(1,2,2)$."),
+     NU(r"כמה סדרות של ארבע הטלות נותנות סכום $5$?", 4, r"אחת מהן $2$ והיתר $1$: $4$ מקומות."),
+     NU(r"מהי $P_5$?", Fr(1296, 3125), r"$p(1+p)^4=\frac15\left(\frac65\right)^4=\frac{1296}{3125}\approx0.41472$.")])
+
+ADD(2, "ד",
+    RB((r"מספר הסדרות הסדורות של $k$ מספרים חיוביים שסכומם $N$ הוא $\binom{N-1}{k-1}$", 1), (r"סכום $\sum_k\binom{N-1}{k-1}p^k$ ומשפט הבינום", 1), (r"$P_N=\frac1N\left(1+\frac1N\right)^{N-1}$", 1)),
+    [r"לכתוב טור גאומטרי במקום משפט הבינום"],
+    [CH(r"איך מסכמים את $\sum_{k=1}^N\binom{N-1}{k-1}p^k$?",
+        [r"בעזרת משפט הבינום: $p(1+p)^{N-1}$", r"בעזרת טור גאומטרי: $p\frac{1-p^N}{1-p}$", r"$Np$"], 0,
+        r"המקדמים בינומיים ולכן משפט הבינום מתאים. ב-$N=6$ הטור הגאומטרי נותן $0.2$ ו-$Np=1$, לעומת הנכון $0.3602$."),
+     NU(r"כמה סדרות של שלוש הטלות נותנות סכום $6$? ($\binom{5}{2}$)", 10, r"$\binom{N-1}{k-1}=\binom52=10$."),
+     NU(r"מהי $P_6$?", 16807 / 46656, r"$\frac16\left(\frac76\right)^5=\frac{16807}{46656}\approx0.36023$.")])
+
+# ---- Q3: two strings; numeric checks at N1=3, N2=2, p=0.3
+ADD(3, "א",
+    RB((r"כל אות בסדרה היא ניסוי ברנולי בלתי תלוי עם הסתברות $p$ ל-$A$", 3), (r"$X_1\sim\mathrm{Bin}(N_1,p)$ ופונקציית ההסתברות", 3), (r"אותו דבר ל-$X_2\sim\mathrm{Bin}(N_2,p)$", 3)),
+    [r"לא לנמק את אי-התלות בין האותיות", r"להחליף בין $N_1$ ל-$N_2$ בפונקציית ההסתברות"],
+    [CH(r"סדרה בת $N_1$ אותיות, כל אחת $A$ בהסתברות $p$ באופן בלתי תלוי. איך מפולג $X_1$ (מספר ה-$A$)?",
+        [r"$\mathrm{Bin}(N_1,p)$", r"פואסון עם פרמטר $N_1p$", r"גאומטרית עם פרמטר $p$"], 0,
+        r"מספר קבוע של ניסויים בלתי תלויים נותן בינומית. פואסון אינו חסום ($X_1\le N_1$), וגאומטרית סופרת ניסויים עד ההצלחה הראשונה."),
+     NU(r"מהי $P(X_1=0)$ כאשר $N_1=3$ ו-$p=0.3$?", Fr(343, 1000), r"$(1-p)^3=0.343$."),
+     NU(r"מהי $P(X_1=2)$ באותם ערכים?", Fr(189, 1000), r"$\binom32(0.3)^2(0.7)=0.189$.")])
+
+ADD(3, "ב",
+    RB((r"הצגת $X_1$ ו-$X_2$ כסכומי ברנולי בלתי תלויים", 3), (r"$X$ הוא סכום של $N_1+N_2$ ברנולי בלתי תלויים עם אותו $p$", 3), (r"$X\sim\mathrm{Bin}(N_1+N_2,p)$ ופונקציית ההסתברות", 3)),
+    [r"לכתוב $\mathrm{Bin}(N_1N_2,p)$", r"להוכיח בלי להסביר מדוע ההסתברויות זהות ($p$ זהה בשתי הסדרות)"],
+    [CH(r"$X=X_1+X_2$ עם $X_1\sim\mathrm{Bin}(N_1,p)$ ו-$X_2\sim\mathrm{Bin}(N_2,p)$ בלתי תלויים. איך מפולג $X$?",
+        [r"$\mathrm{Bin}(N_1+N_2,p)$", r"$\mathrm{Bin}(N_1N_2,p)$", r"$\mathrm{Bin}(N_1+N_2,2p)$"], 0,
+        r"סכום של $N_1+N_2$ ברנולי בלתי תלויים עם אותו $p$. הכפלה $N_1N_2$ נותנת מספר ניסויים שגוי, ו-$2p$ אינו הסתברות חוקית כש-$p>\frac12$."),
+     NU(r"כמה ניסויי ברנולי בלתי תלויים מרכיבים את $X$ כאשר $N_1=3$, $N_2=2$?", 5, r"$N_1+N_2=5$."),
+     NU(r"מהי $P(X=2)$ כאשר $p=0.3$?", Fr(3087, 10000), r"$\binom52(0.3)^2(0.7)^3=10\cdot0.09\cdot0.343=0.3087$.")])
+
+ADD(3, "ג",
+    RB((r"הגדרת הסתברות מותנית: $\frac{P(X_1=k\cap X_2=n-k)}{P(X=n)}$", 2), (r"אי-תלות של הסדרות: המונה הוא מכפלה", 2), (r"צמצום ל-$\frac{\binom{N_1}k\binom{N_2}{n-k}}{\binom{N_1+N_2}n}$", 3)),
+    [r"לכתוב את המונה כ-$P(X_1=k)P(X=n)$", r"לשכוח שהתנאי $X_2=n-k$ נובע מ-$X_1+X_2=n$"],
+    [CH(r"איך מחשבים את $P(X_1=k\cap X=n)$?",
+        [r"$P(X_1=k)\cdot P(X_2=n-k)$, כי $X_1,X_2$ בלתי תלויים", r"$P(X_1=k)\cdot P(X=n)$", r"$P(X_1=k)+P(X_2=n-k)$"], 0,
+        r"האירוע $\{X_1=k,\,X=n\}$ שווה ל-$\{X_1=k,\,X_2=n-k\}$ והמשתנים בלתי תלויים. $X_1$ ו-$X$ תלויים (ב-$N_1=3,N_2=2,p=0.3$ המכפלה השנייה נותנת $0.1361$ במקום $0.18522$)."),
+     NU(r"מהי $P(X=2)$ כאשר $N_1=3$, $N_2=2$, $p=0.3$? (המכנה: אירוע התנאי)", Fr(3087, 10000), r"$0.3087$ מסעיף ב."),
+     NU(r"מהי $P(X_1=1\cap X_2=1)$ באותם ערכים? (המונה)", Fr(18522, 100000), r"$3(0.3)(0.7)^2\cdot2(0.3)(0.7)=0.441\cdot0.42=0.18522$."),
+     NU(r"מהי $P(X_1=1\mid X=2)$?", Fr(3, 5), r"$\frac{0.18522}{0.3087}=0.6=\frac{\binom31\binom21}{\binom52}$.")])
+
+ADD(3, "ד",
+    RB((r"בהינתן $X=n$ ההתפלגות היפרגאומטרית (סעיף ג)", 1), (r"זהות $k\binom{N_1}k=N_1\binom{N_1-1}{k-1}$ וזהות ונדרמונד", 1), (r"$\mathbb E[X_1\mid X=n]=\frac{nN_1}{N_1+N_2}$", 1)),
+    [r"לחשוב שהתוצאה תלויה ב-$p$"],
+    [CH(r"נתון $X=n$. איך מפולג $X_1$ ומהי תלותו ב-$p$?",
+        [r"היפרגאומטרית, ואינה תלויה ב-$p$", r"$\mathrm{Bin}(N_1,p)$, כמו ללא התנאי", r"$\mathrm{Bin}(n,\frac12)$"], 0,
+        r"בהינתן $n$ אותיות $A$ מבין $N_1+N_2$ מקומות, כל קבוצה של $n$ מקומות שווה סיכוי, ולכן התוצאה היפרגאומטרית ובלתי תלויה ב-$p$. ב-$N_1=3,N_2=2,n=2$: $\mathbb E=1.2$ (לא $0.9=N_1p$, ולא $1$)."),
+     NU(r"מהי $P(X_1=0\mid X=2)$ כאשר $N_1=3$, $N_2=2$?", Fr(1, 10), r"$\frac{\binom30\binom22}{\binom52}=\frac1{10}$."),
+     NU(r"מהי $\mathbb E[X_1\mid X=2]$ באותם ערכים?", Fr(6, 5), r"$\frac{nN_1}{N_1+N_2}=\frac{2\cdot3}{5}=1.2$.")])
+
+# ---- Q4: f = c x/a on (0,a), c on (a,b); a=1, b=3/2, c=1
+ADD(4, "א",
+    RB((r"נרמול: $\frac{ac}2+c(b-a)=1$", 2), (r"שוויון ההסתברויות: $\frac{ac}2=c(b-a)=\frac12$", 2), (r"$ac=1$, $bc=\frac32$ ולכן $b=\frac32a$", 2), (r"תוחלת: $\frac{23}{24}a=\frac{23}{24}$", 3), (r"$a=1$, $b=\frac32$, $c=1$", 1)),
+    [r"לשכוח שהנרמול והשוויון הם שתי משוואות נפרדות", r"לטעות באינטגרל של התוחלת על הקטע $(a,b)$"],
+    [NU(r"אם $P(0\le X\le a)=P(a\le X\le b)$, מהי $P(0\le X\le a)$?", Fr(1, 2), r"שתי ההסתברויות שוות וסכומן $1$: כל אחת $\frac12$."),
+     NU(r"שטח המשולש הוא $\frac{ac}{2}=\frac12$. מהו המכפלה $ac$?", 1, r"$ac=1$."),
+     NU(r"מה היחס $\frac ba$ אם גם $c(b-a)=\frac12$?", Fr(3, 2), r"$bc=\frac32$ ו-$ac=1$, לכן $\frac ba=\frac32$."),
+     NU(r"בהצבת $b=\frac32a$, התוחלת היא $\frac{23}{24}a$. מהו $a$ כאשר $\mathbb E[X]=\frac{23}{24}$?", 1, r"$a=1$ (ואז $b=\frac32$, $c=1$).")])
+
+ADD(4, "ב",
+    RB((r"הצבת הפרמטרים: $f(x)=x$ על $(0,1)$, $1$ על $(1,\frac32)$", 2), (r"$F(t)=\frac{t^2}{2}$ על $[0,1)$ ו-$t-\frac12$ על $[1,\frac32)$", 6), (r"ערכי הקצה והרציפות ב-$t=1$ ושרטוט", 2)),
+    [r"לשכוח את הקבוע $-\frac12$ בקטע השני", r"לא לציין $F=0$ ו-$F=1$ בקצוות"],
+    [NU(r"מהו $F_X(1)$? (סוף הקטע הפרבולי)", Fr(1, 2), r"$\frac{1^2}{2}=\frac12$."),
+     NU(r"מהו $F_X(\frac12)$?", Fr(1, 8), r"$\frac{(1/2)^2}{2}=\frac18$."),
+     NU(r"מהו $F_X(\frac54)$? (הקטע $1\le t<\frac32$)", Fr(3, 4), r"$t-\frac12=\frac34$.")])
+
+ADD(4, "ג",
+    RB((r"$\mathbb E[X]=\frac{23}{24}$ מסעיף א", 1), (r"בחירת הענף של $F_X$: $\frac{23}{24}<1$ ולכן $\frac{t^2}{2}$", 2), (r"$P(X>\mathbb E[X])=1-F_X\left(\frac{23}{24}\right)\approx0.541$", 2)),
+    [r"להציב בענף $t-\frac12$ (שמתאים ל-$t\ge1$)", r"לשכוח להחסיר מ-$1$"],
+    [CH(r"באיזה ענף של $F_X$ נמצא $t=\frac{23}{24}$?",
+        [r"$\frac{t^2}{2}$, כי $0\le t<1$", r"$t-\frac12$, כי $t<\frac32$", r"$1$, כי $t$ קרוב ל-$1$"], 0,
+        r"הענף $t-\frac12$ מתחיל רק ב-$t=1$. הצבה שגויה ב-$t-\frac12$ נותנת $0.4583$ במקום $0.4592$; ו-$F=1$ מתחיל ב-$t=\frac32$."),
+     NU(r"מהו $F_X\left(\frac{23}{24}\right)$?", 0.5 * (23 / 24) ** 2, r"$\frac12\left(\frac{23}{24}\right)^2\approx0.4592$."),
+     NU(r"מהי $P(X>\mathbb E[X])$?", 1 - 0.5 * (23 / 24) ** 2, r"$1-0.4592\approx0.5408$.")])
+
+# ---- Q5: attendance and birthday (symbolic in N, p, Q): numeric checks at N=5, p=0.6, Q=1/365
+ADD(5, "א",
+    RB((r"זיהוי $N$ ניסויי ברנולי בלתי תלויים עם אותה הצלחה $p$", 2), (r"$X\sim\mathrm{Bin}(N,p)$ ופונקציית ההסתברות", 1)),
+    [r"להגיד פואסון או גאומטרית בלי נימוק", r"לשכוח את תנאי אי-התלות"],
+    [CH(r"כל אחד מ-$N$ התלמידים מגיע בהסתברות $p$, ללא תלות באחרים. איך מפולג מספר המגיעים $X$?",
+        [r"$\mathrm{Bin}(N,p)$: $N$ ניסויים בלתי תלויים עם אותה הסתברות הצלחה", r"גאומטרית: ממתינים להגעה הראשונה", r"פואסון: מספר מקרים בלי חסם עליון"], 0,
+        r"מספר קבוע של ניסויים בלתי תלויים נותן בינומית. גאומטרית סופרת ניסויים עד הצלחה ראשונה, ופואסון אינו חסום, בעוד ש-$X\le N$."),
+     NU(r"מהי $P(X=3)$ כאשר $N=5$ ו-$p=0.6$?", Fr(432, 1250), r"$\binom53(0.6)^3(0.4)^2=10\cdot0.216\cdot0.16=0.3456$.")])
+
+ADD(5, "ב",
+    RB((r"בחירת שיטה: הסתברות שלמה לפי $X$ או ספירה ישירה של ״הגיע וגם נולד״", 3), (r"הסתברות ההצלחה לתלמיד: $pQ$ (לא $Q$)", 4), (r"שימוש בנוסחה ברמז / הצגה כסכום ברנולי בלתי תלויים", 5), (r"התשובה $Y\sim\mathrm{Bin}(N,pQ)$", 4)),
+    [r"לכתוב $Y\sim\mathrm{Bin}(N,Q)$ ולשכוח שהסופרים רק את מי שהגיע", r"לשכוח שהנוסחה ברמז דורשת $a=\frac{p(1-Q)}{1-p}$"],
+    [CH(r"$Y$ סופר את התלמידים שהגיעו **וגם** נולדו ב-1 בספטמבר. איך מפולג $Y$?",
+        [r"$\mathrm{Bin}(N,pQ)$: כל תלמיד ״הגיע וגם נולד״ בהסתברות $pQ$, בלתי תלוי באחרים", r"$\mathrm{Bin}(N,Q)$: כל תלמיד נולד בהסתברות $Q$", r"$\mathrm{Bin}(N,p+Q)$: חיבור ההסתברויות"], 0,
+        r"תלמיד נספר רק אם מתקיימים שני תנאים בלתי תלויים, ולכן המכפלה $pQ$. אם היה $\mathrm{Bin}(N,Q)$ אז $P(Y=N)=Q^N$ במקום $(pQ)^N$, ו-$p+Q$ אינו מתאים (יכול לעבור $1$)."),
+     NU(r"מהי ההסתברות $pQ$ שתלמיד מסוים גם הגיע וגם נולד בתאריך, כאשר $p=0.6$ ו-$Q=\frac1{365}$?", _pq, r"$pQ=\frac{0.6}{365}\approx0.0016438$."),
+     NU(r"מהי $P(Y=0)$ כאשר $N=5$, $p=0.6$, $Q=\frac1{365}$?", (1 - _pq) ** 5, r"$(1-pQ)^5=\left(1-\frac{0.6}{365}\right)^5\approx0.99181$."),
+     NU(r"מהי $P(Y=1)$ באותם ערכים?", _pY(1), r"$5\,pQ\,(1-pQ)^4\approx0.0081653$.")])
+
+ADD(5, "ג",
+    RB((r"נוסחת בייס: $\frac{P(Y=k\mid X=n)P(X=n)}{P(Y=k)}$", 2), (r"שימוש ב-$P(Y=k)$ מסעיף ב ובבינומית ב-$P(Y=k\mid X=n)$", 2), (r"התשובה $\binom{N-k}{N-n}\tilde p^{N-n}(1-\tilde p)^{n-k}$ עם $\tilde p=\frac{1-p}{1-pQ}$", 2)),
+    [r"לחלק ב-$P(X=n)$ במקום ב-$P(Y=k)$", r"לא לצמצם נכון את המקדמים הבינומיים"],
+    [CH(r"נתון $Y=k$ ומחפשים את התפלגות $X$. איזו נוסחה נכונה?",
+        [r"נוסחת בייס: $P(X=n\mid Y=k)=\frac{P(Y=k\mid X=n)\,P(X=n)}{P(Y=k)}$", r"$P(X=n\mid Y=k)=P(Y=k\mid X=n)$", r"$P(X=n\mid Y=k)=P(X=n)$, כי $X$ ו-$Y$ בלתי תלויים"], 0,
+        r"$Y$ סופר חלק מהמגיעים ולכן תלוי ב-$X$. עבור $N=5$, $n=2$, $k=1$ האפשרות השנייה נותנת $0.0055$ (זו $P(Y=1\mid X=2)$, התנאי ההפוך) והשלישית נותנת $0.2304$, בעוד שהנכון הוא $0.1542$."),
+     NU(r"מהי $P(Y=1)$ כאשר $N=5$, $p=0.6$, $Q=\frac1{365}$? (המכנה)", _pY(1), r"$5\,pQ\,(1-pQ)^4\approx0.0081653$."),
+     NU(r"מהי $P(X=2\cap Y=1)=P(Y=1\mid X=2)\,P(X=2)$ באותם ערכים?", 2 / 365 * (364 / 365) * 0.2304, r"$2Q(1-Q)\cdot0.2304\approx0.0012590$."),
+     NU(r"מהי $P(X=2\mid Y=1)$?", _c, r"היחס $\frac{0.0012590}{0.0081653}\approx0.1542=\binom43\tilde p^3(1-\tilde p)$ עם $\tilde p=\frac{0.4}{1-pQ}$.")])
+
+# ---- Q6: bridge circuits Q1 (middle unit E) and Q2 (middle unit A); numeric checks at p=0.6
+ADD(6, "א",
+    RB((r"פיצול לפי היחידה האמצעית $E$", 1), (r"$E$ פועל: $(2p-p^2)^2$; $E$ אינו פועל: $2p^2-p^4$", 1), (r"הצבה ופישוט", 1)),
+    [r"להתעלם מהיחידה האמצעית"],
+    [CH(r"איך מחשבים את $P(Q_1)$ במעגל הגשר?",
+        [r"מפצלים לפי $E$: כש-$E$ פועל המעגל הוא $(A\cup C)\cap(B\cup D)$, וכשאינו פועל $(AB)\cup(CD)$", r"מניחים שהמעגל הוא $(AB)\cup(CD)$ ומתעלמים מ-$E$", r"כל חמשת הרכיבים בטור: $p^5$"], 0,
+        r"ל-$E$ יש תפקיד. ב-$p=0.6$ התעלמות מ-$E$ נותנת $0.5904$ (קטן מהנכון $0.65952$) וטור נותן $0.07776$."),
+     NU(r"מהי $P(Q_1\mid E\ \text{works})$ כאשר $p=0.6$?", (2 * _p6 - _p6 ** 2) ** 2, r"$(2p-p^2)^2=0.84^2=0.7056$."),
+     NU(r"מהי $P(Q_1\mid E\ \text{fails})$ באותו $p$?", 2 * _p6 ** 2 - _p6 ** 4, r"$2p^2-p^4=0.5904$."),
+     NU(r"מהי $P(Q_1)$?", _PQ1, r"$0.6\cdot0.7056+0.4\cdot0.5904=0.65952$.")])
+
+ADD(6, "ב",
+    RB((r"הגדרת הסתברות מותנית $\frac{P(Q_1\cap Q_2)}{P(Q_1)}$", 4), (r"חישוב $P(Q_1\cap Q_2)$ בהתניה על $A,E$ (ארבעה מקרים), או על $A$ בלבד", 8), (r"הצבה ופישוט ל-$\frac{1+4p-6p^2+2p^3}{2+2p-5p^2+2p^3}$", 4)),
+    [r"להניח ש-$Q_1,Q_2$ בלתי תלויים ולכפול", r"לטעות בצמצום המעגל המשותף כש-$A$ ו-$E$ פועלים"],
+    [CH(r"איך מחשבים את $P(Q_1\cap Q_2)$?",
+        [r"בהסתברות שלמה לפי $A,E$, כי שני המעגלים משתמשים באותם רכיבים", r"כמכפלה $P(Q_1)\cdot P(Q_2)$", r"כסכום $P(Q_1)+P(Q_2)$"], 0,
+        r"המעגלים תלויים כי הם חולקים רכיבים. ב-$p=0.6$ המכפלה נותנת $0.4350$ במקום $0.60192$, והסכום עולה על $1$."),
+     NU(r"מהי $P(Q_1)$ כאשר $p=0.6$? (המכנה: אירוע התנאי)", _PQ1, r"$0.65952$ מסעיף א."),
+     NU(r"כש-$A$ ו-$E$ פועלים, שני המעגלים פועלים אם $B\cup D$ פועל. מהי ההסתברות לכך כש-$p=0.6$?", 2 * _p6 - _p6 ** 2, r"$1-0.4^2=0.84$."),
+     NU(r"מהי $P(Q_1\cap Q_2)$ באותו $p$? (המונה)", _PI, r"$p^2(1+4p-6p^2+2p^3)=0.36\cdot1.672=0.60192$."),
+     NU(r"מהי $P(Q_2\mid Q_1)$?", _PI / _PQ1, r"$\frac{0.60192}{0.65952}\approx0.91266$.")])
+
+ADD(6, "ג",
+    RB((r"הכלה והפרדה: $P(Q_1\cup Q_2)=P(Q_1)+P(Q_2)-P(Q_1\cap Q_2)$", 3), (r"$P(Q_1)=P(Q_2)$ (סימטריה) ו-$P(Q_1\cap Q_2)$ מסעיף ב", 2), (r"התשובה $p^2(3-4p^2+2p^3)$", 1)),
+    [r"לחבר $P(Q_1)+P(Q_2)$ בלי להחסיר את החיתוך"],
+    [CH(r"איך מחשבים את $P(Q_1\cup Q_2)$?",
+        [r"$P(Q_1)+P(Q_2)-P(Q_1\cap Q_2)$", r"$P(Q_1)+P(Q_2)$", r"$P(Q_1)\cdot P(Q_2)$"], 0,
+        r"המעגלים אינם זרים ולא בלתי תלויים. הסכום נותן $1.319>1$ והמכפלה נותנת $0.435$ (זו ההסתברות לחיתוך אם היו תלויים באופן מלאכותי), בעוד האיחוד $0.71712$."),
+     NU(r"מהי $P(Q_1)+P(Q_2)$ כאשר $p=0.6$?", 2 * _PQ1, r"$2\cdot0.65952=1.31904$."),
+     NU(r"מהי $P(Q_1\cap Q_2)$ באותו $p$?", _PI, r"$0.60192$ מסעיף ב."),
+     NU(r"מהי $P(Q_1\cup Q_2)$?", _PU, r"$1.31904-0.60192=0.71712$.")])
+
+APPLY(questions)
+
 
 exam = {
     "examCode": CODE,
