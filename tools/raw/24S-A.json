@@ -46,7 +46,59 @@
    "confidence": "high",
    "points": 4,
    "part": "א",
-   "contextId": "c1"
+   "contextId": "c1",
+   "rubric": [
+    {
+     "text": "אורך הצלעות הוא $1$ (שטח הריבוע $1$)",
+     "points": 1
+    },
+    {
+     "text": "נקודה אקראית על צלע באורך $1$ היא $U_c(0,1)$",
+     "points": 2
+    },
+    {
+     "text": "בחירת הנקודות בלתי תלויה",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לכתוב $U_c(0,\\frac12)$ או התפלגות על הריבוע כולו במקום על הצלע."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "אורך צלע הריבוע ששטחו $1$.",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "$\\ell^2=1\\Rightarrow\\ell=1$."
+    },
+    {
+     "type": "choice",
+     "prompt": "איך מפולגים $X$ ו-$Y$ (מיקומי הנקודות על הצלעות)?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$U_c(0,1)$ ובלתי תלויים"
+      },
+      {
+       "id": "b",
+       "value": "$U_c(0,2)$"
+      },
+      {
+       "id": "c",
+       "value": "$\\mathrm{Bin}(1,\\frac12)$"
+      },
+      {
+       "id": "d",
+       "value": "$\\mathrm{Exp}(1)$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "הנקודה נבחרת באקראי (אחיד) על קטע באורך $1$. בינומית ומעריכית אינן אחידות על קטע."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 1,
@@ -134,7 +186,85 @@
      },
      "event": "x^2+y^2 > 1/4 and x^2+y^2 < 1"
     }
-   }
+   },
+   "rubric": [
+    {
+     "text": "משפט פיתגורס: $L=\\sqrt{X^2+Y^2}$",
+     "points": 2
+    },
+    {
+     "text": "האזור $\\{x^2+y^2<1\\}$ הוא רבע עיגול ברדיוס $1$, ושטחו $\\frac\\pi4$ ($|\\Omega|=1$)",
+     "points": 4
+    },
+    {
+     "text": "האזור $\\frac14<x^2+y^2<1$ הוא הפרש שני רבעי עיגול",
+     "points": 4
+    },
+    {
+     "text": "שטח $\\frac\\pi4-\\frac\\pi{16}$ והתשובה $\\frac{3\\pi}{16}$",
+     "points": 4
+    }
+   ],
+   "pitfalls": [
+    "לחשב את שטח העיגול כולו ($\\pi$) ולשכוח שרק הרבע בתוך הריבוע.",
+    "להפחית את רדיוס $\\frac12$ כרדיוס $\\frac14$: התנאי $\\frac12<L$ שקול ל-$\\frac14<x^2+y^2$, כלומר רדיוס $\\frac12$."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "$X$ ו-$Y$ בלתי תלויים ואחידים על $(0,1)$. איזה כלי מתאים לחישוב $P(L<1)$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "שיטת השטח: $(X,Y)$ אחידה על ריבוע היחידה, וההסתברות היא יחס שטחים"
+      },
+      {
+       "id": "b",
+       "value": "התפלגות בינומית"
+      },
+      {
+       "id": "c",
+       "value": "נוסחת ההסתברות השלמה על ערכים בדידים"
+      },
+      {
+       "id": "d",
+       "value": "התפלגות גאומטרית"
+      }
+     ],
+     "correctId": "a",
+     "explain": "שני משתנים רציפים אחידים ובלתי תלויים: אחידים על הריבוע, ולכן הסתברות = שטח. האחרים סופרים הצלחות בניסויים."
+    },
+    {
+     "type": "numeric",
+     "prompt": "שטח מרחב המדגם $|\\Omega|$, ריבוע היחידה $(0,1)\\times(0,1)$.",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "$|\\Omega|=1$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(L<1)$? (עד שלוש ספרות)",
+     "answer": 0.7853981633974483,
+     "tol": 0.001,
+     "explain": "רבע עיגול ברדיוס $1$: $\\frac\\pi4\\approx0.785$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "שטח רבע העיגול ברדיוס $\\frac12$, האזור $\\{L<\\frac12\\}$ (עד חמש ספרות).",
+     "answer": 0.19634954084936207,
+     "tol": 0.0002,
+     "explain": "$\\frac14\\pi\\left(\\frac12\\right)^2=\\frac\\pi{16}\\approx0.19635$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P\\left(\\frac12<L<1\\right)$? (עד שלוש ספרות)",
+     "answer": 0.5890486225480862,
+     "tol": 0.001,
+     "explain": "$\\frac\\pi4-\\frac\\pi{16}=\\frac{3\\pi}{16}\\approx0.589$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 1,
@@ -187,7 +317,78 @@
     "params": {
      "fromRegion": true
     }
-   }
+   },
+   "rubric": [
+    {
+     "text": "פיתגורס: $L=\\sqrt{1+(X-Y)^2}$",
+     "points": 1
+    },
+    {
+     "text": "$L<\\frac{\\sqrt{10}}3\\iff|X-Y|<\\frac13$",
+     "points": 2
+    },
+    {
+     "text": "השטח המשלים: שני משולשי פינה עם ניצבים $\\frac23$",
+     "points": 2
+    },
+    {
+     "text": "שטח הרצועה $\\frac59$ והתשובה",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לפתור $1+d^2<\\frac{10}9$ כ-$d<\\frac19$ (לשכוח את השורש).",
+    "לשכוח את המשולש השני ולהפחית רק פינה אחת."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מהו התנאי השקול ל-$L<\\frac{\\sqrt{10}}3$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$|X-Y|<\\frac13$"
+      },
+      {
+       "id": "b",
+       "value": "$|X-Y|<\\frac19$"
+      },
+      {
+       "id": "c",
+       "value": "$|X-Y|<\\frac{\\sqrt{10}}3$"
+      },
+      {
+       "id": "d",
+       "value": "$X-Y<\\frac13$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$1+(X-Y)^2<\\frac{10}9\\iff(X-Y)^2<\\frac19\\iff|X-Y|<\\frac13$. הערך $\\frac19$ שוכח את השורש, ותנאי חד-צדדי מתעלם מהצד השני."
+    },
+    {
+     "type": "numeric",
+     "prompt": "שטח מרחב המדגם $|\\Omega|$, ריבוע היחידה $(0,1)\\times(0,1)$.",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "$|\\Omega|=1$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "שטח האזור המשלים $\\{|x-y|\\ge\\frac13\\}$: שני משולשי פינה (עד חמש ספרות).",
+     "answer": 0.4444444444444444,
+     "tol": 0.0002,
+     "explain": "כל משולש: $\\frac12\\left(\\frac23\\right)^2=\\frac29$; שניים: $\\frac49\\approx0.44444$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P\\left(L<\\frac{\\sqrt{10}}3\\right)$? (עד חמש ספרות)",
+     "answer": 0.5555555555555556,
+     "tol": 0.0002,
+     "explain": "$1-\\frac49=\\frac59\\approx0.55556$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -208,7 +409,78 @@
      "n": 5,
      "event": "d1 == 5 or d1+d2 == 5 or d1+d2+d3 == 5 or d1+d2+d3+d4 == 5 or d1+d2+d3+d4+d5 == 5"
     }
-   }
+   },
+   "rubric": [
+    {
+     "text": "הסכום מגיע ל-$5$ אי פעם אם ורק אם באחת ההטלות הראשונות הסכום החלקי הוא בדיוק $5$",
+     "points": 2
+    },
+    {
+     "text": "המקרים לפי מספר ההטלות זרים ($1$ עד $5$)",
+     "points": 1
+    },
+    {
+     "text": "ספירת הפירוקים לפי אורך: $1,4,6,4,1$",
+     "points": 2
+    },
+    {
+     "text": "סכום ההסתברויות והתשובה $\\frac{7^4}{6^5}$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לחשב רק את סכום הטלה אחת או שתיים ולשכוח הטלות נוספות.",
+    "לספור פירוקים בלי סדר (לספור $\\{1,4\\}$ פעם אחת במקום פעמיים)."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איך מחשבים את הסיכוי שהסכום יהיה שווה ל-$5$ אי פעם?",
+     "options": [
+      {
+       "id": "a",
+       "value": "מחברים את ההסתברות לסכום $5$ לפי מספר ההטלות $k=1,\\ldots,5$ (אירועים זרים, כי הסכום עולה)"
+      },
+      {
+       "id": "b",
+       "value": "בינומית על מספר ההטלות"
+      },
+      {
+       "id": "c",
+       "value": "גאומטרית: ממתינים להטלה מוצלחת"
+      },
+      {
+       "id": "d",
+       "value": "מחלקים $1$ בתוחלת ההטלה $3.5$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "הסכומים החלקיים עולים בהכרח, ולכן הסכום מקבל את הערך $5$ לכל היותר פעם אחת ולפי מספר ההטלות האירועים זרים. החלוקה $\\frac1{3.5}\\approx0.286$ היא קירוב בלבד."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ההסתברות שסכום שתי ההטלות הראשונות הוא $5$ (בדיוק שתי הטלות).",
+     "answer": 0.1111111111111111,
+     "tol": 0.0002222222222222222,
+     "explain": "$\\{14,23,32,41\\}$ מתוך $36$: $\\frac19\\approx0.1111$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ההסתברות שסכום שלוש ההטלות הראשונות הוא $5$ (עד חמש ספרות).",
+     "answer": 0.027777777777777776,
+     "tol": 0.0002,
+     "explain": "$\\{113,131,311,122,212,221\\}$ מתוך $216$: $\\frac1{36}\\approx0.02778$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי ההסתברות שהסכום יהיה שווה ל-$5$ אי פעם? (עד שלוש ספרות)",
+     "answer": 0.30877057613168724,
+     "tol": 0.001,
+     "explain": "$\\frac16+4\\cdot\\frac1{6^2}+6\\cdot\\frac1{6^3}+4\\cdot\\frac1{6^4}+\\frac1{6^5}=\\frac{7^4}{6^5}\\approx0.3088$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -229,7 +501,66 @@
      "n": 2,
      "event": "sum == 5"
     }
-   }
+   },
+   "rubric": [
+    {
+     "text": "מרחב המדגם: $36$ זוגות סדורים שווי הסתברות",
+     "points": 2
+    },
+    {
+     "text": "המאורע: $\\{14,23,32,41\\}$, ארבע תוצאות",
+     "points": 2
+    },
+    {
+     "text": "$P=\\frac4{36}=\\frac19$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לספור $21$ זוגות לא סדורים או $11$ סכומים אפשריים כמרחב מדגם: אלה אינם שווי הסתברות."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מהו מרחב המדגם השווה-הסתברות בהטלת שתי קוביות?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$36$ זוגות סדורים"
+      },
+      {
+       "id": "b",
+       "value": "$21$ זוגות לא סדורים"
+      },
+      {
+       "id": "c",
+       "value": "$11$ ערכי הסכום $2,\\ldots,12$"
+      },
+      {
+       "id": "d",
+       "value": "$12$ ערכים"
+      }
+     ],
+     "correctId": "a",
+     "explain": "רק הזוגות הסדורים שווי הסתברות. הסכום $7$ נפוץ יותר מהסכום $2$, ולכן ערכי הסכום אינם שווי הסתברות; גם זוגות לא סדורים אינם שווים ($\\{3,3\\}$ פחות סביר מ-$\\{3,4\\}$)."
+    },
+    {
+     "type": "numeric",
+     "prompt": "כמה זוגות סדורים נותנים סכום $5$?",
+     "answer": 4.0,
+     "tol": 0,
+     "explain": "$(1,4),(2,3),(3,2),(4,1)$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(\\text{sum}=5)$? (עד חמש ספרות)",
+     "answer": 0.1111111111111111,
+     "tol": 0.0002,
+     "explain": "$\\frac4{36}\\approx0.11111$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -250,7 +581,49 @@
      "n": 3,
      "event": "sum == 5"
     }
-   }
+   },
+   "rubric": [
+    {
+     "text": "מרחב המדגם: $6^3=216$ שלשות סדורות",
+     "points": 2
+    },
+    {
+     "text": "המאורע: שש שלשות ($113$ ותמורותיה, $122$ ותמורותיה)",
+     "points": 2
+    },
+    {
+     "text": "$P=\\frac6{216}=\\frac1{36}$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לספור רק את $113$ ו-$122$ כשתי תוצאות במקום שש."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "$|\\Omega|$: כמה שלשות סדורות יש בשלוש הטלות?",
+     "answer": 216.0,
+     "tol": 0,
+     "explain": "$6^3=216$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "כמה שלשות סדורות נותנות סכום $5$?",
+     "answer": 6.0,
+     "tol": 0,
+     "explain": "$113$, $131$, $311$, $122$, $212$, $221$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(\\text{sum}=5)$? (עד חמש ספרות)",
+     "answer": 0.027777777777777776,
+     "tol": 0.0002,
+     "explain": "$\\frac6{216}=\\frac1{36}\\approx0.02778$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -272,7 +645,78 @@
      "event": "sum == 5",
      "given": "d1+d2 == 3"
     }
-   }
+   },
+   "rubric": [
+    {
+     "text": "הגדרת אירוע התנאי $D$: סכום שתי הראשונות $3$ ($12$ או $21$)",
+     "points": 1
+    },
+    {
+     "text": "$C\\cap D=\\{122,212\\}$",
+     "points": 2
+    },
+    {
+     "text": "היחס $\\frac{2/216}{2/36}=\\frac16$",
+     "points": 2
+    },
+    {
+     "text": "הסבר: ההטלה השלישית חייבת להיות $2$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לחשב $P(C)=\\frac1{36}$ במקום $P(C/D)$.",
+    "לחלק ב-$P(D)=\\frac19$ (זה סכום $5$) במקום $\\frac1{18}$ (סכום $3$)."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "בהינתן שסכום שתי ההטלות הראשונות הוא $3$, איזו תוצאה נדרשת בהטלה השלישית כדי שהסכום יהיה $5$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$2$"
+      },
+      {
+       "id": "b",
+       "value": "$1$"
+      },
+      {
+       "id": "c",
+       "value": "$3$"
+      },
+      {
+       "id": "d",
+       "value": "$5$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$5-3=2$. הסיכוי להטלה אחת מסוימת הוא $\\frac16$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "הסתברות אירוע התנאי $P(D)$: סכום שתי הראשונות $3$ (עד חמש ספרות).",
+     "answer": 0.05555555555555555,
+     "tol": 0.0002,
+     "explain": "$\\{12,21\\}$ מתוך $36$: $\\frac1{18}\\approx0.05556$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "$P(C\\cap D)$, $C$ סכום שלוש הטלות $5$ (עד חמש ספרות).",
+     "answer": 0.009259259259259259,
+     "tol": 0.0001,
+     "explain": "$\\{122,212\\}$ מתוך $216$: $\\frac1{108}\\approx0.00926$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(C/D)$? (עד חמש ספרות)",
+     "answer": 0.16666666666666666,
+     "tol": 0.0002,
+     "explain": "$\\frac{1/108}{1/18}=\\frac16\\approx0.16667$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -285,7 +729,118 @@
    "confidence": "high",
    "points": 11,
    "part": "א",
-   "contextId": "c3"
+   "contextId": "c3",
+   "sim": {
+    "kind": "custom_discrete",
+    "estimate": "P(X=1, Y=1) ב-p=0.3",
+    "exact": 0.21,
+    "params": {
+     "vars": {
+      "X1": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      },
+      "X2": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      },
+      "X3": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      }
+     },
+     "event": "X1 + X2 == 1 and X2 + X3 == 1"
+    }
+   },
+   "rubric": [
+    {
+     "text": "הגדרת $X_1,X_2,X_3\\sim\\mathrm{Ber}(p)$ בלתי תלויים ו-$X=X_1+X_2$, $Y=X_2+X_3$",
+     "points": 2
+    },
+    {
+     "text": "טבלת שמונה התוצאות הערכים של $X,Y$",
+     "points": 3
+    },
+    {
+     "text": "מילוי $P_{XY}$ כסכום הסתברויות התוצאות (למשל משבצת $(1,1)$ מורכבת משתי תוצאות)",
+     "points": 4
+    },
+    {
+     "text": "שוליים ובדיקת נרמול",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "להכפיל $P_X(x)P_Y(y)$: $X$ ו-$Y$ תלויים כי הם חולקים את ההטלה האמצעית.",
+    "לשכוח שמשבצת $(1,1)$ מורכבת משתי תוצאות: $(1,0,1)$ ו-$(0,1,0)$."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איך בונים את ההתפלגות המשותפת $P_{XY}$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "מונים את שמונה תוצאות שלוש ההטלות וקובעים את $(X,Y)$ לכל אחת"
+      },
+      {
+       "id": "b",
+       "value": "מכפילים את ההתפלגויות השוליות"
+      },
+      {
+       "id": "c",
+       "value": "בינומית $\\mathrm{Bin}(3,p)$"
+      },
+      {
+       "id": "d",
+       "value": "שיטת השטח"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$X$ ו-$Y$ תלויים (משותפת ההטלה האמצעית), ולכן אין להכפיל שוליים. הדרך הבטוחה היא למנות תוצאות."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.3$: $P_{XY}(1,1)$.",
+     "answer": 0.21,
+     "tol": 0,
+     "explain": "שתי תוצאות: $p^2(1-p)+p(1-p)^2=p(1-p)=0.21$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.3$: $P_{XY}(0,1)$.",
+     "answer": 0.147,
+     "tol": 0,
+     "explain": "$X_1=X_2=0$ ו-$X_3=1$: $(1-p)^2p=0.147$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.3$: $P_{XY}(2,1)$.",
+     "answer": 0.063,
+     "tol": 0,
+     "explain": "$X_1=X_2=1$ ו-$X_3=0$: $p^2(1-p)=0.063$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -298,7 +853,106 @@
    "confidence": "high",
    "points": 6,
    "part": "ב",
-   "contextId": "c3"
+   "contextId": "c3",
+   "sim": {
+    "kind": "custom_discrete",
+    "estimate": "P(X=1) ב-p=0.3",
+    "exact": 0.42,
+    "params": {
+     "vars": {
+      "X1": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      },
+      "X2": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      },
+      "X3": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      }
+     },
+     "event": "X1 + X2 == 1"
+    }
+   },
+   "rubric": [
+    {
+     "text": "$X=X_1+X_2$ סכום שני ברנולי בלתי תלויים, ולכן $\\mathrm{Bin}(2,p)$",
+     "points": 3
+    },
+    {
+     "text": "אותו דבר ל-$Y=X_2+X_3$",
+     "points": 1
+    },
+    {
+     "text": "פונקציית ההסתברות $\\binom2xp^x(1-p)^{2-x}$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לטעון $\\mathrm{Bin}(3,p)$: כל משתנה סופר רק שתי הטלות."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מה ההתפלגות של $X=X_1+X_2$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$\\mathrm{Bin}(2,p)$: סכום שני ברנולי בלתי תלויים"
+      },
+      {
+       "id": "b",
+       "value": "$\\mathrm{Bin}(3,p)$"
+      },
+      {
+       "id": "c",
+       "value": "$\\mathrm{Ber}(2p)$"
+      },
+      {
+       "id": "d",
+       "value": "$\\mathrm{Geo}(p)$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "שתי הטלות בלתי תלויות. $\\mathrm{Bin}(3,p)$ סופר שלוש הטלות ו-$\\mathrm{Ber}(2p)$ אינו הסתברות חוקית."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.3$: $P_X(1)$.",
+     "answer": 0.42,
+     "tol": 0,
+     "explain": "$2p(1-p)=0.42$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.3$: $P_Y(2)$.",
+     "answer": 0.09,
+     "tol": 0,
+     "explain": "$p^2=0.09$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -311,7 +965,103 @@
    "confidence": "high",
    "points": 4,
    "part": "ג",
-   "contextId": "c3"
+   "contextId": "c3",
+   "sim": {
+    "kind": "custom_discrete",
+    "estimate": "Var[X] ב-p=0.3",
+    "exact": 0.42,
+    "params": {
+     "vars": {
+      "X1": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      },
+      "X2": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      },
+      "X3": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      }
+     },
+     "measure": "var",
+     "expr": "X1 + X2"
+    }
+   },
+   "rubric": [
+    {
+     "text": "$\\mathbb{E}[X]=\\mathbb{E}[Y]=2p$ (בינומי)",
+     "points": 2
+    },
+    {
+     "text": "$\\operatorname{Var}[X]=\\operatorname{Var}[Y]=2p(1-p)$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לשכוח את הגורם $(1-p)$ בשונות."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מהן התוחלת והשונות של $\\mathrm{Bin}(2,p)$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$2p$ ו-$2p(1-p)$"
+      },
+      {
+       "id": "b",
+       "value": "$p$ ו-$p(1-p)$"
+      },
+      {
+       "id": "c",
+       "value": "$2p$ ו-$2p$"
+      },
+      {
+       "id": "d",
+       "value": "$2p(1-p)$ ו-$2p$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "תוחלת $np$ ושונות $np(1-p)$ עם $n=2$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.3$: $\\mathbb{E}[X]$.",
+     "answer": 0.6,
+     "tol": 0,
+     "explain": "$2\\cdot0.3=0.6$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.3$: $\\operatorname{Var}[X]$.",
+     "answer": 0.42,
+     "tol": 0,
+     "explain": "$2\\cdot0.3\\cdot0.7=0.42$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -324,7 +1074,70 @@
    "confidence": "high",
    "points": 4,
    "part": "ד",
-   "contextId": "c3"
+   "contextId": "c3",
+   "rubric": [
+    {
+     "text": "בלתי תלויים פירושו $P_{XY}=P_XP_Y$ לכל זוג",
+     "points": 1
+    },
+    {
+     "text": "הנקודה $(2,0)$: $P_{XY}(2,0)=0$",
+     "points": 1
+    },
+    {
+     "text": "$P_X(2)P_Y(0)=p^2(1-p)^2>0$",
+     "points": 1
+    },
+    {
+     "text": "מסקנה: תלויים",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "להסיק אי-תלות מכך שלשני המשתנים אותה התפלגות."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "$P_{XY}(2,0)$ ($X=2$ מחייב $X_2=1$ ולכן $Y\\ge1$).",
+     "answer": 0.0,
+     "tol": 0,
+     "explain": "אי אפשר ש-$X=2$ ו-$Y=0$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.3$: $P_X(2)P_Y(0)$ (עד חמש ספרות).",
+     "answer": 0.0441,
+     "tol": 0.0001,
+     "explain": "$0.09\\cdot0.49=0.0441$."
+    },
+    {
+     "type": "choice",
+     "prompt": "מה המסקנה?",
+     "options": [
+      {
+       "id": "a",
+       "value": "תלויים: $0\\ne0.0441$"
+      },
+      {
+       "id": "b",
+       "value": "בלתי תלויים: להם אותה התפלגות"
+      },
+      {
+       "id": "c",
+       "value": "בלתי תלויים: $P_X(2)P_Y(0)<1$"
+      },
+      {
+       "id": "d",
+       "value": "לא ניתן לקבוע"
+      }
+     ],
+     "correctId": "a",
+     "explain": "מספיק זוג אחד שבו המכפלה שונה מההסתברות המשותפת כדי להוכיח תלות."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 4,
@@ -337,7 +1150,95 @@
    "confidence": "high",
    "points": 10,
    "part": "א",
-   "contextId": "c4"
+   "contextId": "c4",
+   "rubric": [
+    {
+     "text": "נרמול: $a+b=1$",
+     "points": 3
+    },
+    {
+     "text": "תוחלת: $-\\frac a2+b=0$",
+     "points": 3
+    },
+    {
+     "text": "פתרון המערכת: $a=\\frac23$",
+     "points": 2
+    },
+    {
+     "text": "$b=\\frac13$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לטעות בסימן של $\\int_{-1}^0x\\,dx=-\\frac12$.",
+    "לשכוח ש-$\\int_0^\\infty xe^{-x}dx=1$."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איזה כלי מתאים למציאת $a,b$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "נרמול $\\int f=1$ ותוחלת $\\int xf=0$"
+      },
+      {
+       "id": "b",
+       "value": "שיטת השטח"
+      },
+      {
+       "id": "c",
+       "value": "נוסחת בייס"
+      },
+      {
+       "id": "d",
+       "value": "התפלגות בינומית"
+      }
+     ],
+     "correctId": "a",
+     "explain": "הצפיפות נתונה עד כדי שני מקדמים, ויש שני תנאים: נרמול ותוחלת."
+    },
+    {
+     "type": "choice",
+     "prompt": "איזו משוואה מתקבלת מ-$\\mathbb{E}[X]=0$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$-\\frac a2+b=0$"
+      },
+      {
+       "id": "b",
+       "value": "$\\frac a2+b=0$"
+      },
+      {
+       "id": "c",
+       "value": "$-a+b=0$"
+      },
+      {
+       "id": "d",
+       "value": "$a-\\frac b2=0$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$a\\int_{-1}^0x\\,dx=-\\frac a2$ ו-$b\\int_0^\\infty xe^{-x}dx=b$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו $a$? (עד שש ספרות)",
+     "answer": 0.6666666666666666,
+     "tol": 1e-05,
+     "explain": "$a+b=1$ ו-$b=\\frac a2$: $\\frac{3a}2=1$, $a=\\frac23$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו $b$? (עד שש ספרות)",
+     "answer": 0.3333333333333333,
+     "tol": 1e-05,
+     "explain": "$b=\\frac a2=\\frac13$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 4,
@@ -350,7 +1251,54 @@
    "confidence": "high",
    "points": 10,
    "part": "ב",
-   "contextId": "c4"
+   "contextId": "c4",
+   "rubric": [
+    {
+     "text": "הגדרת $F_X(t)$ כאינטגרל מצטבר ופיצול לתחומים",
+     "points": 3
+    },
+    {
+     "text": "$-1\\le t<0$: $\\frac23(t+1)$",
+     "points": 2
+    },
+    {
+     "text": "$t\\ge0$: $\\frac23+\\frac13(1-e^{-t})=1-\\frac13e^{-t}$",
+     "points": 3
+    },
+    {
+     "text": "שרטוט: קו ישר עולה ואז מתקרב ל-$1$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לשכוח את המסה $\\frac23$ שנצברה עד $0$.",
+    "לשרטט קפיצה ב-$t=0$: $F_X$ רציפה כי הצפיפות חסומה."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "$F_X\\left(-\\frac12\\right)$.",
+     "answer": 0.3333333333333333,
+     "tol": 0.0006666666666666666,
+     "explain": "$\\frac23\\cdot\\frac12=\\frac13$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "$F_X(0)$ (המסה שנצברה על $[-1,0)$).",
+     "answer": 0.6666666666666666,
+     "tol": 0.0013333333333333333,
+     "explain": "$\\int_{-1}^0\\frac23\\,dx=\\frac23$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "$F_X(2)$ (עד שלוש ספרות).",
+     "answer": 0.9548882389211291,
+     "tol": 0.001,
+     "explain": "$1-\\frac13e^{-2}\\approx0.955$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 4,
@@ -384,7 +1332,49 @@
      "event": "x > -1/2",
      "given": "x < 1"
     }
-   }
+   },
+   "rubric": [
+    {
+     "text": "הצגה כיחס $\\frac{F_X(1)-F_X(-\\frac12)}{F_X(1)}$",
+     "points": 1
+    },
+    {
+     "text": "$F_X(1)=1-\\frac1{3e}$ ו-$F_X(-\\frac12)=\\frac13$",
+     "points": 2
+    },
+    {
+     "text": "הצבה: $\\frac{2e-1}{3e-1}\\approx0.62$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לחלק ב-$1$ במקום ב-$F_X(1)$: אירוע התנאי $X<1$ אינו כל המרחב."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "הסתברות אירוע התנאי $P(X<1)=F_X(1)$ (עד שלוש ספרות).",
+     "answer": 0.8773735196095193,
+     "tol": 0.001,
+     "explain": "$1-\\frac{1}{3e}\\approx0.877$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "$P\\left(-\\frac12<X<1\\right)$ (עד שלוש ספרות).",
+     "answer": 0.5440401862761859,
+     "tol": 0.001,
+     "explain": "$F_X(1)-F_X(-\\frac12)\\approx0.877-0.333=0.544$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי ההסתברות המותנית? (עד שלוש ספרות)",
+     "answer": 0.6200781926018402,
+     "tol": 0.001,
+     "explain": "$\\frac{0.5440}{0.8774}=\\frac{2e-1}{3e-1}\\approx0.620$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 5,
@@ -397,7 +1387,73 @@
    "confidence": "high",
    "points": 5,
    "part": "א",
-   "contextId": "c5"
+   "contextId": "c5",
+   "sim": {
+    "kind": "urn",
+    "estimate": "P(X=2) ב-N=5, p=0.3",
+    "exact": 0.3087,
+    "params": {
+     "counts": {
+      "come": 3,
+      "stay": 7
+     },
+     "draws": 5,
+     "replace": true,
+     "event": "come == 2"
+    }
+   },
+   "rubric": [
+    {
+     "text": "כל סטודנט מחליט להגיע באופן בלתי תלוי בהסתברות $p$",
+     "points": 2
+    },
+    {
+     "text": "סופרים הצלחות ב-$N$ ניסויי ברנולי: $\\mathrm{Bin}(N,p)$",
+     "points": 2
+    },
+    {
+     "text": "פונקציית ההסתברות",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "להשתמש בהיפרגאומטרית: אין כאן דגימה בלי החזרה מאוכלוסייה עם מספר ידוע של 'מוצלחים'."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "$N$ סטודנטים מחליטים בנפרד אם להגיע, כל אחד בהסתברות $p$. איזה מודל מתאים?",
+     "options": [
+      {
+       "id": "a",
+       "value": "בינומי $\\mathrm{Bin}(N,p)$"
+      },
+      {
+       "id": "b",
+       "value": "היפרגאומטרי: חסר מספר מוגדר מראש של מגיעים באוכלוסייה"
+      },
+      {
+       "id": "c",
+       "value": "גאומטרי: $N$ קבוע ואין המתנה להצלחה"
+      },
+      {
+       "id": "d",
+       "value": "פואסון: $N$ קבוע וידוע"
+      }
+     ],
+     "correctId": "a",
+     "explain": "כל אחד מחליט בלי תלות באחרים ובהסתברות זהה: בינומי."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$N=5$, $p=0.3$: $P(X=2)$.",
+     "answer": 0.3087,
+     "tol": 0,
+     "explain": "$\\binom52\\cdot0.3^2\\cdot0.7^3=0.3087$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 5,
@@ -410,7 +1466,92 @@
    "confidence": "high",
    "points": 15,
    "part": "ב",
-   "contextId": "c5"
+   "contextId": "c5",
+   "sim": {
+    "kind": "urn",
+    "estimate": "P(Y=1) ב-N=5, p=0.5, Q=0.2 (pQ=0.1)",
+    "exact": 0.32805,
+    "params": {
+     "counts": {
+      "hit": 1,
+      "miss": 9
+     },
+     "draws": 5,
+     "replace": true,
+     "event": "hit == 1"
+    }
+   },
+   "rubric": [
+    {
+     "text": "הגדרת $Y_j=X_j\\tilde X_j$ (הגיע וגם נולד בתאריך הנדרש) או הסתברות שלמה",
+     "points": 3
+    },
+    {
+     "text": "הסתברות ההצלחה $pQ$ (אי-תלות בין ההגעה לתאריך הלידה)",
+     "points": 4
+    },
+    {
+     "text": "$Y=\\sum Y_j\\sim\\mathrm{Bin}(N,pQ)$",
+     "points": 4
+    },
+    {
+     "text": "פונקציית ההסתברות $\\binom Nk(pQ)^k(1-pQ)^{N-k}$",
+     "points": 4
+    }
+   ],
+   "pitfalls": [
+    "לכתוב $\\mathrm{Bin}(N,Q)$ ולשכוח שרק מי שהגיע נספר.",
+    "להשתמש ברמז כשפתרון עם ברנולי קצר יותר."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "$Y$ סופר סטודנטים שהגיעו וגם נולדו היום. איזה מודל מתאים?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$\\mathrm{Bin}(N,pQ)$: כל סטודנט הוא הצלחה בהסתברות $pQ$ ללא תלות"
+      },
+      {
+       "id": "b",
+       "value": "$\\mathrm{Bin}(N,p+Q)$"
+      },
+      {
+       "id": "c",
+       "value": "$\\mathrm{Bin}(N,Q)$"
+      },
+      {
+       "id": "d",
+       "value": "$\\mathrm{Bin}(X,Q)$ עם $X$ קבוע"
+      }
+     ],
+     "correctId": "a",
+     "explain": "שני התנאים בלתי תלויים ולכן מכפילים. $p+Q$ עלול לעלות על $1$, ושני האחרונים מתעלמים מהתנאי."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.5$, $Q=0.2$: הסתברות ההצלחה $pQ$.",
+     "answer": 0.1,
+     "tol": 0,
+     "explain": "$0.1$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$N=5$: $P(Y=0)$ (עד חמש ספרות).",
+     "answer": 0.59049,
+     "tol": 0.0002,
+     "explain": "$0.9^5=0.59049$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$N=5$: $P(Y=1)$ (עד חמש ספרות).",
+     "answer": 0.32805,
+     "tol": 0.0002,
+     "explain": "$5\\cdot0.1\\cdot0.9^4=0.32805$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 5,
@@ -423,7 +1564,186 @@
    "confidence": "high",
    "points": 5,
    "part": "ג",
-   "contextId": "c5"
+   "contextId": "c5",
+   "sim": {
+    "kind": "custom_discrete",
+    "estimate": "P(X=3 | Y=1) ב-N=5, p=0.5, Q=0.2",
+    "exact": 0.36579789666209417,
+    "params": {
+     "joint": [
+      {
+       "p": 0.03125,
+       "X": 0,
+       "Y": 0
+      },
+      {
+       "p": 0.125,
+       "X": 1,
+       "Y": 0
+      },
+      {
+       "p": 0.03125,
+       "X": 1,
+       "Y": 1
+      },
+      {
+       "p": 0.20000000000000004,
+       "X": 2,
+       "Y": 0
+      },
+      {
+       "p": 0.1,
+       "X": 2,
+       "Y": 1
+      },
+      {
+       "p": 0.012500000000000002,
+       "X": 2,
+       "Y": 2
+      },
+      {
+       "p": 0.16000000000000003,
+       "X": 3,
+       "Y": 0
+      },
+      {
+       "p": 0.12000000000000002,
+       "X": 3,
+       "Y": 1
+      },
+      {
+       "p": 0.030000000000000006,
+       "X": 3,
+       "Y": 2
+      },
+      {
+       "p": 0.0025000000000000005,
+       "X": 3,
+       "Y": 3
+      },
+      {
+       "p": 0.06400000000000002,
+       "X": 4,
+       "Y": 0
+      },
+      {
+       "p": 0.06400000000000002,
+       "X": 4,
+       "Y": 1
+      },
+      {
+       "p": 0.024000000000000007,
+       "X": 4,
+       "Y": 2
+      },
+      {
+       "p": 0.004000000000000001,
+       "X": 4,
+       "Y": 3
+      },
+      {
+       "p": 0.00025000000000000006,
+       "X": 4,
+       "Y": 4
+      },
+      {
+       "p": 0.010240000000000003,
+       "X": 5,
+       "Y": 0
+      },
+      {
+       "p": 0.012800000000000002,
+       "X": 5,
+       "Y": 1
+      },
+      {
+       "p": 0.006400000000000003,
+       "X": 5,
+       "Y": 2
+      },
+      {
+       "p": 0.0016000000000000007,
+       "X": 5,
+       "Y": 3
+      },
+      {
+       "p": 0.00020000000000000006,
+       "X": 5,
+       "Y": 4
+      },
+      {
+       "p": 1.0000000000000003e-05,
+       "X": 5,
+       "Y": 5
+      }
+     ],
+     "event": "X == 3",
+     "given": "Y == 1"
+    }
+   },
+   "rubric": [
+    {
+     "text": "נוסחת בייס: $\\frac{P(Y=k/X=n)P(X=n)}{P(Y=k)}$",
+     "points": 2
+    },
+    {
+     "text": "הצבת בינומי $\\mathrm{Bin}(n,Q)$, בינומי $\\mathrm{Bin}(N,p)$ ו-$\\mathrm{Bin}(N,pQ)$",
+     "points": 1
+    },
+    {
+     "text": "פישוט ושימוש ב-$\\binom nk\\binom Nn=\\binom Nk\\binom{N-k}{n-k}$",
+     "points": 1
+    },
+    {
+     "text": "התוצאה: בינומי בפרמטר $\\tilde p=\\frac{1-p}{1-pQ}$ על מספר הנעדרים",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "להניח ש-$X$ ו-$Y$ בלתי תלויים: $Y\\le X$ ולכן תלויים."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איזו נוסחה מתאימה ל-$P(X=n/Y=k)$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "בייס, עם $P(Y=k/X=n)=\\binom nkQ^k(1-Q)^{n-k}$"
+      },
+      {
+       "id": "b",
+       "value": "הסתברות שלמה על $Y$"
+      },
+      {
+       "id": "c",
+       "value": "$P(X=n)P(Y=k)$"
+      },
+      {
+       "id": "d",
+       "value": "בינומית $\\mathrm{Bin}(N,p)$ בלבד"
+      }
+     ],
+     "correctId": "a",
+     "explain": "מחשבים הסתברות לסיבה בהינתן התוצאה: בייס."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.5$, $Q=0.2$: $\\tilde p=\\frac{1-p}{1-pQ}$ (עד חמש ספרות).",
+     "answer": 0.5555555555555556,
+     "tol": 0.0002,
+     "explain": "$\\frac{0.5}{0.9}\\approx0.55556$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$N=5$, $k=1$: $P(X=3/Y=1)$ (עד חמש ספרות).",
+     "answer": 0.36579789666209417,
+     "tol": 0.0002,
+     "explain": "$\\binom{4}{2}\\tilde p^2(1-\\tilde p)^2=6\\cdot0.30864\\cdot0.19753\\approx0.36580$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 6,
@@ -436,7 +1756,126 @@
    "confidence": "high",
    "points": 10,
    "part": "א",
-   "contextId": "c6"
+   "contextId": "c6",
+   "sim": {
+    "kind": "circuit",
+    "estimate": "P(Q) ב-p=0.6",
+    "exact": 0.863808,
+    "params": {
+     "event": "S",
+     "source": "L",
+     "sink": "Rt",
+     "edges": [
+      {
+       "id": "A",
+       "from": "L",
+       "to": "Tp",
+       "p": 0.6
+      },
+      {
+       "id": "C",
+       "from": "Tp",
+       "to": "Rt",
+       "p": 0.6
+      },
+      {
+       "id": "B",
+       "from": "Tp",
+       "to": "M",
+       "p": 0.6
+      },
+      {
+       "id": "D",
+       "from": "L",
+       "to": "M",
+       "p": 0.6
+      },
+      {
+       "id": "E",
+       "from": "M",
+       "to": "Rt",
+       "p": 0.6
+      },
+      {
+       "id": "F",
+       "from": "L",
+       "to": "Rt",
+       "p": 0.6
+      }
+     ]
+    }
+   },
+   "rubric": [
+    {
+     "text": "פיצול לפי $B$ (היחידה שמחברת את הצומת העליון והמרכזי)",
+     "points": 2
+    },
+    {
+     "text": "$B$ פועלת: $F\\|\\bigl((A\\|D)-(C\\|E)\\bigr)$ ולכן $P(Q/B)=p+(2p-p^2)^2-p(2p-p^2)^2$",
+     "points": 3
+    },
+    {
+     "text": "$B$ לא פועלת: $F\\|\\bigl((A-C)\\|(D-E)\\bigr)$ ולכן $P(Q/\\overline B)=p+(2p^2-p^4)-p(2p^2-p^4)$",
+     "points": 3
+    },
+    {
+     "text": "הצבה ופישוט: $P(Q)=p(1+2p-7p^3+7p^4-2p^5)$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לנסות לצמצם את המעגל כטורי-מקבילי: היחידה $B$ מונעת זאת.",
+    "לשכוח את היחידה $F$ שמקבילה לכל השאר (הצומת השמאלי מחובר ישירות לימני)."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "המעגל הוא גרף עם חמישה מסלולים חופפים. איזו גישה מתאימה?",
+     "options": [
+      {
+       "id": "a",
+       "value": "נוסחת ההסתברות השלמה על היחידה $B$ שמונעת צמצום"
+      },
+      {
+       "id": "b",
+       "value": "צמצום טורי-מקבילי ישיר"
+      },
+      {
+       "id": "c",
+       "value": "בינומית על מספר היחידות הפועלות"
+      },
+      {
+       "id": "d",
+       "value": "בייס"
+      }
+     ],
+     "correctId": "a",
+     "explain": "אחרי התניה ב-$B$ (פועלת או לא) המעגל נעשה טורי-מקבילי. בינומית אינה מתחשבת באילו יחידות פועלות."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$: $P(Q/B)$ (עד חמש ספרות).",
+     "answer": 0.88224,
+     "tol": 0.0001,
+     "explain": "$0.6+0.7056-0.6\\cdot0.7056=0.88224$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$: $P(Q/\\overline B)$ (עד חמש ספרות).",
+     "answer": 0.83616,
+     "tol": 0.0001,
+     "explain": "$0.6+0.5904-0.6\\cdot0.5904=0.83616$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(Q)$? (עד שש ספרות)",
+     "answer": 0.863808,
+     "tol": 1e-05,
+     "explain": "$0.6\\cdot0.88224+0.4\\cdot0.83616=0.863808=p(1+2p-7p^3+7p^4-2p^5)$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 6,
@@ -449,7 +1888,122 @@
    "confidence": "high",
    "points": 5,
    "part": "ב",
-   "contextId": "c6"
+   "contextId": "c6",
+   "sim": {
+    "kind": "circuit",
+    "estimate": "P(B לא פועלת | Q) ב-p=0.6",
+    "exact": 0.3871971549233163,
+    "params": {
+     "event": "B == 0",
+     "source": "L",
+     "sink": "Rt",
+     "edges": [
+      {
+       "id": "A",
+       "from": "L",
+       "to": "Tp",
+       "p": 0.6
+      },
+      {
+       "id": "C",
+       "from": "Tp",
+       "to": "Rt",
+       "p": 0.6
+      },
+      {
+       "id": "B",
+       "from": "Tp",
+       "to": "M",
+       "p": 0.6
+      },
+      {
+       "id": "D",
+       "from": "L",
+       "to": "M",
+       "p": 0.6
+      },
+      {
+       "id": "E",
+       "from": "M",
+       "to": "Rt",
+       "p": 0.6
+      },
+      {
+       "id": "F",
+       "from": "L",
+       "to": "Rt",
+       "p": 0.6
+      }
+     ],
+     "given": "S == 1"
+    }
+   },
+   "rubric": [
+    {
+     "text": "נוסחת בייס: $\\frac{P(Q/\\overline B)P(\\overline B)}{P(Q)}$",
+     "points": 2
+    },
+    {
+     "text": "הצבת $P(Q/\\overline B)$ ו-$P(Q)$ מסעיף א",
+     "points": 2
+    },
+    {
+     "text": "פישוט לשבר פולינומי",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "להציב $P(Q/B)$ במקום $P(Q/\\overline B)$, או לשכוח את הגורם $P(\\overline B)=1-p$."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איזו נוסחה מתאימה ל-$P(\\overline B/Q)$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "בייס: $\\frac{P(Q/\\overline B)(1-p)}{P(Q)}$"
+      },
+      {
+       "id": "b",
+       "value": "$1-p$"
+      },
+      {
+       "id": "c",
+       "value": "$P(Q/\\overline B)$"
+      },
+      {
+       "id": "d",
+       "value": "$1-P(Q)$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "מחשבים הסתברות לסיבה בהינתן התוצאה: בייס."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$: $P(Q/\\overline B)$ (עד חמש ספרות).",
+     "answer": 0.83616,
+     "tol": 0.0001,
+     "explain": "$0.83616$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$: $P(Q)$ (עד שש ספרות).",
+     "answer": 0.863808,
+     "tol": 1e-05,
+     "explain": "$0.863808$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(\\overline B/Q)$? (עד חמש ספרות)",
+     "answer": 0.3871971549233163,
+     "tol": 0.0002,
+     "explain": "$\\frac{0.83616\\cdot0.4}{0.863808}\\approx0.38720$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 6,
@@ -462,7 +2016,92 @@
    "confidence": "high",
    "points": 5,
    "part": "ג",
-   "contextId": "c6"
+   "contextId": "c6",
+   "sim": {
+    "kind": "circuit",
+    "estimate": "P(Q | בדיוק יחידה אחת נכשלה) ב-p=0.6",
+    "exact": 1,
+    "params": {
+     "event": "S == 1",
+     "source": "L",
+     "sink": "Rt",
+     "edges": [
+      {
+       "id": "A",
+       "from": "L",
+       "to": "Tp",
+       "p": 0.6
+      },
+      {
+       "id": "C",
+       "from": "Tp",
+       "to": "Rt",
+       "p": 0.6
+      },
+      {
+       "id": "B",
+       "from": "Tp",
+       "to": "M",
+       "p": 0.6
+      },
+      {
+       "id": "D",
+       "from": "L",
+       "to": "M",
+       "p": 0.6
+      },
+      {
+       "id": "E",
+       "from": "M",
+       "to": "Rt",
+       "p": 0.6
+      },
+      {
+       "id": "F",
+       "from": "L",
+       "to": "Rt",
+       "p": 0.6
+      }
+     ],
+     "given": "A + B + C + D + E + F == 5"
+    }
+   },
+   "rubric": [
+    {
+     "text": "בדיוק יחידה אחת נכשלה, חמש האחרות פועלות",
+     "points": 1
+    },
+    {
+     "text": "כל חתך מינימלי כולל לפחות שתי יחידות",
+     "points": 2
+    },
+    {
+     "text": "לכן המעגל פועל בהסתברות $1$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לחשב $P(Q)$ במקום $P(Q/\\text{exactly one fails})$.",
+    "לשכוח שהתנאי מכוון למצבים שבהם בדיוק יחידה אחת נכשלה."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "מבין ששת המצבים שבהם בדיוק יחידה אחת נכשלה, בכמה המעגל אינו פועל?",
+     "answer": 0.0,
+     "tol": 0,
+     "explain": "כל חתך מינימלי כולל לפחות שתי יחידות; בדיקה מפורשת נותנת $0$ מצבים."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי ההסתברות שהמעגל פועל בהינתן שבדיוק יחידה אחת נכשלה?",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "בכל אחד מששת המצבים השווי-הסתברות המעגל פועל."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 6,
@@ -475,7 +2114,98 @@
    "confidence": "high",
    "points": 5,
    "part": "ד",
-   "contextId": "c6"
+   "contextId": "c6",
+   "sim": {
+    "kind": "circuit",
+    "estimate": "P(כולן פועלות | Q) ב-p=0.6",
+    "exact": 0.05401200266725939,
+    "params": {
+     "event": "A + B + C + D + E + F == 6",
+     "source": "L",
+     "sink": "Rt",
+     "edges": [
+      {
+       "id": "A",
+       "from": "L",
+       "to": "Tp",
+       "p": 0.6
+      },
+      {
+       "id": "C",
+       "from": "Tp",
+       "to": "Rt",
+       "p": 0.6
+      },
+      {
+       "id": "B",
+       "from": "Tp",
+       "to": "M",
+       "p": 0.6
+      },
+      {
+       "id": "D",
+       "from": "L",
+       "to": "M",
+       "p": 0.6
+      },
+      {
+       "id": "E",
+       "from": "M",
+       "to": "Rt",
+       "p": 0.6
+      },
+      {
+       "id": "F",
+       "from": "L",
+       "to": "Rt",
+       "p": 0.6
+      }
+     ],
+     "given": "S == 1"
+    }
+   },
+   "rubric": [
+    {
+     "text": "בייס: $\\frac{P(Q/\\text{all})P(\\text{all})}{P(Q)}$",
+     "points": 2
+    },
+    {
+     "text": "$P(Q/\\text{all})=1$ ו-$P(\\text{all})=p^6$",
+     "points": 2
+    },
+    {
+     "text": "חלוקה ב-$P(Q)$ וצמצום: $\\frac{p^5}{1+2p-7p^3+7p^4-2p^5}$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לכתוב $P(\\text{all})=p^5$ (חמש יחידות) במקום $p^6$."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$: $P(Q)$ (עד שש ספרות).",
+     "answer": 0.863808,
+     "tol": 1e-05,
+     "explain": "$0.863808$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$: ההסתברות שכל שש היחידות פועלות, $p^6$ (עד חמש ספרות).",
+     "answer": 0.046656,
+     "tol": 1e-05,
+     "explain": "$0.6^6=0.046656$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי ההסתברות שכל היחידות פועלות בהינתן שהמעגל פועל? (עד חמש ספרות)",
+     "answer": 0.05401200266725939,
+     "tol": 0.0001,
+     "explain": "$\\frac{0.046656}{0.863808}\\approx0.05401$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   }
  ]
 }
