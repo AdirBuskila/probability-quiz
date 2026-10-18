@@ -10,7 +10,7 @@ Transcription notes
   starts each question text (ב-2 for the second).
 - Q3(ה,ו): the official solution is only the word "כן"; the one-line reason added is read off the official joint
   table / official Cov formula.
-- Q1 region data is in tools/verify/24A-C/regions.json (RAW_SCHEMA has no `region` field).
+- Q1 area items carry `region` (area figure) and, with the other numeric parts, `sim`: see EXTRAS near the end.
 """
 import json, pathlib
 
@@ -279,6 +279,68 @@ exam = {
     },
     "questions": questions,
 }
+# ---- area figures (region.js) and "simulate it" specs (sim.js), keyed by (num, part).
+# Regions were moved here from the old verify regions file; every sim exact is the shipped final answer.
+from math import pi, log, e as _E
+U = {"x": [0, 1], "y": [0, 1]}
+XY = {"x": "X", "y": "Y"}
+
+
+def lin(a, b, c, op):
+    return {"a": a, "b": b, "c": c, "op": op}
+
+
+def REG(event, exact, caption, given=None, space=U):
+    r = {"space": space, "labels": XY, "event": event, "exact": exact, "caption": caption}
+    if given:
+        r["given"] = given
+    return r
+
+
+def AREA(label, exact, **kw):
+    return {"kind": "area", "estimate": label, "exact": exact, "params": dict(kw) if kw else {"fromRegion": True}}
+
+
+def DICE(label, exact, n, event, given=None, weights=None):
+    p = {"n": n, "event": event}
+    if given:
+        p["given"] = given
+    if weights:
+        p["weights"] = weights
+    return {"kind": "dice", "estimate": label, "exact": exact, "params": p}
+
+
+def PDF(label, exact, pieces, event, given=None):
+    p = {"pieces": [{"from": a, "to": b, "expr": x} for a, b, x in pieces], "event": event}
+    if given:
+        p["given"] = given
+    return {"kind": "pdf", "estimate": label, "exact": exact, "params": p}
+
+
+EXTRAS = {
+    (1, "א"): {"region": REG([lin(1, 1, 1, "<=")], 1 / 2, "המשולש ה״גדול״: Y<=1-X"),
+               "sim": AREA("P(O in big triangle)", 1 / 2)},
+    (1, "ב"): {"region": REG([lin(1, 0, "2/3", "<")], 8 / 9, "האירוע S1<1/3, כלומר X<2/3, בהינתן המשולש הגדול",
+                             given=[lin(1, 1, 1, "<=")]),
+               "sim": AREA("P(S1<1/3 | O in triangle)", 8 / 9)},
+    (1, "ג"): {"region": REG([lin(1, 1, "2/3", ">")], 5 / 9, "האירוע S1+S2>1/3, כלומר X+Y>2/3, בהינתן המשולש הגדול",
+                             given=[lin(1, 1, 1, "<=")]),
+               "sim": AREA("P(S1+S2>1/3 | O in triangle)", 5 / 9)},
+    (1, "ד"): {"region": REG([lin(2, 1, 1, "<")], 1 / 2, "האירוע S3>S1, כלומר Y<1-2X, בהינתן המשולש הגדול",
+                             given=[lin(1, 1, 1, "<=")]),
+               "sim": AREA("P(S3>S1 | O in triangle)", 1 / 2)},
+    (2, "ב"): {"sim": DICE("P(sum = 5), biased die", 8 / 81, 2, "sum == 5", weights=[1, 2, 1, 2, 1, 2])},
+    (2, "ג"): {"sim": DICE("P(sum = 5), biased die", 5 / 243, 3, "sum == 5", weights=[1, 2, 1, 2, 1, 2])},
+    (2, "ד"): {"sim": DICE("P(sum = 5 | d1+d2 = 2)", 1 / 9, 3, "sum == 5", "d1+d2 == 2", weights=[1, 2, 1, 2, 1, 2])},
+    (2, "ה"): {"sim": DICE("P(sum = 5 | d1<d2)", 5 / 297, 3, "sum == 5", "d1 < d2", weights=[1, 2, 1, 2, 1, 2])},
+    (4, "ג"): {"sim": PDF("P(X<=5/4 | X>1/2)", 5 / 7, [(0, 1, "x"), (1, "3/2", "1")], "x <= 5/4", "x > 1/2")},
+}
+for _q in questions:
+    _x = EXTRAS.get((_q["num"], _q.get("part")))
+    if _x:
+        _q.update(_x)
+
+
 OUT.parent.mkdir(parents=True, exist_ok=True)
 OUT.write_text(json.dumps(exam, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
 print(f"wrote {OUT.name}: {len(questions)} items")

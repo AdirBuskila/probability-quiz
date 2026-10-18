@@ -41,7 +41,41 @@
    "confidence": "high",
    "points": 7,
    "part": "א",
-   "contextId": "c1"
+   "contextId": "c1",
+   "region": {
+    "space": {
+     "x": [
+      0,
+      1
+     ],
+     "y": [
+      0,
+      1
+     ]
+    },
+    "labels": {
+     "x": "X",
+     "y": "Y"
+    },
+    "event": [
+     {
+      "a": 1,
+      "b": 1,
+      "c": 1,
+      "op": "<="
+     }
+    ],
+    "exact": 0.5,
+    "caption": "המשולש ה״גדול״: Y<=1-X"
+   },
+   "sim": {
+    "kind": "area",
+    "estimate": "P(O in big triangle)",
+    "exact": 0.5,
+    "params": {
+     "fromRegion": true
+    }
+   }
   },
   {
    "num": 1,
@@ -54,7 +88,49 @@
    "confidence": "high",
    "points": 7,
    "part": "ב",
-   "contextId": "c1"
+   "contextId": "c1",
+   "region": {
+    "space": {
+     "x": [
+      0,
+      1
+     ],
+     "y": [
+      0,
+      1
+     ]
+    },
+    "labels": {
+     "x": "X",
+     "y": "Y"
+    },
+    "event": [
+     {
+      "a": 1,
+      "b": 0,
+      "c": "2/3",
+      "op": "<"
+     }
+    ],
+    "exact": 0.8888888888888888,
+    "caption": "האירוע S1<1/3, כלומר X<2/3, בהינתן המשולש הגדול",
+    "given": [
+     {
+      "a": 1,
+      "b": 1,
+      "c": 1,
+      "op": "<="
+     }
+    ]
+   },
+   "sim": {
+    "kind": "area",
+    "estimate": "P(S1<1/3 | O in triangle)",
+    "exact": 0.8888888888888888,
+    "params": {
+     "fromRegion": true
+    }
+   }
   },
   {
    "num": 1,
@@ -67,7 +143,49 @@
    "confidence": "high",
    "points": 7,
    "part": "ג",
-   "contextId": "c1"
+   "contextId": "c1",
+   "region": {
+    "space": {
+     "x": [
+      0,
+      1
+     ],
+     "y": [
+      0,
+      1
+     ]
+    },
+    "labels": {
+     "x": "X",
+     "y": "Y"
+    },
+    "event": [
+     {
+      "a": 1,
+      "b": 1,
+      "c": "2/3",
+      "op": ">"
+     }
+    ],
+    "exact": 0.5555555555555556,
+    "caption": "האירוע S1+S2>1/3, כלומר X+Y>2/3, בהינתן המשולש הגדול",
+    "given": [
+     {
+      "a": 1,
+      "b": 1,
+      "c": 1,
+      "op": "<="
+     }
+    ]
+   },
+   "sim": {
+    "kind": "area",
+    "estimate": "P(S1+S2>1/3 | O in triangle)",
+    "exact": 0.5555555555555556,
+    "params": {
+     "fromRegion": true
+    }
+   }
   },
   {
    "num": 1,
@@ -80,7 +198,49 @@
    "confidence": "high",
    "points": 4,
    "part": "ד",
-   "contextId": "c1"
+   "contextId": "c1",
+   "region": {
+    "space": {
+     "x": [
+      0,
+      1
+     ],
+     "y": [
+      0,
+      1
+     ]
+    },
+    "labels": {
+     "x": "X",
+     "y": "Y"
+    },
+    "event": [
+     {
+      "a": 2,
+      "b": 1,
+      "c": 1,
+      "op": "<"
+     }
+    ],
+    "exact": 0.5,
+    "caption": "האירוע S3>S1, כלומר Y<1-2X, בהינתן המשולש הגדול",
+    "given": [
+     {
+      "a": 1,
+      "b": 1,
+      "c": 1,
+      "op": "<="
+     }
+    ]
+   },
+   "sim": {
+    "kind": "area",
+    "estimate": "P(S3>S1 | O in triangle)",
+    "exact": 0.5,
+    "params": {
+     "fromRegion": true
+    }
+   }
   },
   {
    "num": 2,
@@ -104,7 +264,24 @@
    "official": true,
    "confidence": "high",
    "points": 5,
-   "part": "ב"
+   "part": "ב",
+   "sim": {
+    "kind": "dice",
+    "estimate": "P(sum = 5), biased die",
+    "exact": 0.09876543209876543,
+    "params": {
+     "n": 2,
+     "event": "sum == 5",
+     "weights": [
+      1,
+      2,
+      1,
+      2,
+      1,
+      2
+     ]
+    }
+   }
   },
   {
    "num": 2,
@@ -116,7 +293,24 @@
    "official": true,
    "confidence": "high",
    "points": 5,
-   "part": "ג"
+   "part": "ג",
+   "sim": {
+    "kind": "dice",
+    "estimate": "P(sum = 5), biased die",
+    "exact": 0.0205761316872428,
+    "params": {
+     "n": 3,
+     "event": "sum == 5",
+     "weights": [
+      1,
+      2,
+      1,
+      2,
+      1,
+      2
+     ]
+    }
+   }
   },
   {
    "num": 2,
@@ -128,7 +322,25 @@
    "official": true,
    "confidence": "high",
    "points": 5,
-   "part": "ד"
+   "part": "ד",
+   "sim": {
+    "kind": "dice",
+    "estimate": "P(sum = 5 | d1+d2 = 2)",
+    "exact": 0.1111111111111111,
+    "params": {
+     "n": 3,
+     "event": "sum == 5",
+     "given": "d1+d2 == 2",
+     "weights": [
+      1,
+      2,
+      1,
+      2,
+      1,
+      2
+     ]
+    }
+   }
   },
   {
    "num": 2,
@@ -140,7 +352,25 @@
    "official": true,
    "confidence": "high",
    "points": 5,
-   "part": "ה"
+   "part": "ה",
+   "sim": {
+    "kind": "dice",
+    "estimate": "P(sum = 5 | d1<d2)",
+    "exact": 0.016835016835016835,
+    "params": {
+     "n": 3,
+     "event": "sum == 5",
+     "given": "d1 < d2",
+     "weights": [
+      1,
+      2,
+      1,
+      2,
+      1,
+      2
+     ]
+    }
+   }
   },
   {
    "num": 3,
@@ -257,7 +487,28 @@
    "confidence": "high",
    "points": 5,
    "part": "ג",
-   "image": "images/exams/24A-C-Q4-pdf.png"
+   "image": "images/exams/24A-C-Q4-pdf.png",
+   "sim": {
+    "kind": "pdf",
+    "estimate": "P(X<=5/4 | X>1/2)",
+    "exact": 0.7142857142857143,
+    "params": {
+     "pieces": [
+      {
+       "from": 0,
+       "to": 1,
+       "expr": "x"
+      },
+      {
+       "from": 1,
+       "to": "3/2",
+       "expr": "1"
+      }
+     ],
+     "event": "x <= 5/4",
+     "given": "x > 1/2"
+    }
+   }
   },
   {
    "num": 5,
