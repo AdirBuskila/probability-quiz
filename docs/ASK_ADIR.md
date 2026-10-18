@@ -20,6 +20,13 @@ Open questions for Adir. One entry per item; the orchestrator moves it to Resolv
 - Needed: ship the corrected 1/2 (official:false, solved) or keep the printed 5/9?
 - Status: hold (Q3d held, in the raw JSON with the official text; not in the bank)
 
+### 24A-E Q3 bonus (ה) - no official solution for cov[D,T]
+- Path: official PDF of sitting 24A-E (handwritten solutions)
+- Page: exam p.2 (Q3 bonus, 5 pts, optional); solutions end after Q3 ד on p.8
+- Question: the bonus part asks cov[D,T] for D = sum of D_j, T = sum of T_j; the official solution has no answer for it.
+- Needed: route to the solver (no-key); not a key dispute.
+- Status: hold (no-key; question text transcribed, not in the bank)
+
 ## Resolved
 
 ### 26A-B Q3 a, b, d - official key uses different q2/q4 labels than the printed question
