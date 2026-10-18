@@ -1,0 +1,12 @@
+{
+ "verdict": "agree",
+ "questions": 42,
+ "disagreements": 0,
+ "notes": [
+  "All keys match own enumeration; findbug indexes (C03-Q4=2, C06-Q4=2) unique.",
+  "All 29 SVG diagrams rendered; each question's image matches the circuit in its text (series/parallel/bridge, labels, probabilities); bridge sim topology matches diagram.",
+  "Boss/bank ids verified, topic circuits."
+ ],
+ "refuter": "blind-refuter-a",
+ "method": "own hand derivation + exact fractions/grid + own Monte Carlo (4e6) for geo sims/regions, own grid integration for pdf sims, enumeration for circ; own parsing of region/sim specs; diagrams rendered and inspected"
+}

@@ -5062,24 +5062,6 @@ window.COURSES = {
        "promptHtml": "<span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>X</mi><mo>∼</mo><msub><mi>U</mi><mi>c</mi></msub><mo stretchy=\"false\">(</mo><mn>0</mn><mo separator=\"true\">,</mo><mn>1</mn><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">X\\sim U_c(0,1)</annotation></semantics></math></span> ו-<span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>Y</mi><mo>∼</mo><msub><mi>U</mi><mi>c</mi></msub><mo stretchy=\"false\">(</mo><mn>0</mn><mo separator=\"true\">,</mo><mn>2</mn><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">Y\\sim U_c(0,2)</annotation></semantics></math></span> בלתי תלויים, והנקודה <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mo stretchy=\"false\">(</mo><mi>X</mi><mo separator=\"true\">,</mo><mi>Y</mi><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">(X,Y)</annotation></semantics></math></span> נבחרת אחיד במלבן <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi mathvariant=\"normal\">Ω</mi></mrow><annotation encoding=\"application/x-tex\">\\Omega</annotation></semantics></math></span>. מהו <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi mathvariant=\"normal\">∣</mi><mi mathvariant=\"normal\">Ω</mi><mi mathvariant=\"normal\">∣</mi></mrow><annotation encoding=\"application/x-tex\">|\\Omega|</annotation></semantics></math></span>, שטח מרחב המדגם?",
        "explainHtml": "המלבן הוא <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mo stretchy=\"false\">(</mo><mn>0</mn><mo separator=\"true\">,</mo><mn>1</mn><mo stretchy=\"false\">)</mo><mo>×</mo><mo stretchy=\"false\">(</mo><mn>0</mn><mo separator=\"true\">,</mo><mn>2</mn><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">(0,1)\\times(0,2)</annotation></semantics></math></span>, ושטחו <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>1</mn><mo>⋅</mo><mn>2</mn><mo>=</mo><mn>2</mn></mrow><annotation encoding=\"application/x-tex\">1\\cdot2=2</annotation></semantics></math></span>. התשובה <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>1</mn></mrow><annotation encoding=\"application/x-tex\">1</annotation></semantics></math></span> היא שטח ריבוע היחידה, וזה לא מרחב המדגם כאן."
       },
-      "sim": {
-       "kind": "area",
-       "estimate": "P(Y<1)",
-       "exact": 0.5,
-       "params": {
-        "space": {
-         "x": [
-          0,
-          1
-         ],
-         "y": [
-          0,
-          2
-         ]
-        },
-        "event": "y<1"
-       }
-      },
       "recap": "$|\\Omega|$ הוא שטח המלבן $a\\cdot b$, לא תמיד $1$.",
       "recapHtml": "<span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi mathvariant=\"normal\">∣</mi><mi mathvariant=\"normal\">Ω</mi><mi mathvariant=\"normal\">∣</mi></mrow><annotation encoding=\"application/x-tex\">|\\Omega|</annotation></semantics></math></span> הוא שטח המלבן <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>a</mi><mo>⋅</mo><mi>b</mi></mrow><annotation encoding=\"application/x-tex\">a\\cdot b</annotation></semantics></math></span>, לא תמיד <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>1</mn></mrow><annotation encoding=\"application/x-tex\">1</annotation></semantics></math></span>."
      },

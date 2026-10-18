@@ -1,0 +1,12 @@
+{
+ "verdict": "agree",
+ "questions": 42,
+ "disagreements": 0,
+ "notes": [
+  "All numeric/mcq keys and the 3 findbug indexes (C02-Q5=2, C04-Q5=1, C07-Q6=2) match; C05-Q4 graph key checked against rendered images.",
+  "Sim specs integrate to 1 and give stated exact values (own grid integration). Some sims (C02,C03,C04) illustrate the solved density rather than the asked quantity; acceptable.",
+  "Boss bank ids verified, continuous_rv."
+ ],
+ "refuter": "blind-refuter-a",
+ "method": "own hand derivation + exact fractions/grid + own Monte Carlo (4e6) for geo sims/regions, own grid integration for pdf sims, enumeration for circ; own parsing of region/sim specs; diagrams rendered and inspected"
+}

@@ -1,0 +1,12 @@
+{
+ "verdict": "agree",
+ "questions": 42,
+ "disagreements": 0,
+ "notes": [
+  "All 42 keys match own exact answers; all 35 regions and 36 sims reproduce the key under independent evaluation.",
+  "Fixed: geo-C01-Q1 sim showed P(Y<1) next to a question asking |Omega|; removed it.",
+  "Boss bank ids exist, verified sittings, topic = area method."
+ ],
+ "refuter": "blind-refuter-a",
+ "method": "own hand derivation + exact fractions/grid + own Monte Carlo (4e6) for geo sims/regions, own grid integration for pdf sims, enumeration for circ; own parsing of region/sim specs; diagrams rendered and inspected"
+}

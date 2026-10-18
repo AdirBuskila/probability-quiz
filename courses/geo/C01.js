@@ -23,7 +23,6 @@ COURSE_LEVEL("geo", {
       step: { type: "numeric", answer: 2, tol: 0,
               prompt: "$X\\sim U_c(0,1)$ ו-$Y\\sim U_c(0,2)$ בלתי תלויים, והנקודה $(X,Y)$ נבחרת אחיד במלבן $\\Omega$. מהו $|\\Omega|$, שטח מרחב המדגם?",
               explain: "המלבן הוא $(0,1)\\times(0,2)$, ושטחו $1\\cdot2=2$. התשובה $1$ היא שטח ריבוע היחידה, וזה לא מרחב המדגם כאן." },
-      sim: { kind: "area", estimate: "P(Y<1)", exact: 0.5, params: { space: { x: [0, 1], y: [0, 2] }, event: "y<1" } },
       recap: "$|\\Omega|$ הוא שטח המלבן $a\\cdot b$, לא תמיד $1$." },
     { id: "geo-C01-Q2",
       step: { type: "numeric", answer: 6, tol: 0,
