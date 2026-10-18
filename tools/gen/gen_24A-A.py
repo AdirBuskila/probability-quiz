@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Generator for tools/raw/24A-A.json -- probability (course 20021), semester A 2024, moed A (25.03.2024).
 This is the 20021 group; the 20021-80 group of 3.4.2024 is 24A-D. 6 questions, 22 items
-(Q1 5, Q2 4, Q3 4, Q4 3, Q5 3, Q6 3), 25 points each. The two bonus parts (Q2 ד, Q3 ד) are held (no-key).
+(Q1 5, Q2 4, Q3 4, Q4 3, Q5 3, Q6 3), 25 points each. The two bonus parts (Q2 ד, Q3 ד) have no key and are solved.
 Run: PYTHONUTF8=1 py -W error::SyntaxWarning tools/gen/gen_24A-A.py
 
 Source: exam pp.1-3, official handwritten solutions pp.4-19.
@@ -9,8 +9,9 @@ Transcription notes
 - Part keys are single letters. Q1 prints א-1, א-2, א-3, ב, ג -> keys א ב ג ד ה (a=א-1, b=א-2, c=א-3, d=ב, e=ג).
   The printed label is the bold token at the start of each question text.
 - Q2 asks for the probability that the running sum of a fair N-sided die ever equals N ("שאי פעם נגיע לסכום").
-- Q2(ד) and Q3(ד) are bonus parts ("אין חובה לפתור"); the official solution has no answer for either -> hold no-key.
-  (Q2 gives the pattern P_N = p(1+p)^(N-1) only through P_3, P_4, P_5.)
+- Q2(ד) and Q3(ד) are bonus parts ("אין חובה לפתור"); the official solution has no answer for either -> solved
+  (solutionSource "solved", official:false): P_N = (1/N)(1+1/N)^(N-1) (compositions of N) and
+  E[X1 | X=n] = n N1/(N1+N2) (hypergeometric mean). Verified exactly and by Monte Carlo in tools/verify/24A-A/check.py.
 - Q5(ב) has the main solution and the official short alternative (sum of Bernoulli).
 - Q6(ב): the official solution has two methods (conditioning on A,E and on A alone); both are given.
 - The thumbnail of the exam cover in Q5 is decoration and is not shipped.
@@ -126,11 +127,18 @@ questions.append(Q(
 $$P_5=p\left(1+4p+6p^2+4p^3+p^4\right)=p(1+p)^4=\frac15\left(\frac65\right)^4.$$""",
     10))
 
-questions.append({
-    "num": 2, "part": "ד", "kind": "computation", "topic": "special_discrete", "points": 3,
-    "question": r"**סעיף בונוס** – אין חובה לפתור: מטילים קובייה מאוזנת בעלת $N$ פאות ומסכמים את התוצאות. מהי ההסתברות $P_N$ שאי פעם נגיע לסכום התוצאות השווה ל-$N$? **אליך לתת חישוב מפורט.**",
-    "hold": "no-key",
-})
+questions.append(Q(
+    2, "ד", "special_discrete",
+    r"**סעיף בונוס** – אין חובה לפתור: מטילים קובייה מאוזנת בעלת $N$ פאות ומסכמים את התוצאות. מהי ההסתברות $P_N$ שאי פעם נגיע לסכום התוצאות השווה ל-$N$? **אליך לתת חישוב מפורט.**",
+    r"""**פתרון (אין פתרון רשמי לסעיף הבונוס).**
+ההסתברות לקבל תוצאה ספציפית בהטלה היא $p=\dfrac1N$. כמו בסעיפים א-ג, נפריד לפי מספר ההטלות $k$ שבהן מגיעים לסכום $N$ בפעם הראשונה ($k=1,\dots,N$).
+מגיעים לסכום $N$ בדיוק אחרי $k$ הטלות אם ורק אם $k$ התוצאות הראשונות הן מספרים שלמים חיוביים שסכומם $N$ (כל תוצאה כזו קטנה או שווה ל-$N$, ולכן היא אפשרית בקובייה). מספר הסדרות הסדורות של $k$ מספרים שלמים חיוביים שסכומם $N$ הוא $\binom{N-1}{k-1}$ (בוחרים $k-1$ נקודות חיתוך מבין $N-1$ הרווחים), וכל סדרה כזו מתקבלת בהסתברות $p^k$.
+המאורעות עבור ערכי $k$ שונים זרים (הסכום הרץ עולה ממש, ולכן עובר את $N$ לכל היותר פעם אחת). לכן
+$$P_N=\sum_{k=1}^{N}\binom{N-1}{k-1}p^k=p\sum_{j=0}^{N-1}\binom{N-1}{j}p^j=p(1+p)^{N-1}.$$
+כלומר
+$$P_N=\frac1N\left(1+\frac1N\right)^{N-1},$$
+בהתאם לתבנית של $P_3$, $P_4$ ו-$P_5$ בסעיפים א-ג.""",
+    3, solutionSource="solved", official=False))
 
 # ------------------------------------------------------------------ Q3
 Q3_TXT = (r"מחשב מייצר שתי סדרות אקראיות מאותיות $A$ ו-$B$. בסדרה הראשונה $N_1$ אותיות ובסדרה השנייה $N_2$ אותיות. "
@@ -166,12 +174,20 @@ $$=\frac{\binom{N_1}{k}p^k(1-p)^{N_1-k}\cdot\binom{N_2}{n-k}p^{n-k}(1-p)^{N_2-n+
 $$P(X_1=k/X=n)=\frac{\binom{N_1}{k}\binom{N_2}{n-k}}{\binom{N_1+N_2}{n}}.$$""",
     7, contextId="c3"))
 
-questions.append({
-    "num": 3, "part": "ד", "kind": "computation", "topic": "special_discrete", "points": 3,
-    "question": r"**סעיף בונוס** – אין חובה לפתור: אם ידוע כי בשתי הסדרות ביחד האות $A$ מופיעה $n$ פעמים, כמה אותיות $A$ מופיעות בסדרה הראשונה **בממוצע**?",
-    "contextId": "c3",
-    "hold": "no-key",
-})
+questions.append(Q(
+    3, "ד", "special_discrete",
+    r"**סעיף בונוס** – אין חובה לפתור: אם ידוע כי בשתי הסדרות ביחד האות $A$ מופיעה $n$ פעמים, כמה אותיות $A$ מופיעות בסדרה הראשונה **בממוצע**?",
+    r"""**פתרון (אין פתרון רשמי לסעיף הבונוס).**
+צריך את התוחלת המותנית $\mathbb E[X_1/X=n]$. לפי סעיף ג, בהינתן $X=n$ ההתפלגות של $X_1$ היא היפרגאומטרית:
+$$P(X_1=k/X=n)=\frac{\binom{N_1}{k}\binom{N_2}{n-k}}{\binom{N_1+N_2}{n}}.$$
+לכן
+$$\mathbb E[X_1/X=n]=\sum_k k\,\frac{\binom{N_1}{k}\binom{N_2}{n-k}}{\binom{N_1+N_2}{n}}.$$
+נשתמש בזהות $k\binom{N_1}{k}=N_1\binom{N_1-1}{k-1}$ ובזהות ונדרמונד $\sum_k\binom{N_1-1}{k-1}\binom{N_2}{n-k}=\binom{N_1+N_2-1}{n-1}$:
+$$\mathbb E[X_1/X=n]=\frac{N_1\binom{N_1+N_2-1}{n-1}}{\binom{N_1+N_2}{n}}=N_1\cdot\frac{n}{N_1+N_2}.$$
+כלומר
+$$\mathbb E[X_1/X=n]=\frac{nN_1}{N_1+N_2},$$
+התוצאה לא תלויה ב-$p$: בהינתן $n$ אותיות $A$ בסך הכול, כל אחד מ-$N_1+N_2$ המקומות נושא $A$ באותה הסתברות $\frac{n}{N_1+N_2}$, ובסדרה הראשונה יש $N_1$ מקומות.""",
+    3, contextId="c3", solutionSource="solved", official=False))
 
 # ------------------------------------------------------------------ Q4
 Q4_TXT = (r"לפניך גרף עבור פונקציית צפיפות ההסתברות $f_X(x)$ של משתנה מקרי $X$. מתקיים:" "\n"

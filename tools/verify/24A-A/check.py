@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """Verification harness for 24A-A (probability). Run: PYTHONUTF8=1 py tools/verify/24A-A/check.py
 Every final answer: EXACT (fractions / enumeration / sympy / quadrature) AND Monte Carlo (>=10^6 trials, 4 SE).
-Symbolic answers are checked at sample parameter values. The two bonus parts (Q2 d, Q3 d) have no key and are held.
+Symbolic answers are checked at sample parameter values. The two bonus parts (Q2 d, Q3 d) have no key and ship as solved:
+P_N = (1/N)(1+1/N)^(N-1) and E[X1 | X=n] = n N1/(N1+N2), both checked exactly and by MC.
 Output is ASCII only."""
 import itertools, math
 from fractions import Fraction as Fr
@@ -70,8 +71,11 @@ for n, item in ((3, "Q2a"), (4, "Q2b"), (5, "Q2c")):
     p = Fr(1, n)
     off = p * (1 + p) ** (n - 1)
     rec(item, "P_%d = p(1+p)^%d" % (n, n - 1), off, p_hit(n, n), mc_hit(n, N), se_p(float(off)))
-rows.append(("Q2", "P_N = (1/N)(1+1/N)^(N-1) for N=2..9 (pattern behind the held bonus)",
-             all(p_hit(n, n) == Fr(1, n) * (1 + Fr(1, n)) ** (n - 1) for n in range(2, 10)), True, ""))
+rows.append(("Q2d", "P_N = (1/N)(1+1/N)^(N-1) exact for N=2..12 (shipped bonus answer)",
+             all(p_hit(n, n) == Fr(1, n) * (1 + Fr(1, n)) ** (n - 1) for n in range(2, 13)), True, ""))
+for n in (6, 10):
+    off = Fr(1, n) * (1 + Fr(1, n)) ** (n - 1)
+    rec("Q2d", "P_%d = (1/N)(1+1/N)^(N-1) (shipped)" % n, off, p_hit(n, n), mc_hit(n, N), se_p(float(off)))
 rows.append(("Q2", "compositions count C(n-1,k-1) used in the official lists (n=3,4,5)",
              all(sum(1 for c in itertools.product(range(1, n + 1), repeat=k) if sum(c) == n) == math.comb(n - 1, k - 1)
                  for n in (3, 4, 5) for k in range(1, n + 1)), True, ""))
@@ -94,6 +98,18 @@ for N1, N2, p in ((7, 9, 0.35), (4, 6, 0.5), (10, 5, 0.8)):
              (math.comb(N1 + N2, n_) * p ** n_ * (1 - p) ** (N1 + N2 - n_))
         rec("Q3c", "P(X1=%d | X=%d) N1=%d N2=%d" % (k, n_, N1, N2), off, ex, float((X1[mm] == k).mean()),
             math.sqrt(max(off * (1 - off), 1e-9) / mm.sum()), tol=1e-12)
+    # Q3d (bonus, solved): E[X1 | X=n] = n N1/(N1+N2); exact from the joint binomial pmf, MC on the X=n slice
+    for n_d in (n_ - 2, n_, n_ + 2):
+        ship = Fr(n_d * N1, N1 + N2)
+        pp = Fr(p).limit_denominator(100)
+        w = [Fr(math.comb(N1, k)) * pp ** k * (1 - pp) ** (N1 - k) * math.comb(N2, n_d - k) * pp ** (n_d - k) * (1 - pp) ** (N2 - n_d + k)
+             for k in range(0, N1 + 1) if 0 <= n_d - k <= N2]
+        ks = [k for k in range(0, N1 + 1) if 0 <= n_d - k <= N2]
+        ex = sum(k * wk for k, wk in zip(ks, w)) / sum(w)
+        md = Xs == n_d
+        sl = X1[md]
+        rec("Q3d", "E[X1 | X=%d] = nN1/(N1+N2) N1=%d N2=%d p=%s (shipped)" % (n_d, N1, N2, p), ship, ex, float(sl.mean()),
+            float(sl.std() / math.sqrt(md.sum())), tol=1e-12)
 
 # ---------------- Q4
 a_, b_, c_ = sp.symbols("a b c", positive=True)
@@ -182,3 +198,4 @@ bad = [r for r in rows if not (r[2] and r[3])]
 for item, what, ex, mc, det in rows:
     print("%-5s ex=%-4s mc=%-4s %s | %s" % (item, "ok" if ex else "FAIL", "ok" if mc else "FAIL", what, det))
 print("\nTOTAL %d checks, %d failing" % (len(rows), len(bad)))
+raise SystemExit(1 if bad else 0)
