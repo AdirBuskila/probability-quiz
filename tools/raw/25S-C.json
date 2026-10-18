@@ -52,7 +52,42 @@
    "confidence": "high",
    "points": 7,
    "part": "א",
-   "contextId": "c1"
+   "contextId": "c1",
+   "region": {
+    "space": {
+     "x": [
+      0,
+      1
+     ],
+     "y": [
+      1,
+      2
+     ]
+    },
+    "labels": {
+     "x": "b",
+     "y": "L"
+    },
+    "event": [
+     {
+      "a": -1,
+      "b": 1,
+      "c": 0.5,
+      "op": "<="
+     }
+    ],
+    "exact": 0.125,
+    "caption": "האזור L ≤ b + 1/2 (a<1/4)"
+   },
+   "sim": {
+    "kind": "area",
+    "params": {
+     "fromRegion": true
+    },
+    "estimate": "P(a<1/4)",
+    "exact": 0.125,
+    "seed": 12345
+   }
   },
   {
    "num": 1,
@@ -65,7 +100,41 @@
    "confidence": "high",
    "points": 7,
    "part": "ב",
-   "contextId": "c1"
+   "contextId": "c1",
+   "region": {
+    "space": {
+     "x": [
+      0,
+      1
+     ],
+     "y": [
+      1,
+      2
+     ]
+    },
+    "labels": {
+     "x": "b",
+     "y": "L"
+    },
+    "event": [
+     {
+      "a": -1,
+      "b": 1,
+      "c": "4/3",
+      "op": "<="
+     }
+    ],
+    "exact": 0.7777777777777778,
+    "caption": "האזור L ≤ b + 4/3 (a<2/3)"
+   },
+   "sim": {
+    "kind": "area",
+    "params": {
+     "fromRegion": true
+    },
+    "estimate": "P(a<2/3)",
+    "exact": 0.7777777777777778
+   }
   },
   {
    "num": 1,
@@ -78,7 +147,26 @@
    "confidence": "high",
    "points": 8,
    "part": "ג",
-   "contextId": "c1"
+   "contextId": "c1",
+   "sim": {
+    "kind": "area",
+    "params": {
+     "space": {
+      "x": [
+       0,
+       1
+      ],
+      "y": [
+       1,
+       2
+      ]
+     },
+     "measure": "var",
+     "expr": "(y-x)/2"
+    },
+    "estimate": "Var[a]",
+    "exact": 0.041666666666666664
+   }
   },
   {
    "num": 1,
@@ -91,7 +179,29 @@
    "confidence": "high",
    "points": 3,
    "part": "ד",
-   "contextId": "c1"
+   "contextId": "c1",
+   "sim": {
+    "kind": "area",
+    "params": {
+     "space": {
+      "x": [
+       0,
+       1
+      ],
+      "y": [
+       1,
+       2
+      ]
+     },
+     "measure": "cov",
+     "expr": [
+      "(y-x)/2",
+      "x"
+     ]
+    },
+    "estimate": "Cov[a,b]",
+    "exact": -0.041666666666666664
+   }
   },
   {
    "num": 2,
@@ -104,7 +214,28 @@
    "confidence": "high",
    "points": 7,
    "part": "א",
-   "contextId": "c2"
+   "contextId": "c2",
+   "sim": {
+    "kind": "urn",
+    "params": {
+     "values": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+     ],
+     "draws": 2,
+     "replace": false,
+     "event": "v2 % 2 == 1"
+    },
+    "estimate": "P(odd)",
+    "exact": 0.5555555555555556
+   }
   },
   {
    "num": 2,
@@ -117,7 +248,28 @@
    "confidence": "high",
    "points": 7,
    "part": "ב",
-   "contextId": "c2"
+   "contextId": "c2",
+   "sim": {
+    "kind": "urn",
+    "params": {
+     "values": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+     ],
+     "draws": 2,
+     "replace": false,
+     "event": "(v1+v2) % 3 == 0"
+    },
+    "estimate": "P(divisible by 3)",
+    "exact": 0.3333333333333333
+   }
   },
   {
    "num": 2,
@@ -130,7 +282,28 @@
    "confidence": "high",
    "points": 7,
    "part": "ג",
-   "contextId": "c2"
+   "contextId": "c2",
+   "sim": {
+    "kind": "urn",
+    "params": {
+     "values": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+     ],
+     "draws": 2,
+     "replace": false,
+     "event": "v2 == 5"
+    },
+    "estimate": "P(divisible by 5)",
+    "exact": 0.1111111111111111
+   }
   },
   {
    "num": 2,
@@ -143,7 +316,29 @@
    "confidence": "high",
    "points": 4,
    "part": "ד",
-   "contextId": "c2"
+   "contextId": "c2",
+   "sim": {
+    "kind": "urn",
+    "params": {
+     "values": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+     ],
+     "draws": 2,
+     "replace": false,
+     "event": "v2 % 2 == 1",
+     "given": "(v1+v2) % 2 == 0"
+    },
+    "estimate": "P(odd | digit sum even)",
+    "exact": 0.625
+   }
   },
   {
    "num": 3,
@@ -247,7 +442,28 @@
    "confidence": "high",
    "points": 5,
    "part": "ג",
-   "contextId": "c4"
+   "contextId": "c4",
+   "sim": {
+    "kind": "pdf",
+    "params": {
+     "pieces": [
+      {
+       "from": 0,
+       "to": 1,
+       "expr": "x"
+      },
+      {
+       "from": 1,
+       "to": 1.5,
+       "expr": "1"
+      }
+     ],
+     "event": "x <= 5/4",
+     "given": "x > 1/2"
+    },
+    "estimate": "P(X<=5/4 | X>1/2)",
+    "exact": 0.7142857142857143
+   }
   },
   {
    "num": 5,

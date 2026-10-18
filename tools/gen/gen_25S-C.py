@@ -13,7 +13,7 @@ Transcription notes
   the solution redraws for each conditioning case are described in words.
 - Q6 part ג: the official solution concludes E[Y] >= E[X]; strictness follows from the printed condition that the
   n_i are all different (variance > 0), which is added as a remark.
-- Q1 region data: tools/verify/25S-C/regions.json (RAW_SCHEMA has no `region` field).
+- Q1 region data and the sim specs live in the REGIONS / SIMS blocks above the exam dict.
 - The page-1 cover (lecturer names) is not copied anywhere.
 """
 import json, pathlib
@@ -301,6 +301,34 @@ questions.append(Q(
 $$\mathbb{E}[Y]=\frac{\mathbb{E}[X^2]}{\mathbb{E}[X]}=\frac{\operatorname{Var}[X]+\bigl(\mathbb{E}[X]\bigr)^2}{\mathbb{E}[X]},\qquad\frac{\mathbb{E}[Y]}{\mathbb{E}[X]}=1+\frac{\operatorname{Var}[X]}{\bigl(\mathbb{E}[X]\bigr)^2}\ge1.$$
 מכאן $\mathbb{E}[Y]\ge\mathbb{E}[X]$ (הטענה השנייה נכונה), והטענה $\mathbb{E}[Y]<\mathbb{E}[X]$ לעולם אינה מתקיימת. (הערה: מאחר שהגדלים $n_i$ שונים זה מזה והשונות חיובית, אי-השוויון חזק, ולכן גם $\mathbb{E}[Y]=\mathbb{E}[X]$ אינה נכונה.)""",
     6, contextId="c6"))
+
+# ------------------------------------------------------------------ area regions + simulations (RAW_SCHEMA `region`, `sim`)
+_SP = {"x": [0, 1], "y": [1, 2]}
+_LB = {"x": "b", "y": "L"}
+REGIONS = {
+    (1, "א"): {"space": _SP, "labels": _LB, "event": [{"a": -1, "b": 1, "c": 0.5, "op": "<="}], "exact": 1 / 8, "caption": "האזור L ≤ b + 1/2 (a<1/4)"},
+    (1, "ב"): {"space": _SP, "labels": _LB, "event": [{"a": -1, "b": 1, "c": "4/3", "op": "<="}], "exact": 7 / 9, "caption": "האזור L ≤ b + 4/3 (a<2/3)"},
+}
+_URN = {"values": list(range(1, 10)), "draws": 2, "replace": False}
+SIMS = {
+    (1, "א"): {"kind": "area", "params": {"fromRegion": True}, "estimate": "P(a<1/4)", "exact": 1 / 8, "seed": 12345},
+    (1, "ב"): {"kind": "area", "params": {"fromRegion": True}, "estimate": "P(a<2/3)", "exact": 7 / 9},
+    (1, "ג"): {"kind": "area", "params": {"space": _SP, "measure": "var", "expr": "(y-x)/2"}, "estimate": "Var[a]", "exact": 1 / 24},
+    (1, "ד"): {"kind": "area", "params": {"space": _SP, "measure": "cov", "expr": ["(y-x)/2", "x"]}, "estimate": "Cov[a,b]", "exact": -1 / 24},
+    (2, "א"): {"kind": "urn", "params": dict(_URN, event="v2 % 2 == 1"), "estimate": "P(odd)", "exact": 5 / 9},
+    (2, "ב"): {"kind": "urn", "params": dict(_URN, event="(v1+v2) % 3 == 0"), "estimate": "P(divisible by 3)", "exact": 1 / 3},
+    (2, "ג"): {"kind": "urn", "params": dict(_URN, event="v2 == 5"), "estimate": "P(divisible by 5)", "exact": 1 / 9},
+    (2, "ד"): {"kind": "urn", "params": dict(_URN, event="v2 % 2 == 1", given="(v1+v2) % 2 == 0"), "estimate": "P(odd | digit sum even)", "exact": 5 / 8},
+    (4, "ג"): {"kind": "pdf", "params": {"pieces": [{"from": 0, "to": 1, "expr": "x"}, {"from": 1, "to": 1.5, "expr": "1"}],
+                                        "event": "x <= 5/4", "given": "x > 1/2"}, "estimate": "P(X<=5/4 | X>1/2)", "exact": 5 / 7},
+}
+
+for _q in questions:
+    _k = (_q["num"], _q.get("part"))
+    if _k in REGIONS:
+        _q["region"] = REGIONS[_k]
+    if _k in SIMS:
+        _q["sim"] = SIMS[_k]
 
 # ------------------------------------------------------------------ exam
 exam = {
