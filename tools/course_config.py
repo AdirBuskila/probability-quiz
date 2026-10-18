@@ -24,8 +24,8 @@ def _need_help(cfg):
     """needHelp: [{id,titleHe,icon,topic,entryLabelHe,introHe?}] -- the guided "need help?" courses
     (levels live in courses/<id>/*.js). Empty/missing list hides the feature."""
     nh = cfg.get("needHelp", [])
-    if not isinstance(nh, list) or len(nh) > 5:
-        sys.exit("course.config.json: needHelp must be a list of 0-5 courses")
+    if not isinstance(nh, list) or len(nh) > 8:
+        sys.exit("course.config.json: needHelp must be a list of 0-8 courses")
     topics = {t[0] for t in cfg["topics"]}
     seen = set()
     for i, c in enumerate(nh):
