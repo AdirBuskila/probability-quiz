@@ -6,7 +6,7 @@ const sim = (estimate, exact, params) => ({ kind: "circuit", estimate, exact, pa
 COURSE_LEVEL("circ", {
   id: "C04", order: 4, icon: "🔄", title: "טריק המשלים",
   goal: "לחשב \"לפחות אחת פועלת\" ו\"המעגל נכשל\" דרך המשלים, גם כשיש הרבה יחידות.",
-  source: "ai-draft",
+  source: "ai-verified",
   lesson: { figs: [{ src: "images/courses/circ/c_par5.svg", alt: "חמש יחידות במקביל", caption: "חמש יחידות במקביל: המעגל נכשל רק אם כולן נכשלות" }], html: String.raw`
     <p>שאלות רבות מנוסחות במילים "לפחות" או "נכשל". כמעט תמיד קל יותר לחשב את <b>המשלים</b>, כי הוא כולל תרחיש אחד בלבד, ולהחסיר מ-1:</p>
     <div class="lesson-formula">$P(\text{at least one})=1-P(\text{none})$</div>

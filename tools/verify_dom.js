@@ -126,7 +126,7 @@ console.log("1. boot");
   const A = boot();
   const B = A.window.OPEN_BANK;
   assert(B && Array.isArray(B.questions) && B.questions.length > 0, "OPEN_BANK loaded with questions: " + QS.length);
-  const SCRIPTS = ["questions.js", "learn.js", "courses.js", "normalize.js", "region.js", "sim.js", "steps.js", "aiprompt.js", "app.js", "course-ui.js"];
+  const SCRIPTS = ["questions.js", "learn.js", "courses.js", "normalize.js", "region.js", "sim.js", "steps.js", "aiprompt.js", "app.js", "feedback.js", "course-ui.js"];
   assert(A.scripts.join() === SCRIPTS.join(), "scripts: " + A.scripts.join(", "));
   assert(A.doc.documentElement.getAttribute("dir") === "rtl", "page is dir=rtl");
   assert(B.meta.course.storePrefix === CFG.storePrefix, `bank meta storePrefix == course.config.json (${CFG.storePrefix})`);
@@ -627,10 +627,57 @@ console.log("9. inline figures");
   assert(badPre.length === 0, `${pres.length} .code-block <pre> in the bank, all dir=ltr`);
 }
 
-/* 10. probability extras: area figure (region.js) in the solution panel and in steps; "simulate it" (sim.js).
+/* 10. feedback links (feedback.js): footer line + per-question report links with the right mailto subjects */
+console.log("10. feedback links");
+{
+  const mailParts = a => { const h = a.getAttribute("href"), [head, qs] = h.split("?"); const p = new URLSearchParams(qs); return { to: head.replace(/^mailto:/, ""), subject: p.get("subject"), body: p.get("body") || "" }; };
+  const A = boot(), title = A.window.document.title;
+  const fl = A.$("#feedbackLine a");
+  assert(!!fl && /^mailto:[^@?]+@[^@?]+\?/.test(fl.getAttribute("href")), "footer feedback link is a mailto");
+  assert(fl && mailParts(fl).subject === title + " — משוב", "footer link subject is '<title> — משוב': " + (fl && mailParts(fl).subject));
+  assert(fl && /מצאתם טעות\?.*📩 כתבו לי ואוסיף/.test(fl.textContent), "footer link text");
+  assert(!/[\w.-]+@[\w-]+\.\w+/.test(html) && !/[\w.-]+@[\w-]+\.\w+/.test(fs.readFileSync(path.join(ROOT, "feedback.js"), "utf8")), "the address is never written out literally in index.html or feedback.js");
+  const q = QS.find(x => x.kind !== "mcq" && hasSteps(x)) || QS[0];
+  openQ(A, q);
+  const rl = A.$("#qExtras + .reportrow a.reportlink");
+  assert(!!rl, "question view has a report link");
+  if (rl) {
+    const m = mailParts(rl);
+    assert(m.subject === `${title} — טעות בשאלה ${q.id}`, "report subject: " + m.subject);
+    assert(m.body.includes(q.id) && m.body.includes(q.examLabel || q.examCode || "") && m.body.includes("תחילת השאלה: "), "report body has id, exam label and a snippet");
+    const snip = (m.body.match(/תחילת השאלה: (.*)\n/) || [])[1] || "";
+    assert(snip.length > 0 && snip.length <= 81, "snippet length ok (" + snip.length + ")");
+  }
+  if (A.$(".sol-panel")) assert(!!A.$(".sol-panel .reportlink"), "solution panel has a report link");
+  A.click(A.$("#nextBtn"));
+  const rl2 = A.$("#qExtras + .reportrow a.reportlink");
+  assert(!!rl2 && A.$$(".reportrow").length === A.$$("#screen-question .reportrow").length, "report link follows the next question");
+  const A2 = boot(); const code = BANK.meta.exams.map(e => e.examCode).find(c => examQs(c).length);
+  startExam(A2, code, "sim");
+  { const n = examQs(code).length; for (let k = 0; k < n - 1; k++) A2.click(A2.$("#nextBtn")); A2.click(A2.$("#submitExamBtn")); }
+  const revs = A2.$$("#screen-results .rev");
+  assert(revs.length > 0 && revs.every(r => r.querySelector("a.reportlink")), "every exam-review block has a report link");
+  if (NH.length) {
+    const A3 = boot(); A3.click(A3.$(`#helpCards .crs-promo[data-course="${NH[0].id}"]`));
+    A3.click(A3.$("#crsMap .crs-lvl")); A3.click(A3.$("#crsLessonGo"));
+    const cl = A3.$("#crsQExtras + .reportrow a.reportlink");
+    assert(!!cl && new RegExp(`טעות בשאלה ${NH[0].id}-L\\d+-Q1$`).test(mailParts(cl).subject), "course question has a report link with course-level-index id: " + (cl && mailParts(cl).subject));
+  }
+  assert(A.errors.length === 0 && A2.errors.length === 0, "no errors");
+}
+
+// fenced code blocks in the built bank must all be dir=ltr
+{
+  const qsrc = fs.readFileSync(path.join(ROOT, "questions.js"), "utf8");
+  const pres = qsrc.match(/<pre class=\\?"code-block\\?"[^>]*>/g) || [];
+  const badPre = pres.filter(p => !/dir=\\?"ltr\\?"/.test(p));
+  assert(badPre.length === 0, `${pres.length} .code-block <pre> in the bank, all dir=ltr`);
+}
+
+/* 11. probability extras: area figure (region.js) in the solution panel and in steps; "simulate it" (sim.js).
    Uses the first bank question with a region / sim (the DEMO-P exam when built with --demo). */
 async function extras() {
-  console.log("10. area figures and simulation");
+  console.log("11. area figures and simulation");
   const regQ = QS.find(q => q.region), stepRegQ = QS.find(q => (q.steps || []).some(s => s.region));
   const condQ = QS.find(q => q.region && !Array.isArray(q.region) && q.region.given);
   const simQs = QS.filter(q => q.sim);

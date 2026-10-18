@@ -55,7 +55,7 @@ COURSE_LEVEL("geo", {
       step: { type: "numeric", answer: 0.25, tol: 0.005,
               prompt: "$X\\sim U_c(0,1)$ ו-$Y\\sim U_c(0,2)$ בלתי תלויים. מהי $P\\left(\\frac YX<1\\right)$ ? (אפשר שבר או עשרוני)",
               explain: "$\\frac YX<1\\iff y<x$ (כי $x>0$). $|\\Omega|=1\\cdot2=2$. האזור $y<x$ בתוך המלבן $(0,1)\\times(0,2)$ הוא משולש עם ניצבים $1$ ו-$1$, ושטחו $\\frac12$. לכן $P=\\frac{1/2}{2}=\\frac14$ (ולא $\\frac12$ כמו בריבוע היחידה)." },
-      region: { space: { x: [0, 1], y: [0, 2] }, event: [{ a: -1, b: 1, c: 0, op: "<" }], labels: { x: "X", y: "Y" }, caption: "Y/X<1 במלבן (0,1)x(0,2)" },
+      region: { space: { x: [0, 1], y: [0, 2] }, event: [{ a: -1, b: 1, c: 0, op: "<" }], labels: { x: "X", y: "Y" }, caption: "Y/X<1 במלבן (0,1)×(0,2)" },
       sim: { kind: "area", estimate: "P(Y/X<1)", exact: 0.25, params: { space: { x: [0, 1], y: [0, 2] }, event: "y/x<1" } },
       recap: "מחלקים ב-$|\\Omega|$ כשהמלבן לא ריבוע." },
   ],

@@ -78,6 +78,9 @@ def main():
         lid = lv.get("id") or entry["file"]
         w = f"{cid}/{lid}"
         L = {k: lv[k] for k in ("id", "order", "icon", "title", "goal", "source") if k in lv}
+        goal = str(L.get("goal") or "")
+        if any(t in goal for t in ("$", "`", "**")):   # a rich goal: math / code / bold rendered like the questions
+            L["goalHtml"] = rich_html(goal, bank, w + " goal", errs)
         L["boss"] = lv.get("boss") is True
         lesson = dict(lv.get("lesson") or {})
         lesson["html"] = lesson_html(str(lesson.get("html") or ""), bank, w + " lesson", errs)

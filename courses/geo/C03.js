@@ -48,7 +48,7 @@ COURSE_LEVEL("geo", {
       step: { type: "numeric", answer: 0.4375, tol: 0.005,
               prompt: "$X\\sim U_c(0,1)$ ו-$Y\\sim U_c(0,2)$ בלתי תלויים. מהי $P\\left(\\lvert X-Y\\rvert<\\frac12\\right)$ ? (אפשר שבר או עשרוני)",
               explain: "$|\\Omega|=1\\cdot2=2$. עבור כל $x$ הערכים המתאימים הם $y$ בין $x-\\frac12$ ל-$x+\\frac12$ בתוך $(0,2)$. אם $x<\\frac12$ האורך הוא $x+\\frac12$, ואם $x>\\frac12$ האורך הוא $1$. השטח $\\int_0^{1/2}\\left(x+\\frac12\\right)dx+\\frac12\\cdot1=\\frac38+\\frac12=\\frac78$. לכן $P=\\frac{7/8}{2}=\\frac7{16}$." },
-      region: { space: { x: [0, 1], y: [0, 2] }, event: [{ a: 1, b: -1, c: "1/2", op: "<" }, { a: 1, b: -1, c: "-1/2", op: ">" }], labels: { x: "X", y: "Y" }, caption: "|X-Y|<1/2 במלבן (0,1)x(0,2)" },
+      region: { space: { x: [0, 1], y: [0, 2] }, event: [{ a: 1, b: -1, c: "1/2", op: "<" }, { a: 1, b: -1, c: "-1/2", op: ">" }], labels: { x: "X", y: "Y" }, caption: "|X-Y|<1/2 במלבן (0,1)×(0,2)" },
       sim: { kind: "area", estimate: "P(|X-Y|<1/2)", exact: 7 / 16, params: { space: { x: [0, 1], y: [0, 2] }, event: "abs(x-y)<1/2" } },
       recap: "במלבן הרצועה נחתכת בגבולות: מחשבים שטח בנפרד לכל קטע של $x$ ומחלקים ב-$|\\Omega|$." },
   ],

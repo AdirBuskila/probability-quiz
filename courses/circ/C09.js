@@ -2,7 +2,7 @@
 COURSE_LEVEL("circ", {
   id: "C09", order: 9, icon: "🏆", title: "בוס: שאלות מבחן אמיתיות", boss: true,
   goal: "לפתור שאלות מעגלים מהמבחנים האמיתיים: גשר, מעגל שני מאותן יחידות, בייס ורכיבים עם הסתברויות שונות.",
-  source: "ai-draft",
+  source: "ai-verified",
   lesson: { html: String.raw`
     <p>שאלת המעגלים מופיעה כמעט בכל מבחן. לפני שמתחילים, זהו את הסוג ובחרו את הכלי:</p>
     <table><thead><tr><th>מה שואלים</th><th>מה עושים</th></tr></thead><tbody>

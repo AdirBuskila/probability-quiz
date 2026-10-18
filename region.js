@@ -283,6 +283,23 @@
   const dec = (v, k) => (Math.round(v * Math.pow(10, k)) / Math.pow(10, k)).toString();
   function nice(v, maxDen) { const f = frac(v, maxDen); return f || dec(v, 4); }
   const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, m => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
+  /* labels written in ASCII in the data (captions, sim "estimate"): shown with the real symbols */
+  const SUPD = { 0: "⁰", 1: "¹", 2: "²", 3: "³", 4: "⁴", 5: "⁵", 6: "⁶", 7: "⁷", 8: "⁸", 9: "⁹" };
+  function pretty(s) {
+    return String(s == null ? "" : s)
+      .replace(/<=/g, "≤").replace(/>=/g, "≥").replace(/[!~]=/g, "≠")
+      .replace(/\blambda\b/g, "λ").replace(/\bmu\b/g, "μ").replace(/\brho\b/g, "ρ").replace(/\bpi\b/g, "π")
+      .replace(/\bsqrt\(/g, "√(").replace(/\^([0-9])(?![0-9])/g, (m, d) => SUPD[d])
+      .replace(/([\w)'′]) u (?=[\w(])/g, "$1 ∪ ").replace(/([\w)'′]) n (?=[\w(])/g, "$1 ∩ ");
+  }
+  /* a label as HTML inside RTL text: symbols prettified, Latin runs isolated (window.Bidi, normalize.js) so a
+     formula like "1/2<X+Y<3/2" or "(0,1)×(0,2)" keeps its order and a list "P(A), p=0.3" reads item by item */
+  /* "X_R" -> X with a subscript R: SVG axis labels (tspan) and HTML labels (sub) */
+  const axLab = s => esc(s).replace(/([A-Za-z])_([A-Za-z0-9]+)/g, (m, a, b) => `${a}<tspan dy="0.3em" font-size="75%">${b}</tspan><tspan dy="-0.3em"></tspan>`);
+  function label(s) {
+    const h = esc(pretty(s)).replace(/([A-Za-z])_([A-Za-z0-9]+)/g, "$1<sub>$2</sub>");
+    return root.Bidi && root.Bidi.isolate ? root.Bidi.isolate(h) : `<bdi dir="ltr">${h}</bdi>`;
+  }
 
   function ticksFor(a, b) {
     const r = b - a, steps = [0.025, 0.05, 0.1, 0.25, 0.5, 1, 2, 2.5, 5, 10, 25, 50, 100];
@@ -300,7 +317,7 @@
     const rx = s.x1 - s.x0, ry = s.y1 - s.y0;
     let aspect = ry / rx; const clamp = Math.min(2.2, Math.max(1 / 2.2, aspect)); const squashed = clamp !== aspect; aspect = clamp;
     const PW = aspect <= 1 ? 260 : 260 / aspect, PH = PW * aspect;
-    const ML = 40, MR = 18, MT = 14, MB = 34, W = ML + PW + MR, H = MT + PH + MB;
+    const ML = 40, MR = 18, MT = 26, MB = 34, W = ML + PW + MR, H = MT + PH + MB;
     const X = x => ML + (x - s.x0) / rx * PW, Y = y => MT + (s.y1 - y) / ry * PH;
     const f1 = v => Math.round(v * 100) / 100;
     const polyD = p => p.length < 3 ? "" : "M" + p.map(q => `${f1(X(q[0]))} ${f1(Y(q[1]))}`).join("L") + "Z";
@@ -364,8 +381,8 @@
       (dEG ? `<path class="rg-both" d="${dEG}"/>` : "") +
       (dG ? `<path class="rg-given-line" d="${dG}"/>` : "") + lines + evLines + `</g>` +
       `<rect class="rg-frame" x="${ML}" y="${MT}" width="${f1(PW)}" height="${f1(PH)}"/>` +
-      `<text class="rg-ax" x="${f1(ML + PW + 4)}" y="${f1(MT + PH + 28)}" text-anchor="end">${esc(lab.x || "x")}</text>` +
-      `<text class="rg-ax" x="${ML - 30}" y="${MT + 4}" text-anchor="start">${esc(lab.y || "y")}</text>` +
+      `<text class="rg-ax" x="${f1(ML + PW + 4)}" y="${f1(MT + PH + 28)}" text-anchor="end">${axLab(lab.x || "x")}</text>` +
+      `<text class="rg-ax" x="${ML}" y="${MT - 9}" text-anchor="middle">${axLab(lab.y || "y")}</text>` +
       `</svg>`;
     return { svg, squashed };
   }
@@ -391,7 +408,7 @@
         `<span class="rg-key"><i class="rg-sw rg-sw-e${r.pG != null ? " soft" : ""}"></i>המאורע A</span>` +
         (r.pG != null ? `<span class="rg-key"><i class="rg-sw rg-sw-g"></i>התנאי B</span><span class="rg-key"><i class="rg-sw rg-sw-eg"></i>A∩B</span>` : "") +
         `</div>`;
-      out = (spec.caption ? `<div class="rg-caption">${esc(spec.caption)}</div>` : "") +
+      out = (spec.caption ? `<div class="rg-caption">${label(spec.caption)}</div>` : "") +
         `<div class="rg-plot" dir="ltr">${svg}</div>` + legend +
         `<div class="rg-nums" dir="ltr">${nums}</div>` + exact +
         (squashed ? `<div class="rg-note">הציור אינו בקנה מידה אחיד בשני הצירים.</div>` : "");
@@ -428,7 +445,7 @@
     if (document.body) start(); else document.addEventListener("DOMContentLoaded", start);
   }
 
-  const Region = { figure, hydrate, compute, check, Expr, frac, nice,
+  const Region = { figure, hydrate, compute, check, Expr, frac, nice, pretty, label,
     _: { normSet, normSpace, setPred, isLinearSet, linearArea, andSets, columnIntervals, conjPoly, polyArea } };
   root.Region = Region;
   if (typeof module !== "undefined" && module.exports) module.exports = Region;

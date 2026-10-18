@@ -17,7 +17,7 @@
 | תוחלת ושונות של משתנה בדיד, E[g(X)] | `discrete_rv` | מתכון | 103 | 24A-A-Q1d, 24A-A-Q1e, 24A-A-Q2d, 24A-A-Q3d, 24A-A-Q4a |
 | מוטה-גודל (בחירה לפי אנשים) | `discrete_rv` | דוגמה 2 | 9 | 24B-A-Q5a, 24B-A-Q5b, 24B-A-Q5c, 24B-C-Q5a, 24B-C-Q5b |
 | התפלגויות מיוחדות ומשפט הפירוק | `special_discrete` | טבלת ההתפלגויות | 152 | 24A-A-Q2a, 24A-A-Q2b, 24A-A-Q2c, 24A-A-Q2d, 24A-A-Q3a |
-| הסתברות שלמה עם סכום מהרמז; דילול | `special_discrete` | דילול | 37 | 24A-A-Q2a, 24A-A-Q2b, 24A-A-Q2c, 24A-A-Q5a, 24A-A-Q5b |
+| הסתברות שלמה עם סכום מהרמז; דילול | `special_discrete` | דילול | 40 | 24A-A-Q2a, 24A-A-Q2b, 24A-A-Q2c, 24A-A-Q5a, 24A-A-Q5b |
 | גאומטרית, זוגיות, מי ראשון | `special_discrete` | זוגיות | 16 | 24A-B-Q5a, 24A-B-Q5b, 24A-B-Q5c, 24A-C-Q5a, 24A-C-Q5b |
 | כד: היפרגאומטרי, עם/בלי החזרה | `special_discrete` | כדים | 31 | 24A-B-Q5a, 24A-B-Q5b, 24A-B-Q5c, 24A-C-Q5a, 24A-C-Q5b |
 | התפלגות משותפת, שוליים, מטריצת ברנולי | `joint_discrete` | מתכון; דוגמה 1 | 63 | 24A-B-Q3a, 24A-B-Q3b, 24A-B-Q3d, 24A-B-Q3e, 24A-C-Q2a |

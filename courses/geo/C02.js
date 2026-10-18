@@ -43,7 +43,7 @@ COURSE_LEVEL("geo", {
       step: { type: "numeric", answer: 0.75, tol: 0.005,
               prompt: "$X\\sim U_c(0,1)$ ו-$Y\\sim U_c(0,2)$ בלתי תלויים. מהי $P(Y>X)$ ? (אפשר שבר או עשרוני)",
               explain: "$|\\Omega|=1\\cdot2=2$. האלכסון $y=x$ מגיע ל-$(1,1)$. המשלים $Y<X$ הוא המשולש מתחת לאלכסון עם ניצבים $1$ ו-$1$, ושטחו $\\frac12$. לכן שטח $Y>X$ הוא $2-\\frac12=\\frac32$ ו-$P=\\frac{3/2}{2}=\\frac34$." },
-      region: { space: { x: [0, 1], y: [0, 2] }, event: [{ a: -1, b: 1, c: 0, op: ">" }], labels: { x: "X", y: "Y" }, caption: "Y>X במלבן (0,1)x(0,2)" },
+      region: { space: { x: [0, 1], y: [0, 2] }, event: [{ a: -1, b: 1, c: 0, op: ">" }], labels: { x: "X", y: "Y" }, caption: "Y>X במלבן (0,1)×(0,2)" },
       sim: { kind: "area", estimate: "P(Y>X)", exact: 0.75, params: { space: { x: [0, 1], y: [0, 2] }, event: "y>x" } },
       recap: "במלבן האלכסון לא יוצא מהפינה: מחשבים משלים ומחלקים ב-$|\\Omega|$." },
     { id: "geo-C02-Q5",

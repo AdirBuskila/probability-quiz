@@ -6,7 +6,7 @@ const sim = (estimate, exact, params) => ({ kind: "circuit", estimate, exact, pa
 COURSE_LEVEL("circ", {
   id: "C07", order: 7, icon: "🔧", title: "פירקו והרכיבו מעגל חדש",
   goal: "לחשב חיתוך, איחוד והסתברות מותנית בין שני מעגלים שנבנו מאותן יחידות.",
-  source: "ai-draft",
+  source: "ai-verified",
   lesson: { figs: [{ src: "images/courses/circ/r_pair.svg", alt: "Q1: A בטור עם B. Q2: A במקביל ל-B", caption: "אותן שתי יחידות, בשני חיבורים: Q1 בטור ו-Q2 במקביל" }], html: String.raw`
     <p>בשאלות "פירקו והרכיבו" יש שני מעגלים, $Q_1$ ו-$Q_2$, שבנויים מ<b>אותן יחידות</b>. הם <b>תלויים</b>: אם $A$ תקולה היא תקולה בשניהם. לכן אסור לכתוב $P(Q_1\cap Q_2)=P(Q_1)P(Q_2)$.</p>
     <div class="lesson-rule">🔑 מהלך הפתרון: (1) כותבים כל מעגל כמאורע ביחידות, למשל $Q_1=A\cap(B\cup C)$. (2) את $P(Q_1\cap Q_2)$ מוצאים על ידי בדיקה באילו מצבי יחידות <b>שניהם</b> פועלים (בדרך כלל התניה על היחידות המשותפות). (3) מחשבים לפי הנוסחאות:</div>

@@ -382,7 +382,7 @@ REGIONS = {
     (1, "ג"): {"space": U11, "labels": XL, "event": {"any": [[{"a": 1, "b": -1, "c": 1.5, "op": ">"}], [{"a": -1, "b": 1, "c": 1.5, "op": ">"}]]}, "exact": 0.0,
                "caption": "האזור |x1-x2|>3/2 ריק"},
     (1, "ד"): {"space": U11, "labels": XL, "event": [{"a": 1, "b": -1, "c": 0.4, "op": "<="}, {"a": -1, "b": 1, "c": 0.4, "op": "<="}], "exact": 0.64,
-               "caption": "הרצועה |x1-x2|<=t עבור t=0.4 (שטח 2t-t^2)"},
+               "caption": "הרצועה |x1-x2|<=t עבור t=0.4 (שטח 2t-t²)"},
 }
 for _q in questions:
     _r = REGIONS.get((_q["num"], _q.get("part")))

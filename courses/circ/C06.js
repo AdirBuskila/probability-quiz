@@ -6,7 +6,7 @@ const sim = (estimate, exact, params) => ({ kind: "circuit", estimate, exact, pa
 COURSE_LEVEL("circ", {
   id: "C06", order: 6, icon: "🔍", title: "בייס במעגלים: אם ידוע שהמעגל פועל",
   goal: "לחשב את ההסתברות שיחידה פועלת (או כולן, או לא) בהינתן שהמעגל כולו פועל.",
-  source: "ai-draft",
+  source: "ai-verified",
   lesson: { figs: [{ src: "images/courses/circ/b_sp.svg", alt: "A בטור עם הזוג המקבילי B ו-C", caption: "דוגמה לשאלת בייס: אם ידוע שהמעגל פועל, מה הסיכוי ש-B פועלת?" }], html: String.raw`
     <p>שאלה נפוצה: "אם <b>ידוע</b> שהמעגל פועל, מה ההסתברות שיחידה $X$ פועלת?" זו הסתברות מותנית, והמכנה הוא תמיד מה שידוע, כלומר $P(S)$:</p>
     <div class="lesson-formula">$P(X\mid S)=\dfrac{P(X\cap S)}{P(S)}=\dfrac{P(X)\,P(S\mid X)}{P(S)}$</div>

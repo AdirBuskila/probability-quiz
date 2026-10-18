@@ -5,7 +5,7 @@ const sim = (estimate, exact, params) => ({ kind: "custom_discrete", estimate, e
 COURSE_LEVEL("circ", {
   id: "C08", order: 8, icon: "🧩", title: "יחידות תלויות",
   goal: "לחשב הסתברות של מעגל כשמצב יחידה אחת משנה את ההסתברות של האחרת.",
-  source: "ai-draft",
+  source: "ai-verified",
   lesson: { html: String.raw`
     <p>עד עכשיו היחידות היו בלתי תלויות. לפעמים הן תלויות: אם יחידה אחת תקולה, השנייה נוטה להתקלקל יותר (אותו חום, אותו מקור מתח). השאלה אז נותנת <b>הסתברויות מותנות</b>:</p>
     <div class="lesson-formula">$P(A)=p,\qquad P(B\mid A)=q,\qquad P(B\mid\overline A)=s$</div>
@@ -58,7 +58,7 @@ COURSE_LEVEL("circ", {
         { id: "c", value: "בדיוק כש-$p=0.5$" },
         { id: "d", value: "אף פעם, כי המעגל משותף" }],
       correctId: "a",
-      explanation: "$P(A\\cap B)-P(A)P(B)=pq-p\\bigl(pq+(1-p)s\\bigr)=p(1-p)(q-s)$, והוא מתאפס בדיוק כש-$q=s$ (כי $0<p<1$). אז מצב $A$ לא משפיע על $B$. התשובה (ב) מתארת מקרה פרטי ושגוי: עם $q=s=0.3$ ו-$p=0.8$ הן בלתי תלויות אף ש-$q\\ne p$. (ג) לא קשורה. (ד) שגויה: אי-תלות אפשרית.",
+      explanation: "$P(A\\cap B)-P(A)P(B)=pq-p\\bigl(pq+(1-p)s\\bigr)=p(1-p)(q-s)$, והוא מתאפס בדיוק כש-$q=s$ (כי $0<p<1$). אז מצב $A$ לא משפיע על $B$. התשובה \"בדיוק כש-$q=p$\" מתארת מקרה פרטי ושגוי: עם $q=s=0.3$ ו-$p=0.8$ הן בלתי תלויות אף ש-$q\\ne p$. התנאי $p=0.5$ לא קשור. \"אף פעם\" שגויה: אי-תלות אפשרית.",
       recap: "בלתי תלויים בדיוק כש-$P(B\\mid A)=P(B\\mid\\overline A)$" },
     { id: "C08-Q6",
       step: { type: "numeric",

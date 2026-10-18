@@ -4,6 +4,11 @@ Open questions for Adir. One entry per item; the orchestrator moves it to Resolv
 
 ## Open
 
+Short list (2026-10-18, phase 6 QA):
+1. 24B-C Q1 b: confirm max is intended (note only, the items ship as printed).
+2. Overridable arbiter rulings (shipped as "הפתרון הרשמי עם תיקון", official:false): 25B-B Q2 f, 25A-C Q4 b-c, 25A-C Q3 c, 24B-B Q3 d, 26A-B Q3 a/b/d. Details under Resolved.
+3. Second wave (2020-2023 + SAMP-1, Normal/CLT questions) not built yet: the exp_normal chapter has 0 bank questions.
+
 <!-- Entry format:
 ### <exam code> Q<number> - <short title>
 - Path: <absolute file path>

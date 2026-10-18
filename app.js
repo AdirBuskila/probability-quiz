@@ -638,7 +638,7 @@ let openLearnAt = null;   // set by initLearn; used by the ?learn= deep link
     const n = s.topic ? topicPool(s.topic).length : 0;
     const drill = n ? `<button type="button" class="btn primary learn-drill" data-topic="${escapeHtml(s.topic)}">תרגל נושא זה ▶ <span class="n">${n}</span></button>` : "";
     const kind = s.kind==="cheat" ? `<span class="learn-kind">דף עזר</span>` : "";
-    content.innerHTML = `<div class="learn-head"><h2 class="learn-h">${labelHtml(s.title)}${kind}</h2>${drill}</div>` + (s.html||"");
+    content.innerHTML = `<div class="learn-head"><h2 class="learn-h">${labelHtml(s.title)}${kind}</h2>${drill}</div>` + iso(s.html||"");   // bidi isolates for formulas / tuples written as text in the brief
     content.dataset.chapter = s.id || "";
     toc.querySelectorAll("button").forEach((b,j)=> b.classList.toggle("active", j===idx));
     const active=toc.querySelector("button.active"); if(active) active.scrollIntoView({block:"nearest"});

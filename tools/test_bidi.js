@@ -23,10 +23,18 @@ assert.strictEqual(B.render(B.render("a. סכום x ו-y")), B.render("a. סכו
 
 // a sentence ending with a formula keeps its period inside the formula's LTR isolate
 const f = '<span class="math-inline"><math><mi>x</mi></math></span>';
-assert.strictEqual(B.render(`הערך הוא ${f}.`), `הערך הוא <span class="math-run" dir="ltr">${f}.</span>`);
-assert.strictEqual(B.render(`הערך הוא ${f}.<br>שורה`), `הערך הוא <span class="math-run" dir="ltr">${f}.</span><br>שורה`);
-// formulas chained by punctuation form one run
-assert.ok(B.render(`${f}, ${f}`).startsWith('<span class="math-run" dir="ltr">'));
+assert.strictEqual(B.render(`הערך הוא ${f}.`), `הערך הוא <span class="math-run" dir="rtl">${f}.</span>`);
+assert.strictEqual(B.render(`הערך הוא ${f}.<br>שורה`), `הערך הוא <span class="math-run" dir="rtl">${f}.</span><br>שורה`);
+// formulas separated by punctuation stay SEPARATE isolates, the punctuation between them in RTL flow
+// (one LTR run read the second formula first)
+const fm = t => `<span class="math-inline"><math><mi>${t}</mi></math></span>`;
+assert.strictEqual(B.render(`${f}, ${f} הם`), `${f}, ${f} הם`);
+assert.strictEqual(B.render(`עבור ${fm("n=1")}: ${fm("3=3·1²")} כלומר`), `עבור ${fm("n=1")}: ${fm("3=3·1²")} כלומר`);
+assert.strictEqual(B.render(`עבור ${fm("n=1")}: ${fm("3=3·1²")}`), `עבור ${fm("n=1")}: ${fm("3=3·1²")}`);
+assert.strictEqual(B.render(`האיברים ${fm("a")}, ${fm("b")}, ${fm("c")}.`),
+  `האיברים ${fm("a")}, ${fm("b")}, <span class="math-run" dir="rtl">${fm("c")}.</span>`);
+assert.strictEqual(B.render(`${fm("a")}; ${fm("b")}<br>שורה`), `${fm("a")}; ${fm("b")}<br>שורה`);
+assert.ok(!B.render(`${f}, ${f}`).includes("math-run"), "no math-run around a list");
 // a period mid-sentence is left alone
 assert.strictEqual(B.render(`${f}. אחר כך`), `${f}. אחר כך`);
 
@@ -72,8 +80,8 @@ assert.strictEqual(B.render(`דומה (${chip("22A-A-Q2c")}, ${chip("22A-B-Q1b")
 for (const s of ["יש 4! אפשרויות", "שווה …=120.·6·5·4 ועוד", "P(n,m) (0 אם m>n)", "[אות ראשונה: 1 או 2] ואחריה"]) assert.strictEqual(B.render(B.render(s)), B.render(s));
 
 // a lone ? or ! after a formula at a line end is glued to it (word joiner inside the run): it cannot wrap onto its own line
-assert.strictEqual(B.render(`האם ${f}?`), `האם <span class="math-run" dir="ltr">${f}\u2060?</span>`);
-assert.strictEqual(B.render(`מהו ${f}?<br>עוד`), `מהו <span class="math-run" dir="ltr">${f}\u2060?</span><br>עוד`);
+assert.strictEqual(B.render(`האם ${f}?`), `האם <span class="math-run" dir="rtl">${f}\u2060?</span>`);
+assert.strictEqual(B.render(`מהו ${f}?<br>עוד`), `מהו <span class="math-run" dir="rtl">${f}\u2060?</span><br>עוד`);
 assert.strictEqual(B.render(`${f}? אחר`), `${f}? אחר`);
 // prefix letter + a plain-text formula: the prefix stays outside, at the RTL start
 assert.strictEqual(B.render("ב-x = 3 כי"), `ב-${ltr("x = 3")} כי`);
@@ -98,6 +106,26 @@ assert.strictEqual(B.render("הטיפוס int* ו-char** כאן"), `הטיפוס
 assert.strictEqual(B.render("שאלה 1/8"), `שאלה ${ltr("1/8")}`);
 assert.strictEqual(B.render("⏱ 3:59:59"), `⏱ ${ltr("3:59:59")}`);
 assert.strictEqual(B.render("ציון 80%."), `ציון ${ltr("80%")}.`);
-assert.strictEqual(B.render("static, const ו-scope"), `${ltr("static, const")} ו-${ltr("scope")}`);
+// a comma list is not one unit: each item is its own isolate, read right to left
+assert.strictEqual(B.render("static, const ו-scope"), `${ltr("static")}, ${ltr("const")} ו-${ltr("scope")}`);
+
+// clause / list boundaries end a plain-text run (outside brackets): "TP = 44, FN = 6" is two isolates
+assert.strictEqual(B.render("נתון TP = 44, FN = 6 ולכן"), `נתון ${ltr("TP = 44")}, ${ltr("FN = 6")} ולכן`);
+assert.strictEqual(B.render("נתון TP = 44, FN = 6."), `נתון ${ltr("TP = 44")}, ${ltr("FN = 6")}.`);
+assert.strictEqual(B.render("שלב 4: 79, 79 ואז"), `שלב ${ltr("4")}: ${ltr("79")}, ${ltr("79")} ואז`);
+assert.strictEqual(B.render("הזוגות (0,6), (1,5), (2,4) כאן"), `הזוגות ${ltr("(0,6)")}, ${ltr("(1,5)")}, ${ltr("(2,4)")} כאן`);
+assert.strictEqual(B.render("סכום 294=97+98+99, 294%128=38. 38 הוא"), `סכום ${ltr("294=97+98+99")}, ${ltr("294%128=38")}. ${ltr("38")} הוא`);
+assert.strictEqual(B.render("הסדר Fetch; Decode; ALU כאן"), `הסדר ${ltr("Fetch")}; ${ltr("Decode")}; ${ltr("ALU")} כאן`);
+assert.strictEqual(B.render("והממוצע <b>10.</b> 12 יוצא"), `והממוצע <b>${ltr("10")}.</b> ${ltr("12")} יוצא`);
+// a bracket whose partner is outside the run does not hide a boundary inside it
+assert.strictEqual(B.render("(clang++ -fsyntax-only: 0 שגיאות)"), `(${ltr("clang++ -fsyntax-only")}: ${ltr("0")} שגיאות)`);
+// ... but inside brackets nothing is cut, and a factorial before an operator is one expression
+assert.strictEqual(B.render("הנקודה (3, 8, 2) כאן"), `הנקודה ${ltr("(3, 8, 2)")} כאן`);
+assert.strictEqual(B.render("כי 4! = 24 בדיוק"), `כי ${ltr("4! = 24")} בדיוק`);
+assert.strictEqual(B.render("השעה 3:59 עכשיו"), `השעה ${ltr("3:59")} עכשיו`);
+// an RLM ends a run too
+assert.strictEqual(B.render("a\u200fb כאן"), `${ltr("a")}\u200f${ltr("b")} כאן`);
+for (const s of ["נתון TP = 44, FN = 6 ולכן", `עבור ${fm("n=1")}: ${fm("3=3·1²")}.`, `הערך הוא ${f}.`, "והממוצע <b>10.</b> 12 יוצא"])
+  assert.strictEqual(B.render(B.render(s)), B.render(s), "idempotent: " + s);
 
 console.log("test_bidi: ok");

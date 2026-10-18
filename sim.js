@@ -502,7 +502,24 @@
   const grp = n => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   function digitsFor(se) { return Math.min(6, Math.max(3, Math.ceil(-Math.log10(Math.max(se, 1e-12))) + 1)); }
   const fmt = (v, d) => (isFinite(v) ? v.toFixed(d) : "—");
-  const kfmt = n => n >= 1e6 ? (n / 1e6) + "M" : n >= 1e3 ? (n / 1e3) + "k" : String(n);
+  /* the "estimate" label ("P(A | B), p=0.3", "P(X=2) ב-N=5"): RTL text with its Latin pieces isolated (Region.label) */
+  /* An all-Latin "event, parameters" label is shown as two pieces, the event first (at the right) and the
+     parameters after it in muted type, so no stray comma sits between two LTR runs. */
+  function whatHtml(s) {
+    const R = root.Region;
+    if (!R || !R.label) return `<bdi dir="ltr">${esc(s)}</bdi>`;
+    s = String(s);
+    if (!/[֐-׿]/.test(s)) {
+      for (let i = 0, d = 0; i < s.length - 1; i++) {
+        const c = s[i];
+        if (c === "(" || c === "[") d++; else if (c === ")" || c === "]") d = Math.max(0, d - 1);
+        else if (d === 0 && c === "," && s[i + 1] === " ")
+          return `${R.label(s.slice(0, i))} <span class="mc-par">${R.label(s.slice(i + 2))}</span>`;
+      }
+    }
+    return R.label(s);
+  }
+  const kfmt = n =>n >= 1e6 ? (n / 1e6) + "M" : n >= 1e3 ? (n / 1e3) + "k" : String(n);
 
   function chartSvg(pts, exact, N, done) {
     const W = 320, H = 150, ML = 48, MR = 10, MT = 10, MB = 24, PW = W - ML - MR, PH = H - MT - MB;
@@ -540,7 +557,7 @@
     const N = spec.trials || DEFAULT_TRIALS;
     const exact = typeof spec.exact === "number" ? spec.exact : NaN;
     el.innerHTML = `<div class="mc-box">` +
-      `<div class="mc-head"><span class="mc-title">🎲 סימולציה</span>${spec.estimate ? `<bdi dir="ltr" class="mc-what">${esc(spec.estimate)}</bdi>` : ""}</div>` +
+      `<div class="mc-head"><span class="mc-title">🎲 סימולציה</span>${spec.estimate ? `<span class="mc-what">${whatHtml(spec.estimate)}</span>` : ""}</div>` +
       `<p class="mc-desc">המחשב מגריל את הניסוי <bdi dir="ltr">${grp(N)}</bdi> פעמים. הקו הוא ההערכה המצטברת, והקו המקווקו הוא הערך המדויק.</p>` +
       `<button type="button" class="btn primary mc-run">🎲 הריצו סימולציה</button>` +
       `<div class="mc-chart" dir="ltr"></div><div class="mc-result" aria-live="polite"></div></div>`;

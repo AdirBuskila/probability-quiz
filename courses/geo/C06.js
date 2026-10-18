@@ -47,7 +47,7 @@ COURSE_LEVEL("geo", {
       step: { type: "numeric", answer: 0.125, tol: 0.003,
               prompt: "$X\\sim U_c(0,1)$ ו-$Y\\sim U_c(0,2)$ בלתי תלויים. מהי $P\\left(\\max(X,Y)<\\frac12\\right)$ ? (אפשר שבר או עשרוני)",
               explain: "$|\\Omega|=1\\cdot2=2$. המקסימום קטן מ-$\\frac12$ כש-$X<\\frac12$ וגם $Y<\\frac12$: מלבן $\\frac12\\times\\frac12$, שטחו $\\frac14$. לכן $P=\\frac{1/4}{2}=\\frac18$." },
-      region: { space: { x: [0, 1], y: [0, 2] }, event: [{ a: 1, b: 0, c: "1/2", op: "<" }, { a: 0, b: 1, c: "1/2", op: "<" }], labels: { x: "X", y: "Y" }, caption: "max(X,Y)<1/2 במלבן (0,1)x(0,2)" },
+      region: { space: { x: [0, 1], y: [0, 2] }, event: [{ a: 1, b: 0, c: "1/2", op: "<" }, { a: 0, b: 1, c: "1/2", op: "<" }], labels: { x: "X", y: "Y" }, caption: "max(X,Y)<1/2 במלבן (0,1)×(0,2)" },
       sim: { kind: "area", estimate: "P(max(X,Y)<1/2)", exact: 1 / 8, params: { space: { x: [0, 1], y: [0, 2] }, event: "max(x,y)<1/2" } },
       recap: "במלבן מחלקים ב-$|\\Omega|=2$." },
     { id: "geo-C06-Q6",

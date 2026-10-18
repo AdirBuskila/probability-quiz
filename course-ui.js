@@ -50,6 +50,10 @@
   const passedIn = (c, L) => ((c.prog.levels[L.id] || {}).best || 0) >= PASS;
   const recommendedIn = c => c.levels.find(L => !passedIn(c, L));
   const levelName = L => `שלב ${L.order} · ${L.title}`;
+  /* level title / goal as HTML: the goal's math is pre-rendered by build_courses.py (goalHtml); both get bidi isolates */
+  const titleH = L => isolate(esc(L.title || ""));
+  const goalH = L => isolate(L.goalHtml || esc(L.goal || ""));
+  const levelNameH = L => `שלב ${L.order} · ${titleH(L)}`;
 
   /* bidi: Latin labels / formulas / runs inside Hebrew are isolated by Bidi (normalize.js, loaded before this file) */
   const isolate = window.Bidi.render;
@@ -81,8 +85,8 @@
         : ok ? `✓ עברת · שיא ${st.best}%` : `ניסיון אחרון ${st.last}% · שיא ${st.best}% (צריך ${PASS}%)`;
       return `<button class="${cls}" data-id="${esc(L.id)}" type="button">
         <span class="num">שלב ${L.order}${L.boss ? " · מבחן גמר" : ""}</span>
-        <span class="ttl">${esc(L.icon || "")} ${esc(L.title)}</span>
-        <span class="gl">${esc(L.goal || "")}</span>
+        <span class="ttl">${esc(L.icon || "")} ${titleH(L)}</span>
+        <span class="gl">${goalH(L)}</span>
         <span class="st">${status}</span></button>`;
     }).join("");
     $("#crsMap").querySelectorAll(".crs-lvl").forEach(b => b.onclick = () => openLesson(LV.find(L => L.id === b.dataset.id)));
@@ -97,7 +101,7 @@
     $("#crsLesson").innerHTML =
       `<div class="q-head"><span class="chip">שלב ${L.order} מתוך ${C.levels.length}</span>` +
       `<span class="chip soft">${L.questions.length} שאלות${nReal(L) ? ` · ${nReal(L)} מהמבחנים` : ""}</span></div>` +
-      `<h2 class="learn-h">${esc(L.icon || "")} ${esc(L.title)}</h2><p class="sub crs-goal">${esc(L.goal || "")}</p>` +
+      `<h2 class="learn-h">${esc(L.icon || "")} ${titleH(L)}</h2><p class="sub crs-goal">${goalH(L)}</p>` +
       `<div class="lesson-body">${lessonHtml(L)}</div>` +
       (NOTE[L.source] ? `<div class="crs-note">${NOTE[L.source]}</div>` : "");
     view("crsLessonView");
@@ -154,7 +158,7 @@
   function renderQuestion(){
     const it = S.items[S.i], q = it.q, n = S.items.length;
     it.answered = false;
-    $("#crsQHead").innerHTML = `<span class="chip">${esc(levelName(S.L))}</span>` +
+    $("#crsQHead").innerHTML = `<span class="chip">${levelNameH(S.L)}</span>` +
       (it.bank ? `<span class="chip soft">${esc(APP.examLabelOf(q))}${Number.isInteger(q.num) ? ` · שאלה ${q.num}${q.part ? " " + esc(q.part) : ""}` : ""}</span><span class="chip official">מבחן אמיתי</span>` : "");
     $("#crsQContext").innerHTML = it.bank && q.contextId ? APP.contextHtml(APP.ctx(q.contextId)) : "";
     const qt = $("#crsQText");
@@ -193,7 +197,7 @@
         if(acc.includes(x.dataset.oid)) x.classList.add("correct");
         else if(x.dataset.oid === oid) x.classList.add("wrong");
       });
-      const expl = it.bank ? (q.explanationHtml || "") : html(q.explanationHtml || "");
+      const expl = html(q.explanationHtml || "");   // bank items too: same bidi isolates as in the bank
       const fb = body.querySelector(".feedback");
       fb.className = "feedback " + (ok ? "good" : "bad");
       fb.innerHTML = `<div class="verdict">${ok ? "✓ נכון" : "✗ לא נכון"}</div>` +
@@ -277,14 +281,14 @@
     const wrong = S.items.filter(it => !S.run[it.key]);
     const hasReal = APP.topicCount(C.meta.topic) > 0;
     $("#crsSum").innerHTML =
-      `<div class="q-head" style="justify-content:center"><span class="chip">${esc(levelName(L))}</span></div>` +
-      `<div class="big">${pct}%</div><div><b>${correct} / ${total}</b> תשובות נכונות</div>` +
+      `<div class="q-head" style="justify-content:center"><span class="chip">${levelNameH(L)}</span></div>` +
+      `<div class="big">${pct}%</div><div><b><bdi dir="ltr">${correct} / ${total}</bdi></b> תשובות נכונות</div>` +
       `<p class="msg">${ok ? (L.boss ? `🏆 עברת את מבחן הגמר של ${esc(C.meta.titleHe)}` : "✓ עברת את השלב! אפשר להתקדם.") :
         `עוד לא ${PASS}%. כדאי לקרוא שוב את השיעור ולנסות שוב, זה בדיוק השלב שבו זה נבנה.`}</p>` +
       (wrong.length ? `<div class="crs-review"><div class="crs-review-t">כדאי לחזור על:</div>${
         wrong.map(it => `<div>• ${it.recap ? html(it.recap) : it.type === "step" ? html(it.q.step.promptHtml || "") : it.bank ? APP.questionHtml(it.q) : html(it.q.questionHtml)}</div>`).join("")}</div>` : "") +
       `<div class="crs-actions">` +
-        (nextL ? `<button class="btn ${ok ? "primary" : "ghost"}" data-act="next">לשלב הבא: ${esc(nextL.title)} ⟵</button>` : "") +
+        (nextL ? `<button class="btn ${ok ? "primary" : "ghost"}" data-act="next">לשלב הבא: ${titleH(nextL)} ⟵</button>` : "") +
         ((L.boss || !nextL) && hasReal ? `<button class="btn primary" data-act="real">לשאלות האמיתיות מהמבחנים ⟵</button>` : "") +
         `<button class="btn ${ok ? "ghost" : "primary"}" data-act="retry">🔁 לנסות שוב</button>` +
         `<button class="btn ghost" data-act="lesson">📘 לשיעור</button>` +
