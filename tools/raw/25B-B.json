@@ -47,7 +47,43 @@
    "confidence": "high",
    "points": 4,
    "part": "א",
-   "contextId": "c1"
+   "contextId": "c1",
+   "rubric": [
+    {
+     "text": "הנקודה נבחרת אחיד לאורך החליל: $X_i\\sim U_c(0,1)$",
+     "points": 2
+    },
+    {
+     "text": "הבחירות בלתי תלויות, ולכן $X_1,X_2$ בלתי תלויים",
+     "points": 1
+    },
+    {
+     "text": "נימוק: אורך החליל $1$ מ'",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לתאר את ההתפלגות בלי לנמק מדוע היא אחידה",
+    "לשכוח לציין אי-תלות"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "מהי צפיפות ההסתברות $f_{X_1}(0.3)$ של נקודה שנבחרת אחיד על חליל באורך $1$?",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "$f(x)=1$ על $(0,1)$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(X_1\\le0.25)$?",
+     "answer": 0.25,
+     "tol": 0,
+     "explain": "$F(t)=t$ על $(0,1)$, לכן $0.25$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 1,
@@ -60,7 +96,122 @@
    "confidence": "high",
    "points": 4,
    "part": "ב",
-   "contextId": "c1"
+   "contextId": "c1",
+   "region": {
+    "space": {
+     "x": [
+      0,
+      1
+     ],
+     "y": [
+      0,
+      1
+     ]
+    },
+    "labels": {
+     "x": "X1",
+     "y": "X2"
+    },
+    "event": [
+     {
+      "a": -1,
+      "b": 1,
+      "c": -0.5,
+      "op": ">"
+     },
+     {
+      "a": -1,
+      "b": 1,
+      "c": 0.5,
+      "op": "<"
+     }
+    ],
+    "exact": 0.75,
+    "caption": "הרצועה |x1-x2|<1/2"
+   },
+   "sim": {
+    "kind": "area",
+    "params": {
+     "fromRegion": true
+    },
+    "estimate": "P(|X1-X2|<1/2)",
+    "exact": 0.75
+   },
+   "rubric": [
+    {
+     "text": "גישה גאומטרית: מרחב המדגם ריבוע היחידה",
+     "points": 1
+    },
+    {
+     "text": "האירוע הוא רצועה, והמשלים שני משולשים עם ניצבים $\\frac12$",
+     "points": 2
+    },
+    {
+     "text": "התשובה $\\frac34$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לחשב רק משולש אחד של המשלים ולקבל $\\frac78$",
+    "לשכוח שהרצועה סימטרית סביב האלכסון"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "מהו שטח מרחב המדגם $|\\Omega|$ של הזוג $(X_1,X_2)$, כאשר $X_1,X_2\\sim U(0,1)$ בלתי תלויים?",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "ריבוע היחידה $(0,1)^2$ הוא מרחב המדגם, ושטחו $1$, לכן ההסתברות שווה לשטח האירוע."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו שטח אחד משני המשולשים מחוץ לרצועה $|x_1-x_2|<\\frac12$?",
+     "answer": 0.125,
+     "tol": 0,
+     "explain": "ניצבים $\\frac12$ ו-$\\frac12$: $\\frac12\\cdot\\frac14=\\frac18$.",
+     "region": {
+      "space": {
+       "x": [
+        0,
+        1
+       ],
+       "y": [
+        0,
+        1
+       ]
+      },
+      "labels": {
+       "x": "X1",
+       "y": "X2"
+      },
+      "event": [
+       {
+        "a": -1,
+        "b": 1,
+        "c": -0.5,
+        "op": ">"
+       },
+       {
+        "a": -1,
+        "b": 1,
+        "c": 0.5,
+        "op": "<"
+       }
+      ],
+      "exact": 0.75,
+      "caption": "הרצועה |x1-x2|<1/2"
+     }
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(|X_1-X_2|<\\frac12)$?",
+     "answer": 0.75,
+     "tol": 0,
+     "explain": "$1-2\\cdot\\frac18=\\frac34$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 1,
@@ -73,7 +224,133 @@
    "confidence": "high",
    "points": 4,
    "part": "ג",
-   "contextId": "c1"
+   "contextId": "c1",
+   "region": {
+    "space": {
+     "x": [
+      0,
+      1
+     ],
+     "y": [
+      0,
+      1
+     ]
+    },
+    "labels": {
+     "x": "X1",
+     "y": "X2"
+    },
+    "event": {
+     "any": [
+      [
+       {
+        "a": 1,
+        "b": -1,
+        "c": 1.5,
+        "op": ">"
+       }
+      ],
+      [
+       {
+        "a": -1,
+        "b": 1,
+        "c": 1.5,
+        "op": ">"
+       }
+      ]
+     ]
+    },
+    "exact": 0.0,
+    "caption": "האזור |x1-x2|>3/2 ריק"
+   },
+   "sim": {
+    "kind": "area",
+    "params": {
+     "fromRegion": true
+    },
+    "estimate": "P(|X1-X2|>3/2)",
+    "exact": 0.0
+   },
+   "rubric": [
+    {
+     "text": "טווח $|X_1-X_2|$ הוא $[0,1)$",
+     "points": 2
+    },
+    {
+     "text": "הרצועה $|x_1-x_2|\\le\\frac32$ מכסה את כל הריבוע",
+     "points": 1
+    },
+    {
+     "text": "התשובה $0$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לחשב שטח של משולש 'גדול' מחוץ לריבוע"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "מהו שטח מרחב המדגם $|\\Omega|$ של הזוג $(X_1,X_2)$, כאשר $X_1,X_2\\sim U(0,1)$ בלתי תלויים?",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "ריבוע היחידה $(0,1)^2$ הוא מרחב המדגם, ושטחו $1$, לכן ההסתברות שווה לשטח האירוע."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו הערך הגדול ביותר האפשרי של $|X_1-X_2|$ (בכל זוג נקודות על חליל באורך $1$)?",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "שתי נקודות על קטע באורך $1$ נמצאות במרחק של לכל היותר $1$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(|X_1-X_2|>\\frac32)$?",
+     "answer": 0.0,
+     "tol": 0,
+     "explain": "$\\frac32>1$, לכן האירוע ריק ושטחו $0$.",
+     "region": {
+      "space": {
+       "x": [
+        0,
+        1
+       ],
+       "y": [
+        0,
+        1
+       ]
+      },
+      "labels": {
+       "x": "X1",
+       "y": "X2"
+      },
+      "event": {
+       "any": [
+        [
+         {
+          "a": 1,
+          "b": -1,
+          "c": 1.5,
+          "op": ">"
+         }
+        ],
+        [
+         {
+          "a": -1,
+          "b": 1,
+          "c": 1.5,
+          "op": ">"
+         }
+        ]
+       ]
+      },
+      "exact": 0.0,
+      "caption": "האזור |x1-x2|>3/2 ריק"
+     }
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 1,
@@ -86,7 +363,129 @@
    "confidence": "high",
    "points": 8,
    "part": "ד",
-   "contextId": "c1"
+   "contextId": "c1",
+   "region": {
+    "space": {
+     "x": [
+      0,
+      1
+     ],
+     "y": [
+      0,
+      1
+     ]
+    },
+    "labels": {
+     "x": "X1",
+     "y": "X2"
+    },
+    "event": [
+     {
+      "a": 1,
+      "b": -1,
+      "c": 0.4,
+      "op": "<="
+     },
+     {
+      "a": -1,
+      "b": 1,
+      "c": 0.4,
+      "op": "<="
+     }
+    ],
+    "exact": 0.64,
+    "caption": "הרצועה |x1-x2|<=t עבור t=0.4 (שטח 2t-t^2)"
+   },
+   "sim": {
+    "kind": "area",
+    "params": {
+     "fromRegion": true
+    },
+    "estimate": "F_X(0.4)=P(|X1-X2|<=0.4)",
+    "exact": 0.64
+   },
+   "rubric": [
+    {
+     "text": "$F_X(t)=0$ עבור $t<0$ ו-$1$ עבור $t\\ge1$",
+     "points": 2
+    },
+    {
+     "text": "עבור $0\\le t<1$: משלים של שני משולשים עם ניצבים $1-t$",
+     "points": 4
+    },
+    {
+     "text": "$F_X(t)=2t-t^2$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "להשתמש בניצבים $t$ במקום $1-t$",
+    "לשכוח את הכפל ב-$2$ (שני משולשים)"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "מהו שטח מרחב המדגם $|\\Omega|$ של הזוג $(X_1,X_2)$, כאשר $X_1,X_2\\sim U(0,1)$ בלתי תלויים?",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "ריבוע היחידה $(0,1)^2$ הוא מרחב המדגם, ושטחו $1$, לכן ההסתברות שווה לשטח האירוע."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $t=0.4$: מהו שטח אחד משני המשולשים מחוץ לרצועה (ניצבים $1-t$)?",
+     "answer": 0.18,
+     "tol": 0,
+     "explain": "$\\frac12(0.6)^2=0.18$.",
+     "region": {
+      "space": {
+       "x": [
+        0,
+        1
+       ],
+       "y": [
+        0,
+        1
+       ]
+      },
+      "labels": {
+       "x": "X1",
+       "y": "X2"
+      },
+      "event": [
+       {
+        "a": 1,
+        "b": -1,
+        "c": 0.4,
+        "op": "<="
+       },
+       {
+        "a": -1,
+        "b": 1,
+        "c": 0.4,
+        "op": "<="
+       }
+      ],
+      "exact": 0.64,
+      "caption": "הרצועה |x1-x2|<=t עבור t=0.4 (שטח 2t-t^2)"
+     }
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו $F_X(0.4)=1-2\\cdot\\frac{(1-t)^2}2$?",
+     "answer": 0.64,
+     "tol": 0,
+     "explain": "$1-0.36=0.64=2t-t^2$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו $F_X(1)$?",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "$2-1=1$: הנוסחה מתחברת ל-$1$ ב-$t=1$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 1,
@@ -99,7 +498,60 @@
    "confidence": "high",
    "points": 2,
    "part": "ה",
-   "contextId": "c1"
+   "contextId": "c1",
+   "sim": {
+    "kind": "pdf",
+    "params": {
+     "pieces": [
+      {
+       "from": 0,
+       "to": 1,
+       "expr": "2*(1-x)"
+      }
+     ],
+     "event": "x > 0.2 and x < 0.6"
+    },
+    "estimate": "P(0.2<X<0.6)=F(0.6)-F(0.2)",
+    "exact": 0.48
+   },
+   "rubric": [
+    {
+     "text": "גזירה: $f_X=F_X'$",
+     "points": 1
+    },
+    {
+     "text": "$f_X(t)=2(1-t)$ על $[0,1)$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לשכוח את האפס מחוץ ל-$[0,1)$"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "מהו $f_X(0.4)$?",
+     "answer": 1.2,
+     "tol": 0,
+     "explain": "$2(1-0.4)=1.2$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו $f_X(1)$?",
+     "answer": 0.0,
+     "tol": 0,
+     "explain": "$2(1-1)=0$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "בדיקת נרמול: מהו $\\int_0^1f_X(t)\\,dt$?",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "שטח משולש עם בסיס $1$ וגובה $f_X(0)=2$: $1$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 1,
@@ -112,7 +564,65 @@
    "confidence": "high",
    "points": 3,
    "part": "ו",
-   "contextId": "c1"
+   "contextId": "c1",
+   "sim": {
+    "kind": "pdf",
+    "params": {
+     "pieces": [
+      {
+       "from": 0,
+       "to": 1,
+       "expr": "2*(1-x)"
+      }
+     ],
+     "measure": "mean",
+     "expr": "x"
+    },
+    "estimate": "E[X]",
+    "exact": 0.3333333333333333
+   },
+   "rubric": [
+    {
+     "text": "הצבה בהגדרה $\\int tf_X(t)\\,dt$",
+     "points": 1
+    },
+    {
+     "text": "פירוק $2t-2t^2$",
+     "points": 1
+    },
+    {
+     "text": "התוצאה $\\frac13$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לשכוח לכפול ב-$t$ בתוך האינטגרל"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "מהו $\\int_0^12t\\,dt$?",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "$t^2\\big|_0^1=1$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו $\\int_0^12t^2\\,dt$? (שבר או עשרוני)",
+     "answer": 0.6667,
+     "tol": 0.0006,
+     "explain": "$\\frac23t^3\\big|_0^1=\\frac23$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $\\mathbb{E}[X]=\\int_0^1t\\cdot2(1-t)\\,dt$? (שבר או עשרוני)",
+     "answer": 0.3333,
+     "tol": 0.0006,
+     "explain": "$1-\\frac23=\\frac13$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -125,7 +635,100 @@
    "confidence": "high",
    "points": 5,
    "part": "א",
-   "contextId": "c2"
+   "contextId": "c2",
+   "sim": {
+    "kind": "custom_discrete",
+    "params": {
+     "joint": [
+      {
+       "p": 0.375,
+       "A": 1,
+       "B": 1
+      },
+      {
+       "p": 0.075,
+       "A": 1,
+       "B": 0
+      },
+      {
+       "p": 0.25,
+       "A": 0,
+       "B": 1
+      },
+      {
+       "p": 0.3,
+       "A": 0,
+       "B": 0
+      }
+     ],
+     "event": "A == 1"
+    },
+    "estimate": "P(A) ב-p=0.4,q=0.2,s=0.7",
+    "exact": 0.45
+   },
+   "rubric": [
+    {
+     "text": "מציאת $P(B)$ מתוך $P(\\overline A/\\overline B)=1-q$ ו-$P(\\overline A\\cap\\overline B)=1-s$",
+     "points": 2
+    },
+    {
+     "text": "$P(A\\cap B)=(1-p)P(B)$",
+     "points": 1
+    },
+    {
+     "text": "$P(A)=s-pP(B)$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "להחליף בין $P(A/B)$ לבין $P(\\overline A/B)$",
+    "לחשוב ש-$P(B)=s-q$"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "כיצד מוצאים את $P(B)$ מתוך $q=P(A/\\overline B)$ ו-$s=P(A\\cup B)$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$P(\\overline A\\cap\\overline B)=1-s$ ו-$P(\\overline B)=\\dfrac{1-s}{1-q}$, כלומר $P(B)=\\dfrac{s-q}{1-q}$"
+      },
+      {
+       "id": "b",
+       "value": "$P(B)=p$"
+      },
+      {
+       "id": "c",
+       "value": "$P(B)=s-q$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "השנייה מבלבלת בין הסתברות מותנית ללא מותנית ($0.4$ במקום $0.625$). השלישית מתעלמת מכך ש-$q$ הסתברות מותנית ב-$\\overline B$ ($0.5$)."
+    },
+    {
+     "type": "numeric",
+     "prompt": "נקבע $p=0.4$, $q=0.2$, $s=0.7$. מהי $P(B)$?",
+     "answer": 0.625,
+     "tol": 0,
+     "explain": "$\\frac{s-q}{1-q}=\\frac{0.5}{0.8}=0.625$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(A\\cap B)=(1-p)P(B)$?",
+     "answer": 0.375,
+     "tol": 0,
+     "explain": "$0.6\\cdot0.625=0.375$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(A)=P(A\\cup B)-P(B)+P(A\\cap B)$?",
+     "answer": 0.45,
+     "tol": 0,
+     "explain": "$0.7-0.625+0.375=0.45$, כלומר $s-pP(B)$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -138,7 +741,99 @@
    "confidence": "high",
    "points": 5,
    "part": "ב",
-   "contextId": "c2"
+   "contextId": "c2",
+   "sim": {
+    "kind": "custom_discrete",
+    "params": {
+     "joint": [
+      {
+       "p": 0.375,
+       "A": 1,
+       "B": 1
+      },
+      {
+       "p": 0.075,
+       "A": 1,
+       "B": 0
+      },
+      {
+       "p": 0.25,
+       "A": 0,
+       "B": 1
+      },
+      {
+       "p": 0.3,
+       "A": 0,
+       "B": 0
+      }
+     ],
+     "event": "B == 1"
+    },
+    "estimate": "P(B) ב-p=0.4,q=0.2,s=0.7",
+    "exact": 0.625
+   },
+   "rubric": [
+    {
+     "text": "$P(\\overline A\\cap\\overline B)=1-s$ (דה-מורגן)",
+     "points": 2
+    },
+    {
+     "text": "$P(\\overline A/\\overline B)=1-q$ ולכן $P(\\overline B)=\\frac{1-s}{1-q}$",
+     "points": 2
+    },
+    {
+     "text": "$P(B)=\\frac{s-q}{1-q}$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לכתוב $P(\\overline B)=\\frac{s}{1-q}$ (בלי להחסיר מ-$1$)"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מהו $P(\\overline A\\mid\\overline B)$ במונחי הנתונים?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$1-q$, כי $q=P(A\\mid\\overline B)$"
+      },
+      {
+       "id": "b",
+       "value": "$q$"
+      },
+      {
+       "id": "c",
+       "value": "$1-p$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$q$ הוא $P(A\\mid\\overline B)$ ולא המשלים; $1-p$ הוא $P(A\\mid B)$, התנאי השונה."
+    },
+    {
+     "type": "numeric",
+     "prompt": "נקבע $p=0.4$, $q=0.2$, $s=0.7$. מהי $P(\\overline A\\cap\\overline B)$?",
+     "answer": 0.3,
+     "tol": 0,
+     "explain": "$1-s=0.3$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(\\overline B)=\\frac{P(\\overline A\\cap\\overline B)}{P(\\overline A\\mid\\overline B)}$?",
+     "answer": 0.375,
+     "tol": 0,
+     "explain": "$\\frac{0.3}{0.8}=0.375$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(B)$?",
+     "answer": 0.625,
+     "tol": 0,
+     "explain": "$1-0.375=0.625$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -151,7 +846,80 @@
    "confidence": "high",
    "points": 5,
    "part": "ג",
-   "contextId": "c2"
+   "contextId": "c2",
+   "sim": {
+    "kind": "custom_discrete",
+    "params": {
+     "joint": [
+      {
+       "p": 0.375,
+       "A": 1,
+       "B": 1
+      },
+      {
+       "p": 0.075,
+       "A": 1,
+       "B": 0
+      },
+      {
+       "p": 0.25,
+       "A": 0,
+       "B": 1
+      },
+      {
+       "p": 0.3,
+       "A": 0,
+       "B": 0
+      }
+     ],
+     "event": "A == 1 and B == 1"
+    },
+    "estimate": "P(A and B) ב-p=0.4,q=0.2,s=0.7",
+    "exact": 0.375
+   },
+   "rubric": [
+    {
+     "text": "$P(A\\mid B)=1-p$",
+     "points": 1
+    },
+    {
+     "text": "$P(B)=\\frac{s-q}{1-q}$ מסעיף ב",
+     "points": 2
+    },
+    {
+     "text": "$P(A\\cap B)=(1-p)\\frac{s-q}{1-q}$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "להשתמש ב-$p$ במקום $1-p$",
+    "לטעות בחישוב $P(B)$ מסעיף ב"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "נקבע $p=0.4$, $q=0.2$, $s=0.7$. מהי $P(B)$ (סעיף ב)?",
+     "answer": 0.625,
+     "tol": 0,
+     "explain": "$0.625$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(A\\mid B)=1-P(\\overline A\\mid B)$?",
+     "answer": 0.6,
+     "tol": 0,
+     "explain": "$1-p=0.6$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(A\\cap B)$?",
+     "answer": 0.375,
+     "tol": 0,
+     "explain": "$0.6\\cdot0.625=0.375$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -164,7 +932,55 @@
    "confidence": "high",
    "points": 5,
    "part": "ד",
-   "contextId": "c2"
+   "contextId": "c2",
+   "rubric": [
+    {
+     "text": "$P(B)=\\frac{s-q}{1-q}$ חייבת להיות $\\ge0$",
+     "points": 3
+    },
+    {
+     "text": "אם $q>s$ המונה שלילי והמכנה חיובי",
+     "points": 1
+    },
+    {
+     "text": "מסקנה: לא ייתכן",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לענות 'כן' בלי לבדוק את סימן $P(B)$"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "האם ייתכן $q>s$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "לא: אז $P(B)=\\frac{s-q}{1-q}<0$"
+      },
+      {
+       "id": "b",
+       "value": "כן: אין קשר בין $q$ ל-$s$"
+      },
+      {
+       "id": "c",
+       "value": "כן: $q>s$ נדרש כש-$A$ קשור ל-$B$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$P(\\overline A\\cap\\overline B)=1-s=(1-q)P(\\overline B)$, ולכן $P(\\overline B)=\\frac{1-s}{1-q}$; אם $q>s$ מתקבל $P(\\overline B)>1$, וגם $P(B)<0$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $q=0.5$ ו-$s=0.3$: מהו $P(B)=\\frac{s-q}{1-q}$?",
+     "answer": -0.4,
+     "tol": 0,
+     "explain": "$\\frac{-0.2}{0.5}=-0.4<0$: לא יתכן."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -177,7 +993,93 @@
    "confidence": "high",
    "points": 5,
    "part": "ה",
-   "contextId": "c2"
+   "contextId": "c2",
+   "sim": {
+    "kind": "custom_discrete",
+    "params": {
+     "joint": [
+      {
+       "p": 0.1,
+       "A": 1,
+       "B": 1
+      },
+      {
+       "p": 0.1,
+       "A": 1,
+       "B": 0
+      },
+      {
+       "p": 0.4,
+       "A": 0,
+       "B": 1
+      },
+      {
+       "p": 0.4,
+       "A": 0,
+       "B": 0
+      }
+     ],
+     "event": "A == 1 and B == 1"
+    },
+    "estimate": "P(A and B)=P(A)P(B) ב-p=0.8,q=0.2,s=0.6",
+    "exact": 0.1
+   },
+   "rubric": [
+    {
+     "text": "אי-תלות: $P(A/B)=P(A/\\overline B)=P(A)$",
+     "points": 2
+    },
+    {
+     "text": "$P(A/B)=1-p$ ו-$P(A/\\overline B)=q$",
+     "points": 1
+    },
+    {
+     "text": "התנאי $p=1-q$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לדרוש $p=q$",
+    "להסתפק בשוויון אחד בלבד"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איזה תנאי שקול לאי-תלות של $A$ ו-$B$ (כש-$0<P(B)<1$)?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$P(A\\mid B)=P(A\\mid\\overline B)$"
+      },
+      {
+       "id": "b",
+       "value": "$P(A\\mid B)=P(B\\mid A)$"
+      },
+      {
+       "id": "c",
+       "value": "$P(A\\cap B)=0$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "השני נכון רק כש-$P(A)=P(B)$. השלישי הוא זרות."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $q=0.2$: איזה $p$ מקיים $p=1-q$?",
+     "answer": 0.8,
+     "tol": 0,
+     "explain": "$0.8$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "באותם ערכים: מהו $P(A\\mid B)-P(A\\mid\\overline B)=(1-p)-q$?",
+     "answer": 0.0,
+     "tol": 0,
+     "explain": "$0.2-0.2=0$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -190,7 +1092,93 @@
    "confidence": "high",
    "points": 5,
    "part": "ו",
-   "contextId": "c2"
+   "contextId": "c2",
+   "sim": {
+    "kind": "custom_discrete",
+    "params": {
+     "joint": [
+      {
+       "p": 0.0,
+       "A": 1,
+       "B": 1
+      },
+      {
+       "p": 0.25,
+       "A": 1,
+       "B": 0
+      },
+      {
+       "p": 0.2,
+       "A": 0,
+       "B": 1
+      },
+      {
+       "p": 0.55,
+       "A": 0,
+       "B": 0
+      }
+     ],
+     "event": "A == 1 or B == 1"
+    },
+    "estimate": "P(A or B)=P(A)+P(B) ב-p=1,q=5/16,s=9/20",
+    "exact": 0.45
+   },
+   "rubric": [
+    {
+     "text": "זרות: $P(A\\cap B)=0$",
+     "points": 1
+    },
+    {
+     "text": "$P(A\\cap B)=(1-p)P(B)$ ו-$P(B)>0$ כי $P(\\overline A/B)$ מוגדרת",
+     "points": 2
+    },
+    {
+     "text": "מסקנה (תיקון): $p=1$, ו-$s=q$ אינו מתאים",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לכתוב $s=q$ כמו בפתרון הרשמי (אז $P(B)=0$ ו-$P(\\overline A\\mid B)$ אינה מוגדרת)",
+    "לשכוח ש-$P(B)>0$ מהנתון"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מה מבטיח ש-$P(A\\cap B)=(1-p)\\,P(B)$ מתאפס, בהינתן ש-$P(\\overline A/B)=p$ מוגדרת?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$p=1$ (כי $P(B)>0$ מכיוון שההסתברות המותנית מוגדרת)"
+      },
+      {
+       "id": "b",
+       "value": "$s=q$ (כי אז $P(B)=0$)"
+      },
+      {
+       "id": "c",
+       "value": "$q=0$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "עבור $s=q$ מתקבל $P(B)=0$, ואז $P(\\overline A/B)$ אינה מוגדרת בניגוד לנתון. $q=0$ אינו מבטיח זרות."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $q=\\frac5{16}$ ו-$s=\\frac9{20}$: מהו $P(B)=\\frac{s-q}{1-q}$?",
+     "answer": 0.2,
+     "tol": 0,
+     "explain": "$\\frac{11/80}{11/16}=\\frac15$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $p=1$: מהו $P(A)=s-pP(B)$?",
+     "answer": 0.25,
+     "tol": 0,
+     "explain": "$\\frac9{20}-\\frac15=\\frac14$; ואכן $P(A\\cap B)=0$, $P(A)+P(B)=\\frac9{20}=s$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -202,7 +1190,79 @@
    "official": true,
    "confidence": "high",
    "points": 5,
-   "part": "א"
+   "part": "א",
+   "sim": {
+    "kind": "dice",
+    "params": {
+     "n": 2,
+     "faces": 6,
+     "event": "d1 == d2"
+    },
+    "estimate": "P(correct guess) ב-N=6",
+    "exact": 0.16666666666666666
+   },
+   "rubric": [
+    {
+     "text": "מרחב המדגם: זוגות (ניחוש, מספר), כולם שווי הסתברות",
+     "points": 2
+    },
+    {
+     "text": "$N$ זוגות מתאימים: $(i,i)$",
+     "points": 2
+    },
+    {
+     "text": "התשובה $\\frac1N$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לספור רק $N$ אפשרויות ולחלק ב-$N$ בלי לזהות שהניחוש הוא אקראי"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מהו מרחב המדגם המתאים (המספר של יוגיין והניחוש של ראש בית הספר הם אקראיים)?",
+     "options": [
+      {
+       "id": "a",
+       "value": "כל זוגות (ניחוש, מספר), $N^2$ זוגות שווי הסתברות"
+      },
+      {
+       "id": "b",
+       "value": "רק המספרים $1,\\ldots,N$ של יוגיין"
+      },
+      {
+       "id": "c",
+       "value": "כל התמורות של $1,\\ldots,N$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "גם הניחוש אקראי, ולכן שני הצדדים משתנים. הצד השני אינו מביא בחשבון את הניחוש; תמורות לא רלוונטיות."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $N=6$: מהו $|\\Omega|$ (מספר הזוגות)?",
+     "answer": 36.0,
+     "tol": 0,
+     "explain": "$N^2=36$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "כמה זוגות מתאימים לניחוש נכון?",
+     "answer": 6.0,
+     "tol": 0,
+     "explain": "הזוגות $(i,i)$: $N=6$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי ההסתברות לניחוש נכון? (שבר או עשרוני)",
+     "answer": 0.1667,
+     "tol": 0.0006,
+     "explain": "$\\frac6{36}=\\frac16$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -214,7 +1274,60 @@
    "official": true,
    "confidence": "high",
    "points": 5,
-   "part": "ב"
+   "part": "ב",
+   "sim": {
+    "kind": "dice",
+    "params": {
+     "n": 2,
+     "faces": 6,
+     "event": "abs(d1 - d2) == 1"
+    },
+    "estimate": "P(neighbour) ב-N=6",
+    "exact": 0.2777777777777778
+   },
+   "rubric": [
+    {
+     "text": "הגדרת שכן: ההפרש בין הניחוש למספר הוא $1$ בערך מוחלט",
+     "points": 1
+    },
+    {
+     "text": "ספירה: $2(N-1)$ זוגות",
+     "points": 3
+    },
+    {
+     "text": "$\\frac{2(N-1)}{N^2}$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לספור $2N$ זוגות (שכחו שהקצוות יש להם שכן אחד)",
+    "לספור כל זוג פעמיים"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "עבור $N=6$: מהו $|\\Omega|$?",
+     "answer": 36.0,
+     "tol": 0,
+     "explain": "$N^2=36$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "כמה זוגות $(i,j)$ מקיימים $|i-j|=1$ עבור $N=6$?",
+     "answer": 10.0,
+     "tol": 0,
+     "explain": "$2(N-1)=10$: חמישה זוגות עולים וחמישה יורדים."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי ההסתברות לניחוש של מספר שכן? (שבר או עשרוני)",
+     "answer": 0.2778,
+     "tol": 0.0006,
+     "explain": "$\\frac{10}{36}=\\frac5{18}\\approx0.2778$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -226,7 +1339,131 @@
    "official": true,
    "confidence": "high",
    "points": 5,
-   "part": "ג"
+   "part": "ג",
+   "sim": {
+    "kind": "custom_discrete",
+    "params": {
+     "vars": {
+      "gE": {
+       "values": [
+        1,
+        2,
+        3
+       ],
+       "probs": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+       ]
+      },
+      "nE": {
+       "values": [
+        1,
+        2,
+        3
+       ],
+       "probs": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+       ]
+      },
+      "gS": {
+       "values": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "probs": [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+       ]
+      },
+      "nS": {
+       "values": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "probs": [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+       ]
+      }
+     },
+     "event": "gE == nE and gS == nS"
+    },
+    "estimate": "P(both correct) ב-N=3,M=4",
+    "exact": 0.08333333333333333
+   },
+   "rubric": [
+    {
+     "text": "בחירת יוגיין ובחירת אסתר בלתי תלויות",
+     "points": 2
+    },
+    {
+     "text": "$P(A_1)=\\frac1N$ ו-$P(A_2)=\\frac1M$",
+     "points": 2
+    },
+    {
+     "text": "מכפלה: $\\frac1{NM}$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לחבר את ההסתברויות במקום להכפיל"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איך משלבים את ההסתברויות לנחש נכון את שני המספרים?",
+     "options": [
+      {
+       "id": "a",
+       "value": "מכפלה, כי שני המשחקים בלתי תלויים"
+      },
+      {
+       "id": "b",
+       "value": "סכום $\\frac1N+\\frac1M$"
+      },
+      {
+       "id": "c",
+       "value": "המקסימום $\\max(\\frac1N,\\frac1M)$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "הסכום גדול מ-$\\frac1N$ ואף יכול לעלות על $1$ (הערכים $0.583$); המקסימום מתעלם מהדרישה לשני הניחושים."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $N=3$, $M=4$: מהי $P(A_1)$? (שבר או עשרוני)",
+     "answer": 0.3333,
+     "tol": 0.0006,
+     "explain": "$\\frac13$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(A_2)$?",
+     "answer": 0.25,
+     "tol": 0,
+     "explain": "$\\frac14$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(A_1\\cap A_2)$? (שבר או עשרוני)",
+     "answer": 0.0833,
+     "tol": 0.0006,
+     "explain": "$\\frac13\\cdot\\frac14=\\frac1{12}\\approx0.0833$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -238,7 +1475,125 @@
    "official": true,
    "confidence": "high",
    "points": 5,
-   "part": "ד"
+   "part": "ד",
+   "sim": {
+    "kind": "custom_discrete",
+    "params": {
+     "vars": {
+      "gE": {
+       "values": [
+        1,
+        2,
+        3
+       ],
+       "probs": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+       ]
+      },
+      "nE": {
+       "values": [
+        1,
+        2,
+        3
+       ],
+       "probs": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+       ]
+      },
+      "gS": {
+       "values": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "probs": [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+       ]
+      },
+      "nS": {
+       "values": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "probs": [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+       ]
+      }
+     },
+     "event": "gE == nE or gS == nS"
+    },
+    "estimate": "P(at least one correct) ב-N=3,M=4",
+    "exact": 0.49999999999999994
+   },
+   "rubric": [
+    {
+     "text": "כלל החיבור: $P(A_1\\cup A_2)=P(A_1)+P(A_2)-P(A_1\\cap A_2)$",
+     "points": 2
+    },
+    {
+     "text": "$P(A_1\\cap A_2)=P(A_1)P(A_2)$",
+     "points": 2
+    },
+    {
+     "text": "$\\frac1N+\\frac1M-\\frac1{NM}$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לחבר בלי לחסר את החיתוך",
+    "לחשב $1-\\frac1{NM}$"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איך מחשבים את ההסתברות לנחש נכון לפחות אחד המספרים?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$P(A_1)+P(A_2)-P(A_1\\cap A_2)$"
+      },
+      {
+       "id": "b",
+       "value": "$P(A_1)+P(A_2)$"
+      },
+      {
+       "id": "c",
+       "value": "$1-P(A_1\\cap A_2)$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "הראשון בלבד מונע ספירה כפולה: השני נותן $0.583$, והשלישי $0.917$, במקום $0.5$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $N=3$, $M=4$: מהי $P(A_1\\cap A_2)$? (שבר או עשרוני)",
+     "answer": 0.0833,
+     "tol": 0.0006,
+     "explain": "$\\frac1{12}$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(A_1\\cup A_2)$?",
+     "answer": 0.5,
+     "tol": 0,
+     "explain": "$\\frac13+\\frac14-\\frac1{12}=\\frac12$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -250,7 +1605,132 @@
    "official": true,
    "confidence": "high",
    "points": 5,
-   "part": "ה"
+   "part": "ה",
+   "sim": {
+    "kind": "custom_discrete",
+    "params": {
+     "vars": {
+      "gE": {
+       "values": [
+        1,
+        2,
+        3
+       ],
+       "probs": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+       ]
+      },
+      "nE": {
+       "values": [
+        1,
+        2,
+        3
+       ],
+       "probs": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+       ]
+      },
+      "gS": {
+       "values": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "probs": [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+       ]
+      },
+      "nS": {
+       "values": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "probs": [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+       ]
+      }
+     },
+     "event": "gE == nE and abs(gS - nS) == 1"
+    },
+    "estimate": "P(Eugene correct, Esther neighbour) ב-N=3,M=4",
+    "exact": 0.125
+   },
+   "rubric": [
+    {
+     "text": "אי-תלות: מכפלת ההסתברויות",
+     "points": 2
+    },
+    {
+     "text": "ההסתברות לנחש שכן של אסתר היא $\\frac{2(M-1)}{M^2}$",
+     "points": 2
+    },
+    {
+     "text": "$\\frac1N\\cdot\\frac{2(M-1)}{M^2}$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "להשתמש ב-$N$ במקום $M$ בחישוב השכן",
+    "לחבר במקום להכפיל"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איך משלבים את ההסתברות לנחש נכון את מספרו של יוגיין ושכן של אסתר?",
+     "options": [
+      {
+       "id": "a",
+       "value": "מכפלה, כי שני המשחקים בלתי תלויים"
+      },
+      {
+       "id": "b",
+       "value": "סכום ההסתברויות"
+      },
+      {
+       "id": "c",
+       "value": "מנה של ההסתברויות"
+      }
+     ],
+     "correctId": "a",
+     "explain": "סכום או מנה אינם מתארים חיתוך של מאורעות בלתי תלויים."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $M=4$: מהי ההסתברות לנחש מספר שכן של אסתר, $\\frac{2(M-1)}{M^2}$?",
+     "answer": 0.375,
+     "tol": 0,
+     "explain": "$\\frac{6}{16}=0.375$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $N=3$: מהי $P(A_1)$? (שבר או עשרוני)",
+     "answer": 0.3333,
+     "tol": 0.0006,
+     "explain": "$\\frac13$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי ההסתברות המבוקשת?",
+     "answer": 0.125,
+     "tol": 0,
+     "explain": "$\\frac13\\cdot\\frac38=\\frac18=0.125$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 4,
@@ -263,7 +1743,91 @@
    "confidence": "high",
    "points": 8,
    "part": "א",
-   "contextId": "c4"
+   "contextId": "c4",
+   "sim": {
+    "kind": "pdf",
+    "params": {
+     "pieces": [
+      {
+       "from": -1,
+       "to": 0,
+       "expr": "0.5*x+0.75"
+      },
+      {
+       "from": 0,
+       "to": 1,
+       "expr": "0.5"
+      }
+     ],
+     "measure": "mean",
+     "expr": "x"
+    },
+    "estimate": "E[X]=mu ב-mu=1/24",
+    "exact": 0.041666666666666664
+   },
+   "rubric": [
+    {
+     "text": "אינטגרביליות: $a=g=h=0$",
+     "points": 2
+    },
+    {
+     "text": "נרמול ושוויון $P(X<0)=P(X>0)$: $d=\\frac12$",
+     "points": 3
+    },
+    {
+     "text": "תנאי התוחלת ופתרון: $b=12\\mu$, $c=6\\mu+\\frac12$",
+     "points": 3
+    }
+   ],
+   "pitfalls": [
+    "לא לאפס את $a$ ואת $g,h$ ולהמשיך עם אינטגרלים מתבדרים",
+    "לשכוח שהצפיפות מוגדרת פעמיים בנקודות הקצה"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מדוע $a=0$ וגם $g=h=0$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "האינטגרל של קבוע חיובי על קרן אינסופית מתבדר, והצפיפות חייבת להיות אינטגרבילית"
+      },
+      {
+       "id": "b",
+       "value": "כי הצפיפות רציפה בכל נקודה"
+      },
+      {
+       "id": "c",
+       "value": "כי $\\mu$ חייב להיות $0$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "הצפיפות אינה נדרשת להיות רציפה, ו-$\\mu$ אינו $0$ בדרך כלל ($b=12\\mu$)."
+    },
+    {
+     "type": "numeric",
+     "prompt": "נקבע $\\mu=\\frac1{24}$. מהו $d$? (מ-$P(X<0)=P(X>0)$ והנרמול)",
+     "answer": 0.5,
+     "tol": 0,
+     "explain": "שני חצאי הסתברות: $d=\\frac12$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו $b=12\\mu$?",
+     "answer": 0.5,
+     "tol": 0,
+     "explain": "$12\\cdot\\frac1{24}=\\frac12$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו $c=6\\mu+\\frac12$?",
+     "answer": 0.75,
+     "tol": 0,
+     "explain": "$\\frac14+\\frac12=\\frac34$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 4,
@@ -276,7 +1840,43 @@
    "confidence": "high",
    "points": 5,
    "part": "ב",
-   "contextId": "c4"
+   "contextId": "c4",
+   "rubric": [
+    {
+     "text": "הצפיפות ליניארית על $[-1,0]$, לכן מספיק לבדוק את הקצוות",
+     "points": 2
+    },
+    {
+     "text": "$f(-1)=\\frac12-6\\mu\\ge0$ ו-$f(0)=6\\mu+\\frac12\\ge0$",
+     "points": 2
+    },
+    {
+     "text": "$-\\frac1{12}\\le\\mu\\le\\frac1{12}$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לבדוק רק קצה אחד",
+    "להפוך את כיוון האי-שוויון"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "באיזה $\\mu$ מתאפס $f(-1)=\\frac12-6\\mu$ (הערך הגדול ביותר של $\\mu$)? (שבר או עשרוני)",
+     "answer": 0.0833,
+     "tol": 0.0006,
+     "explain": "$\\mu=\\frac1{12}\\approx0.0833$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "באיזה $\\mu$ מתאפס $f(0)=6\\mu+\\frac12$ (הערך הקטן ביותר)? (שבר או עשרוני)",
+     "answer": -0.0833,
+     "tol": 0.0006,
+     "explain": "$\\mu=-\\frac1{12}\\approx-0.0833$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 4,
@@ -289,7 +1889,74 @@
    "confidence": "high",
    "points": 8,
    "part": "ג",
-   "contextId": "c4"
+   "contextId": "c4",
+   "sim": {
+    "kind": "pdf",
+    "params": {
+     "pieces": [
+      {
+       "from": -1,
+       "to": 0,
+       "expr": "0.5*x+0.75"
+      },
+      {
+       "from": 0,
+       "to": 1,
+       "expr": "0.5"
+      }
+     ],
+     "event": "x <= -0.5"
+    },
+    "estimate": "F_X(-1/2) ב-mu=1/24",
+    "exact": 0.1875
+   },
+   "rubric": [
+    {
+     "text": "$F_X(t)=0$ עבור $t<-1$",
+     "points": 1
+    },
+    {
+     "text": "אינטגרציה של $12\\mu x+6\\mu+\\frac12$ מ-$-1$",
+     "points": 3
+    },
+    {
+     "text": "ענף $[0,1)$: $\\frac{t+1}2$ ו-$F_X=1$ מ-$t=1$",
+     "points": 2
+    },
+    {
+     "text": "בדיקת רציפות ב-$t=0$: $\\frac12$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לשכוח את הקבוע $F_X(-1)=0$",
+    "לשכוח שהענף האמצעי משתנה עם $\\mu$"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "נקבע $\\mu=\\frac1{24}$. מהו $F_X(-\\frac12)=\\frac12(t+1)(12\\mu t+1)$?",
+     "answer": 0.1875,
+     "tol": 0,
+     "explain": "$\\frac12\\cdot\\frac12\\cdot\\frac34=\\frac3{16}=0.1875$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו $F_X(0)$ (נקודת החיבור)?",
+     "answer": 0.5,
+     "tol": 0,
+     "explain": "$\\frac12(1)(1)=\\frac12$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו $F_X(\\frac12)=\\frac{t+1}2$?",
+     "answer": 0.75,
+     "tol": 0,
+     "explain": "$\\frac{1.5}2=0.75$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 4,
@@ -302,7 +1969,74 @@
    "confidence": "high",
    "points": 4,
    "part": "ד",
-   "contextId": "c4"
+   "contextId": "c4",
+   "sim": {
+    "kind": "pdf",
+    "params": {
+     "pieces": [
+      {
+       "from": -1,
+       "to": 0,
+       "expr": "0.5*x+0.75"
+      },
+      {
+       "from": 0,
+       "to": 1,
+       "expr": "0.5"
+      }
+     ],
+     "event": "x < 0",
+     "given": "x > -0.5"
+    },
+    "estimate": "P(X<0 | X>-1/2) ב-mu=1/24",
+    "exact": 0.38461538461538464
+   },
+   "rubric": [
+    {
+     "text": "הגדרת ההסתברות המותנית",
+     "points": 1
+    },
+    {
+     "text": "$P(X>-\\frac12)=1-F_X(-\\frac12)$",
+     "points": 1
+    },
+    {
+     "text": "$P(-\\frac12<X<0)=F_X(0)-F_X(-\\frac12)$",
+     "points": 1
+    },
+    {
+     "text": "התשובה $\\frac{1+6\\mu}{3+6\\mu}$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לחלק ב-$P(X<0)=\\frac12$ במקום ב-$P(X>-\\frac12)$"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "נקבע $\\mu=\\frac1{24}$. מהי הסתברות התנאי $P(X>-\\frac12)$?",
+     "answer": 0.8125,
+     "tol": 0,
+     "explain": "$1-\\frac3{16}=\\frac{13}{16}$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(-\\frac12<X<0)$?",
+     "answer": 0.3125,
+     "tol": 0,
+     "explain": "$\\frac12-\\frac3{16}=\\frac5{16}$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(X<0\\mid X>-\\frac12)$? (שבר או עשרוני)",
+     "answer": 0.3846,
+     "tol": 0.0006,
+     "explain": "$\\frac{5/16}{13/16}=\\frac5{13}\\approx0.3846$, כלומר $\\frac{1+6\\mu}{3+6\\mu}$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 5,
@@ -315,7 +2049,95 @@
    "confidence": "high",
    "points": 3,
    "part": "א",
-   "contextId": "c5"
+   "contextId": "c5",
+   "sim": {
+    "kind": "circuit",
+    "params": {
+     "network": {
+      "type": "parallel",
+      "children": [
+       {
+        "type": "series",
+        "children": [
+         {
+          "type": "comp",
+          "id": "A",
+          "p": 0.6
+         },
+         {
+          "type": "comp",
+          "id": "B",
+          "p": 0.6
+         }
+        ]
+       },
+       {
+        "type": "comp",
+        "id": "C",
+        "p": 0.6
+       }
+      ]
+     },
+     "event": "S"
+    },
+    "estimate": "P(Q0) ב-p=0.6",
+    "exact": 0.7440000000000001
+   },
+   "rubric": [
+    {
+     "text": "תרגום המעגל: $(A\\cap B)\\cup C$",
+     "points": 1
+    },
+    {
+     "text": "כלל החיבור-החיסור",
+     "points": 1
+    },
+    {
+     "text": "$p+p^2-p^3$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לכתוב $p^2+p$ (שכחו לחסר את החיתוך)"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איך משלבים את $P(A\\cap B)$ ו-$P(C)$ כדי לקבל את $P((A\\cap B)\\cup C)$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$P(A\\cap B)+P(C)-P(A\\cap B\\cap C)$"
+      },
+      {
+       "id": "b",
+       "value": "$P(A\\cap B)+P(C)$"
+      },
+      {
+       "id": "c",
+       "value": "$P(A\\cap B)\\cdot P(C)$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "השני סופר את החיתוך פעמיים ($0.96$), והשלישי הוא חיתוך ולא איחוד ($0.216$), במקום $0.744$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $p=0.6$: מהי $P(A\\cap B)$?",
+     "answer": 0.36,
+     "tol": 0,
+     "explain": "$p^2=0.36$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(Q_0)$?",
+     "answer": 0.744,
+     "tol": 0,
+     "explain": "$0.36+0.6-0.216=0.744$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 5,
@@ -328,7 +2150,95 @@
    "confidence": "high",
    "points": 3,
    "part": "ב",
-   "contextId": "c5"
+   "contextId": "c5",
+   "sim": {
+    "kind": "circuit",
+    "params": {
+     "network": {
+      "type": "parallel",
+      "children": [
+       {
+        "type": "series",
+        "children": [
+         {
+          "type": "comp",
+          "id": "A",
+          "p": 0.6
+         },
+         {
+          "type": "comp",
+          "id": "C",
+          "p": 0.6
+         }
+        ]
+       },
+       {
+        "type": "comp",
+        "id": "B",
+        "p": 0.6
+       }
+      ]
+     },
+     "event": "S"
+    },
+    "estimate": "P(Q') למעגל החדש הספציפי ב-p=0.6",
+    "exact": 0.7440000000000001
+   },
+   "rubric": [
+    {
+     "text": "אותה טופולוגיה: אותה נוסחה",
+     "points": 1
+    },
+    {
+     "text": "הסתברות פעולה אינה תלויה בזהות היחידות כשכולן שוות",
+     "points": 1
+    },
+    {
+     "text": "$p(1+p-p^2)$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לחשוב שהשינוי במיקום משנה את ההסתברות"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מדוע ל-$Q'$ הספציפי (למשל $(A\\cap C)\\cup B$) אותה הסתברות פעולה כמו ל-$Q_0$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "יחידות זהות בהסתברות $p$ ובלתי תלויות, ולכן רק המבנה קובע את ההסתברות"
+      },
+      {
+       "id": "b",
+       "value": "כי $Q'=Q_0$ כמאורע"
+      },
+      {
+       "id": "c",
+       "value": "כי $p=1$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$Q'$ ו-$Q_0$ הם מאורעות שונים (למשל כש-$A=0$, $B=1$, $C=0$: $Q'$ פועל אבל $Q_0$ לא) עם אותה הסתברות."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $p=0.6$: מהי $P(A\\cap C)$ ב-$Q'=(A\\cap C)\\cup B$?",
+     "answer": 0.36,
+     "tol": 0,
+     "explain": "$0.36$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(Q')$?",
+     "answer": 0.744,
+     "tol": 0,
+     "explain": "$0.36+0.6-0.216=0.744$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 5,
@@ -341,7 +2251,132 @@
    "confidence": "high",
    "points": 10,
    "part": "ג",
-   "contextId": "c5"
+   "contextId": "c5",
+   "sim": {
+    "kind": "custom_discrete",
+    "params": {
+     "vars": {
+      "A": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.4,
+        0.6
+       ]
+      },
+      "B": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.4,
+        0.6
+       ]
+      },
+      "C": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.4,
+        0.6
+       ]
+      },
+      "K": {
+       "values": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "probs": [
+        0.16666666666666666,
+        0.16666666666666666,
+        0.16666666666666666,
+        0.16666666666666666,
+        0.16666666666666666,
+        0.16666666666666666
+       ]
+      }
+     },
+     "event": "A*B + C > 0 and ((K <= 2 and A*B + C > 0) or ((K == 3 or K == 4) and A*C + B > 0) or (K >= 5 and B*C + A > 0))"
+    },
+    "estimate": "P(Q0 and Q') ב-p=0.6",
+    "exact": 0.68
+   },
+   "rubric": [
+    {
+     "text": "שש האפשרויות לשיבוץ, בהסתברות שווה",
+     "points": 2
+    },
+    {
+     "text": "התניה על השיבוץ (נוסחת ההסתברות השלמה)",
+     "points": 2
+    },
+    {
+     "text": "$P(Q_0\\cap Q_3)=3p^2-2p^3$",
+     "points": 3
+    },
+    {
+     "text": "הרכבה: $\\frac p3(1+7p-5p^2)$",
+     "points": 3
+    }
+   ],
+   "pitfalls": [
+    "להכפיל $P(Q_0)P(Q')$ בטעות",
+    "לשכוח ששני שיבוצים נותנים את $Q_0$ עצמו ו-4 אחרים נותנים $3p^2-2p^3$"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "כיצד מחשבים את ההסתברות ש-$Q_0$ וגם $Q'$ (שיבוץ אקראי) פועלים?",
+     "options": [
+      {
+       "id": "a",
+       "value": "נוסחת ההסתברות השלמה על שש האפשרויות לשיבוץ, כל אחת בהסתברות $\\frac16$"
+      },
+      {
+       "id": "b",
+       "value": "$P(Q_0)\\cdot P(Q')$"
+      },
+      {
+       "id": "c",
+       "value": "$P(Q_0)$ בלבד"
+      }
+     ],
+     "correctId": "a",
+     "explain": "המאורעות תלויים (אותן יחידות), ולכן המכפלה ($0.553$) שגויה. $P(Q_0)=0.744$ מתעלם מהצורך ש-$Q'$ יפעל."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $p=0.6$ ושיבוצים I ו-II ($Q'=Q_0$): מהי $P(Q_0\\cap Q')$?",
+     "answer": 0.744,
+     "tol": 0,
+     "explain": "$P(Q_0)=0.744$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "בשיבוצים III-VI: מהי $P(Q_0\\cap Q')=3p^2-2p^3$?",
+     "answer": 0.648,
+     "tol": 0,
+     "explain": "$1.08-0.432=0.648$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(Q_0\\cap Q')$ הכוללת?",
+     "answer": 0.68,
+     "tol": 0,
+     "explain": "$\\frac16\\{2\\cdot0.744+4\\cdot0.648\\}=0.68$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 5,
@@ -354,7 +2389,108 @@
    "confidence": "high",
    "points": 5,
    "part": "ד",
-   "contextId": "c5"
+   "contextId": "c5",
+   "sim": {
+    "kind": "custom_discrete",
+    "params": {
+     "vars": {
+      "A": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.4,
+        0.6
+       ]
+      },
+      "B": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.4,
+        0.6
+       ]
+      },
+      "C": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.4,
+        0.6
+       ]
+      },
+      "K": {
+       "values": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "probs": [
+        0.16666666666666666,
+        0.16666666666666666,
+        0.16666666666666666,
+        0.16666666666666666,
+        0.16666666666666666,
+        0.16666666666666666
+       ]
+      }
+     },
+     "event": "((K <= 2 and A*B + C > 0) or ((K == 3 or K == 4) and A*C + B > 0) or (K >= 5 and B*C + A > 0))",
+     "given": "A*B + C > 0"
+    },
+    "estimate": "P(Q'|Q0) ב-p=0.6",
+    "exact": 0.9139784946236559
+   },
+   "rubric": [
+    {
+     "text": "הגדרת ההסתברות המותנית",
+     "points": 1
+    },
+    {
+     "text": "המכנה $P(Q_0)$",
+     "points": 2
+    },
+    {
+     "text": "היחס $\\frac{1+7p-5p^2}{3(1+p-p^2)}$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לחלק ב-$P(Q')$ במקום ב-$P(Q_0)$ (אותו ערך כאן, אך התנאי הוא $Q_0$)"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "עבור $p=0.6$: מהי הסתברות התנאי $P(Q_0)$?",
+     "answer": 0.744,
+     "tol": 0,
+     "explain": "$0.744$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(Q_0\\cap Q')$ (סעיף ג)?",
+     "answer": 0.68,
+     "tol": 0,
+     "explain": "$0.68$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(Q'\\mid Q_0)$? (שבר או עשרוני)",
+     "answer": 0.914,
+     "tol": 0.0006,
+     "explain": "$\\frac{0.68}{0.744}\\approx0.9140$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 5,
@@ -367,7 +2503,108 @@
    "confidence": "high",
    "points": 4,
    "part": "ה",
-   "contextId": "c5"
+   "contextId": "c5",
+   "sim": {
+    "kind": "custom_discrete",
+    "params": {
+     "vars": {
+      "A": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.4,
+        0.6
+       ]
+      },
+      "B": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.4,
+        0.6
+       ]
+      },
+      "C": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.4,
+        0.6
+       ]
+      },
+      "K": {
+       "values": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "probs": [
+        0.16666666666666666,
+        0.16666666666666666,
+        0.16666666666666666,
+        0.16666666666666666,
+        0.16666666666666666,
+        0.16666666666666666
+       ]
+      }
+     },
+     "event": "((K <= 2 and A*B + C > 0) or ((K == 3 or K == 4) and A*C + B > 0) or (K >= 5 and B*C + A > 0))",
+     "given": "A*B + C == 0"
+    },
+    "estimate": "P(Q'|not Q0) ב-p=0.6",
+    "exact": 0.24999999999999994
+   },
+   "rubric": [
+    {
+     "text": "הגדרת ההסתברות המותנית",
+     "points": 1
+    },
+    {
+     "text": "$P(Q'\\cap\\overline{Q_0})=P(Q')-P(Q'\\cap Q_0)$",
+     "points": 2
+    },
+    {
+     "text": "המכנה $P(\\overline{Q_0})=1-P(Q_0)$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לחסר $P(Q_0)$ במקום $P(Q'\\cap Q_0)$"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "עבור $p=0.6$: מהי הסתברות התנאי $P(\\overline{Q_0})$?",
+     "answer": 0.256,
+     "tol": 0,
+     "explain": "$1-0.744=0.256$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(Q'\\cap\\overline{Q_0})=P(Q')-P(Q'\\cap Q_0)$?",
+     "answer": 0.064,
+     "tol": 0,
+     "explain": "$0.744-0.68=0.064$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(Q'\\mid\\overline{Q_0})$?",
+     "answer": 0.25,
+     "tol": 0,
+     "explain": "$\\frac{0.064}{0.256}=0.25=\\frac{2p}{3(1+p)}$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 6,
@@ -380,7 +2617,110 @@
    "confidence": "high",
    "points": 15,
    "part": "א",
-   "contextId": "c6"
+   "contextId": "c6",
+   "sim": {
+    "kind": "custom_discrete",
+    "params": {
+     "joint": [
+      {
+       "p": 0.05714285714285714,
+       "X": 1,
+       "R": 1
+      },
+      {
+       "p": 0.14285714285714288,
+       "X": 1,
+       "R": 0
+      },
+      {
+       "p": 0.2571428571428571,
+       "X": 2,
+       "R": 1
+      },
+      {
+       "p": 0.3428571428571428,
+       "X": 2,
+       "R": 0
+      },
+      {
+       "p": 0.11428571428571428,
+       "X": 3,
+       "R": 1
+      },
+      {
+       "p": 0.08571428571428573,
+       "X": 3,
+       "R": 0
+      }
+     ],
+     "event": "R == 1"
+    },
+    "estimate": "P(red) ב-N1=6,D1=4,N2=4,D2=1,n=3",
+    "exact": 0.42857142857142855
+   },
+   "rubric": [
+    {
+     "text": "התניה על $X$, מספר האדומים שהועברו (היפרגיאומטרי)",
+     "points": 5
+    },
+    {
+     "text": "$P(\\text{red}/X=k)=\\frac{D_2+k}{N_2+n}$",
+     "points": 5
+    },
+    {
+     "text": "$\\mathbb{E}[X]=n\\frac{D_1}{N_1}$ והרכבה",
+     "points": 5
+    }
+   ],
+   "pitfalls": [
+    "לשכוח שבכד השני יש עכשיו $N_2+n$ כדורים",
+    "להניח שכל הכדורים שהועברו אדומים"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "כיצד מחשבים את ההסתברות שכדור הנלקח מהכד השני (אחרי ההעברה) יהיה אדום?",
+     "options": [
+      {
+       "id": "a",
+       "value": "נוסחת ההסתברות השלמה על $X$, מספר האדומים שהועברו"
+      },
+      {
+       "id": "b",
+       "value": "$\\dfrac{D_2}{N_2}$, כאילו ההעברה לא השפיעה"
+      },
+      {
+       "id": "c",
+       "value": "$\\dfrac{D_1}{N_1}$, כאילו הכדור נלקח מהכד הראשון"
+      }
+     ],
+     "correctId": "a",
+     "explain": "ההעברה משנה את הרכב הכד השני, ולכן $\\frac{D_2}{N_2}$ (שהוא $0.25$) שגוי; $\\frac{D_1}{N_1}=0.667$ מתייחס לכד אחר."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $N_1=6$, $D_1=4$, $N_2=4$, $D_2=1$, $n=3$: מהו $\\mathbb{E}[X]=n\\frac{D_1}{N_1}$?",
+     "answer": 2.0,
+     "tol": 0,
+     "explain": "$3\\cdot\\frac46=2$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(\\text{red}/X=3)=\\frac{D_2+3}{N_2+n}$? (שבר או עשרוני)",
+     "answer": 0.5714,
+     "tol": 0.0006,
+     "explain": "בכד $7$ כדורים, מהם $4$ אדומים."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(\\text{red})=\\frac{D_2+\\mathbb{E}[X]}{N_2+n}$? (שבר או עשרוני)",
+     "answer": 0.4286,
+     "tol": 0.0006,
+     "explain": "$\\frac{1+2}{7}=\\frac37\\approx0.4286$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 6,
@@ -393,7 +2733,118 @@
    "confidence": "high",
    "points": 5,
    "part": "ב",
-   "contextId": "c6"
+   "contextId": "c6",
+   "sim": {
+    "kind": "custom_discrete",
+    "params": {
+     "joint": [
+      {
+       "p": 0.05714285714285714,
+       "X": 1,
+       "R": 1
+      },
+      {
+       "p": 0.14285714285714288,
+       "X": 1,
+       "R": 0
+      },
+      {
+       "p": 0.2571428571428571,
+       "X": 2,
+       "R": 1
+      },
+      {
+       "p": 0.3428571428571428,
+       "X": 2,
+       "R": 0
+      },
+      {
+       "p": 0.11428571428571428,
+       "X": 3,
+       "R": 1
+      },
+      {
+       "p": 0.08571428571428573,
+       "X": 3,
+       "R": 0
+      }
+     ],
+     "event": "X == 3",
+     "given": "R == 1"
+    },
+    "estimate": "P(X=n | red) ב-N1=6,D1=4,N2=4,D2=1,n=3",
+    "exact": 0.26666666666666666
+   },
+   "rubric": [
+    {
+     "text": "בייס: $\\frac{P(\\text{red}/X=n)P(X=n)}{P(\\text{red})}$",
+     "points": 2
+    },
+    {
+     "text": "$P(X=n)=\\frac{\\binom{D_1}{n}}{\\binom{N_1}{n}}$",
+     "points": 1
+    },
+    {
+     "text": "$P(\\text{red}/X=n)=\\frac{D_2+n}{N_2+n}$ ו-$P(\\text{red})$ מסעיף א",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "להשתמש ב-$P(\\text{red}/X=n)$ בלי לכפול ב-$P(X=n)$",
+    "לחלק ב-$P(X=n)$ במקום ב-$P(\\text{red})$"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "נתון שהכדור שנלקח מהכד השני אדום. כיצד מחשבים את ההסתברות שכל $n$ הכדורים שהועברו היו אדומים?",
+     "options": [
+      {
+       "id": "a",
+       "value": "כלל בייס: $\\dfrac{P(\\text{red}/X=n)\\,P(X=n)}{P(\\text{red})}$"
+      },
+      {
+       "id": "b",
+       "value": "$P(X=n)$ ללא התחשבות במידע"
+      },
+      {
+       "id": "c",
+       "value": "$P(\\text{red}/X=n)$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "השני מתעלם מהמידע החדש ($0.2$ במקום $0.267$). השלישי הוא ההסתברות ההפוכה ($0.571$)."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור אותם ערכים: מהי $P(X=3)=\\frac{\\binom43}{\\binom63}$?",
+     "answer": 0.2,
+     "tol": 0,
+     "explain": "$\\frac4{20}=0.2$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(\\text{red}/X=3)$? (שבר או עשרוני)",
+     "answer": 0.5714,
+     "tol": 0.0006,
+     "explain": "$\\frac47$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי הסתברות התנאי $P(\\text{red})$? (שבר או עשרוני)",
+     "answer": 0.4286,
+     "tol": 0.0006,
+     "explain": "סעיף א."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(X=3/\\text{red})$? (שבר או עשרוני)",
+     "answer": 0.2667,
+     "tol": 0.0006,
+     "explain": "$\\frac{(4/7)(1/5)}{3/7}=\\frac4{15}\\approx0.2667$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 6,
@@ -406,7 +2857,103 @@
    "confidence": "high",
    "points": 5,
    "part": "ג",
-   "contextId": "c6"
+   "contextId": "c6",
+   "sim": {
+    "kind": "custom_discrete",
+    "params": {
+     "joint": [
+      {
+       "p": 0.08571428571428572,
+       "X": 2,
+       "R": 1
+      },
+      {
+       "p": 0.11428571428571428,
+       "X": 2,
+       "R": 0
+      },
+      {
+       "p": 0.1714285714285714,
+       "X": 1,
+       "R": 1
+      },
+      {
+       "p": 0.42857142857142855,
+       "X": 1,
+       "R": 0
+      },
+      {
+       "p": 0.02857142857142857,
+       "X": 0,
+       "R": 1
+      },
+      {
+       "p": 0.17142857142857146,
+       "X": 0,
+       "R": 0
+      }
+     ],
+     "event": "R == 1"
+    },
+    "estimate": "P(red) אחרי החלפת צבעים ב-N1=6,D1=4,N2=4,D2=1,n=3",
+    "exact": 0.2857142857142857
+   },
+   "rubric": [
+    {
+     "text": "הצבעים הוחלפו: מספר האדומים שהועברו הוא $n-X$",
+     "points": 2
+    },
+    {
+     "text": "$\\mathbb{E}[n-X]=n(1-\\frac{D_1}{N_1})$",
+     "points": 2
+    },
+    {
+     "text": "$\\frac{D_2+n(1-D_1/N_1)}{N_2+n}$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "להשתמש ב-$X$ במקום $n-X$",
+    "לשכוח שהחלפת הצבעים מוסיפה את השחורים כאדומים"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "אחרי החלפת הצבעים, מהו מספר הכדורים האדומים שהועברו לכד השני?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$n-X$, מספר הכדורים ששחורים בכד הראשון"
+      },
+      {
+       "id": "b",
+       "value": "$X$"
+      },
+      {
+       "id": "c",
+       "value": "$n$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "כל כדור שהועבר הופך לצבע ההפוך: אדום נעשה שחור ושחור נעשה אדום. $X$ היה נכון לפני ההחלפה; $n$ נכון רק אם כולם היו שחורים."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור אותם ערכים: מהו $\\mathbb{E}[n-X]$?",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "$3-2=1$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(\\text{red})=\\frac{D_2+\\mathbb{E}[n-X]}{N_2+n}$? (שבר או עשרוני)",
+     "answer": 0.2857,
+     "tol": 0.0006,
+     "explain": "$\\frac{1+1}7=\\frac27\\approx0.2857$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   }
  ]
 }
