@@ -13,7 +13,7 @@ Transcription notes
   Q6 a=א b=ב-1 c=ב-2 d=ג-1 e=ג-2 f=ג-3 g=ד.
 - The handwritten solutions are terse; they are transcribed step by step into Hebrew prose, no new results added.
 - Math never holds Hebrew.
-- Q1 region data: tools/verify/26A-A/regions.json (RAW_SCHEMA has no `region` field).
+- Q1 region data and the sim specs live in the REGIONS / SIMS blocks above the exam dict.
 - The page-1 cover (lecturer names) is not copied anywhere.
 """
 import json, pathlib
@@ -403,6 +403,45 @@ $$2N(N-k+1)+2(N-k+1)^2=2(N-k+1)(2N-k+1).$$
 ההסתברות המבוקשת על פי היחס:
 $$\frac{2(N-k+1)(2N-k+1)}{\binom{N^2}{k}}.$$""",
     5, image="images/exams/26A-A-Q6-lines.png"))
+
+# ------------------------------------------------------------------ area regions + simulations (RAW_SCHEMA `region`, `sim`)
+_SQ = {"x": [0, 0.5], "y": [0, 0.5]}
+_LB = {"x": "X1", "y": "X2"}
+_L = lambda a, b, c, op: {"a": a, "b": b, "c": c, "op": op}
+REGIONS = {
+    (1, "א"): {"space": _SQ, "labels": _LB, "event": [_L(1, -1, 0, "<"), _L(2, 1, 1, "<")], "exact": 5 / 12, "caption": "הקטע השמאלי הכי קצר"},
+    (1, "ב"): {"space": _SQ, "labels": _LB, "event": [_L(-1, 1, 0, ">"), _L(1, 2, 1, ">")], "exact": 1 / 6, "caption": "הקטע הימני הכי ארוך"},
+    (1, "ג"): {"space": _SQ, "labels": _LB, "event": [_L(1, -1, 0, "<"), _L(2, 1, 1, "<"), _L(1, 2, 1, ">")], "exact": 1 / 12, "caption": "שמאלי הכי קצר וימני הכי ארוך"},
+    (1, "ד"): {"space": _SQ, "labels": _LB, "event": [_L(2, 1, 1, "<"), _L(1, 2, 1, "<")], "exact": 2 / 3, "caption": "הקטע האמצעי הכי ארוך"},
+}
+
+
+def _pairs_3x3():
+    cells = [(r, c) for r in range(3) for c in range(3)]
+    rows = []
+    for i in range(9):
+        for j in range(i + 1, 9):
+            rows.append({"p": 1 / 36, "r1": cells[i][0], "c1": cells[i][1], "r2": cells[j][0], "c2": cells[j][1]})
+    return rows
+
+
+SIMS = {
+    (1, "א"): {"kind": "area", "params": {"fromRegion": True}, "estimate": "P(left shortest)", "exact": 5 / 12},
+    (1, "ב"): {"kind": "area", "params": {"fromRegion": True}, "estimate": "P(right longest)", "exact": 1 / 6},
+    (1, "ג"): {"kind": "area", "params": {"fromRegion": True}, "estimate": "P(left shortest and right longest)", "exact": 1 / 12},
+    (1, "ד"): {"kind": "area", "params": {"fromRegion": True}, "estimate": "P(middle longest)", "exact": 2 / 3},
+    (6, "ב"): {"kind": "custom_discrete", "params": {"joint": _pairs_3x3(), "event": "abs(r1-r2)+abs(c1-c2) == 1"},
+               "estimate": "P(horizontal or vertical)", "exact": 1 / 3},
+    (6, "ג"): {"kind": "custom_discrete", "params": {"joint": _pairs_3x3(), "event": "abs(r1-r2) == 1 and abs(c1-c2) == 1"},
+               "estimate": "P(diagonal or anti-diagonal)", "exact": 2 / 9},
+}
+
+for _q in questions:
+    _k = (_q["num"], _q.get("part"))
+    if _k in REGIONS:
+        _q["region"] = REGIONS[_k]
+    if _k in SIMS:
+        _q["sim"] = SIMS[_k]
 
 # ------------------------------------------------------------------ exam
 exam = {
