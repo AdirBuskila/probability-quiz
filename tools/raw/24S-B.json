@@ -84,7 +84,61 @@
     "params": {
      "fromRegion": true
     }
-   }
+   },
+   "rubric": [
+    {
+     "text": "$S=XY$ ו-$|\\Omega|=1$ (שיטת השטח על ריבוע היחידה)",
+     "points": 1
+    },
+    {
+     "text": "$S<\\frac12\\iff y<\\frac1{2x}$; עבור $x<\\frac12$ כל $y\\in(0,1)$ מתאים",
+     "points": 2
+    },
+    {
+     "text": "האינטגרל $\\int_{1/2}^1\\frac{dx}{2x}=\\frac{\\ln2}2$",
+     "points": 2
+    },
+    {
+     "text": "סכום: $\\frac12+\\frac12\\ln2$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לבצע אינטגרל של $\\frac1{2x}$ מ-$0$ (מתבדר): עבור $x<\\frac12$ ההיפרבולה מעל $y=1$.",
+    "לשכוח את חצי השטח $\\frac12$ של התחום $0<x<\\frac12$."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "שטח מרחב המדגם $|\\Omega|$, ריבוע היחידה $(0,1)\\times(0,1)$.",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "$|\\Omega|=1$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "באיזה $x$ ההיפרבולה $y=\\frac1{2x}$ חותכת את $y=1$?",
+     "answer": 0.5,
+     "tol": 0,
+     "explain": "$\\frac1{2x}=1\\Rightarrow x=\\frac12$. משמאל כל $y\\in(0,1)$ מתאים."
+    },
+    {
+     "type": "numeric",
+     "prompt": "האינטגרל $\\int_{1/2}^1\\frac{dx}{2x}$ (עד שלוש ספרות).",
+     "answer": 0.34657359027997264,
+     "tol": 0.001,
+     "explain": "$\\frac12\\ln x\\Big|_{1/2}^1=\\frac{\\ln2}2\\approx0.3466$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(S<\\frac12)$? (עד שלוש ספרות)",
+     "answer": 0.8465735902799727,
+     "tol": 0.001,
+     "explain": "$\\frac12+\\frac{\\ln2}2\\approx0.8466$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 1,
@@ -130,7 +184,67 @@
     "params": {
      "fromRegion": true
     }
-   }
+   },
+   "rubric": [
+    {
+     "text": "$L=\\sqrt{X^2+Y^2}$, ולכן $L<\\frac12\\iff x^2+y^2<\\frac14$",
+     "points": 2
+    },
+    {
+     "text": "האזור הוא רבע עיגול ברדיוס $\\frac12$, כולו בתוך הריבוע",
+     "points": 3
+    },
+    {
+     "text": "שטח $\\frac14\\pi\\left(\\frac12\\right)^2=\\frac\\pi{16}$ ו-$|\\Omega|=1$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לשכוח שהתנאי הוא $x^2+y^2<\\frac14$ ולא $<\\frac12$ (ריבוע הרדיוס).",
+    "להשתמש בשטח עיגול שלם."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "שטח מרחב המדגם $|\\Omega|$, ריבוע היחידה $(0,1)\\times(0,1)$.",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "$|\\Omega|=1$."
+    },
+    {
+     "type": "choice",
+     "prompt": "מהו האזור $\\{x^2+y^2<\\frac14\\}$ בתוך ריבוע היחידה?",
+     "options": [
+      {
+       "id": "a",
+       "value": "רבע עיגול ברדיוס $\\frac12$"
+      },
+      {
+       "id": "b",
+       "value": "רבע עיגול ברדיוס $\\frac14$"
+      },
+      {
+       "id": "c",
+       "value": "עיגול שלם ברדיוס $\\frac12$"
+      },
+      {
+       "id": "d",
+       "value": "רבע עיגול ברדיוס $1$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$x^2+y^2<\\left(\\frac12\\right)^2$ הוא עיגול ברדיוס $\\frac12$, ורק הרבע החיובי בתוך הריבוע."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(L<\\frac12)$? (עד חמש ספרות)",
+     "answer": 0.19634954084936207,
+     "tol": 0.0002,
+     "explain": "$\\frac\\pi{16}\\approx0.19635$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 1,
@@ -184,7 +298,61 @@
     "params": {
      "fromRegion": true
     }
-   }
+   },
+   "rubric": [
+    {
+     "text": "הגדרת המותנה: $\\frac{P(S<\\frac15\\cap X>\\frac12)}{P(X>\\frac12)}$ ו-$P(X>\\frac12)=\\frac12$",
+     "points": 2
+    },
+    {
+     "text": "עבור $x>\\frac12$: $\\frac1{5x}<\\frac25<1$, ולכן ההיפרבולה מתחת ל-$y=1$",
+     "points": 1
+    },
+    {
+     "text": "שטח $\\int_{1/2}^1\\frac{dx}{5x}=\\frac{\\ln2}5$",
+     "points": 1
+    },
+    {
+     "text": "היחס: $\\frac25\\ln2$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לחלק ב-$|\\Omega|=1$ במקום ב-$P(X>\\frac12)=\\frac12$.",
+    "להוסיף שטח למחצית $x<\\frac12$: הנתון $X>\\frac12$ פוסל אותה."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "שטח מרחב המדגם $|\\Omega|$, ריבוע היחידה $(0,1)\\times(0,1)$.",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "$|\\Omega|=1$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "הסתברות אירוע התנאי $P(X>\\frac12)$.",
+     "answer": 0.5,
+     "tol": 0,
+     "explain": "$X\\sim U_c(0,1)$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "שטח האזור $\\{xy<\\frac15\\}\\cap\\{x>\\frac12\\}$ (עד חמש ספרות).",
+     "answer": 0.13862943611198905,
+     "tol": 0.0002,
+     "explain": "$\\int_{1/2}^1\\frac{dx}{5x}=\\frac{\\ln2}5\\approx0.13863$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי ההסתברות המותנית? (עד חמש ספרות)",
+     "answer": 0.2772588722239781,
+     "tol": 0.0002,
+     "explain": "$\\frac{\\ln2/5}{1/2}=\\frac25\\ln2\\approx0.27726$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 1,
@@ -216,7 +384,78 @@
      "measure": "var",
      "expr": "x*y"
     }
-   }
+   },
+   "rubric": [
+    {
+     "text": "$\\mathbb{E}[S]=\\mathbb{E}[X]\\mathbb{E}[Y]=\\frac14$ מאי-תלות",
+     "points": 2
+    },
+    {
+     "text": "$\\mathbb{E}[X^2]=\\frac13$",
+     "points": 1
+    },
+    {
+     "text": "$\\operatorname{Var}[S]=\\mathbb{E}[X^2]\\mathbb{E}[Y^2]-\\left(\\mathbb{E}[S]\\right)^2$",
+     "points": 2
+    },
+    {
+     "text": "התשובה $\\frac19-\\frac1{16}=\\frac7{144}$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לכתוב $\\operatorname{Var}[XY]=\\operatorname{Var}[X]\\operatorname{Var}[Y]=\\frac1{144}$: נוסחה שגויה.",
+    "לשכוח את הריבוע של התוחלת בנוסחת השונות."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איזה כלל מאפשר לחשב את $\\mathbb{E}[XY]$ ואת $\\mathbb{E}[X^2Y^2]$ ישירות?",
+     "options": [
+      {
+       "id": "a",
+       "value": "אי-תלות: תוחלת מכפלה היא מכפלת תוחלות"
+      },
+      {
+       "id": "b",
+       "value": "ליניאריות: $\\mathbb{E}[XY]=\\mathbb{E}[X]+\\mathbb{E}[Y]$"
+      },
+      {
+       "id": "c",
+       "value": "שיטת השטח"
+      },
+      {
+       "id": "d",
+       "value": "נוסחת ההסתברות השלמה"
+      }
+     ],
+     "correctId": "a",
+     "explain": "אי-תלות מפרקת תוחלת של מכפלה. ליניאריות נותנת סכום ($1$ במקום $\\frac14$), ושיטת השטח מחשבת הסתברות לא תוחלת."
+    },
+    {
+     "type": "numeric",
+     "prompt": "$\\mathbb{E}[S]$.",
+     "answer": 0.25,
+     "tol": 0,
+     "explain": "$\\frac12\\cdot\\frac12=\\frac14$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "$\\mathbb{E}[X^2]=\\int_0^1x^2\\,dx$.",
+     "answer": 0.3333333333333333,
+     "tol": 0.0006666666666666666,
+     "explain": "$\\frac13$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "$\\operatorname{Var}[S]$ (עד חמש ספרות).",
+     "answer": 0.04861111111111111,
+     "tol": 5e-05,
+     "explain": "$\\frac19-\\frac1{16}=\\frac7{144}\\approx0.04861$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -238,7 +477,66 @@
      "n": 2,
      "event": "d1 == d2"
     }
-   }
+   },
+   "rubric": [
+    {
+     "text": "נוסחת השורשים: $y_{1,2}=\\frac{X_1+X_2\\pm|X_1-X_2|}2$",
+     "points": 2
+    },
+    {
+     "text": "שורשים זהים אם ורק אם $X_1=X_2$",
+     "points": 1
+    },
+    {
+     "text": "$P=\\frac66\\cdot\\frac16=\\frac16$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לחשב את ההסתברות ל-$X_1=X_2=k$ עבור $k$ מסוים בלבד ולא לסכם על כל $k$."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מתי למשוואה $y^2-(X_1+X_2)y+X_1X_2=0$ שורשים זהים?",
+     "options": [
+      {
+       "id": "a",
+       "value": "כאשר $X_1=X_2$ (הדיסקרימיננטה היא $(X_1-X_2)^2=0$)"
+      },
+      {
+       "id": "b",
+       "value": "כאשר $X_1+X_2=0$"
+      },
+      {
+       "id": "c",
+       "value": "כאשר $X_1X_2=0$"
+      },
+      {
+       "id": "d",
+       "value": "כאשר $X_1=2X_2$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "הדיסקרימיננטה $(X_1+X_2)^2-4X_1X_2=(X_1-X_2)^2$ מתאפסת בדיוק כש-$X_1=X_2$. הערכים בקוביה חיוביים, ולכן שני התנאים האחרים אינם אפשריים או אינם נכונים."
+    },
+    {
+     "type": "numeric",
+     "prompt": "כמה זוגות סדורים $(X_1,X_2)$ מקיימים $X_1=X_2$?",
+     "answer": 6.0,
+     "tol": 0,
+     "explain": "$(1,1),\\ldots,(6,6)$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי ההסתברות לשני שורשים זהים? (עד חמש ספרות)",
+     "answer": 0.16666666666666666,
+     "tol": 0.0002,
+     "explain": "$\\frac6{36}=\\frac16\\approx0.16667$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -251,7 +549,66 @@
    "confidence": "high",
    "points": 6,
    "part": "ב",
-   "contextId": "c2"
+   "contextId": "c2",
+   "rubric": [
+    {
+     "text": "הדיסקרימיננטה $(X_1-X_2)^2$ ולכן השורשים $X_1$ ו-$X_2$",
+     "points": 3
+    },
+    {
+     "text": "$X_1,X_2$ שלמים",
+     "points": 1
+    },
+    {
+     "text": "ההסתברות $1$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לבדוק את הדיסקרימיננטה כריבוע שלם ולהסיק שיש תנאי: היא תמיד ריבוע שלם."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מהם שורשי $y^2-(X_1+X_2)y+X_1X_2=0$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$X_1$ ו-$X_2$ (לפי סכום ומכפלה)"
+      },
+      {
+       "id": "b",
+       "value": "$X_1+X_2$ ו-$X_1X_2$"
+      },
+      {
+       "id": "c",
+       "value": "$\\frac{X_1+X_2}2$ בלבד"
+      },
+      {
+       "id": "d",
+       "value": "$\\pm\\sqrt{X_1X_2}$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "סכום השורשים $X_1+X_2$ ומכפלתם $X_1X_2$ מתקיימים בדיוק עבור $X_1$ ו-$X_2$. שאר האפשרויות אינן מקיימות את שתי המשוואות."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $(X_1,X_2)=(2,5)$: הדיסקרימיננטה $(X_1+X_2)^2-4X_1X_2$.",
+     "answer": 9.0,
+     "tol": 0,
+     "explain": "$49-40=9=(2-5)^2$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי ההסתברות ששורשי המשוואה שלמים?",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "השורשים הם $X_1$ ו-$X_2$, תמיד שלמים."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -274,7 +631,78 @@
      "event": "d1*d2 % 2 == 1",
      "given": "d1 != d2"
     }
-   }
+   },
+   "rubric": [
+    {
+     "text": "הגדרת המותנה, אירוע התנאי $P(X_1\\ne X_2)=\\frac56$",
+     "points": 2
+    },
+    {
+     "text": "המכפלה אי-זוגית אם ורק אם שניהם אי-זוגיים",
+     "points": 1
+    },
+    {
+     "text": "ספירה: $3\\cdot2=6$ זוגות סדורים שונים",
+     "points": 2
+    },
+    {
+     "text": "$\\frac{6/36}{5/6}=\\frac15$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לכלול את הזוגות השווים $(1,1),(3,3),(5,5)$ בסופרים (התנאי הוא שורשים שונים).",
+    "לחלק ב-$\\frac16$ או ב-$1$ במקום ב-$\\frac56$."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מתי המכפלה $X_1X_2$ אי-זוגית?",
+     "options": [
+      {
+       "id": "a",
+       "value": "כששני המספרים אי-זוגיים"
+      },
+      {
+       "id": "b",
+       "value": "כשאחד מהם אי-זוגי"
+      },
+      {
+       "id": "c",
+       "value": "כשהסכום אי-זוגי"
+      },
+      {
+       "id": "d",
+       "value": "כשהם שונים"
+      }
+     ],
+     "correctId": "a",
+     "explain": "מכפלה אי-זוגית רק אם אין גורם $2$, כלומר שני המספרים אי-זוגיים."
+    },
+    {
+     "type": "numeric",
+     "prompt": "הסתברות אירוע התנאי $P(X_1\\ne X_2)$ (עד חמש ספרות).",
+     "answer": 0.8333333333333334,
+     "tol": 0.0002,
+     "explain": "$1-\\frac16=\\frac56\\approx0.83333$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "כמה זוגות סדורים שונים, שניהם אי-זוגיים?",
+     "answer": 6.0,
+     "tol": 0,
+     "explain": "$3$ ערכים לראשון ו-$2$ לשני שונה ממנו."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי ההסתברות המותנית? (עד חמש ספרות)",
+     "answer": 0.2,
+     "tol": 0.0002,
+     "explain": "$\\frac{6/36}{5/6}=\\frac15=0.2$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -297,7 +725,78 @@
      "event": "abs(d1-d2) % 2 == 0",
      "given": "d1 != d2"
     }
-   }
+   },
+   "rubric": [
+    {
+     "text": "ההפרש זוגי אם ורק אם לשני המספרים אותה זוגיות",
+     "points": 1
+    },
+    {
+     "text": "אירוע התנאי $\\frac56$",
+     "points": 1
+    },
+    {
+     "text": "ספירה: $3\\cdot2+3\\cdot2=12$ זוגות שונים באותה זוגיות",
+     "points": 3
+    },
+    {
+     "text": "$\\frac{12/36}{5/6}=\\frac25$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לספור $18$ זוגות (כולל השווים) ולקבל $\\frac{18/36}{5/6}=\\frac35$.",
+    "לחשוב שהפרש זוגי רק כששני המספרים זוגיים."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מתי ההפרש $X_1-X_2$ זוגי?",
+     "options": [
+      {
+       "id": "a",
+       "value": "כשלשני המספרים אותה זוגיות"
+      },
+      {
+       "id": "b",
+       "value": "כששניהם זוגיים בלבד"
+      },
+      {
+       "id": "c",
+       "value": "כשהסכום אי-זוגי"
+      },
+      {
+       "id": "d",
+       "value": "כשהם שונים"
+      }
+     ],
+     "correctId": "a",
+     "explain": "הפרש זוגי אם ורק אם הזוגיות זהה (שניהם זוגיים או שניהם אי-זוגיים)."
+    },
+    {
+     "type": "numeric",
+     "prompt": "הסתברות אירוע התנאי $P(X_1\\ne X_2)$ (עד חמש ספרות).",
+     "answer": 0.8333333333333334,
+     "tol": 0.0002,
+     "explain": "$\\frac56$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "כמה זוגות סדורים שונים באותה זוגיות?",
+     "answer": 12.0,
+     "tol": 0,
+     "explain": "$3\\cdot2$ אי-זוגיים ועוד $3\\cdot2$ זוגיים."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי ההסתברות המותנית? (עד חמש ספרות)",
+     "answer": 0.4,
+     "tol": 0.0002,
+     "explain": "$\\frac{12/36}{5/6}=\\frac25=0.4$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -310,7 +809,118 @@
    "confidence": "high",
    "points": 11,
    "part": "א",
-   "contextId": "c3"
+   "contextId": "c3",
+   "sim": {
+    "kind": "custom_discrete",
+    "estimate": "P(X=1, Y=2) ב-p=0.3",
+    "exact": 0.126,
+    "params": {
+     "vars": {
+      "X1": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      },
+      "X2": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      },
+      "X3": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      }
+     },
+     "event": "X1 + X2 == 1 and X1 + X2 + X3 == 2"
+    }
+   },
+   "rubric": [
+    {
+     "text": "הגדרת $X_1,X_2,X_3\\sim\\mathrm{Ber}(p)$ בלתי תלויים, $X=X_1+X_2$, $Y=X+X_3$",
+     "points": 2
+    },
+    {
+     "text": "טבלת שמונה התוצאות והערכים של $(X,Y)$",
+     "points": 3
+    },
+    {
+     "text": "מילוי $P_{XY}$ (למשל $P_{XY}(1,2)=2p^2(1-p)$)",
+     "points": 4
+    },
+    {
+     "text": "שוליים ובדיקת נרמול",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "להכפיל $P_X(x)P_Y(y)$: $Y$ כולל את $X$ ולכן תלויים.",
+    "לטעות במקרה $(1,1)$: $X=1$ ו-$X_3=0$ נותן $2p(1-p)^2$."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "$Y=X+X_3$ עם $X_3$ בלתי תלוי ב-$X$. איך בונים את $P_{XY}$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$P_{XY}(x,y)=P_X(x)\\cdot P(X_3=y-x)$, או ספירת שמונה התוצאות"
+      },
+      {
+       "id": "b",
+       "value": "$P_X(x)P_Y(y)$"
+      },
+      {
+       "id": "c",
+       "value": "בינומית $\\mathrm{Bin}(3,p)$"
+      },
+      {
+       "id": "d",
+       "value": "שיטת השטח"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$X$ ו-$Y$ תלויים. כיוון ש-$X_3$ בלתי תלוי ב-$X$ אפשר לכפול $P_X(x)$ ב-$P(X_3=y-x)$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.3$: $P_{XY}(1,2)$.",
+     "answer": 0.126,
+     "tol": 0,
+     "explain": "$X=1$ בהסתברות $2p(1-p)$ ו-$X_3=1$: $2\\cdot0.3\\cdot0.7\\cdot0.3=0.126$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.3$: $P_{XY}(0,1)$.",
+     "answer": 0.147,
+     "tol": 0,
+     "explain": "$X=0$ ו-$X_3=1$: $(1-p)^2p=0.147$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.3$: $P_{XY}(2,2)$.",
+     "answer": 0.063,
+     "tol": 0,
+     "explain": "$X=2$ ו-$X_3=0$: $p^2(1-p)=0.063$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -323,7 +933,106 @@
    "confidence": "high",
    "points": 6,
    "part": "ב",
-   "contextId": "c3"
+   "contextId": "c3",
+   "sim": {
+    "kind": "custom_discrete",
+    "estimate": "P(Y=1) ב-p=0.3",
+    "exact": 0.441,
+    "params": {
+     "vars": {
+      "X1": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      },
+      "X2": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      },
+      "X3": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      }
+     },
+     "event": "X1 + X2 + X3 == 1"
+    }
+   },
+   "rubric": [
+    {
+     "text": "$X=X_1+X_2\\sim\\mathrm{Bin}(2,p)$",
+     "points": 2
+    },
+    {
+     "text": "$Y=X_1+X_2+X_3\\sim\\mathrm{Bin}(3,p)$",
+     "points": 2
+    },
+    {
+     "text": "פונקציות ההסתברות",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "להתבלבל בין $n=2$ ל-$n=3$ בשני המשתנים."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מה ההתפלגות של $Y$ (מספר ה״עץ״ בשלוש ההטלות)?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$\\mathrm{Bin}(3,p)$"
+      },
+      {
+       "id": "b",
+       "value": "$\\mathrm{Bin}(2,p)$"
+      },
+      {
+       "id": "c",
+       "value": "$\\mathrm{Geo}(p)$"
+      },
+      {
+       "id": "d",
+       "value": "$\\mathrm{P}(3p)$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "שלוש הטלות בלתי תלויות עם אותה הסתברות: $\\mathrm{Bin}(3,p)$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.3$: $P_X(2)$.",
+     "answer": 0.09,
+     "tol": 0,
+     "explain": "$p^2=0.09$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.3$: $P_Y(1)$.",
+     "answer": 0.441,
+     "tol": 0,
+     "explain": "$3\\cdot0.3\\cdot0.49=0.441$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -336,7 +1045,103 @@
    "confidence": "high",
    "points": 4,
    "part": "ג",
-   "contextId": "c3"
+   "contextId": "c3",
+   "sim": {
+    "kind": "custom_discrete",
+    "estimate": "Var[Y] ב-p=0.3",
+    "exact": 0.63,
+    "params": {
+     "vars": {
+      "X1": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      },
+      "X2": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      },
+      "X3": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      }
+     },
+     "measure": "var",
+     "expr": "X1 + X2 + X3"
+    }
+   },
+   "rubric": [
+    {
+     "text": "$\\mathbb{E}[X]=2p$, $\\mathbb{E}[Y]=3p$",
+     "points": 2
+    },
+    {
+     "text": "$\\operatorname{Var}[X]=2p(1-p)$, $\\operatorname{Var}[Y]=3p(1-p)$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "להחליף בין הפרמטרים $n=2$ ו-$n=3$."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מהן התוחלת והשונות של $\\mathrm{Bin}(n,p)$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$np$ ו-$np(1-p)$"
+      },
+      {
+       "id": "b",
+       "value": "$np$ ו-$np^2$"
+      },
+      {
+       "id": "c",
+       "value": "$p$ ו-$np(1-p)$"
+      },
+      {
+       "id": "d",
+       "value": "$n(1-p)$ ו-$np$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "נוסחאות הבינומית."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.3$: $\\mathbb{E}[Y]$.",
+     "answer": 0.9,
+     "tol": 0,
+     "explain": "$3\\cdot0.3=0.9$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.3$: $\\operatorname{Var}[Y]$.",
+     "answer": 0.63,
+     "tol": 0,
+     "explain": "$3\\cdot0.3\\cdot0.7=0.63$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -349,7 +1154,70 @@
    "confidence": "high",
    "points": 4,
    "part": "ד",
-   "contextId": "c3"
+   "contextId": "c3",
+   "rubric": [
+    {
+     "text": "בלתי תלויים פירושו $P_{XY}=P_XP_Y$ לכל זוג",
+     "points": 1
+    },
+    {
+     "text": "הנקודה $(2,0)$: $P_{XY}(2,0)=0$",
+     "points": 1
+    },
+    {
+     "text": "$P_X(2)P_Y(0)=p^2(1-p)^3>0$",
+     "points": 1
+    },
+    {
+     "text": "מסקנה: תלויים",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "להסיק אי-תלות מכך ש-$Y$ מוגדר מתוך הטלות נוספות: $Y$ כולל את $X$."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "$P_{XY}(2,0)$.",
+     "answer": 0.0,
+     "tol": 0,
+     "explain": "אם שתי ההטלות הראשונות ״עץ״ אי אפשר ש-$Y=0$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.3$: $P_X(2)P_Y(0)$ (עד חמש ספרות).",
+     "answer": 0.03087,
+     "tol": 0.0001,
+     "explain": "$0.09\\cdot0.343=0.03087$."
+    },
+    {
+     "type": "choice",
+     "prompt": "מה המסקנה?",
+     "options": [
+      {
+       "id": "a",
+       "value": "תלויים: $0\\ne0.03087$"
+      },
+      {
+       "id": "b",
+       "value": "בלתי תלויים: $0<0.03087$"
+      },
+      {
+       "id": "c",
+       "value": "בלתי תלויים: יש להם אותה תוחלת"
+      },
+      {
+       "id": "d",
+       "value": "לא ניתן לקבוע"
+      }
+     ],
+     "correctId": "a",
+     "explain": "זוג אחד שבו המכפלה שונה מההסתברות המשותפת מספיק להוכחת תלות."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 4,
@@ -362,7 +1230,78 @@
    "confidence": "high",
    "points": 10,
    "part": "א",
-   "contextId": "c4"
+   "contextId": "c4",
+   "rubric": [
+    {
+     "text": "נרמול: $\\frac ae+\\frac12+\\frac be=1$, כלומר $a+b=\\frac e2$",
+     "points": 3
+    },
+    {
+     "text": "תוחלת: הקטע האמצעי סימטרי ותורם $0$",
+     "points": 2
+    },
+    {
+     "text": "שני הזנבות: $-\\frac{2a}e+\\frac{2b}e=0$ ולכן $a=b$",
+     "points": 3
+    },
+    {
+     "text": "$a=b=\\frac e4$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לשכוח שהצפיפות על הקטע האמצעי תורמת מסה $\\frac12$ לנרמול.",
+    "לטעות בחישוב $\\int_{-\\infty}^{-1}xe^x\\,dx=-\\frac2e$."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איזו משוואה מתקבלת מ-$\\mathbb{E}[X]=0$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$-\\frac{2a}e+\\frac{2b}e=0$, כלומר $a=b$"
+      },
+      {
+       "id": "b",
+       "value": "$a+b=0$"
+      },
+      {
+       "id": "c",
+       "value": "$a=2b$"
+      },
+      {
+       "id": "d",
+       "value": "$\\frac ae+\\frac be=0$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "הקטע האמצעי סימטרי ולכן תורם $0$. הזנב השמאלי נותן $-\\frac{2a}e$ והימני $+\\frac{2b}e$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "המסה על הקטע האמצעי $\\int_{-1}^1\\frac14\\,dx$.",
+     "answer": 0.5,
+     "tol": 0,
+     "explain": "$\\frac14\\cdot2=\\frac12$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "$a+b$ (מהנרמול; עד שש ספרות).",
+     "answer": 1.3591409142295225,
+     "tol": 1e-05,
+     "explain": "$\\frac{a+b}{e}=\\frac12\\Rightarrow a+b=\\frac e2\\approx1.359141$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו $a$ (שווה ל-$b$)? (עד שש ספרות)",
+     "answer": 0.6795704571147613,
+     "tol": 1e-05,
+     "explain": "$a=b=\\frac e4\\approx0.679570$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 4,
@@ -375,7 +1314,78 @@
    "confidence": "high",
    "points": 10,
    "part": "ב",
-   "contextId": "c4"
+   "contextId": "c4",
+   "rubric": [
+    {
+     "text": "פיצול לתחומים $t<-1$, $-1\\le t<1$, $t\\ge1$",
+     "points": 2
+    },
+    {
+     "text": "$t<-1$: $\\frac e4e^t$",
+     "points": 2
+    },
+    {
+     "text": "$-1\\le t<1$: $\\frac12+\\frac t4$ (עם המסה שנצברה $\\frac14$ בנקודה $-1$)",
+     "points": 3
+    },
+    {
+     "text": "$t\\ge1$: $1-\\frac e4e^{-t}$, ושרטוט",
+     "points": 3
+    }
+   ],
+   "pitfalls": [
+    "לשכוח את המסה $\\frac14$ שנצברה בזנב השמאלי בתחום האמצעי.",
+    "לשרטט את הזנב הימני עולה מ-$\\frac12$ בלי להעביר את המסה $\\frac14$ שבקטע האמצעי."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "$F_X(-1)$ (עד חמש ספרות).",
+     "answer": 0.25,
+     "tol": 0,
+     "explain": "$\\frac e4e^{-1}=\\frac14$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "$F_X(0)$ (סימטריה).",
+     "answer": 0.5,
+     "tol": 0,
+     "explain": "$\\frac14+\\frac14\\cdot1=\\frac12$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "$F_X(2)$ (עד שלוש ספרות).",
+     "answer": 0.9080301397071394,
+     "tol": 0.001,
+     "explain": "$1-\\frac e4e^{-2}=1-\\frac1{4e}\\approx0.908$."
+    },
+    {
+     "type": "choice",
+     "prompt": "מהי צורת $F_X(t)$ בקטע $-1\\le t<1$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "קו ישר (הצפיפות קבועה)"
+      },
+      {
+       "id": "b",
+       "value": "פרבולה"
+      },
+      {
+       "id": "c",
+       "value": "אקספוננט"
+      },
+      {
+       "id": "d",
+       "value": "קבוע"
+      }
+     ],
+     "correctId": "a",
+     "explain": "הצפיפות קבועה $\\frac14$ על הקטע, ולכן $F_X$ ליניארית."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 4,
@@ -414,7 +1424,49 @@
      "event": "x > -2",
      "given": "x < 3"
     }
-   }
+   },
+   "rubric": [
+    {
+     "text": "הצגה כיחס $\\frac{F_X(3)-F_X(-2)}{F_X(3)}$",
+     "points": 1
+    },
+    {
+     "text": "$F_X(3)=1-\\frac1{4e^2}$ ו-$F_X(-2)=\\frac1{4e}$",
+     "points": 2
+    },
+    {
+     "text": "הצבה: $\\frac{4e^2-e-1}{4e^2-1}$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לחלק ב-$1$ במקום ב-$F_X(3)$."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "הסתברות אירוע התנאי $P(X<3)=F_X(3)$ (עד חמש ספרות).",
+     "answer": 0.9661661791908468,
+     "tol": 0.0001,
+     "explain": "$1-\\frac1{4e^2}\\approx0.96617$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "$P(-2<X<3)=F_X(3)-F_X(-2)$ (עד חמש ספרות).",
+     "answer": 0.8741963188979862,
+     "tol": 0.0001,
+     "explain": "$0.96617-0.09197=0.87420$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי ההסתברות המותנית? (עד חמש ספרות)",
+     "answer": 0.9048094807356181,
+     "tol": 0.0001,
+     "explain": "$\\frac{0.87420}{0.96617}=\\frac{4e^2-e-1}{4e^2-1}\\approx0.90481$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 5,
@@ -427,7 +1479,142 @@
    "confidence": "high",
    "points": 15,
    "part": "א",
-   "contextId": "c5"
+   "contextId": "c5",
+   "sim": {
+    "kind": "custom_discrete",
+    "estimate": "P(red) ב-D=3, N=10, M=4, p=0.5",
+    "exact": 0.3888888888888889,
+    "params": {
+     "joint": [
+      {
+       "p": 0.010416666666666666,
+       "X": 0,
+       "R": 1
+      },
+      {
+       "p": 0.052083333333333336,
+       "X": 0,
+       "R": 0
+      },
+      {
+       "p": 0.06944444444444445,
+       "X": 1,
+       "R": 1
+      },
+      {
+       "p": 0.18055555555555555,
+       "X": 1,
+       "R": 0
+      },
+      {
+       "p": 0.14583333333333334,
+       "X": 2,
+       "R": 1
+      },
+      {
+       "p": 0.22916666666666669,
+       "X": 2,
+       "R": 0
+      },
+      {
+       "p": 0.125,
+       "X": 3,
+       "R": 1
+      },
+      {
+       "p": 0.125,
+       "X": 3,
+       "R": 0
+      },
+      {
+       "p": 0.03819444444444445,
+       "X": 4,
+       "R": 1
+      },
+      {
+       "p": 0.024305555555555552,
+       "X": 4,
+       "R": 0
+      }
+     ],
+     "event": "R == 1"
+    }
+   },
+   "rubric": [
+    {
+     "text": "$X\\sim\\mathrm{Bin}(M,p)$ מספר ה״עץ״",
+     "points": 3
+    },
+    {
+     "text": "בהינתן $X=k$: $P(\\text{red}/X=k)=\\frac{D+2k}{N+2M}$",
+     "points": 4
+    },
+    {
+     "text": "נוסחת ההסתברות השלמה על $k$",
+     "points": 4
+    },
+    {
+     "text": "ליניאריות התוחלת: $\\mathbb{E}[X]=pM$",
+     "points": 2
+    },
+    {
+     "text": "התשובה $\\frac{D+2pM}{N+2M}$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לחשב עם הרכב הכד המקורי בלבד ($\\frac DN$) ולשכוח את הכדורים שנוספו.",
+    "להציב $2k$ שחורים מחוץ למכנה: המכנה הוא $N+2M$ בכל מקרה."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "הרכב הכד תלוי במספר ה״עץ״ $X$. איזו גישה מתאימה לסיכוי לכדור אדום?",
+     "options": [
+      {
+       "id": "a",
+       "value": "הסתברות שלמה על $X=k$ ($\\mathrm{Bin}(M,p)$)"
+      },
+      {
+       "id": "b",
+       "value": "היפרגאומטרית על הכד המקורי"
+      },
+      {
+       "id": "c",
+       "value": "בייס"
+      },
+      {
+       "id": "d",
+       "value": "גאומטרית"
+      }
+     ],
+     "correctId": "a",
+     "explain": "ההרכב אקראי ותלוי ב-$X$, ולכן מתנים עליו. בייס הוא להיפוך התנאי, והיפרגאומטרית מתעלמת מהכדורים שנוספו."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$D=3$, $N=10$, $M=4$: $P(\\text{red}/X=3)$.",
+     "answer": 0.5,
+     "tol": 0,
+     "explain": "$\\frac{D+2k}{N+2M}=\\frac9{18}=0.5$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.5$: $\\mathbb{E}[X]=pM$.",
+     "answer": 2.0,
+     "tol": 0,
+     "explain": "$0.5\\cdot4=2$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(\\text{red})$? (עד שש ספרות)",
+     "answer": 0.3888888888888889,
+     "tol": 1e-05,
+     "explain": "$\\frac{3+4}{18}=\\frac7{18}\\approx0.388889$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 5,
@@ -440,7 +1627,139 @@
    "confidence": "high",
    "points": 10,
    "part": "ב",
-   "contextId": "c5"
+   "contextId": "c5",
+   "sim": {
+    "kind": "custom_discrete",
+    "estimate": "P(X=1 | red) ב-D=3, N=10, M=4, p=0.5 (n=2)",
+    "exact": 0.17857142857142858,
+    "params": {
+     "joint": [
+      {
+       "p": 0.010416666666666666,
+       "X": 0,
+       "R": 1
+      },
+      {
+       "p": 0.052083333333333336,
+       "X": 0,
+       "R": 0
+      },
+      {
+       "p": 0.06944444444444445,
+       "X": 1,
+       "R": 1
+      },
+      {
+       "p": 0.18055555555555555,
+       "X": 1,
+       "R": 0
+      },
+      {
+       "p": 0.14583333333333334,
+       "X": 2,
+       "R": 1
+      },
+      {
+       "p": 0.22916666666666669,
+       "X": 2,
+       "R": 0
+      },
+      {
+       "p": 0.125,
+       "X": 3,
+       "R": 1
+      },
+      {
+       "p": 0.125,
+       "X": 3,
+       "R": 0
+      },
+      {
+       "p": 0.03819444444444445,
+       "X": 4,
+       "R": 1
+      },
+      {
+       "p": 0.024305555555555552,
+       "X": 4,
+       "R": 0
+      }
+     ],
+     "event": "X == 1",
+     "given": "R == 1"
+    }
+   },
+   "rubric": [
+    {
+     "text": "כדורים אדומים נוספים בזוגות: $n$ אי-זוגי נותן $0$",
+     "points": 3
+    },
+    {
+     "text": "בייס: $P(X=\\frac n2/\\text{red})=\\frac{P(\\text{red}/X=\\frac n2)P(X=\\frac n2)}{P(\\text{red})}$",
+     "points": 3
+    },
+    {
+     "text": "הצבה: $\\frac{D+n}{2M+N}\\binom M{n/2}p^{n/2}(1-p)^{M-n/2}$",
+     "points": 2
+    },
+    {
+     "text": "פישוט: $\\frac{D+n}{D+2pM}\\binom{M}{n/2}p^{n/2}(1-p)^{M-n/2}$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "להתעלם מהזוגיות של $n$ ולתת הסתברות חיובית גם ל-$n$ אי-זוגי.",
+    "להציב $P(\\text{red}/X=n)$ במקום $P(\\text{red}/X=\\frac n2)$: $n$ כדורים אדומים נוספו כש-$\\frac n2$ פעמים יצא ״עץ״."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "האם התשובה תלויה בזוגיות של $n$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "כן: $n$ אי-זוגי אי אפשרי כי נוספים שני כדורים בכל ״עץ״"
+      },
+      {
+       "id": "b",
+       "value": "לא: אותה נוסחה לכל $n$"
+      },
+      {
+       "id": "c",
+       "value": "כן, אבל רק כש-$M$ זוגי"
+      },
+      {
+       "id": "d",
+       "value": "לא: התוצאה תמיד $0$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "כל ״עץ״ מוסיף שני אדומים, ולכן מספר האדומים שנוספו הוא תמיד זוגי."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$M=4$, $p=0.5$: $P(X=1)$ (מקרה $n=2$).",
+     "answer": 0.25,
+     "tol": 0,
+     "explain": "$\\binom41\\left(\\frac12\\right)^4=\\frac14$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$D=3$, $N=10$: $P(\\text{red}/X=1)$ (עד חמש ספרות).",
+     "answer": 0.2777777777777778,
+     "tol": 0.0001,
+     "explain": "$\\frac{D+2}{N+2M}=\\frac5{18}\\approx0.27778$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי ההסתברות שנוספו בדיוק $2$ כדורים אדומים, בהינתן שהכדור שהוצא אדום? (עד חמש ספרות)",
+     "answer": 0.17857142857142858,
+     "tol": 0.0001,
+     "explain": "$\\frac{\\frac14\\cdot\\frac5{18}}{\\frac7{18}}=\\frac5{28}\\approx0.17857$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 6,
@@ -453,7 +1772,148 @@
    "confidence": "high",
    "points": 20,
    "part": "א",
-   "contextId": "c6"
+   "contextId": "c6",
+   "sim": {
+    "kind": "circuit",
+    "estimate": "P(Q) ב-p=0.6",
+    "exact": 0.860539392,
+    "params": {
+     "event": "S",
+     "source": "T",
+     "sink": "Bt",
+     "edges": [
+      {
+       "id": "u1",
+       "from": "T",
+       "to": "m1",
+       "p": 0.6
+      },
+      {
+       "id": "u2",
+       "from": "m1",
+       "to": "Bt",
+       "p": 0.6
+      },
+      {
+       "id": "u3",
+       "from": "T",
+       "to": "m2",
+       "p": 0.6
+      },
+      {
+       "id": "u4",
+       "from": "m2",
+       "to": "Bt",
+       "p": 0.6
+      },
+      {
+       "id": "A",
+       "from": "T",
+       "to": "l",
+       "p": 0.6
+      },
+      {
+       "id": "G",
+       "from": "T",
+       "to": "r",
+       "p": 0.6
+      },
+      {
+       "id": "H",
+       "from": "l",
+       "to": "Bt",
+       "p": 0.6
+      },
+      {
+       "id": "K",
+       "from": "r",
+       "to": "Bt",
+       "p": 0.6
+      },
+      {
+       "id": "Cc",
+       "from": "l",
+       "to": "r",
+       "p": 0.6
+      }
+     ]
+    }
+   },
+   "rubric": [
+    {
+     "text": "המעגל הוא הטבעת החיצונית במקביל לגשר הפנימי $E$ (כיחידה אחת)",
+     "points": 3
+    },
+    {
+     "text": "נוסחת ההסתברות השלמה על $E$: $P(Q/E)=1$",
+     "points": 4
+    },
+    {
+     "text": "$P(Q/\\overline E)=2p^2-p^4$ (שני ענפי הטבעת החיצונית)",
+     "points": 4
+    },
+    {
+     "text": "$P(Q)=p^2(2-p^2)+(1-p^2)^2P(E)$",
+     "points": 3
+    },
+    {
+     "text": "חישוב $P(E)$ בהתניה על היחידה המרכזית: $p^3(2-p)^2+p^2(2-p^2)(1-p)$",
+     "points": 6
+    }
+   ],
+   "pitfalls": [
+    "לשכוח שהגשר הפנימי $E$ אינו טורי-מקבילי ולנסות לצמצם אותו ישירות.",
+    "לטעות ב-$P(Q/\\overline E)$: הטבעת החיצונית היא שני ענפים בני שתי יחידות, $2p^2-p^4$."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "המעגל מכיל גשר פנימי. איזו גישה מתאימה לחישוב $P(Q)$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "לראות את הגשר כיחידה $E$ ולהתנות עליו, ואז להתנות על היחידה המרכזית בתוכו"
+      },
+      {
+       "id": "b",
+       "value": "צמצום טורי-מקבילי ישיר של כל המעגל"
+      },
+      {
+       "id": "c",
+       "value": "בינומית על מספר היחידות הפועלות"
+      },
+      {
+       "id": "d",
+       "value": "בייס"
+      }
+     ],
+     "correctId": "a",
+     "explain": "הגשר הפנימי אינו ניתן לצמצום, ולכן מתנים על היחידה המרכזית שלו. בינומית מתעלמת מהמבנה."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$: $P(E)$, הגשר הפנימי (עד חמש ספרות).",
+     "answer": 0.65952,
+     "tol": 0.0001,
+     "explain": "$p^3(2-p)^2+p^2(2-p^2)(1-p)=0.42336+0.23616=0.65952$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$: $P(Q/\\overline E)=2p^2-p^4$ (עד חמש ספרות).",
+     "answer": 0.5904,
+     "tol": 0.0001,
+     "explain": "$0.72-0.1296=0.5904$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P_0=P(Q)$? (עד חמש ספרות)",
+     "answer": 0.860539392,
+     "tol": 0.0001,
+     "explain": "$P(E)+0.5904\\,(1-P(E))=0.65952+0.20102=0.86054$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 6,
@@ -466,7 +1926,140 @@
    "confidence": "high",
    "points": 5,
    "part": "ב",
-   "contextId": "c6"
+   "contextId": "c6",
+   "sim": {
+    "kind": "circuit",
+    "estimate": "P(A לא פועלת | Q) ב-p=0.6",
+    "exact": 0.359423611371413,
+    "params": {
+     "event": "A == 0",
+     "source": "T",
+     "sink": "Bt",
+     "edges": [
+      {
+       "id": "u1",
+       "from": "T",
+       "to": "m1",
+       "p": 0.6
+      },
+      {
+       "id": "u2",
+       "from": "m1",
+       "to": "Bt",
+       "p": 0.6
+      },
+      {
+       "id": "u3",
+       "from": "T",
+       "to": "m2",
+       "p": 0.6
+      },
+      {
+       "id": "u4",
+       "from": "m2",
+       "to": "Bt",
+       "p": 0.6
+      },
+      {
+       "id": "A",
+       "from": "T",
+       "to": "l",
+       "p": 0.6
+      },
+      {
+       "id": "G",
+       "from": "T",
+       "to": "r",
+       "p": 0.6
+      },
+      {
+       "id": "H",
+       "from": "l",
+       "to": "Bt",
+       "p": 0.6
+      },
+      {
+       "id": "K",
+       "from": "r",
+       "to": "Bt",
+       "p": 0.6
+      },
+      {
+       "id": "Cc",
+       "from": "l",
+       "to": "r",
+       "p": 0.6
+      }
+     ],
+     "given": "S == 1"
+    }
+   },
+   "rubric": [
+    {
+     "text": "בייס: $P(\\overline A/Q)=\\frac{P(Q/\\overline A)(1-p)}{P_0}$",
+     "points": 2
+    },
+    {
+     "text": "כש-$A$ כבויה: $P(E/\\overline A)=p^2(1+p-p^2)$",
+     "points": 2
+    },
+    {
+     "text": "הצבה ב-$P(Q/\\overline A)$ והתשובה $P_1$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "להציב $P(Q)$ במקום $P(Q/\\overline A)$ במונה, או לשכוח את הגורם $1-p$."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איזו נוסחה מתאימה ל-$P(\\overline A/Q)$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "בייס: $\\frac{P(Q/\\overline A)(1-p)}{P(Q)}$"
+      },
+      {
+       "id": "b",
+       "value": "$1-p$"
+      },
+      {
+       "id": "c",
+       "value": "$P(Q/\\overline A)$"
+      },
+      {
+       "id": "d",
+       "value": "$1-P(Q)$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "מחשבים הסתברות לסיבה בהינתן התוצאה: בייס."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$: $P(E/\\overline A)=p^2(1+p-p^2)$ (עד חמש ספרות).",
+     "answer": 0.4464,
+     "tol": 0.0001,
+     "explain": "$0.36\\cdot1.24=0.4464$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$: $P(Q/\\overline A)$ (עד חמש ספרות).",
+     "answer": 0.77324544,
+     "tol": 0.0001,
+     "explain": "$0.5904+0.4096\\cdot0.4464\\approx0.77325$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P_1=P(\\overline A/Q)$? (עד חמש ספרות)",
+     "answer": 0.359423611371413,
+     "tol": 0.0001,
+     "explain": "$\\frac{0.77325\\cdot0.4}{0.86054}\\approx0.35942$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   }
  ]
 }
