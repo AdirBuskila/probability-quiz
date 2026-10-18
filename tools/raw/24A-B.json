@@ -41,7 +41,41 @@
    "confidence": "high",
    "points": 7,
    "part": "א",
-   "contextId": "c1"
+   "contextId": "c1",
+   "region": {
+    "space": {
+     "x": [
+      0,
+      1
+     ],
+     "y": [
+      0,
+      1
+     ]
+    },
+    "labels": {
+     "x": "X",
+     "y": "Y"
+    },
+    "event": [
+     {
+      "a": 1,
+      "b": 0,
+      "c": "1/4",
+      "op": "<"
+     }
+    ],
+    "exact": 0.25,
+    "caption": "האירוע S1<1/8, כלומר X<1/4"
+   },
+   "sim": {
+    "kind": "area",
+    "estimate": "P(S1<1/8)",
+    "exact": 0.25,
+    "params": {
+     "fromRegion": true
+    }
+   }
   },
   {
    "num": 1,
@@ -54,7 +88,41 @@
    "confidence": "high",
    "points": 7,
    "part": "ב",
-   "contextId": "c1"
+   "contextId": "c1",
+   "region": {
+    "space": {
+     "x": [
+      0,
+      1
+     ],
+     "y": [
+      0,
+      1
+     ]
+    },
+    "labels": {
+     "x": "X",
+     "y": "Y"
+    },
+    "event": [
+     {
+      "a": 1,
+      "b": 1,
+      "c": "3/2",
+      "op": "<"
+     }
+    ],
+    "exact": 0.875,
+    "caption": "האירוע S1+S2<3/4, כלומר X+Y<3/2"
+   },
+   "sim": {
+    "kind": "area",
+    "estimate": "P(S1+S2<3/4)",
+    "exact": 0.875,
+    "params": {
+     "fromRegion": true
+    }
+   }
   },
   {
    "num": 1,
@@ -67,7 +135,41 @@
    "confidence": "high",
    "points": 7,
    "part": "ג",
-   "contextId": "c1"
+   "contextId": "c1",
+   "region": {
+    "space": {
+     "x": [
+      0,
+      1
+     ],
+     "y": [
+      0,
+      1
+     ]
+    },
+    "labels": {
+     "x": "X",
+     "y": "Y"
+    },
+    "event": [
+     {
+      "a": -1,
+      "b": 1,
+      "c": 0,
+      "op": ">"
+     }
+    ],
+    "exact": 0.5,
+    "caption": "האירוע S1<S2, כלומר Y>X"
+   },
+   "sim": {
+    "kind": "area",
+    "estimate": "P(S1<S2)",
+    "exact": 0.5,
+    "params": {
+     "fromRegion": true
+    }
+   }
   },
   {
    "num": 1,
@@ -80,7 +182,47 @@
    "confidence": "high",
    "points": 4,
    "part": "ד",
-   "contextId": "c1"
+   "contextId": "c1",
+   "region": {
+    "space": {
+     "x": [
+      0,
+      1
+     ],
+     "y": [
+      0,
+      1
+     ]
+    },
+    "labels": {
+     "x": "X",
+     "y": "Y"
+    },
+    "event": [
+     {
+      "a": -1,
+      "b": 1,
+      "c": 0,
+      "op": ">"
+     },
+     {
+      "a": 1,
+      "b": 1,
+      "c": 1,
+      "op": "<"
+     }
+    ],
+    "exact": 0.25,
+    "caption": "האירוע S1<S2<S3, כלומר X<Y<1-X"
+   },
+   "sim": {
+    "kind": "area",
+    "estimate": "P(S1<S2<S3)",
+    "exact": 0.25,
+    "params": {
+     "fromRegion": true
+    }
+   }
   },
   {
    "num": 2,
@@ -92,7 +234,16 @@
    "official": true,
    "confidence": "high",
    "points": 7,
-   "part": "א"
+   "part": "א",
+   "sim": {
+    "kind": "dice",
+    "estimate": "P(sum = 5)",
+    "exact": 0.1111111111111111,
+    "params": {
+     "n": 2,
+     "event": "sum == 5"
+    }
+   }
   },
   {
    "num": 2,
@@ -104,7 +255,17 @@
    "official": true,
    "confidence": "high",
    "points": 7,
-   "part": "ב"
+   "part": "ב",
+   "sim": {
+    "kind": "dice",
+    "estimate": "P(d1>3 | sum = 5)",
+    "exact": 0.25,
+    "params": {
+     "n": 2,
+     "event": "d1 > 3",
+     "given": "sum == 5"
+    }
+   }
   },
   {
    "num": 2,
@@ -116,7 +277,16 @@
    "official": true,
    "confidence": "high",
    "points": 7,
-   "part": "ג"
+   "part": "ג",
+   "sim": {
+    "kind": "dice",
+    "estimate": "P(product <= 18)",
+    "exact": 0.7777777777777778,
+    "params": {
+     "n": 2,
+     "event": "prod <= 18"
+    }
+   }
   },
   {
    "num": 2,
@@ -128,7 +298,17 @@
    "official": true,
    "confidence": "high",
    "points": 4,
-   "part": "ד"
+   "part": "ד",
+   "sim": {
+    "kind": "dice",
+    "estimate": "P(both odd | product <= 18)",
+    "exact": 0.2857142857142857,
+    "params": {
+     "n": 2,
+     "event": "d1 % 2 == 1 and d2 % 2 == 1",
+     "given": "prod <= 18"
+    }
+   }
   },
   {
    "num": 3,
@@ -232,7 +412,27 @@
    "confidence": "high",
    "points": 5,
    "part": "ג",
-   "image": "images/exams/24A-B-Q4-pdf.png"
+   "image": "images/exams/24A-B-Q4-pdf.png",
+   "sim": {
+    "kind": "pdf",
+    "estimate": "P(X<=E[X])",
+    "exact": 0.49382716049382713,
+    "params": {
+     "pieces": [
+      {
+       "from": 0,
+       "to": "3/4",
+       "expr": "8/9"
+      },
+      {
+       "from": "3/4",
+       "to": "13/12",
+       "expr": "1"
+      }
+     ],
+     "event": "x <= 5/9"
+    }
+   }
   },
   {
    "num": 5,
