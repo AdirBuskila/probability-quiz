@@ -155,8 +155,8 @@
      "explain": "$\\frac{1.399}{2}=\\frac{1+\\ln3}{3}\\approx0.6995$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -246,8 +246,8 @@
      "explain": "$\\frac{1/2}{2}=\\frac14$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -388,8 +388,8 @@
      "explain": "$\\frac{0.4495}{0.75}=\\frac{1+4\\ln3}{9}\\approx0.5994$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -480,8 +480,8 @@
      "explain": "$4(\\frac1{12}+\\frac{4}{12})=4\\cdot\\frac5{12}=\\frac53$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -559,8 +559,8 @@
      "explain": "$\\frac49-\\frac14=\\frac{16-9}{36}=\\frac7{36}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -666,8 +666,8 @@
      "explain": "$\\frac{0.3}{0.5}=0.6$, כלומר $\\frac{p+q-s}{q}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -773,8 +773,8 @@
      "explain": "$\\frac{0.2}{0.6}=\\frac13$, כלומר $\\frac{s-p}{1-p}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -880,8 +880,8 @@
      "explain": "$\\frac{0.1}{0.5}=0.2$, כלומר $\\frac{s-q}{1-q}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -987,8 +987,8 @@
      "explain": "$\\frac{0.4}{0.5}=0.8$, כלומר $\\frac{1-s}{1-q}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -1085,8 +1085,8 @@
      "explain": "$0.4+0.5-0.2=0.7$, כלומר $s=p+q-pq$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -1177,8 +1177,8 @@
      "explain": "$P(A\\cap B)=0$, ולכן $s=p+q=0.7$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1267,8 +1267,8 @@
      "explain": "$b=\\frac a6=\\frac14$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1343,8 +1343,8 @@
      "explain": "$1-\\frac14e^{-1}\\approx0.9080$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1424,8 +1424,8 @@
      "explain": "$\\frac{0.6609}{13/16}=1-\\frac4{13}e^{-1/2}\\approx0.8134$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1554,8 +1554,8 @@
      "explain": "$0.5\\cdot0.234375+0.5\\cdot0.171875=0.203125$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1687,8 +1687,8 @@
      "explain": "$0.4\\cdot0.453125+0.6\\cdot0.203125=0.303125$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1816,8 +1816,8 @@
      "explain": "$0.203125+0.303125-0.203125=0.303125$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1932,8 +1932,8 @@
      "explain": "היחס $\\frac{P(Q_1)}{P(Q_1)}=1$: אם $Q_1$ פועל אז גם $Q_2$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -2029,8 +2029,8 @@
      "explain": "$\\frac{28}{120}=\\frac7{30}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -2119,8 +2119,8 @@
      "explain": "$\\frac{15}{120}=\\frac18$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -2216,8 +2216,8 @@
      "explain": "$\\frac4{120}=\\frac1{30}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -2300,8 +2300,8 @@
      "explain": "$\\frac{N+1}{n+1}=\\frac{11}4=2.75$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -2383,8 +2383,8 @@
      "explain": "$11-\\frac{11}4=\\frac{33}4=8.25$, כלומר $n\\frac{N+1}{n+1}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2489,8 +2489,8 @@
      "explain": "$\\frac{0.4}{1}=0.4=t$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2555,8 +2555,8 @@
      "explain": "$0.5-0.2=0.3$ (התפלגות אחידה)."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2623,8 +2623,8 @@
      "explain": "$\\frac13-\\left(\\frac12\\right)^2=\\frac1{12}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   }
  ]
 }

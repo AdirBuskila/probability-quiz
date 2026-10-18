@@ -82,8 +82,8 @@
      "explain": "$F(t)=t$ על $(0,1)$, לכן $0.25$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -210,8 +210,8 @@
      "explain": "$1-2\\cdot\\frac18=\\frac34$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -349,8 +349,8 @@
      }
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -484,8 +484,8 @@
      "explain": "$2-1=1$: הנוסחה מתחברת ל-$1$ ב-$t=1$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -550,8 +550,8 @@
      "explain": "שטח משולש עם בסיס $1$ וגובה $f_X(0)=2$: $1$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -621,8 +621,8 @@
      "explain": "$1-\\frac23=\\frac13$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -727,8 +727,8 @@
      "explain": "$0.7-0.625+0.375=0.45$, כלומר $s-pP(B)$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -832,8 +832,8 @@
      "explain": "$1-0.375=0.625$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -918,8 +918,8 @@
      "explain": "$0.6\\cdot0.625=0.375$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -979,8 +979,8 @@
      "explain": "$\\frac{-0.2}{0.5}=-0.4<0$: לא יתכן."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -1078,8 +1078,8 @@
      "explain": "$0.2-0.2=0$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -1177,8 +1177,8 @@
      "explain": "$\\frac9{20}-\\frac15=\\frac14$; ואכן $P(A\\cap B)=0$, $P(A)+P(B)=\\frac9{20}=s$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1261,8 +1261,8 @@
      "explain": "$\\frac6{36}=\\frac16$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1326,8 +1326,8 @@
      "explain": "$\\frac{10}{36}=\\frac5{18}\\approx0.2778$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1462,8 +1462,8 @@
      "explain": "$\\frac13\\cdot\\frac14=\\frac1{12}\\approx0.0833$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1592,8 +1592,8 @@
      "explain": "$\\frac13+\\frac14-\\frac1{12}=\\frac12$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1729,8 +1729,8 @@
      "explain": "$\\frac13\\cdot\\frac38=\\frac18=0.125$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1826,8 +1826,8 @@
      "explain": "$\\frac14+\\frac12=\\frac34$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1875,8 +1875,8 @@
      "explain": "$\\mu=-\\frac1{12}\\approx-0.0833$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1955,8 +1955,8 @@
      "explain": "$\\frac{1.5}2=0.75$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -2035,8 +2035,8 @@
      "explain": "$\\frac{5/16}{13/16}=\\frac5{13}\\approx0.3846$, כלומר $\\frac{1+6\\mu}{3+6\\mu}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -2136,8 +2136,8 @@
      "explain": "$0.36+0.6-0.216=0.744$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -2237,8 +2237,8 @@
      "explain": "$0.36+0.6-0.216=0.744$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -2375,8 +2375,8 @@
      "explain": "$\\frac16\\{2\\cdot0.744+4\\cdot0.648\\}=0.68$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -2489,8 +2489,8 @@
      "explain": "$\\frac{0.68}{0.744}\\approx0.9140$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -2603,8 +2603,8 @@
      "explain": "$\\frac{0.064}{0.256}=0.25=\\frac{2p}{3(1+p)}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2719,8 +2719,8 @@
      "explain": "$\\frac{1+2}{7}=\\frac37\\approx0.4286$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2843,8 +2843,8 @@
      "explain": "$\\frac{(4/7)(1/5)}{3/7}=\\frac4{15}\\approx0.2667$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2952,8 +2952,8 @@
      "explain": "$\\frac{1+1}7=\\frac27\\approx0.2857$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   }
  ]
 }

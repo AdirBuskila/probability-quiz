@@ -92,8 +92,8 @@ questions.append(Q(
 $$P\bigl(1-X_1-X_2>X_1\ \cap\ 1-X_1-X_2>X_2\bigr)=P\left(X_2<1-2X_1\ \cap\ X_2<\frac{1-X_1}{2}\right).$$
 האזור הוא החלק של הריבוע שמתחת לשני הישרים, כלומר טרפז.
 ![האזור שמתחת לשני הישרים בתוך הריבוע](images/exams/26A-A-Q1d-region.png)
-את שטחו מקבלים כשטח הריבוע פחות שטח האזור שבסעיף הקודם:
-$$\frac14\left(\frac34-\frac1{12}\right)=\frac14\cdot\frac23.$$
+משלים האזור בריבוע הוא שני משולשים חופפים: האחד שבו $X_1$ הקטע הארוך ביותר, והשני שבו $X_2$ הארוך ביותר, ושטח כל אחד מהם $\frac1{24}$ (למשל הראשון הוא המשולש עם קודקודים $\left(\frac13,\frac13\right)$, $\left(\frac12,0\right)$, $\left(\frac12,\frac12\right)$). לכן השטח הוא שטח הריבוע פחות שני המשולשים:
+$$\frac14-2\cdot\frac1{24}=\frac16=\frac14\cdot\frac23.$$
 לכן
 $$P=\frac{\frac14\cdot\frac23}{1/4}=\frac23.$$""",
     5, contextId="c1"))
@@ -462,14 +462,14 @@ def _pairs(n):
 
 
 def _lines3(n):
-    """all triples of cells of an n x n board; line=1 when they are 3 consecutive cells in a row, column or diagonal"""
-    rows = []
-    for a, b, c in itertools.combinations(sorted(_cells(n)), 3):
-        d1 = (b[0] - a[0], b[1] - a[1])
-        d2 = (c[0] - b[0], c[1] - b[1])
-        line = 1 if (d1 == d2 and d1 in ((0, 1), (1, 0), (1, 1), (1, -1))) else 0
-        rows.append({"p": 1 / math.comb(n * n, 3), "line": line})
-    return rows
+    """the actual random placement: every 3-subset of cells of an n x n board is equally likely, in sorted order
+    (r1,c1)<(r2,c2)<(r3,c3). Three marks are 'in a line' when consecutive cells differ by the same step, one cell in
+    a row, column or diagonal (see _LINE3_EVENT)."""
+    return [{"p": 1 / math.comb(n * n, 3), "r1": a[0], "c1": a[1], "r2": b[0], "c2": b[1], "r3": c[0], "c3": c[1]}
+            for a, b, c in itertools.combinations(sorted(_cells(n)), 3)]
+
+
+_LINE3_EVENT = "r2 - r1 == r3 - r2 and c2 - c1 == c3 - c2 and abs(r2 - r1) <= 1 and abs(c2 - c1) <= 1"
 
 
 SIMS.update({
@@ -494,7 +494,7 @@ SIMS.update({
                    estimate="P(horizontal or vertical), N=4", exact=4 / (4 * 5)),
     (6, "ו"): dict(kind="custom_discrete", params={"joint": _pairs(4), "event": "abs(r1-r2) == 1 and abs(c1-c2) == 1"},
                    estimate="P(diagonal or anti-diagonal), N=4", exact=4 * 3 / (16 * 5)),
-    (6, "ז"): dict(kind="custom_discrete", params={"joint": _lines3(4), "event": "line == 1"},
+    (6, "ז"): dict(kind="custom_discrete", params={"joint": _lines3(4), "event": _LINE3_EVENT},
                    estimate="P(3 marks in a line), N=4 k=3", exact=2 * 2 * 6 / math.comb(16, 3)),
 })
 

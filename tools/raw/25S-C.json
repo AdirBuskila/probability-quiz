@@ -161,8 +161,8 @@
      "explain": "משולש ישר-זווית בניצבים $\\frac12$: $\\frac12\\cdot\\frac12\\cdot\\frac12=\\frac18$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -283,8 +283,8 @@
      "explain": "$1-\\frac29=\\frac79$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -382,8 +382,8 @@
      "explain": "$\\frac7{24}-\\frac14=\\frac1{24}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -473,8 +473,8 @@
      "explain": "מקדם המתאם הוא $\\approx-0.707$. אי-תלות של $L,b$ אינה גוררת אי-תלות של $a,b$, ו-$a$ אינו אחיד."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -574,8 +574,8 @@
      "explain": "$\\frac{40}{72}=\\frac59$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -675,8 +675,8 @@
      "explain": "$\\frac{6+18}{72}=\\frac13$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -765,8 +765,8 @@
      "explain": "$\\frac8{72}=\\frac19$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -867,8 +867,8 @@
      "explain": "$\\frac{20}{32}=\\frac58$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -973,8 +973,8 @@
      "explain": "$(X,Y)\\in\\{(1,0),(0,1)\\}$: $2p(1-p)=0.42$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1072,8 +1072,8 @@
      "explain": "$1-p^2=0.91$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1171,8 +1171,8 @@
      "explain": "$p^2=0.09$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1244,8 +1244,8 @@
      "explain": "אי-תלות דורשת שוויון לכל זוג ערכים; מספיק זוג אחד שבו נכשל השוויון."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1358,8 +1358,8 @@
      "explain": "$\\mathrm{Cov}=0.252\\ne0$, ולכן מתואמים. תלות אינה גוררת אי-מתאם."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1431,11 +1431,11 @@
       }
      ],
      "correctId": "a",
-     "explain": "שני הזוגות הראשונים פותרים את שתי המשוואות, אך ב-$(11,\\frac{13}2)$ מתקבל $a>b$, בניגוד לגרף. הזוג $(2,\\frac52)$ אינו מקיים אפילו את הנרמול (שטח $2.5$)."
+     "explain": "שני הזוגות הראשונים פותרים את שתי המשוואות, אך ב-$(11,\\frac{13}2)$ מתקבל $a>b$, בניגוד לגרף. הזוג $(2,\\frac52)$ אינו מקיים אפילו את הנרמול (שטח $1.5$)."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1515,8 +1515,8 @@
      "explain": "$\\frac54-\\frac12=\\frac34$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1592,8 +1592,8 @@
      "explain": "$\\frac{5/8}{7/8}=\\frac57$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -1718,8 +1718,8 @@
      "explain": "$0.6\\cdot0.7056+0.4\\cdot0.5904=0.42336+0.23616=0.65952$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -1849,8 +1849,8 @@
      "explain": "$0.84\\cdot0.936=0.78624$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -1972,8 +1972,8 @@
      "explain": "$\\frac{0.57888}{0.78624}\\approx0.7363$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2064,8 +2064,8 @@
      "explain": "$\\frac{16}3\\approx5.333$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2208,8 +2208,8 @@
      "explain": "$\\frac{4+25+81}{16}=\\frac{110}{16}=6.875$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2277,8 +2277,8 @@
      "explain": "$E[Y]/E[X]=1+\\mathrm{Var}[X]/E[X]^2>1$. שוויון היה דורש $\\mathrm{Var}[X]=0$ (כל הגדלים שווים)."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   }
  ]
 }

@@ -146,8 +146,8 @@
      }
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -253,8 +253,8 @@
      }
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -353,8 +353,8 @@
      }
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -518,8 +518,8 @@
      "explain": "$\\frac12$ משני הצדדים: $\\frac t2$ ו-$1-\\frac1{2t}$ שווים ב-$t=1$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -587,8 +587,8 @@
      "explain": "$\\int_1^\\infty\\frac{dt}{2t^2}=\\frac12$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -667,8 +667,8 @@
      "explain": "$\\frac23\\cdot2=\\frac43$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -774,8 +774,8 @@
      "explain": "$\\frac{0.36}{0.5}=0.72$, כלומר $\\frac{s(1-p)}q$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -874,8 +874,8 @@
      "explain": "$1-0.72=0.28$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -973,8 +973,8 @@
      "explain": "$q-0.36=0.14$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -1072,8 +1072,8 @@
      "explain": "$0.4+0.36=0.76$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -1171,8 +1171,8 @@
      "explain": "$s=\\frac{q-pq}{1-p}=\\frac{0.3}{0.6}=0.5=q$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -1263,8 +1263,8 @@
      "explain": "$q=s(1-p)=0.5\\cdot0.6=0.3$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1358,8 +1358,8 @@
      "explain": "$\\frac{1.5}3=0.5$; ואכן $a+b=1$ ו-$-\\frac a2+b=0.25$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1406,8 +1406,8 @@
      "explain": "$\\mu=-\\frac12$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1487,8 +1487,8 @@
      "explain": "$0.5+0.25\\cdot0.25=0.5625$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1573,8 +1573,8 @@
      "explain": "$\\frac{0.25}{0.5}=\\frac12$, ללא תלות ב-$\\mu$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1691,8 +1691,8 @@
      "explain": "$0.5\\cdot0.5625+0.5\\cdot0.4375=0.5$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1825,8 +1825,8 @@
      "explain": "$0.4\\cdot0.2+0.6\\cdot0.125=0.155$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1948,8 +1948,8 @@
      "explain": "שווה ל-$P(Q_2)=0.155$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -2058,8 +2058,8 @@
      "explain": "$\\frac{0.155}{0.5}=0.31$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -2119,8 +2119,8 @@
      "explain": "$\\frac5{12}\\approx0.4167$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -2208,8 +2208,8 @@
      "explain": "$\\frac4{11}\\cdot\\frac5{12}+\\frac5{11}\\cdot\\frac7{12}=\\frac{55}{132}=\\frac5{12}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -2297,8 +2297,8 @@
      "explain": "$\\frac{D-\\mathbb{E}[X]}{N-n+1}=\\frac{3.75}{9}=\\frac5{12}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -2391,8 +2391,8 @@
      "explain": "$\\frac{5/33}{5/12}=\\frac4{11}\\approx0.3636$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2485,8 +2485,8 @@
      "explain": "$\\frac1{56}\\approx0.0179$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2573,8 +2573,8 @@
      "explain": "$\\frac2{56}=\\frac1{28}\\approx0.0357$ (וסכום $28\\cdot\\frac1{28}=1$)."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2660,8 +2660,8 @@
      "explain": "$\\frac{2\\cdot3}{56}=\\frac3{28}\\approx0.1071$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2735,8 +2735,8 @@
      "explain": "$\\frac{3}3=1$: שני הכיסאות תמיד תפוסים."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2810,8 +2810,8 @@
      "explain": "$\\frac{3\\cdot0}{18}=0$: משתנה דטרמיניסטי."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2888,8 +2888,8 @@
      "explain": "$\\frac{1.5}{\\sqrt{3\\cdot3}}=\\frac12$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   }
  ]
 }

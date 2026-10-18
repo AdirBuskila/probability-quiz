@@ -111,7 +111,9 @@ questions.append(Q(
     2, "ג", "conditional_bayes",
     r"חשבו את ההסתברויות הבאות (עליך לפשט את כל הביטויים!): **(א-3):** $P(A/\bar B)$. (3 נק׳ לכל תת סעיף)",
     r"""**$P(A/\bar B)$.**
-$$P(A/\bar B)=\frac{P(A\cap\bar B)}{P(\bar B)}=\frac{P(A\setminus B)}{1-P(B)}=\frac{p}{1-\frac qs}=\frac{ps}{s-q}.$$""",
+$$P(A/\bar B)=\frac{P(A\cap\bar B)}{P(\bar B)}=\frac{P(A\setminus B)}{1-P(B)}=\frac{p}{1-\frac qs}=\frac{ps}{s-q}.$$
+
+**הערה:** כאשר $s=q$ מתקבל $P(\bar B)=0$, ולכן ההסתברות המותנית אינה מוגדרת; הנוסחה תקפה עבור $s>q$.""",
     3, contextId="c2"))
 
 questions.append(Q(
@@ -125,7 +127,9 @@ questions.append(Q(
     2, "ה", "conditional_bayes",
     r"חשבו את ההסתברויות הבאות (עליך לפשט את כל הביטויים!): **(א-5):** $P(\bar A/\bar B)$. (3 נק׳ לכל תת סעיף)",
     r"""**$P(\bar A/\bar B)$.**
-$$P(\bar A/\bar B)=1-P(A/\bar B)=1-\frac{ps}{s-q}.$$""",
+$$P(\bar A/\bar B)=1-P(A/\bar B)=1-\frac{ps}{s-q}.$$
+
+**הערה:** כאשר $s=q$ מתקבל $P(\bar B)=0$, ולכן ההסתברות המותנית אינה מוגדרת; הנוסחה תקפה עבור $s>q$.""",
     3, contextId="c2"))
 
 questions.append(Q(
@@ -296,7 +300,9 @@ $$P_4=\frac{P(Q_{PUB}\cap Q_E\cap Q_S)}{P(Q_E\cap Q_S)}.$$
 כאן המאורע $Q_{PUB}$ הוא ששניהם עוברים דרך הפאב:
 $$Q_{PUB}\cap Q_E\cap Q_S=(B\cap C\cap D)\cap(A\cap C\cap D)=A\cap B\cap C\cap D,$$
 ולכן $P(Q_{PUB}\cap Q_E\cap Q_S)=p^4$. מכאן
-$$P_4=\frac{p^4}{P_2}=\frac{p^2}{1+2p-2p^2}.$$""",
+$$P_4=\frac{p^4}{P_2}=\frac{p^2}{1+2p-2p^2}.$$
+
+**הערה:** הביטוי ״שניהם נסעו דרך הפאב״ נקרא כאן כך שכל ארבעת הכבישים פתוחים ($A\cap B\cap C\cap D$); בקריאה מחמירה יותר, שבה שני המסלולים חייבים להיות זרים זה לזה, המאורע היה בלתי אפשרי.""",
     7, contextId="c5"))
 
 # ------------------------------------------------------------------ Q6

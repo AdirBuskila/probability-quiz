@@ -461,10 +461,19 @@ def _vshapes(R, C):
 
 
 def _board_rows(R, C):
-    sh = _vshapes(R, C)
+    """the actual random placement: every 3-subset of cells is equally likely, listed in sorted order (r1,c1)<(r2,c2)<(r3,c3).
+    Whether it is a V shape is decided by the event expression over the cell coordinates (see _VEVENT)."""
     cells = [(r, c) for r in range(R) for c in range(C)]
     tot = math.comb(R * C, 3)
-    return [{"p": 1 / tot, "v": 1 if frozenset(t) in sh else 0} for t in itertools.combinations(cells, 3)], len(sh) / tot
+    rows = [{"p": 1 / tot, "r1": a[0], "c1": a[1], "r2": b[0], "c2": b[1], "r3": c[0], "c3": c[1]}
+            for a, b, c in itertools.combinations(cells, 3)]
+    return rows, len(_vshapes(R, C)) / tot
+
+
+# V shapes in sorted-cell order: a flat arm of two cells two apart plus the middle cell of the adjacent line (rows), or a column version
+_VEVENT = ("(r1 == r2 and r3 == r1 + 1 and c2 == c1 + 2 and c3 == c1 + 1) or "
+           "(r2 == r3 and r2 == r1 + 1 and c2 == c1 - 1 and c3 == c1 + 1) or "
+           "(c1 == c3 and abs(c2 - c1) == 1 and r2 == r1 + 1 and r3 == r1 + 2)")
 
 
 def _two_urns():
@@ -505,8 +514,8 @@ SIMS.update({
                    estimate="P(Y=1 | X=1), N2=8 D2=3 n=3 m=2", exact=28 / 55),
     (5, "ה"): _IS(params={"joint": _two_urns(), "event": "X == 2 and Y == 1"},
                   estimate="P(X=2,Y=1), N1=10 D1=4 n=3 N2=8 D2=3 m=2", exact=9 / 55),
-    (6, "ב"): _IS(params={"joint": _BOARD34, "event": "v == 1"}, estimate="P(V shape), 3x4 board", exact=_PV34),
-    (6, "ד"): _IS(params={"joint": _BOARD45, "event": "v == 1"}, estimate="P(V shape), 4x5 board", exact=_PV45),
+    (6, "ב"): _IS(params={"joint": _BOARD34, "event": _VEVENT}, estimate="P(V shape), 3x4 board", exact=_PV34),
+    (6, "ד"): _IS(params={"joint": _BOARD45, "event": _VEVENT}, estimate="P(V shape), 4x5 board", exact=_PV45),
 })
 
 for _q in questions:
