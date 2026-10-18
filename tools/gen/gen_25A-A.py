@@ -245,7 +245,7 @@ questions.append(Q(
     6, "א", "special_discrete",
     r"נגדיר משתנה מקרי $X=\{$מספר הסוללות ממפעל $A$ במשלוח$\}$. מצאו את פונקציית ההסתברות של משתנה זה. **עליך לתת הסבר מפורט.** (6 נק׳)",
     r"""נבצע סדרה של $n$ ניסויי ברנולי בבדיקת תוכן המשלוח. עבור הפריט ה-$j$ ($j=1,\ldots,n$) נגדיר משתנה מקרי
-$$X_j=\begin{cases}1,&\text{battery from }A,\ \text{probability }q,\0,&\text{battery from }B,\ \text{probability }1-q,\end{cases}\qquad X_j\sim\mathrm{Ber}(q).$$
+$$X_j=\begin{cases}1,&\text{battery from }A,\ \text{probability }q,\\0,&\text{battery from }B,\ \text{probability }1-q,\end{cases}\qquad X_j\sim\mathrm{Ber}(q).$$
 סך כל הסוללות במשלוח שמקורן במפעל $A$ הוא $X=\sum_{j=1}^nX_j$, סכום של $n$ משתנים ברנולי בלתי תלויים (וזהים), ולכן $X\sim\mathrm{Bin}(n,q)$:
 $$P(X=k)=\binom nkq^k(1-q)^{n-k},\qquad k=0,1,\ldots,n.$$""",
     6, contextId="c6"))
@@ -254,7 +254,7 @@ questions.append(Q(
     6, "ב", "special_discrete",
     r"נתון כי פרופורציית הסוללות הפגומות הינה $p$ ללא קשר למפעל בו נוצרו. כתוצאה מכך, חלק מהסוללות במשלוח פגומות. נגדיר משתנה מקרי $Y=\{$מספר הסוללות הפגומות במשלוח שמקורן במפעל $A\}$. מצאו את פונקציית ההסתברות של משתנה זה. **עליך לתת הסבר מפורט.** (12 נק׳)" "\n" + Q6_HINT,
     r"""גם כאן נבצע סדרה של $n$ ניסויי ברנולי בבדיקת הפריטים: בכל פריט בודקים גם מבחינת השיוך למפעל וגם מבחינת תקינות הסוללה. עבור הפריט ה-$j$ נגדיר ($Y_j=1$ אם הסוללה שייכת ל-$A$ וגם פגומה, בהסתברות $q\cdot p$)
-$$Y_j=\begin{cases}1,&\text{from }A\text{ and defective},\ \text{probability }q\cdot p,\0,&\text{otherwise}.\end{cases}$$
+$$Y_j=\begin{cases}1,&\text{from }A\text{ and defective},\ \text{probability }q\cdot p,\\0,&\text{otherwise}.\end{cases}$$
 ההסתברות להצלחה בכל ניסוי היא $pq$ (אי-תלות בין המפעל לבין הפגם), ולכן $Y=\sum_{j=1}^nY_j$ סכום של $n$ משתנים $\mathrm{Ber}(pq)$ בלתי תלויים:
 $$Y\sim\mathrm{Bin}(n,pq),\qquad P(Y=k)=\binom nk(pq)^k(1-pq)^{n-k},\qquad k=0,1,\ldots,n.$$
 **הערה:** אפשר לתאר כל $Y_k$ ככפל של שני משתני ברנולי בלתי תלויים: $Y_k=X_kZ_k$ כאשר $X_k\sim\mathrm{Ber}(q)$ (שייכות למפעל $A$) ו-$Z_k\sim\mathrm{Ber}(p)$ (תקינות הסוללה).""",
@@ -290,6 +290,21 @@ for _q in questions:
     _r = REGIONS.get((_q["num"], _q.get("part")))
     if _r is not None:
         _q["region"] = _r
+
+# ------------------------------------------------------------------ area regions + simulations (RAW_SCHEMA `region`, `sim`)
+SIMS = {
+    (1, "א"): {"kind": "area", "params": {"fromRegion": True}, "estimate": "P(X1>X2)", "exact": 0.25},
+    (1, "ב"): {"kind": "area", "params": {"fromRegion": True}, "estimate": "P(triangle)", "exact": 0.25},
+    (1, "ג"): {"kind": "area", "params": {"fromRegion": True}, "estimate": "P(triangle | X1>X2)", "exact": 0.125},
+    (2, "א"): {"kind": "custom_discrete",
+               "params": {"vars": {"N": {"values": list(range(100, 1000)), "probs": [1 / 900] * 900}}, "event": "N % 8 == 0"},
+               "estimate": "P(A8)", "exact": 28 / 225},
+}
+
+for _q in questions:
+    _k = (_q["num"], _q.get("part"))
+    if _k in SIMS:
+        _q["sim"] = SIMS[_k]
 
 # ------------------------------------------------------------------ exam
 exam = {
