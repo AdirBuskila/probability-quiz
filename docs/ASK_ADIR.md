@@ -41,6 +41,13 @@ Open questions for Adir. One entry per item; the orchestrator moves it to Resolv
 - Needed: confirm that max is intended (with min the answers would be 5/9 and 2/3, as in 24B-A).
 - Status: note only (items shipped)
 
+### 24A-A Q2 d and Q3 d - bonus parts with no official solution
+- Path: official PDF of sitting 24A-A (handwritten solutions), see sitting code only
+- Page: exam p.2 (Q2 d: P_N for an N-sided die, 3 pts; Q3 d: mean number of A's in the first string given n in total, 3 pts; both "אין חובה לפתור"); solutions p.6-9 stop after Q2 c and Q3 c
+- Question: no official answer for either bonus part. Pattern for Q2 d is P_N = (1/N)(1+1/N)^(N-1) (exact for N=2..9 in tools/verify/24A-A/check.py); for Q3 d, E[X1 | X=n] = n N1/(N1+N2) from the hypergeometric of Q3 c.
+- Needed: route to the solver (no-key); not a key dispute.
+- Status: hold (no-key; question text transcribed, not in the bank)
+
 ## Resolved
 
 ### 26A-B Q3 a, b, d - official key uses different q2/q4 labels than the printed question
