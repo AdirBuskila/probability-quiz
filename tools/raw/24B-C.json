@@ -211,13 +211,16 @@
   },
   {
    "num": 3,
-   "part": "ה",
    "kind": "computation",
-   "hold": "no-key",
    "topic": "joint_discrete",
+   "question": "**סעיף בונוס** (אין חובה לפתור!): חשבו את השונות המשותפת $\\operatorname{cov}[D,T]$ של משתנים חדשים $D$ ו-$T$.",
+   "solution": "**פתרון (אין פתרון רשמי לסעיף הבונוס).**\nלפי הבילינאריות של השונות המשותפת,\n$$\\operatorname{cov}[D,T]=\\operatorname{cov}\\Big[\\sum_{j=1}^nD_j,\\ \\sum_{k=1}^nT_k\\Big]=\\sum_{j=1}^n\\sum_{k=1}^n\\operatorname{cov}[D_j,T_k].$$\nעבור $j\\ne k$ המשתנה $D_j$ תלוי רק בזוג $(X_j,Y_j)$ ו-$T_k$ רק בזוג $(X_k,Y_k)$, והזוגות בלתי תלויים, ולכן $\\operatorname{cov}[D_j,T_k]=0$. נשארים רק האיברים $j=k$:\n$$\\operatorname{cov}[D,T]=n\\operatorname{cov}[D_1,T_1]=n\\big(\\operatorname{cov}[X_1Y_1,X_1]+\\operatorname{cov}[X_1Y_1,Y_1]\\big).$$\nמאחר ש-$X_1^2=X_1$ (ברנולי) ו-$X_1,Y_1$ בלתי תלויים,\n$$\\operatorname{cov}[X_1Y_1,X_1]=\\mathbb{E}[X_1^2Y_1]-\\mathbb{E}[X_1Y_1]\\,\\mathbb{E}[X_1]=p\\cdot p-p^2\\cdot p=p^2(1-p),$$\nומאותה סימטריה גם $\\operatorname{cov}[X_1Y_1,Y_1]=p^2(1-p)$. לכן\n$$\\operatorname{cov}[D,T]=2np^2(1-p).$$",
+   "solutionSource": "solved",
+   "official": false,
+   "confidence": "high",
    "points": 5,
-   "contextId": "c3",
-   "question": "**סעיף בונוס** (אין חובה לפתור!): חשבו את השונות המשותפת $\\operatorname{cov}[D,T]$ של משתנים חדשים $D$ ו-$T$."
+   "part": "ה",
+   "contextId": "c3"
   },
   {
    "num": 4,
@@ -302,28 +305,26 @@
    "kind": "computation",
    "topic": "circuits",
    "question": "**א:** מהי ההסתברות שהמעגל כולו פועל? **עליך לתת חישוב מפורט!**",
-   "solution": "נפצל לפי הרכיב $E$ (הגשר).\nאם $E$ פועל (הסתברות $p$), המעגל פועל אם ($A$ או $B$ פועל) **וגם** ($C$ או $D$ פועל): הסתברות $(2p-p^2)^2$.\nאם $E$ אינו פועל (הסתברות $1-p$), המעגל פועל אם ($A$ וגם $C$) או ($B$ וגם $D$): הסתברות $2p^2-p^4$.\n$$P(Q)=p\\,(2p-p^2)^2+(1-p)(2p^2-p^4)\\ \\text{; after expanding (as printed in the official solution): }\\ P(Q)=p^2\\,(2+p-5p^2+2p^3).$$",
-   "solutionSource": "official-pdf",
-   "official": true,
+   "solution": "**הפתרון הרשמי עם תיקון:** בפתרון הרשמי הפתיחה של הביטוי נכתבה $P(Q)=p^2(2+p-5p^2+2p^3)$, אבל הביטוי הרשמי עצמו נפתח ל-$p^2(2+2p-5p^2+2p^3)$ (המקדם של $p^3$ הוא $2$ ולא $1$). התיקון נבדק (חישוב מדויק וסימולציה).\nנפצל לפי הרכיב $E$ (הגשר).\nאם $E$ פועל (הסתברות $p$), המעגל פועל אם ($A$ או $B$ פועל) **וגם** ($C$ או $D$ פועל): הסתברות $(2p-p^2)^2$.\nאם $E$ אינו פועל (הסתברות $1-p$), המעגל פועל אם ($A$ וגם $C$) או ($B$ וגם $D$): הסתברות $2p^2-p^4$.\n$$P(Q)=p\\,(2p-p^2)^2+(1-p)(2p^2-p^4)=(4p^3-4p^4+p^5)+(2p^2-2p^3-p^4+p^5)$$\n$$P(Q)=2p^2+2p^3-5p^4+2p^5=p^2\\,(2+2p-5p^2+2p^3).$$",
+   "solutionSource": "solved",
+   "official": false,
    "confidence": "high",
    "points": 10,
    "part": "א",
-   "contextId": "c6",
-   "hold": "The official expanded P(Q) = p^2(2+p-5p^2+2p^3) does not equal its own first line p(2p-p^2)^2+(1-p)(2p^2-p^4) = p^2(2+2p-5p^2+2p^3); P(Q|A) is printed p+2p^2-4p^3+p^4 but p+p(2p-p^2)-p^2(2p-p^2) = p+2p^2-3p^3+p^4. The printed final answer of (b) inherits both slips. See ASK_ADIR."
+   "contextId": "c6"
   },
   {
    "num": 6,
    "kind": "computation",
    "topic": "circuits",
    "question": "**ב:** אם ידוע כי המעגל כולו פועל, מהי ההסתברות שהיחידה $A$ פועלת?",
-   "solution": "לפי נוסחת בייס:\n$$P(A\\mid Q)=\\frac{P(Q\\mid A)P(A)}{P(Q)}.$$\nבהינתן ש-$A$ פועל, המעגל פועל אם $C$ פועל, או אם $D$ פועל וגם ($E$ או $B$ פועל):\n$$P(Q\\mid A)=p+p(2p-p^2)-p^2(2p-p^2)\\ \\text{; as printed in the official solution: }\\ =p+2p^2-4p^3+p^4.$$\nתשובה כפי שמופיעה בפתרון הרשמי:\n$$P(A\\mid Q)=\\frac{1+2p-4p^2+p^3}{2+p-5p^2+2p^3}.$$",
-   "solutionSource": "official-pdf",
-   "official": true,
+   "solution": "**הפתרון הרשמי עם תיקון:** בפתרון הרשמי נכתב $P(Q\\mid A)=p+2p^2-4p^3+p^4$ והתשובה $\\frac{1+2p-4p^2+p^3}{2+p-5p^2+2p^3}$. הביטוי הרשמי $p+p(2p-p^2)-p^2(2p-p^2)$ נפתח ל-$p+2p^2-3p^3+p^4$, והמכנה מתוקן לפי סעיף א, ולכן התשובה הסופית שונה מהתשובה הרשמית. התיקון נבדק (חישוב מדויק וסימולציה).\nלפי נוסחת בייס:\n$$P(A\\mid Q)=\\frac{P(Q\\mid A)P(A)}{P(Q)}.$$\nבהינתן ש-$A$ פועל, המעגל פועל אם $C$ פועל, או אם $D$ פועל וגם ($E$ או $B$ פועל):\n$$P(Q\\mid A)=p+p(2p-p^2)-p^2(2p-p^2)=p+2p^2-p^3-2p^3+p^4=p+2p^2-3p^3+p^4.$$\nעם $P(A)=p$ ו-$P(Q)=p^2(2+2p-5p^2+2p^3)$ מסעיף א:\n$$P(A\\mid Q)=\\frac{p\\,(p+2p^2-3p^3+p^4)}{p^2(2+2p-5p^2+2p^3)}=\\frac{1+2p-3p^2+p^3}{2+2p-5p^2+2p^3}.$$",
+   "solutionSource": "solved",
+   "official": false,
    "confidence": "high",
    "points": 10,
    "part": "ב",
-   "contextId": "c6",
-   "hold": "The official expanded P(Q) = p^2(2+p-5p^2+2p^3) does not equal its own first line p(2p-p^2)^2+(1-p)(2p^2-p^4) = p^2(2+2p-5p^2+2p^3); P(Q|A) is printed p+2p^2-4p^3+p^4 but p+p(2p-p^2)-p^2(2p-p^2) = p+2p^2-3p^3+p^4. The printed final answer of (b) inherits both slips. See ASK_ADIR."
+   "contextId": "c6"
   },
   {
    "num": 6,

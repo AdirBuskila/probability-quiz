@@ -20,13 +20,6 @@ Open questions for Adir. One entry per item; the orchestrator moves it to Resolv
 - Needed: route to the solver (no-key); not a key dispute.
 - Status: hold (no-key; question text transcribed, not in the bank)
 
-### 24B-C Q6 a, b - official expansions contain arithmetic slips
-- Path: official PDF of sitting 24B-C, see sitting code only
-- Page: solution pp.10-11 (printed Q6 a and b, bridge circuit)
-- Question: (a) the official first line P(Q) = p(2p-p^2)^2 + (1-p)(2p^2-p^4) is right and expands to p^2(2+2p-5p^2+2p^3), but the printed expanded answer is p^2(2+p-5p^2+2p^3). (b) P(Q|A) is printed p+2p^2-4p^3+p^4 while its own formula p+p(2p-p^2)-p^2(2p-p^2) expands to p+2p^2-3p^3+p^4, so the printed final P(A|Q) = (1+2p-4p^2+p^3)/(2+p-5p^2+2p^3) is wrong; the exact value is (1+2p-3p^2+p^3)/(2+2p-5p^2+2p^3) (at p=0.5: 0.6875 exact vs 0.75 printed; exact enumeration and Monte Carlo in tools/verify/24B-C/check.py). Part c (answer 1) is fine.
-- Needed: ship the corrected expansions (official:false, solved) or keep the printed ones?
-- Status: hold (Q6a and Q6b held, in the raw JSON with the official text; not in the bank)
-
 ### 24B-C Q1 b - printed text says "shorter" but defines Z = max(X,Y)
 - Path: official PDF of sitting 24B-C
 - Page: exam p.1 (Q1 b)
@@ -77,6 +70,13 @@ Open questions for Adir. One entry per item; the orchestrator moves it to Resolv
 - Status: hold (key disagreement; question text transcribed, not in the bank)
 
 ## Resolved
+
+### 24B-C Q6 a, b - official expansions contain arithmetic slips
+- Path: official PDF of sitting 24B-C, see sitting code only
+- Page: solution pp.10-11 (printed Q6 a and b, bridge circuit)
+- Question: (a) the official first line P(Q) = p(2p-p^2)^2 + (1-p)(2p^2-p^4) is right and expands to p^2(2+2p-5p^2+2p^3), but the printed expanded answer is p^2(2+p-5p^2+2p^3). (b) P(Q|A) is printed p+2p^2-4p^3+p^4 while its own formula p+p(2p-p^2)-p^2(2p-p^2) expands to p+2p^2-3p^3+p^4, so the printed final P(A|Q) = (1+2p-4p^2+p^3)/(2+p-5p^2+2p^3) is wrong; the exact value is (1+2p-3p^2+p^3)/(2+2p-5p^2+2p^3) (at p=0.5: 0.6875 exact vs 0.75 printed; exact enumeration and Monte Carlo in tools/verify/24B-C/check.py). Part c (answer 1) is fine.
+- Needed: ship the corrected expansions (official:false, solved) or keep the printed ones?
+- Status: resolved 2026-10-18 by the arbiter under the standing rulings. Re-read from the rendered pages (solution pp.10-11): both slips sit in final answers (the expanded P(Q) of a, and P(Q|A) feeding the final P(A|Q) of b), so the typo ruling applies, not the silent intermediate-slip ruling. Shipped a: P(Q) = p^2(2+2p-5p^2+2p^3); b: P(A|Q) = (1+2p-3p^2+p^3)/(2+2p-5p^2+2p^3) (0.6875 at p=1/2), each with the official method and the expansion corrected, solutionSource solved, official:false, prefix "הפתרון הרשמי עם תיקון". check.py asserts both exactly (enumeration) and by Monte Carlo at p = 1/2, 7/10, 3/10. The Q3 bonus (no key) also ships as solved: cov[D,T] = 2np^2(1-p). Adir can override.
 
 ### 24B-B Q3 d - official answer 5/9 disagrees with the exact value 1/2
 - Path: official PDF of sitting 24B-B, see sitting code only

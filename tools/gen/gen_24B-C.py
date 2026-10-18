@@ -12,13 +12,16 @@ Transcription notes
   "max" over the line) uses the maximum: P(Z<L/3)=1/9. The question is transcribed as printed (word and formula); the key
   matches the formula.
 - Q1 area items (c, d, e) have region data in tools/verify/24B-C/regions.json (no `region` field in RAW_SCHEMA).
-- Q3 (סעיף בונוס): no solution page in the source, held as no-key (formula in tools/verify/24B-C/check.py).
+- Q3 (סעיף בונוס) = Q3e: no solution page in the source; solved (solutionSource "solved", official:false):
+  cov[D,T] = 2np^2(1-p), verified exactly and by Monte Carlo in tools/verify/24B-C/check.py.
 - Q5: the official solution page says "here opens the solution of Q5 of 24B-A (16.07.24)" (identical question); the
   solution text is transcribed from the 24B-A solution of that same question.
-- Q6 (א) and (ב) HOLD: the official expanded form of P(Q) is p^2(2+p-5p^2+2p^3), but its own first line
-  p(2p-p^2)^2+(1-p)(2p^2-p^4) expands to p^2(2+2p-5p^2+2p^3); and P(Q|A) is printed with -4p^3 where the
-  official formula expands to -3p^3. The final answer of (ב) is built on these. See docs/ASK_ADIR.md and
-  tools/verify/24B-C/check.py.
+- Q6 (א) and (ב) TYPO RULING (arbiter 2026-10-18, the printed question wins): the official expanded form of P(Q)
+  is p^2(2+p-5p^2+2p^3), but its own first line p(2p-p^2)^2+(1-p)(2p^2-p^4) expands to p^2(2+2p-5p^2+2p^3);
+  and P(Q|A) is printed with -4p^3 where the official formula expands to -3p^3. Both are final answers, so both
+  ship with the expansions corrected, solutionSource "solved", official:false and the "הפתרון הרשמי עם תיקון"
+  prefix: P(Q) = p^2(2+2p-5p^2+2p^3), P(A|Q) = (1+2p-3p^2+p^3)/(2+2p-5p^2+2p^3). Verified exactly and by
+  Monte Carlo in tools/verify/24B-C/check.py.
 """
 import json, pathlib
 
@@ -150,10 +153,19 @@ questions.append(Q(
 $$T\sim\mathrm{Bin}(2n,p).$$""",
     5, contextId="c3"))
 
-questions.append({
-    "num": 3, "part": "ה", "kind": "computation", "hold": "no-key",
-    "topic": "joint_discrete", "points": 5, "contextId": "c3",
-    "question": r"**סעיף בונוס** (אין חובה לפתור!): חשבו את השונות המשותפת $\operatorname{cov}[D,T]$ של משתנים חדשים $D$ ו-$T$."})
+questions.append(Q(
+    3, "ה", "joint_discrete",
+    r"**סעיף בונוס** (אין חובה לפתור!): חשבו את השונות המשותפת $\operatorname{cov}[D,T]$ של משתנים חדשים $D$ ו-$T$.",
+    r"""**פתרון (אין פתרון רשמי לסעיף הבונוס).**
+לפי הבילינאריות של השונות המשותפת,
+$$\operatorname{cov}[D,T]=\operatorname{cov}\Big[\sum_{j=1}^nD_j,\ \sum_{k=1}^nT_k\Big]=\sum_{j=1}^n\sum_{k=1}^n\operatorname{cov}[D_j,T_k].$$
+עבור $j\ne k$ המשתנה $D_j$ תלוי רק בזוג $(X_j,Y_j)$ ו-$T_k$ רק בזוג $(X_k,Y_k)$, והזוגות בלתי תלויים, ולכן $\operatorname{cov}[D_j,T_k]=0$. נשארים רק האיברים $j=k$:
+$$\operatorname{cov}[D,T]=n\operatorname{cov}[D_1,T_1]=n\big(\operatorname{cov}[X_1Y_1,X_1]+\operatorname{cov}[X_1Y_1,Y_1]\big).$$
+מאחר ש-$X_1^2=X_1$ (ברנולי) ו-$X_1,Y_1$ בלתי תלויים,
+$$\operatorname{cov}[X_1Y_1,X_1]=\mathbb{E}[X_1^2Y_1]-\mathbb{E}[X_1Y_1]\,\mathbb{E}[X_1]=p\cdot p-p^2\cdot p=p^2(1-p),$$
+ומאותה סימטריה גם $\operatorname{cov}[X_1Y_1,Y_1]=p^2(1-p)$. לכן
+$$\operatorname{cov}[D,T]=2np^2(1-p).$$""",
+    5, contextId="c3", solutionSource="solved", official=False))
 
 # ------------------------------------------------------------------ Q4
 Q4_LEAD = r"לפניכם גרף עבור פונקציית צפיפות ההסתברות $f_Z(z)$ של משתנה מקרי $Z$. הצפיפות קבועה ושווה $\frac25$ על $(-a,a)$, יורדת ליניארית מ-$\frac25$ ל-$0$ על $(a,b)$ ושווה $0$ מחוץ ל-$(-a,b)$."
@@ -217,29 +229,28 @@ $$\frac{B}{A}=1+\frac{\operatorname{Var}[X]}{(\mathbb{E}[X])^2}\ge1.$$
 Q6_LEAD = (r"מעגל חשמלי מורכב מחמש יחידות הפועלות ללא תלות אחת בשנייה בהסתברות $p$. "
            r"המעגל הוא גשר: $A$ ו-$B$ בצד שמאל (מהצומת השמאלי לצומת העליון ולצומת התחתון), $C$ ו-$D$ בצד ימין (מהצומת העליון ומהתחתון לצומת הימני), "
            r"ו-$E$ מחבר בין הצומת העליון לתחתון.")
-HOLD6 = ("The official expanded P(Q) = p^2(2+p-5p^2+2p^3) does not equal its own first line p(2p-p^2)^2+(1-p)(2p^2-p^4) = "
-         "p^2(2+2p-5p^2+2p^3); P(Q|A) is printed p+2p^2-4p^3+p^4 but p+p(2p-p^2)-p^2(2p-p^2) = p+2p^2-3p^3+p^4. "
-         "The printed final answer of (b) inherits both slips. See ASK_ADIR.")
-
 questions.append(Q(
     6, "א", "circuits",
     r"**א:** מהי ההסתברות שהמעגל כולו פועל? **עליך לתת חישוב מפורט!**",
-    r"""נפצל לפי הרכיב $E$ (הגשר).
+    r"""**הפתרון הרשמי עם תיקון:** בפתרון הרשמי הפתיחה של הביטוי נכתבה $P(Q)=p^2(2+p-5p^2+2p^3)$, אבל הביטוי הרשמי עצמו נפתח ל-$p^2(2+2p-5p^2+2p^3)$ (המקדם של $p^3$ הוא $2$ ולא $1$). התיקון נבדק (חישוב מדויק וסימולציה).
+נפצל לפי הרכיב $E$ (הגשר).
 אם $E$ פועל (הסתברות $p$), המעגל פועל אם ($A$ או $B$ פועל) **וגם** ($C$ או $D$ פועל): הסתברות $(2p-p^2)^2$.
 אם $E$ אינו פועל (הסתברות $1-p$), המעגל פועל אם ($A$ וגם $C$) או ($B$ וגם $D$): הסתברות $2p^2-p^4$.
-$$P(Q)=p\,(2p-p^2)^2+(1-p)(2p^2-p^4)\ \text{; after expanding (as printed in the official solution): }\ P(Q)=p^2\,(2+p-5p^2+2p^3).$$""",
-    10, contextId="c6", hold=HOLD6))
+$$P(Q)=p\,(2p-p^2)^2+(1-p)(2p^2-p^4)=(4p^3-4p^4+p^5)+(2p^2-2p^3-p^4+p^5)$$
+$$P(Q)=2p^2+2p^3-5p^4+2p^5=p^2\,(2+2p-5p^2+2p^3).$$""",
+    10, contextId="c6", solutionSource="solved", official=False))
 
 questions.append(Q(
     6, "ב", "circuits",
     r"**ב:** אם ידוע כי המעגל כולו פועל, מהי ההסתברות שהיחידה $A$ פועלת?",
-    r"""לפי נוסחת בייס:
+    r"""**הפתרון הרשמי עם תיקון:** בפתרון הרשמי נכתב $P(Q\mid A)=p+2p^2-4p^3+p^4$ והתשובה $\frac{1+2p-4p^2+p^3}{2+p-5p^2+2p^3}$. הביטוי הרשמי $p+p(2p-p^2)-p^2(2p-p^2)$ נפתח ל-$p+2p^2-3p^3+p^4$, והמכנה מתוקן לפי סעיף א, ולכן התשובה הסופית שונה מהתשובה הרשמית. התיקון נבדק (חישוב מדויק וסימולציה).
+לפי נוסחת בייס:
 $$P(A\mid Q)=\frac{P(Q\mid A)P(A)}{P(Q)}.$$
 בהינתן ש-$A$ פועל, המעגל פועל אם $C$ פועל, או אם $D$ פועל וגם ($E$ או $B$ פועל):
-$$P(Q\mid A)=p+p(2p-p^2)-p^2(2p-p^2)\ \text{; as printed in the official solution: }\ =p+2p^2-4p^3+p^4.$$
-תשובה כפי שמופיעה בפתרון הרשמי:
-$$P(A\mid Q)=\frac{1+2p-4p^2+p^3}{2+p-5p^2+2p^3}.$$""",
-    10, contextId="c6", hold=HOLD6))
+$$P(Q\mid A)=p+p(2p-p^2)-p^2(2p-p^2)=p+2p^2-p^3-2p^3+p^4=p+2p^2-3p^3+p^4.$$
+עם $P(A)=p$ ו-$P(Q)=p^2(2+2p-5p^2+2p^3)$ מסעיף א:
+$$P(A\mid Q)=\frac{p\,(p+2p^2-3p^3+p^4)}{p^2(2+2p-5p^2+2p^3)}=\frac{1+2p-3p^2+p^3}{2+2p-5p^2+2p^3}.$$""",
+    10, contextId="c6", solutionSource="solved", official=False))
 
 questions.append(Q(
     6, "ג", "circuits",

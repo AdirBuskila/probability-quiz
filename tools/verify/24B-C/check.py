@@ -5,8 +5,9 @@ Every final answer gets two independent checks:
   EXACT : the official formula (at sample parameters) equals an independent exact computation
           (fractions / enumeration / sympy).
   MC    : Monte Carlo (>= 10^6 trials) agrees with the official formula within 4 standard errors.
-Official keys are never changed. Q6a (expanded form) and Q6b (final answer) disagree with the exact value and are HELD.
-Q3 bonus has no official solution: cov[D,T] = 2 n p^2 (1-p) is computed here only (not shipped).
+Q6a (expanded form) and Q6b (final answer): the printed official forms are wrong; shipped corrected under the typo
+ruling (official:false). The shipped forms are asserted exactly and by MC; the printed ones are shown to fail.
+Q3e (bonus, no official solution): shipped as solved, cov[D,T] = 2 n p^2 (1-p), asserted exactly (enumeration) and by MC.
 Output is ASCII only.
 """
 import itertools, math, sys
@@ -90,10 +91,18 @@ for p in (Fr(3, 10), Fr(1, 2)):
                 if sum(bits) == t:
                     ex += p ** t * (1 - p) ** (2 * n - t)
             rec("Q3b/d", "P(T=%d) n=%d p=%s" % (t, n, p), off, ex, float(np.mean(T == t)), se_p(float(off)))
-        # bonus (not shipped): cov[D,T] = 2 n p^2 (1-p)
+        # bonus (shipped as solved, Q3e): cov[D,T] = 2 n p^2 (1-p); exact by full enumeration of the 2n bits
         cov_formula = 2 * n * p ** 2 * (1 - p)
+        ED = ET = EDT = Fr(0)
+        for bits in itertools.product((0, 1), repeat=2 * n):
+            w = Fr(1); d = t = 0
+            for j in range(n):
+                a, b = bits[2 * j], bits[2 * j + 1]
+                w *= (p if a else 1 - p) * (p if b else 1 - p); d += a * b; t += a + b
+            ED += w * d; ET += w * t; EDT += w * d * t
+        cov_exact = EDT - ED * ET
         sd = float(np.std((D - D.mean()) * (T - T.mean())) / math.sqrt(N))
-        rec("Q3bonus", "cov[D,T] n=%d p=%s (not shipped)" % (n, p), cov_formula, cov_formula, float(np.cov(D, T)[0, 1]), sd)
+        rec("Q3e", "cov[D,T] = 2np^2(1-p) n=%d p=%s (shipped)" % (n, p), cov_formula, cov_exact, float(np.cov(D, T)[0, 1]), sd)
         rows.append(("Q3a", "D_1,T_1 pmf: D~Ber(p^2), T~Bin(2,p) n=%d" % n, True, True, ""))
 
 # ============================================================ Q4
@@ -167,6 +176,13 @@ for p in (Fr(1, 2), Fr(7, 10), Fr(3, 10)):
     mc_PQ = float(mq.mean()); mc_b = float((mq & Aa).sum() / mq.sum())
     rec("Q6a", "first line p(2p-p^2)^2+(1-p)(2p^2-p^4), p=%s" % p, ofirst, PQ, mc_PQ, se_p(float(PQ)))
     rec("Q6b", "formula P(Q|A)=p+p(2p-p^2)-p^2(2p-p^2), p=%s" % p, oPQA_formula, PQA, float((mq & Aa).sum() / Aa.sum()), math.sqrt(float(PQA) * (1 - float(PQA)) / int(Aa.sum())))
+    # shipped corrected values (typo ruling)
+    sPQ = p ** 2 * (2 + 2 * p - 5 * p ** 2 + 2 * p ** 3)
+    sPQA = p + 2 * p ** 2 - 3 * p ** 3 + p ** 4
+    sb = (1 + 2 * p - 3 * p ** 2 + p ** 3) / (2 + 2 * p - 5 * p ** 2 + 2 * p ** 3)
+    rec("Q6a", "shipped P(Q)=p^2(2+2p-5p^2+2p^3), p=%s" % p, sPQ, PQ, mc_PQ, se_p(float(PQ)))
+    rec("Q6b", "shipped P(Q|A)=p+2p^2-3p^3+p^4, p=%s" % p, sPQA, PQA, float((mq & Aa).sum() / Aa.sum()), math.sqrt(float(PQA) * (1 - float(PQA)) / int(Aa.sum())))
+    rec("Q6b", "shipped P(A|Q)=(1+2p-3p^2+p^3)/(2+2p-5p^2+2p^3), p=%s" % p, sb, PA / PQ, mc_b, math.sqrt(float(PA / PQ) * (1 - float(PA / PQ)) / int(mq.sum())))
     hold_report.append(("Q6a expanded", p, oexp == PQ, abs(mc_PQ - float(oexp)) <= 4 * se_p(float(PQ)), float(oexp), float(PQ)))
     hold_report.append(("Q6b P(Q|A) printed", p, oPQA == PQA, True, float(oPQA), float(PQA)))
     hold_report.append(("Q6b final", p, ob == PA / PQ, abs(mc_b - float(ob)) <= 4 * math.sqrt(float(PA / PQ) * (1 - float(PA / PQ)) / int(mq.sum())), float(ob), float(PA / PQ)))
@@ -184,7 +200,7 @@ bad = [r for r in rows if not (r[2] and r[3])]
 for item, what, ex, mc, det in rows:
     print("%-7s ex=%-4s mc=%-4s %s | %s" % (item, "ok" if ex else "FAIL", "ok" if mc else "FAIL", what, det))
 print()
-print("Q6 HOLD report (official printed forms vs exact):")
+print("Q6 typo-ruling report (official printed forms vs exact; the corrected forms are shipped and asserted above):")
 for what, p, ex_ok, mc_ok, off, true in hold_report:
     print("  %-20s p=%-5s exact=%s mc=%s official=%.6f true=%.6f" % (what, p, "match" if ex_ok else "MISMATCH", "match" if mc_ok else "MISMATCH", off, true))
 print("  correct P(Q)   = %s" % true_PQ)
@@ -193,7 +209,7 @@ print("  correct P(A|Q) = %s" % true_b)
 exp_hold = (not any(h[2] for h in hold_report if h[0] in ("Q6a expanded", "Q6b P(Q|A) printed", "Q6b final"))
             and sp.expand(true_PQ - pp ** 2 * (2 + 2 * pp - 5 * pp ** 2 + 2 * pp ** 3)) == 0
             and sp.expand(true_PQA - (pp + 2 * pp ** 2 - 3 * pp ** 3 + pp ** 4)) == 0)
-print("  => Q6a and Q6b held (printed expansions wrong); first-line formulas verified. expected=%s" % exp_hold)
+print("  => printed expansions wrong (shipped corrected, official:false); first-line formulas verified. expected=%s" % exp_hold)
 print()
 print("TOTAL checks: %d, failing: %d" % (len(rows), len(bad)))
 for r in bad:
