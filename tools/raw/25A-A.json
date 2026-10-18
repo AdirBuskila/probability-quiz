@@ -86,7 +86,78 @@
     },
     "estimate": "P(X1>X2)",
     "exact": 0.25
-   }
+   },
+   "rubric": [
+    {
+     "text": "מרחב המדגם: המלבן $\\left(0,\\frac13\\right)\\times\\left(0,\\frac23\\right)$ ו-$|\\Omega|=\\frac29$",
+     "points": 2
+    },
+    {
+     "text": "זיהוי האזור $x_2<x_1$ כמשולש ישר זווית בעל ניצבים $\\frac13$ (האלכסון יוצא מהפינה)",
+     "points": 3
+    },
+    {
+     "text": "שטח האזור $\\frac12\\cdot\\frac13\\cdot\\frac13=\\frac1{18}$",
+     "points": 1
+    },
+    {
+     "text": "יחס השטחים והתשובה $\\frac14$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לחשב יחס שטחים בלי לחלק ב-$|\\Omega|$, או להניח $|\\Omega|=1$.",
+    "לצייר את האלכסון $x_2=x_1$ כחוצה את כל המלבן (המלבן אינו ריבוע, והאלכסון יוצא בפינה $\\left(\\frac13,\\frac13\\right)$)."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "$X_1$ ו-$X_2$ בלתי תלויים ואחידים על קטעים. איזה כלי מתאים לחישוב $P(X_1>X_2)$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "שיטת השטח: $(X_1,X_2)$ אחידה על המלבן, וההסתברות היא יחס שטחים"
+      },
+      {
+       "id": "b",
+       "value": "התפלגות בינומית"
+      },
+      {
+       "id": "c",
+       "value": "התפלגות היפרגאומטרית"
+      },
+      {
+       "id": "d",
+       "value": "התפלגות פואסון"
+      }
+     ],
+     "correctId": "a",
+     "explain": "המשתנים רציפים ואחידים, ולכן הזוג אחיד על מלבן והסתברות = שטח האירוע חלקי שטח המלבן. הבינומית והפואסונית סופרות הצלחות בניסויים חוזרים, וההיפרגאומטרית דורשת דגימה בלי החזרה מאוכלוסייה סופית; אין כאן אף אחד מאלה."
+    },
+    {
+     "type": "numeric",
+     "prompt": "שטח מרחב המדגם $|\\Omega|$, מלבן $\\left(0,\\frac13\\right)\\times\\left(0,\\frac23\\right)$ (כמספר עשרוני או שבר).",
+     "answer": 0.2222222222222222,
+     "tol": 0.0004444444444444444,
+     "explain": "$|\\Omega|=\\frac13\\cdot\\frac23=\\frac29$. הטעות הנפוצה: להניח $|\\Omega|=1$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "שטח האזור $\\{x_2<x_1\\}$ בתוך המלבן.",
+     "answer": 0.05555555555555555,
+     "tol": 0.0001111111111111111,
+     "explain": "משולש ישר זווית עם ניצבים $\\frac13$ ו-$\\frac13$: $\\frac12\\cdot\\frac13\\cdot\\frac13=\\frac1{18}$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(X_1>X_2)$?",
+     "answer": 0.25,
+     "tol": 0,
+     "explain": "$\\frac{1/18}{2/9}=\\frac14$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 1,
@@ -145,7 +216,78 @@
     },
     "estimate": "P(triangle)",
     "exact": 0.25
-   }
+   },
+   "rubric": [
+    {
+     "text": "כתיבת שלושת התנאים לפי אורכי הקטעים $X_1$, $X_2$, $1-X_1-X_2$",
+     "points": 3
+    },
+    {
+     "text": "זיהוי התנאים שחותכים את המלבן (התנאי $X_1\\le\\frac12$ תמיד מתקיים)",
+     "points": 2
+    },
+    {
+     "text": "שטח המשולש $\\frac1{18}$",
+     "points": 3
+    },
+    {
+     "text": "חלוקה ב-$|\\Omega|=\\frac29$ והתשובה $\\frac14$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לשכוח שהתנאי $X_2\\le\\frac12$ אכן חותך את המלבן, כי $X_2$ מגיע עד $\\frac23$.",
+    "להשתמש ב-$|\\Omega|=1$."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "שטח מרחב המדגם $|\\Omega|$, מלבן $\\left(0,\\frac13\\right)\\times\\left(0,\\frac23\\right)$ (כמספר עשרוני או שבר).",
+     "answer": 0.2222222222222222,
+     "tol": 0.0004444444444444444,
+     "explain": "$|\\Omega|=\\frac13\\cdot\\frac23=\\frac29$. הטעות הנפוצה: להניח $|\\Omega|=1$."
+    },
+    {
+     "type": "choice",
+     "prompt": "אילו מבין שלושת התנאים $X_1\\le\\frac12$, $X_2\\le\\frac12$, $X_1+X_2\\ge\\frac12$ אינם מתקיימים בכל המלבן?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$X_2\\le\\frac12$ ו-$X_1+X_2\\ge\\frac12$ בלבד ($X_1<\\frac13$ ולכן $X_1\\le\\frac12$ תמיד)"
+      },
+      {
+       "id": "b",
+       "value": "שלושתם"
+      },
+      {
+       "id": "c",
+       "value": "$X_1+X_2\\ge\\frac12$ בלבד"
+      },
+      {
+       "id": "d",
+       "value": "אף אחד מהם"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$X_1<\\frac13<\\frac12$ תמיד. אבל $X_2$ מגיע עד $\\frac23>\\frac12$, ולכן $X_2\\le\\frac12$ חותך; וגם $X_1+X_2\\ge\\frac12$ חותך (הנקודה ליד הראשית אינה מקיימת אותו)."
+    },
+    {
+     "type": "numeric",
+     "prompt": "שטח האזור המקיים את שלושת התנאים.",
+     "answer": 0.05555555555555555,
+     "tol": 0.0001111111111111111,
+     "explain": "משולש בין הישרים $x_2=\\frac12-x_1$ ו-$x_2=\\frac12$ עבור $0<x_1<\\frac13$: ניצבים $\\frac13$ ו-$\\frac13$, שטח $\\frac1{18}$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי ההסתברות שניתן ליצור משולש?",
+     "answer": 0.25,
+     "tol": 0,
+     "explain": "$\\frac{1/18}{2/9}=\\frac14$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 1,
@@ -212,7 +354,61 @@
     },
     "estimate": "P(triangle | X1>X2)",
     "exact": 0.125
-   }
+   },
+   "rubric": [
+    {
+     "text": "הצגת $P(\\text{triangle}\\mid X_1>X_2)$ כיחס $\\frac{P(\\text{triangle}\\cap X_1>X_2)}{P(X_1>X_2)}$",
+     "points": 2
+    },
+    {
+     "text": "$P(X_1>X_2)=\\frac14$ (סעיף א)",
+     "points": 1
+    },
+    {
+     "text": "האזור המשותף הוא משולש קטן; חישוב שטחו $\\frac1{144}$",
+     "points": 2
+    },
+    {
+     "text": "הצבה והתשובה $\\frac18$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לחלק ב-$P(\\text{triangle})$ במקום ב-$P(X_1>X_2)$: הנתון מצמצם את מרחב המדגם לתנאי $X_1>X_2$.",
+    "לחשב את שטח החיתוך לפי משולש גדול מדי (להתעלם מהישר $x_2=\\frac12-x_1$)."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "שטח מרחב המדגם $|\\Omega|$, מלבן $\\left(0,\\frac13\\right)\\times\\left(0,\\frac23\\right)$ (כמספר עשרוני או שבר).",
+     "answer": 0.2222222222222222,
+     "tol": 0.0004444444444444444,
+     "explain": "$|\\Omega|=\\frac13\\cdot\\frac23=\\frac29$. הטעות הנפוצה: להניח $|\\Omega|=1$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ההסתברות של אירוע התנאי, $P(X_1>X_2)$ (סעיף א).",
+     "answer": 0.25,
+     "tol": 0,
+     "explain": "שטח $\\frac1{18}$ חלקי $\\frac29$ הוא $\\frac14$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "שטח החיתוך: האזור שבו גם $x_1+x_2\\ge\\frac12$, גם $x_2\\le\\frac12$ וגם $x_2<x_1$.",
+     "answer": 0.006944444444444444,
+     "tol": 1.3888888888888888e-05,
+     "explain": "משולש עם קדקודים $\\left(\\frac14,\\frac14\\right)$, $\\left(\\frac13,\\frac16\\right)$, $\\left(\\frac13,\\frac13\\right)$: בסיס אנכי $\\frac16$ וגובה $\\frac1{12}$, שטח $\\frac12\\cdot\\frac16\\cdot\\frac1{12}=\\frac1{144}$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי ההסתברות המותנית?",
+     "answer": 0.125,
+     "tol": 0,
+     "explain": "$P(\\text{triangle}\\cap X_1>X_2)=\\frac{1/144}{2/9}=\\frac1{32}$, ואז $\\frac{1/32}{1/4}=\\frac18$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -2041,7 +2237,82 @@
     },
     "estimate": "P(A8)",
     "exact": 0.12444444444444444
-   }
+   },
+   "rubric": [
+    {
+     "text": "$\\Omega=\\{100,\\ldots,999\\}$ ו-$|\\Omega|=900$",
+     "points": 2
+    },
+    {
+     "text": "$|A_2|=450$ ולכן $P(A_2)=\\frac12$",
+     "points": 2
+    },
+    {
+     "text": "$|A_4|=225$ ולכן $P(A_4)=\\frac14$",
+     "points": 2
+    },
+    {
+     "text": "$|A_8|=112$: האיבר הראשון $104$ והאחרון $992$",
+     "points": 2
+    },
+    {
+     "text": "$P(A_8)=\\frac{112}{900}=\\frac{28}{225}\\ne\\frac18$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לקחת $|\\Omega|=1000$ (לספור גם מספרים שמתחילים ב-$0$).",
+    "להסיק $P(A_8)=\\frac18$ מכך ש-$8$ מחלק כל שמיני מספר. $900$ אינו מתחלק ב-$8$, ולכן מקבלים $112$ ולא $112.5$."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "בוחרים מספר תלת-ספרתי באקראי. איזה מודל מתאים לחישוב $P(A_8)$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "הסתברות קלאסית: מספר המספרים המתחלקים ב-$8$ חלקי מספר כל המספרים התלת-ספריים"
+      },
+      {
+       "id": "b",
+       "value": "התפלגות בינומית"
+      },
+      {
+       "id": "c",
+       "value": "התפלגות גאומטרית"
+      },
+      {
+       "id": "d",
+       "value": "שיטת השטח"
+      }
+     ],
+     "correctId": "a",
+     "explain": "כל המספרים התלת-ספריים שווי הסתברות ולכן סופרים. אין כאן ניסויי ברנולי חוזרים או המתנה להצלחה, ואין משתנה רציף לשטח."
+    },
+    {
+     "type": "numeric",
+     "prompt": "$|\\Omega|$: כמה מספרים תלת-ספריים יש (מ-$100$ עד $999$)?",
+     "answer": 900.0,
+     "tol": 0,
+     "explain": "$999-100+1=900$. המספר $000$-$099$ אינם תלת-ספריים."
+    },
+    {
+     "type": "numeric",
+     "prompt": "$|A_8|$: כמה מהם מתחלקים ב-$8$?",
+     "answer": 112.0,
+     "tol": 0,
+     "explain": "הראשון $104=8\\cdot13$ והאחרון $992=8\\cdot124$: $124-13+1=112$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(A_8)$?",
+     "answer": 0.12444444444444444,
+     "tol": 0.0002488888888888889,
+     "explain": "$\\frac{112}{900}=\\frac{28}{225}\\approx0.1244$, שונה מ-$\\frac18=0.125$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -2054,7 +2325,90 @@
    "confidence": "high",
    "points": 5,
    "part": "ב",
-   "contextId": "c2"
+   "contextId": "c2",
+   "rubric": [
+    {
+     "text": "$A_4\\subseteq A_2$ ולכן $A_2\\cap A_4=A_4$",
+     "points": 2
+    },
+    {
+     "text": "השוואה: $P(A_2\\cap A_4)=\\frac14$ לעומת $P(A_2)P(A_4)=\\frac18$",
+     "points": 2
+    },
+    {
+     "text": "מסקנה: תלויים",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לחשוב שאם אחד מכיל את השני אז הם בלתי תלויים, או שהם זרים. הכלה מחייבת תלות כשההסתברויות בין $0$ ל-$1$."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איזה תנאי שקול לכך ש-$A$ ו-$B$ בלתי תלויים?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$P(A\\cap B)=P(A)P(B)$"
+      },
+      {
+       "id": "b",
+       "value": "$P(A\\cap B)=0$ (זה תנאי של מאורעות זרים)"
+      },
+      {
+       "id": "c",
+       "value": "$P(A\\cup B)=P(A)+P(B)$ (גם זה תנאי של מאורעות זרים)"
+      },
+      {
+       "id": "d",
+       "value": "$P(A/B)=P(B/A)$ (מתקיים גם כש-$P(A)=P(B)$ והמאורעות תלויים)"
+      }
+     ],
+     "correctId": "a",
+     "explain": "אי-תלות פירושה שהסתברות החיתוך היא מכפלת ההסתברויות. שני התנאים הבאים הם זרות, והאחרון אינו שקול."
+    },
+    {
+     "type": "numeric",
+     "prompt": "$P(A_2\\cap A_4)$.",
+     "answer": 0.25,
+     "tol": 0,
+     "explain": "$A_4\\subseteq A_2$, ולכן החיתוך הוא $A_4$ והסתברותו $\\frac14$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "המכפלה $P(A_2)P(A_4)$.",
+     "answer": 0.125,
+     "tol": 0,
+     "explain": "$\\frac12\\cdot\\frac14=\\frac18$."
+    },
+    {
+     "type": "choice",
+     "prompt": "מה המסקנה?",
+     "options": [
+      {
+       "id": "a",
+       "value": "תלויים, כי $\\frac14\\ne\\frac18$"
+      },
+      {
+       "id": "b",
+       "value": "בלתי תלויים, כי $A_4\\subseteq A_2$"
+      },
+      {
+       "id": "c",
+       "value": "בלתי תלויים, כי שניהם קטנים מ-$1$"
+      },
+      {
+       "id": "d",
+       "value": "זרים, ולכן בלתי תלויים"
+      }
+     ],
+     "correctId": "a",
+     "explain": "אי-שוויון בין החיתוך למכפלה פירושו תלות."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -2067,7 +2421,67 @@
    "confidence": "high",
    "points": 5,
    "part": "ג",
-   "contextId": "c2"
+   "contextId": "c2",
+   "rubric": [
+    {
+     "text": "$A_8\\subseteq A_4$ ולכן $A_4\\cap A_8=A_8$",
+     "points": 2
+    },
+    {
+     "text": "השוואה: $P(A_4\\cap A_8)=\\frac{28}{225}$ לעומת $P(A_4)P(A_8)=\\frac{7}{225}$",
+     "points": 2
+    },
+    {
+     "text": "מסקנה: תלויים",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "להניח ש-$A_8$ ו-$A_4$ בלתי תלויים כי $8=2\\cdot4$.",
+    "להציב $P(A_8)=\\frac18$ במקום $\\frac{28}{225}$."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "$P(A_4\\cap A_8)$.",
+     "answer": 0.12444444444444444,
+     "tol": 0.0002488888888888889,
+     "explain": "$A_8\\subseteq A_4$, ולכן החיתוך הוא $A_8$ והסתברותו $\\frac{28}{225}\\approx0.1244$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "המכפלה $P(A_4)P(A_8)$.",
+     "answer": 0.03111111111111111,
+     "tol": 6.222222222222222e-05,
+     "explain": "$\\frac14\\cdot\\frac{28}{225}=\\frac7{225}\\approx0.0311$."
+    },
+    {
+     "type": "choice",
+     "prompt": "מה המסקנה?",
+     "options": [
+      {
+       "id": "a",
+       "value": "תלויים, כי $\\frac{28}{225}\\ne\\frac7{225}$"
+      },
+      {
+       "id": "b",
+       "value": "בלתי תלויים, כי $A_8\\subseteq A_4$"
+      },
+      {
+       "id": "c",
+       "value": "בלתי תלויים, כי $P(A_8)<P(A_4)$"
+      },
+      {
+       "id": "d",
+       "value": "זרים"
+      }
+     ],
+     "correctId": "a",
+     "explain": "החיתוך גדול פי $4$ מהמכפלה, ולכן אין אי-תלות."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -2080,7 +2494,66 @@
    "confidence": "high",
    "points": 5,
    "part": "ד",
-   "contextId": "c2"
+   "contextId": "c2",
+   "rubric": [
+    {
+     "text": "$A_4\\subseteq A_2$ ולכן $A_2\\cap A_4=A_4$",
+     "points": 2
+    },
+    {
+     "text": "הטענה שקולה ל-$A_8=A_4$",
+     "points": 1
+    },
+    {
+     "text": "דוגמה נגדית (או $|A_4|\\ne|A_8|$) ומסקנה שהטענה שגויה",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לחשוב ש-$A_8=A_2\\cap A_4$ כי $\\mathrm{lcm}(2,4)=4$ (המכנה המשותף הוא $4$ ולא $8$)."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "$|A_2\\cap A_4|$ (כמה מספרים תלת-ספריים מתחלקים גם ב-$2$ וגם ב-$4$?).",
+     "answer": 225.0,
+     "tol": 0,
+     "explain": "מתחלק ב-$4$ גורר מתחלק ב-$2$, ולכן החיתוך הוא $A_4$ ו-$|A_4|=225$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "$|A_8|$.",
+     "answer": 112.0,
+     "tol": 0,
+     "explain": "$|A_8|=112\\ne225$, ולכן הקבוצות שונות."
+    },
+    {
+     "type": "choice",
+     "prompt": "איזה מספר מראה ש-$A_8\\ne A_2\\cap A_4$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$100$ (מתחלק ב-$4$ ואינו מתחלק ב-$8$)"
+      },
+      {
+       "id": "b",
+       "value": "$104$ (מתחלק ב-$8$, ולכן שייך לשתי הקבוצות)"
+      },
+      {
+       "id": "c",
+       "value": "$102$ (אינו מתחלק ב-$4$, ולכן אינו בשתיהן)"
+      },
+      {
+       "id": "d",
+       "value": "$101$ (אינו מתחלק ב-$2$, ולכן אינו בשתיהן)"
+      }
+     ],
+     "correctId": "a",
+     "explain": "דוגמה נגדית חייבת להיות בקבוצה אחת ולא בשנייה. $100\\in A_4=A_2\\cap A_4$ אבל $100\\notin A_8$. ב-$102$ ו-$101$ וב-$104$ שתי הקבוצות מסכימות."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -2093,7 +2566,99 @@
    "confidence": "high",
    "points": 10,
    "part": "א",
-   "contextId": "c3"
+   "contextId": "c3",
+   "sim": {
+    "kind": "pdf",
+    "estimate": "E[X] ב-μ=0.2 (a=0.28, b=1.44)",
+    "exact": 0.2,
+    "params": {
+     "pieces": [
+      {
+       "from": -30,
+       "to": 0,
+       "expr": "0.28*exp(x)"
+      },
+      {
+       "from": 0,
+       "to": 1,
+       "expr": "1.44*x"
+      }
+     ],
+     "measure": "mean",
+     "expr": "x"
+    }
+   },
+   "rubric": [
+    {
+     "text": "נרמול: $a+\\frac b2+c\\int_1^\\infty\\frac{dx}x=1$",
+     "points": 3
+    },
+    {
+     "text": "$\\int_1^\\infty\\frac{dx}x$ מתבדר ולכן $c=0$",
+     "points": 2
+    },
+    {
+     "text": "תוחלת: $\\mathbb{E}[X]=-a+\\frac b3=\\mu$",
+     "points": 3
+    },
+    {
+     "text": "פתרון המערכת: $a=\\frac{2-3\\mu}5$, $b=\\frac65(\\mu+1)$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לדלג על $c$ ולהשאיר שלושה נעלמים בשתי משוואות: האינטגרל $\\int_1^\\infty\\frac{dx}x$ מתבדר ולכן $c=0$.",
+    "לטעות בסימן של $\\int_{-\\infty}^0xe^x\\,dx=-1$."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מצאו מקדמים לצפיפות כאשר נתונה התוחלת. איזה כלי מתאים?",
+     "options": [
+      {
+       "id": "a",
+       "value": "נרמול $\\int f=1$ ותוחלת $\\int xf$, שתי משוואות על המקדמים"
+      },
+      {
+       "id": "b",
+       "value": "נוסחת בייס"
+      },
+      {
+       "id": "c",
+       "value": "שיטת השטח (התפלגות אחידה על מלבן)"
+      },
+      {
+       "id": "d",
+       "value": "התפלגות בינומית"
+      }
+     ],
+     "correctId": "a",
+     "explain": "הצפיפות נתונה עד כדי מקדמים, והנתונים הם תנאי נרמול והתוחלת. בייס, שטחים ובינומית אינם רלוונטיים כאן."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו $c$? (האם $\\int_1^\\infty\\frac{dx}x$ סופי?)",
+     "answer": 0.0,
+     "tol": 0,
+     "explain": "האינטגרל מתבדר, ולכן אין ברירה אלא $c=0$ כדי שהנרמול יתקיים."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $\\mu=0$: מהו $a$? (פתרו את $a+\\frac b2=1$ ו-$-a+\\frac b3=\\mu$).",
+     "answer": 0.4,
+     "tol": 0,
+     "explain": "$a=\\frac{2-3\\mu}5=\\frac25$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $\\mu=0$: מהו $b$?",
+     "answer": 1.2,
+     "tol": 0,
+     "explain": "$b=\\frac65(\\mu+1)=\\frac65$. בדיקה: $\\frac25+\\frac35=1$ ו-$-\\frac25+\\frac25=0$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -2106,7 +2671,59 @@
    "confidence": "high",
    "points": 3,
    "part": "ב",
-   "contextId": "c3"
+   "contextId": "c3",
+   "rubric": [
+    {
+     "text": "צפיפות חייבת להיות אי-שלילית: $a\\ge0$",
+     "points": 1
+    },
+    {
+     "text": "עבור $\\mu=1$: $a=-\\frac15<0$",
+     "points": 1
+    },
+    {
+     "text": "מסקנה: לא ייתכן",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לבדוק רק את $b$ ולשכוח את $a$: דווקא $a$ נעשה שלילי."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "הציבו $\\mu=1$: מהו $a=\\frac{2-3\\mu}5$?",
+     "answer": -0.2,
+     "tol": 0,
+     "explain": "$\\frac{2-3}5=-\\frac15$."
+    },
+    {
+     "type": "choice",
+     "prompt": "האם ייתכן $\\mu=1$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "לא: $a<0$ והצפיפות חייבת להיות אי-שלילית"
+      },
+      {
+       "id": "b",
+       "value": "כן: המשוואות פתירות"
+      },
+      {
+       "id": "c",
+       "value": "כן: $b>0$ מספיק"
+      },
+      {
+       "id": "d",
+       "value": "לא: $b$ שלילי"
+      }
+     ],
+     "correctId": "a",
+     "explain": "פתירות המשוואות אינה מספיקה; הצפיפות חייבת להיות $\\ge0$. כאן $a=-\\frac15$ ו-$b=\\frac{12}5>0$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -2119,7 +2736,78 @@
    "confidence": "high",
    "points": 8,
    "part": "ג",
-   "contextId": "c3"
+   "contextId": "c3",
+   "rubric": [
+    {
+     "text": "הגדרה $F_X(t)=\\int_{-\\infty}^tf_X$ ופיצול לתחומים",
+     "points": 2
+    },
+    {
+     "text": "$t<0$: $F_X(t)=\\frac{2-3\\mu}5e^t$",
+     "points": 2
+    },
+    {
+     "text": "$0\\le t<1$: $\\frac{2-3\\mu}5+\\frac35(\\mu+1)t^2$",
+     "points": 2
+    },
+    {
+     "text": "$t\\ge1$: $F_X(t)=1$, ושרטוט",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לשכוח להוסיף בתחום השני את המסה שנצברה מהתחום הראשון, $\\frac{2-3\\mu}5$.",
+    "להמשיך את הפרבולה אחרי $t=1$ במקום להציב $F_X(t)=1$."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "עבור $\\mu=0$: $F_X(0)$ (המסה שנצברה מתחת ל-$0$).",
+     "answer": 0.4,
+     "tol": 0,
+     "explain": "$\\int_{-\\infty}^0\\frac25e^x\\,dx=\\frac25$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $\\mu=0$: $F_X\\left(\\frac12\\right)$.",
+     "answer": 0.55,
+     "tol": 0,
+     "explain": "$\\frac25+\\frac35\\cdot\\left(\\frac12\\right)^2=\\frac25+\\frac3{20}=\\frac{11}{20}$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $\\mu=0$: $F_X(-1)$ (עד שלוש ספרות אחרי הנקודה).",
+     "answer": 0.14715177646857694,
+     "tol": 0.001,
+     "explain": "$\\frac25e^{-1}\\approx0.1472$."
+    },
+    {
+     "type": "choice",
+     "prompt": "כמה הוא $F_X(t)$ עבור $t\\ge1$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$1$ (אין מסה מימין ל-$1$ כי $c=0$)"
+      },
+      {
+       "id": "b",
+       "value": "$\\frac{2-3\\mu}5$"
+      },
+      {
+       "id": "c",
+       "value": "$0$"
+      },
+      {
+       "id": "d",
+       "value": "תלוי ב-$\\mu$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "הצפיפות מתאפסת מימין ל-$1$, ולכן $F_X$ נשארת $1$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -2132,7 +2820,49 @@
    "confidence": "high",
    "points": 4,
    "part": "ד",
-   "contextId": "c3"
+   "contextId": "c3",
+   "rubric": [
+    {
+     "text": "הצגה כיחס: $\\frac{P(0<X<1)}{P(X>0)}$",
+     "points": 1
+    },
+    {
+     "text": "$P(X>0)=1-F_X(0)$ ו-$P(0<X<1)=F_X(1)-F_X(0)$",
+     "points": 2
+    },
+    {
+     "text": "$F_X(1)=1$ ולכן היחס הוא $1$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לחשב $P(X<1)$ במקום $P(X<1\\mid X>0)$: כאן הנתון מסיר את המסה השלילית, והתשובה $1$."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "עבור $\\mu=0$: ההסתברות של אירוע התנאי $P(X>0)$.",
+     "answer": 0.6,
+     "tol": 0,
+     "explain": "$1-F_X(0)=1-\\frac25=\\frac35$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $\\mu=0$: $P(0<X<1)$.",
+     "answer": 0.6,
+     "tol": 0,
+     "explain": "$F_X(1)-F_X(0)=1-\\frac25=\\frac35$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(X<1\\mid X>0)$?",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "$\\frac{3/5}{3/5}=1$: כל המסה של $X>0$ נמצאת ב-$(0,1)$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 4,
@@ -2145,7 +2875,120 @@
    "confidence": "high",
    "points": 7,
    "part": "א",
-   "contextId": "c4"
+   "contextId": "c4",
+   "sim": {
+    "kind": "circuit",
+    "estimate": "P(Q1) ב-p=0.6",
+    "exact": 0.65952,
+    "params": {
+     "event": "S",
+     "edges": [
+      {
+       "id": "A",
+       "from": "s",
+       "to": "u",
+       "p": 0.6
+      },
+      {
+       "id": "C",
+       "from": "s",
+       "to": "v",
+       "p": 0.6
+      },
+      {
+       "id": "B",
+       "from": "u",
+       "to": "t",
+       "p": 0.6
+      },
+      {
+       "id": "D",
+       "from": "v",
+       "to": "t",
+       "p": 0.6
+      },
+      {
+       "id": "E",
+       "from": "u",
+       "to": "v",
+       "p": 0.6
+      }
+     ],
+     "source": "s",
+     "sink": "t"
+    }
+   },
+   "rubric": [
+    {
+     "text": "נוסחת ההסתברות השלמה על היחידה האמצעית $E$",
+     "points": 2
+    },
+    {
+     "text": "$P(Q_1/E)=(2p-p^2)^2$",
+     "points": 2
+    },
+    {
+     "text": "$P(Q_1/\\overline E)=2p^2-p^4$",
+     "points": 2
+    },
+    {
+     "text": "הצבה: $P(Q_1)=p^3(2-p)^2+p^2(1-p)(2-p^2)$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לנסות לצמצם את גשר $Q_1$ כמעגל טורי-מקבילי: אי אפשר, כי $E$ מחברת את שני המסלולים.",
+    "לשכוח שכש-$E$ פועלת שני הזוגות המקבילים מחוברים בטור, וכשהיא לא פועלת יש שני מסלולים בני שתי יחידות."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "$Q_1$ הוא גשר בן חמש יחידות. איזו גישה מתאימה?",
+     "options": [
+      {
+       "id": "a",
+       "value": "נוסחת ההסתברות השלמה על היחידה האמצעית $E$ (פועלת או לא)"
+      },
+      {
+       "id": "b",
+       "value": "צמצום מיידי של טור ומקביל, בלי תנאי"
+      },
+      {
+       "id": "c",
+       "value": "התפלגות בינומית על מספר היחידות הפועלות"
+      },
+      {
+       "id": "d",
+       "value": "נוסחת בייס"
+      }
+     ],
+     "correctId": "a",
+     "explain": "בגשר היחידה האמצעית מקשרת שני מסלולים ולכן אי אפשר לצמצם. אחרי התניה ב-$E$ שני המקרים הם טורי-מקבילי פשוטים. הבינומית לא עוזרת כי חשוב אילו יחידות פועלות."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$: $P(Q_1/E)$.",
+     "answer": 0.7056,
+     "tol": 0,
+     "explain": "$(2p-p^2)^2=0.84^2=0.7056$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$: $P(Q_1/\\overline E)$.",
+     "answer": 0.5904,
+     "tol": 0,
+     "explain": "$2p^2-p^4=0.72-0.1296=0.5904$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$: $P(Q_1)$.",
+     "answer": 0.65952,
+     "tol": 0,
+     "explain": "$0.6\\cdot0.7056+0.4\\cdot0.5904=0.65952$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 4,
@@ -2158,7 +3001,115 @@
    "confidence": "high",
    "points": 7,
    "part": "ב",
-   "contextId": "c4"
+   "contextId": "c4",
+   "sim": {
+    "kind": "circuit",
+    "estimate": "P(Q2) ב-p=0.6",
+    "exact": 0.42336,
+    "params": {
+     "event": "S",
+     "network": {
+      "type": "series",
+      "children": [
+       {
+        "type": "comp",
+        "id": "A",
+        "p": 0.6
+       },
+       {
+        "type": "parallel",
+        "children": [
+         {
+          "type": "comp",
+          "id": "B",
+          "p": 0.6
+         },
+         {
+          "type": "comp",
+          "id": "C",
+          "p": 0.6
+         }
+        ]
+       },
+       {
+        "type": "parallel",
+        "children": [
+         {
+          "type": "comp",
+          "id": "D",
+          "p": 0.6
+         },
+         {
+          "type": "comp",
+          "id": "E",
+          "p": 0.6
+         }
+        ]
+       }
+      ]
+     }
+    }
+   },
+   "rubric": [
+    {
+     "text": "$Q_2$ הוא טור של $A$, הזוג $B\\|C$ והזוג $D\\|E$",
+     "points": 3
+    },
+    {
+     "text": "הסתברות זוג מקביל: $2p-p^2$",
+     "points": 2
+    },
+    {
+     "text": "$P(Q_2)=p(2p-p^2)^2=p^3(2-p)^2$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "להכפיל $p^5$ (לשכוח שהזוגות מקבילים).",
+    "לחשב זוג מקביל כ-$2p$ ללא החיתוך $p^2$."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איך בנוי $Q_2$ ואיך מחשבים אותו?",
+     "options": [
+      {
+       "id": "a",
+       "value": "טור של שלושה חלקים בלתי תלויים, ומכפילים את הסתברויותיהם"
+      },
+      {
+       "id": "b",
+       "value": "סכום הסתברויות החלקים"
+      },
+      {
+       "id": "c",
+       "value": "תנאי על $E$ בלבד"
+      },
+      {
+       "id": "d",
+       "value": "בינומית $\\mathrm{Bin}(5,p)$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "טור פועל כשכל חלקיו פועלים, ולחלקים יחידות שונות ולכן בלתי תלויים: מכפלה. סכום ובינומית אינם מתאימים."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$: $P(B\\cup C)$ (זוג מקביל).",
+     "answer": 0.84,
+     "tol": 0,
+     "explain": "$2p-p^2=1.2-0.36=0.84$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$: $P(Q_2)$.",
+     "answer": 0.42336,
+     "tol": 0,
+     "explain": "$0.6\\cdot0.84^2=0.42336$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 4,
@@ -2171,7 +3122,121 @@
    "confidence": "high",
    "points": 7,
    "part": "ג",
-   "contextId": "c4"
+   "contextId": "c4",
+   "sim": {
+    "kind": "circuit",
+    "estimate": "P(Q1 | Q2) ב-p=0.6",
+    "exact": 0.9183673469387755,
+    "params": {
+     "event": "S",
+     "edges": [
+      {
+       "id": "A",
+       "from": "s",
+       "to": "u",
+       "p": 0.6
+      },
+      {
+       "id": "C",
+       "from": "s",
+       "to": "v",
+       "p": 0.6
+      },
+      {
+       "id": "B",
+       "from": "u",
+       "to": "t",
+       "p": 0.6
+      },
+      {
+       "id": "D",
+       "from": "v",
+       "to": "t",
+       "p": 0.6
+      },
+      {
+       "id": "E",
+       "from": "u",
+       "to": "v",
+       "p": 0.6
+      }
+     ],
+     "source": "s",
+     "sink": "t",
+     "given": "A == 1 and (B == 1 or C == 1) and (D == 1 or E == 1)"
+    }
+   },
+   "rubric": [
+    {
+     "text": "הגדרת ההסתברות המותנית: $\\frac{P(Q_1\\cap Q_2)}{P(Q_2)}$",
+     "points": 1
+    },
+    {
+     "text": "פיצול לפי $A$ ו-$E$: אם $A$ לא פועלת אז $Q_2$ לא פועל",
+     "points": 2
+    },
+    {
+     "text": "חישוב $P(\\widetilde Q)=p^3(3-2p)$ מארבעת המקרים",
+     "points": 3
+    },
+    {
+     "text": "חלוקה: $\\frac{3-2p}{(2-p)^2}$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "להניח ש-$Q_1$ ו-$Q_2$ בלתי תלויים ולכתוב $P(Q_1\\cap Q_2)=P(Q_1)P(Q_2)$: שניהם בנויים מאותן יחידות.",
+    "לחשב את $P(Q_2/Q_1)$ במקום $P(Q_1/Q_2)$."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מה המונה של $P(Q_1/Q_2)$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$P(Q_1\\cap Q_2)$, כשהמעגלים תלויים כי יש להם אותן יחידות"
+      },
+      {
+       "id": "b",
+       "value": "$P(Q_1)P(Q_2)$"
+      },
+      {
+       "id": "c",
+       "value": "$P(Q_1)$"
+      },
+      {
+       "id": "d",
+       "value": "$P(Q_2/Q_1)$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "לפי ההגדרה המונה הוא ההסתברות המשותפת. מכפלה מתאימה רק לאי-תלות, וכאן $0.65952\\cdot0.42336\\approx0.279$ שונה מההסתברות המשותפת $0.3888$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$: הסתברות אירוע התנאי $P(Q_2)$.",
+     "answer": 0.42336,
+     "tol": 0,
+     "explain": "$p^3(2-p)^2=0.216\\cdot1.96=0.42336$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$: $P(Q_1\\cap Q_2)=p^3(3-2p)$.",
+     "answer": 0.3888,
+     "tol": 0,
+     "explain": "$0.216\\cdot1.8=0.3888$ (דורש $A$ פועלת; אחר כך מקרים לפי $E$)."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$: $P(Q_1/Q_2)$.",
+     "answer": 0.9183673469387755,
+     "tol": 0.0018367346938775511,
+     "explain": "$\\frac{0.3888}{0.42336}=\\frac{3-2p}{(2-p)^2}=\\frac{1.8}{1.96}\\approx0.9184$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 4,
@@ -2184,7 +3249,109 @@
    "confidence": "high",
    "points": 4,
    "part": "ד",
-   "contextId": "c4"
+   "contextId": "c4",
+   "sim": {
+    "kind": "circuit",
+    "estimate": "P(not Q1 | Q2) ב-p=0.6",
+    "exact": 0.08163265306122448,
+    "params": {
+     "event": "S == 0",
+     "edges": [
+      {
+       "id": "A",
+       "from": "s",
+       "to": "u",
+       "p": 0.6
+      },
+      {
+       "id": "C",
+       "from": "s",
+       "to": "v",
+       "p": 0.6
+      },
+      {
+       "id": "B",
+       "from": "u",
+       "to": "t",
+       "p": 0.6
+      },
+      {
+       "id": "D",
+       "from": "v",
+       "to": "t",
+       "p": 0.6
+      },
+      {
+       "id": "E",
+       "from": "u",
+       "to": "v",
+       "p": 0.6
+      }
+     ],
+     "source": "s",
+     "sink": "t",
+     "given": "A == 1 and (B == 1 or C == 1) and (D == 1 or E == 1)"
+    }
+   },
+   "rubric": [
+    {
+     "text": "התניה באותו אירוע: $P(\\overline{Q_1}/Q_2)=1-P(Q_1/Q_2)$",
+     "points": 2
+    },
+    {
+     "text": "הצבת התשובה לסעיף ג",
+     "points": 1
+    },
+    {
+     "text": "פישוט: $\\frac{(1-p)^2}{(2-p)^2}$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לחשב $1-P(Q_1)$ במקום $1-P(Q_1/Q_2)$: המשלים נעשה בתוך אותו עולם מותנה."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איך מחשבים את $P(\\overline{Q_1}/Q_2)$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$1-P(Q_1/Q_2)$"
+      },
+      {
+       "id": "b",
+       "value": "$1-P(Q_1)$"
+      },
+      {
+       "id": "c",
+       "value": "$P(\\overline{Q_1})P(Q_2)$"
+      },
+      {
+       "id": "d",
+       "value": "$1-P(Q_2/Q_1)$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "המשלים נעשה בתוך המותנה (אותו אירוע תנאי). שאר הביטויים משנים את אירוע התנאי או מניחים אי-תלות."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$: $P(Q_1/Q_2)$ (סעיף ג).",
+     "answer": 0.9183673469387755,
+     "tol": 0.0018367346938775511,
+     "explain": "$\\frac{1.8}{1.96}\\approx0.9184$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$: $P(\\overline{Q_1}/Q_2)$.",
+     "answer": 0.08163265306122448,
+     "tol": 0.00016326530612244898,
+     "explain": "$1-0.9184=\\frac{(1-p)^2}{(2-p)^2}=\\frac{0.16}{1.96}\\approx0.0816$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 5,
@@ -2197,7 +3364,110 @@
    "confidence": "high",
    "points": 10,
    "part": "א",
-   "contextId": "c5"
+   "contextId": "c5",
+   "sim": {
+    "kind": "pdf",
+    "estimate": "P(N_T=1) ב-λ=2, T=π",
+    "exact": 0.3180923728035784,
+    "params": {
+     "pieces": [
+      {
+       "from": 0,
+       "to": 30,
+       "expr": "2*exp(-2*x)"
+      }
+     ],
+     "event": "x > 1/2 and x < 3/2"
+    }
+   },
+   "rubric": [
+    {
+     "text": "שורשי $\\cos(\\omega t)$: $t_k=\\frac{\\pi}{2\\omega}+\\frac\\pi\\omega(k-1)$",
+     "points": 2
+    },
+    {
+     "text": "$N_T=0$ שקול ל-$\\omega<\\frac\\pi{2T}$ ולכן $P(N_T=0)=1-e^{-\\lambda\\pi/(2T)}$",
+     "points": 3
+    },
+    {
+     "text": "$N_T=k$ שקול לכך ש-$\\omega$ בקטע $\\left(\\frac{\\pi(k-1/2)}T,\\frac{\\pi(k+1/2)}T\\right)$",
+     "points": 3
+    },
+    {
+     "text": "אינטגרל הצפיפות המעריכית והתשובה לכל $k\\ge1$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לטפל ב-$N_T$ כפואסוני: האפסים אינם תהליך פואסון, כולם נקבעים לפי $\\omega$ יחיד.",
+    "לשכוח שהאפס הראשון הוא ב-$\\frac{\\pi}{2\\omega}$ ולא ב-$\\frac\\pi\\omega$ ולכן קצה הקטע הוא $\\frac{\\pi(k-1/2)}T$."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "$N_T$ סופר את אפסי $\\cos(\\omega t)$ ב-$(0,T)$, כשהאקראיות היחידה היא $\\omega$. איזה כלי מתאים?",
+     "options": [
+      {
+       "id": "a",
+       "value": "לתרגם את $\\{N_T=k\\}$ לאירוע על $\\omega$ ולהשתמש בצפיפות המעריכית"
+      },
+      {
+       "id": "b",
+       "value": "התפלגות פואסון: האפסים מופיעים בקצב קבוע"
+      },
+      {
+       "id": "c",
+       "value": "התפלגות בינומית עם $T$ ניסויים"
+      },
+      {
+       "id": "d",
+       "value": "התפלגות גאומטרית: ממתינים לאפס הראשון"
+      }
+     ],
+     "correctId": "a",
+     "explain": "בהינתן $\\omega$ האפסים נקבעים לגמרי במרווחים קבועים ואין אי-תלות בין מקטעים, ולכן אין תהליך פואסון. לכן מתרגמים את האירוע לאי-שוויון על $\\omega$."
+    },
+    {
+     "type": "choice",
+     "prompt": "לאיזה קטע של $\\omega$ מתאים $\\{N_T=k\\}$ ($k\\ge1$)?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$\\left(\\frac{\\pi(k-1/2)}T,\\ \\frac{\\pi(k+1/2)}T\\right)$"
+      },
+      {
+       "id": "b",
+       "value": "$\\left(\\frac{\\pi k}T,\\ \\frac{\\pi(k+1)}T\\right)$"
+      },
+      {
+       "id": "c",
+       "value": "$\\left(\\frac{\\pi(k-1)}T,\\ \\frac{\\pi k}T\\right)$"
+      },
+      {
+       "id": "d",
+       "value": "$\\left(\\frac{\\pi(k-1/2)}T,\\ \\frac{\\pi k}T\\right)$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$N_T=k$ כאשר $t_k<T<t_{k+1}$, כלומר $\\frac{\\pi(k-1/2)}\\omega<T<\\frac{\\pi(k+1/2)}\\omega$. בהיפוך מקבלים את הקטע הראשון."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$\\lambda=2$, $T=\\pi$: $P(N_T=0)$.",
+     "answer": 0.6321205588285577,
+     "tol": 0.0012642411176571153,
+     "explain": "$1-e^{-\\lambda\\pi/(2T)}=1-e^{-1}\\approx0.6321$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$\\lambda=2$, $T=\\pi$: $P(N_T=1)$.",
+     "answer": 0.3180923728035784,
+     "tol": 0.0006361847456071568,
+     "explain": "$\\omega\\in\\left(\\frac12,\\frac32\\right)$: $e^{-1}-e^{-3}\\approx0.3181$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 5,
@@ -2210,7 +3480,244 @@
    "confidence": "high",
    "points": 10,
    "part": "ב",
-   "contextId": "c5"
+   "contextId": "c5",
+   "sim": {
+    "kind": "pdf",
+    "estimate": "E[N_T] ב-λ=2, T=π",
+    "exact": 0.4254590641196608,
+    "params": {
+     "pieces": [
+      {
+       "from": 0,
+       "to": 0.5,
+       "expr": "2*exp(-2*x)"
+      },
+      {
+       "from": 0.5,
+       "to": 1.5,
+       "expr": "2*exp(-2*x)"
+      },
+      {
+       "from": 1.5,
+       "to": 2.5,
+       "expr": "2*exp(-2*x)"
+      },
+      {
+       "from": 2.5,
+       "to": 3.5,
+       "expr": "2*exp(-2*x)"
+      },
+      {
+       "from": 3.5,
+       "to": 4.5,
+       "expr": "2*exp(-2*x)"
+      },
+      {
+       "from": 4.5,
+       "to": 5.5,
+       "expr": "2*exp(-2*x)"
+      },
+      {
+       "from": 5.5,
+       "to": 6.5,
+       "expr": "2*exp(-2*x)"
+      },
+      {
+       "from": 6.5,
+       "to": 7.5,
+       "expr": "2*exp(-2*x)"
+      },
+      {
+       "from": 7.5,
+       "to": 8.5,
+       "expr": "2*exp(-2*x)"
+      },
+      {
+       "from": 8.5,
+       "to": 9.5,
+       "expr": "2*exp(-2*x)"
+      },
+      {
+       "from": 9.5,
+       "to": 10.5,
+       "expr": "2*exp(-2*x)"
+      },
+      {
+       "from": 10.5,
+       "to": 11.5,
+       "expr": "2*exp(-2*x)"
+      },
+      {
+       "from": 11.5,
+       "to": 12.5,
+       "expr": "2*exp(-2*x)"
+      },
+      {
+       "from": 12.5,
+       "to": 13.5,
+       "expr": "2*exp(-2*x)"
+      },
+      {
+       "from": 13.5,
+       "to": 14.5,
+       "expr": "2*exp(-2*x)"
+      },
+      {
+       "from": 14.5,
+       "to": 15.5,
+       "expr": "2*exp(-2*x)"
+      },
+      {
+       "from": 15.5,
+       "to": 16.5,
+       "expr": "2*exp(-2*x)"
+      },
+      {
+       "from": 16.5,
+       "to": 17.5,
+       "expr": "2*exp(-2*x)"
+      },
+      {
+       "from": 17.5,
+       "to": 18.5,
+       "expr": "2*exp(-2*x)"
+      },
+      {
+       "from": 18.5,
+       "to": 19.5,
+       "expr": "2*exp(-2*x)"
+      },
+      {
+       "from": 19.5,
+       "to": 20.5,
+       "expr": "2*exp(-2*x)"
+      },
+      {
+       "from": 20.5,
+       "to": 21.5,
+       "expr": "2*exp(-2*x)"
+      },
+      {
+       "from": 21.5,
+       "to": 22.5,
+       "expr": "2*exp(-2*x)"
+      },
+      {
+       "from": 22.5,
+       "to": 23.5,
+       "expr": "2*exp(-2*x)"
+      },
+      {
+       "from": 23.5,
+       "to": 24.5,
+       "expr": "2*exp(-2*x)"
+      },
+      {
+       "from": 24.5,
+       "to": 25.5,
+       "expr": "2*exp(-2*x)"
+      },
+      {
+       "from": 25.5,
+       "to": 26.5,
+       "expr": "2*exp(-2*x)"
+      },
+      {
+       "from": 26.5,
+       "to": 27.5,
+       "expr": "2*exp(-2*x)"
+      },
+      {
+       "from": 27.5,
+       "to": 28.5,
+       "expr": "2*exp(-2*x)"
+      },
+      {
+       "from": 28.5,
+       "to": 29.5,
+       "expr": "2*exp(-2*x)"
+      },
+      {
+       "from": 29.5,
+       "to": 30.5,
+       "expr": "2*exp(-2*x)"
+      }
+     ],
+     "measure": "mean",
+     "expr": "floor(x + 1/2)"
+    }
+   },
+   "rubric": [
+    {
+     "text": "$\\mathbb{E}[N_T]=\\sum kP(N_T=k)$, והוצאת הגורם הקבוע",
+     "points": 3
+    },
+    {
+     "text": "זיהוי $q=e^{-\\lambda\\pi/T}$ והסכום $\\sum kq^k=\\frac q{(1-q)^2}$",
+     "points": 3
+    },
+    {
+     "text": "הצבה ושימוש ב-$\\frac q{(1-q)^2}=\\frac1{\\left(e^{x}-e^{-x}\\right)^2}$",
+     "points": 2
+    },
+    {
+     "text": "התשובה $\\frac1{e^{\\lambda\\pi/(2T)}-e^{-\\lambda\\pi/(2T)}}$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "להציב את תוחלת פואסון $\\lambda T$ במקום לסכם.",
+    "לשכוח את התחלת הסכום מ-$k=1$ כשמשתמשים ברמז."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איך מחשבים את $\\mathbb{E}[N_T]$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$\\sum kP(N_T=k)$ עם הסכום ההנדסי מהרמז"
+      },
+      {
+       "id": "b",
+       "value": "$\\mathbb{E}[N_T]=\\lambda T$ (תוחלת פואסון)"
+      },
+      {
+       "id": "c",
+       "value": "$\\frac{T}{\\pi}\\mathbb{E}[\\omega]$, בלי חלק שלם"
+      },
+      {
+       "id": "d",
+       "value": "$P(N_T=1)$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$N_T$ אינו פואסוני. הביטוי $\\frac T\\pi\\mathbb{E}[\\omega]$ מתעלם מכך ש-$N_T$ שלם (במדגם $\\lambda=2,T=\\pi$ הוא נותן $0.5$ במקום $0.4254$)."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$\\lambda=2$, $T=\\pi$: $q=e^{-\\lambda\\pi/T}$ (עד שש ספרות).",
+     "answer": 0.1353352832366127,
+     "tol": 0.0002706705664732254,
+     "explain": "$q=e^{-2}\\approx0.135335$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "$\\sum_{k\\ge1}kq^k=\\frac{q}{(1-q)^2}$ עבור אותו $q$.",
+     "answer": 0.18101541524157763,
+     "tol": 0.0003620308304831553,
+     "explain": "$\\frac{0.135335}{(0.864665)^2}\\approx0.181019$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $\\mathbb{E}[N_T]$ (המקדם $e-e^{-1}$ כפול הסכום)?",
+     "answer": 0.4254590641196608,
+     "tol": 0.0008509181282393216,
+     "explain": "$\\frac1{e-e^{-1}}\\approx0.4254$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 5,
@@ -2223,7 +3730,93 @@
    "confidence": "high",
    "points": 5,
    "part": "ג",
-   "contextId": "c5"
+   "contextId": "c5",
+   "sim": {
+    "kind": "pdf",
+    "estimate": "P(t3>T | t2<T) ב-λ=2, T=π",
+    "exact": 0.8646647167633873,
+    "params": {
+     "pieces": [
+      {
+       "from": 0,
+       "to": 30,
+       "expr": "2*exp(-2*x)"
+      }
+     ],
+     "event": "x < 5/2",
+     "given": "x > 3/2"
+    }
+   },
+   "rubric": [
+    {
+     "text": "המונה: $\\{t_{k+1}>T\\}\\cap\\{t_k<T\\}=\\{N_T=k\\}$",
+     "points": 1
+    },
+    {
+     "text": "$P(t_k<T)=P\\left(\\omega>\\frac{\\pi(k-1/2)}T\\right)=e^{\\frac{\\lambda\\pi}{2T}}e^{-\\frac{\\lambda\\pi}Tk}$",
+     "points": 2
+    },
+    {
+     "text": "הצבת $P(N_T=k)$ מסעיף א",
+     "points": 1
+    },
+    {
+     "text": "פישוט: $1-e^{-\\lambda\\pi/T}$, בלתי תלוי ב-$k$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לחלק ב-$P(t_{k+1}>T)$ או ב-$P(T)$ במקום ב-$P(t_k<T)$."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מהו המונה של $P(t_{k+1}>T\\,/\\,t_k<T)$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$P(N_T=k)$ (שני האירועים יחד אומרים שבדיוק $k$ שורשים לפני $T$)"
+      },
+      {
+       "id": "b",
+       "value": "$P(N_T\\ge k)$"
+      },
+      {
+       "id": "c",
+       "value": "$P(t_{k+1}>T)$"
+      },
+      {
+       "id": "d",
+       "value": "$P(N_T\\le k)$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$t_k<T$ אומר שיש לפחות $k$ שורשים לפני $T$, ו-$t_{k+1}>T$ אומר שיש לכל היותר $k$. יחד: בדיוק $k$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$\\lambda=2$, $T=\\pi$, $k=2$: הסתברות אירוע התנאי $P(t_2<T)$.",
+     "answer": 0.04978706836786395,
+     "tol": 9.95741367357279e-05,
+     "explain": "$P\\left(\\omega>\\frac32\\right)=e^{-3}\\approx0.0498$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "באותם פרמטרים: $P(N_T=2)$.",
+     "answer": 0.04304912136877848,
+     "tol": 8.609824273755697e-05,
+     "explain": "$\\omega\\in\\left(\\frac32,\\frac52\\right)$: $e^{-3}-e^{-5}\\approx0.0431$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי ההסתברות המותנית?",
+     "answer": 0.8646647167633873,
+     "tol": 0.0017293294335267745,
+     "explain": "$\\frac{0.0431}{0.0498}=1-e^{-2}\\approx0.8647$ (תכונת חוסר הזיכרון של המעריכי)."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 6,
@@ -2236,7 +3829,74 @@
    "confidence": "high",
    "points": 6,
    "part": "א",
-   "contextId": "c6"
+   "contextId": "c6",
+   "sim": {
+    "kind": "urn",
+    "estimate": "P(X=2) ב-n=5, q=0.3",
+    "exact": 0.3087,
+    "params": {
+     "counts": {
+      "fromA": 3,
+      "fromB": 7
+     },
+     "draws": 5,
+     "replace": true,
+     "event": "fromA == 2"
+    }
+   },
+   "rubric": [
+    {
+     "text": "זיהוי $n$ ניסויי ברנולי בלתי תלויים עם הצלחה $q$ (המפעל $A$)",
+     "points": 3
+    },
+    {
+     "text": "$X=\\sum X_j$ ולכן $X\\sim\\mathrm{Bin}(n,q)$",
+     "points": 2
+    },
+    {
+     "text": "פונקציית ההסתברות $\\binom nkq^k(1-q)^{n-k}$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "להשתמש בהיפרגאומטרית: הנתון הוא פרופורציה, לא אוכלוסייה סופית של גודל נתון.",
+    "לשכוח לציין את אי-התלות בין הסוללות."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "בוחרים $n$ סוללות באקראי; פרופורציית $A$ במחסן היא $q$. איזה מודל מתאים ל-$X$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "בינומי $\\mathrm{Bin}(n,q)$: $n$ ניסויים בלתי תלויים עם הסתברות הצלחה $q$"
+      },
+      {
+       "id": "b",
+       "value": "היפרגאומטרי: חסר גודל המחסן ומספר הסוללות מ-$A$, ואלה אינם נתונים"
+      },
+      {
+       "id": "c",
+       "value": "גאומטרי: $n$ קבוע ואין המתנה להצלחה"
+      },
+      {
+       "id": "d",
+       "value": "פואסוני: $X$ חסום על ידי $n$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "הפרופורציה $q$ נותנת הסתברות קבועה לכל סוללה. ההיפרגאומטרי דורש כמות סופית ידועה, הגאומטרי סופר ניסויים עד הצלחה, והפואסוני אינו חסום."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$n=5$, $q=0.3$: $P(X=2)$.",
+     "answer": 0.3087,
+     "tol": 0,
+     "explain": "$\\binom52\\cdot0.3^2\\cdot0.7^3=10\\cdot0.09\\cdot0.343=0.3087$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 6,
@@ -2249,7 +3909,92 @@
    "confidence": "high",
    "points": 12,
    "part": "ב",
-   "contextId": "c6"
+   "contextId": "c6",
+   "sim": {
+    "kind": "urn",
+    "estimate": "P(Y=1) ב-n=4, pq=0.1 (p=0.2, q=0.5)",
+    "exact": 0.2916,
+    "params": {
+     "counts": {
+      "hit": 1,
+      "miss": 9
+     },
+     "draws": 4,
+     "replace": true,
+     "event": "hit == 1"
+    }
+   },
+   "rubric": [
+    {
+     "text": "הגדרת $Y_j=1$ כשהסוללה מ-$A$ וגם פגומה",
+     "points": 3
+    },
+    {
+     "text": "הסתברות ההצלחה $pq$ (אי-תלות בין המפעל לפגם)",
+     "points": 3
+    },
+    {
+     "text": "$Y=\\sum Y_j\\sim\\mathrm{Bin}(n,pq)$",
+     "points": 3
+    },
+    {
+     "text": "פונקציית ההסתברות $\\binom nk(pq)^k(1-pq)^{n-k}$",
+     "points": 3
+    }
+   ],
+   "pitfalls": [
+    "לכתוב $\\mathrm{Bin}(n,q)$ ולשכוח את הפגם, או $\\mathrm{Bin}(n,p+q)$ (הסתברות שיכולה לעלות על $1$).",
+    "להשתמש ברמז עם סכום כפול כשהפתרון קצר יותר: סכום של $n$ משתני ברנולי."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "$Y$ סופר סוללות ממפעל $A$ וגם פגומות. מה ההתפלגות?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$\\mathrm{Bin}(n,pq)$: כל סוללה היא הצלחה בהסתברות $pq$ ללא תלות"
+      },
+      {
+       "id": "b",
+       "value": "$\\mathrm{Bin}(n,q)$"
+      },
+      {
+       "id": "c",
+       "value": "$\\mathrm{Bin}(n,p+q)$"
+      },
+      {
+       "id": "d",
+       "value": "$\\mathrm{Bin}(n,p)$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "סוללה נספרת רק אם שני התנאים מתקיימים, והם בלתי תלויים: $pq$. $p+q$ עלול לעלות על $1$, ושני האחרים מתעלמים מתנאי."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.2$, $q=0.5$: הסתברות ההצלחה לכל סוללה $pq$.",
+     "answer": 0.1,
+     "tol": 0,
+     "explain": "$0.2\\cdot0.5=0.1$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$n=4$: $P(Y=0)$.",
+     "answer": 0.6561,
+     "tol": 0,
+     "explain": "$0.9^4=0.6561$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$n=4$: $P(Y=1)$.",
+     "answer": 0.2916,
+     "tol": 0,
+     "explain": "$4\\cdot0.1\\cdot0.9^3=0.2916$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 6,
@@ -2262,7 +4007,114 @@
    "confidence": "high",
    "points": 5,
    "part": "ג",
-   "contextId": "c6"
+   "contextId": "c6",
+   "sim": {
+    "kind": "custom_discrete",
+    "estimate": "Cov[X,Y] ב-n=1, p=0.2, q=0.5",
+    "exact": 0.05,
+    "params": {
+     "joint": [
+      {
+       "p": 0.5,
+       "X": 0,
+       "Y": 0
+      },
+      {
+       "p": 0.4,
+       "X": 1,
+       "Y": 0
+      },
+      {
+       "p": 0.1,
+       "X": 1,
+       "Y": 1
+      }
+     ],
+     "measure": "cov",
+     "expr": [
+      "X",
+      "Y"
+     ]
+    }
+   },
+   "rubric": [
+    {
+     "text": "נוסחת המתאם $\\frac{\\operatorname{Cov}}{\\sqrt{\\operatorname{Var}X\\operatorname{Var}Y}}$ והשונויות",
+     "points": 1
+    },
+    {
+     "text": "$\\mathbb{E}[XY]$ מפירוק לאינדיקטורים: $pqn+n(n-1)pq^2$",
+     "points": 2
+    },
+    {
+     "text": "$\\operatorname{Cov}[X,Y]=npq(1-q)$",
+     "points": 1
+    },
+    {
+     "text": "$\\rho=\\sqrt{\\frac{p(1-q)}{1-pq}}$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "להניח ש-$X$ ו-$Y$ בלתי תלויים ולקבל $\\operatorname{Cov}=0$: $Y$ נספר מתוך $X$.",
+    "לשכוח את האיברים $j=k$ ב-$\\mathbb{E}[XY]$ ($\\mathbb{E}[X_j^2]=q$)."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איך מחשבים את $\\mathbb{E}[XY]$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "מפרקים $X=\\sum X_j$ ו-$Y=\\sum X_kZ_k$, ומפרידים אינדקסים שווים ושונים"
+      },
+      {
+       "id": "b",
+       "value": "$\\mathbb{E}[X]\\mathbb{E}[Y]$ כי המשתנים בלתי תלויים"
+      },
+      {
+       "id": "c",
+       "value": "$\\mathbb{E}[X]+\\mathbb{E}[Y]$"
+      },
+      {
+       "id": "d",
+       "value": "$\\mathbb{E}[X^2]$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$Y$ סופר חלק מהסוללות ש-$X$ סופר, ולכן תלויים. בפירוק האינדקסים השווים נותנים $\\mathbb{E}[X_j^2]\\mathbb{E}[Z_j]=pq$ והשונים נותנים $pq^2$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$n=4$, $p=0.2$, $q=0.5$: $\\operatorname{Cov}[X,Y]=npq(1-q)$.",
+     "answer": 0.2,
+     "tol": 0,
+     "explain": "$4\\cdot0.2\\cdot0.5\\cdot0.5=0.2$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "באותם פרמטרים: $\\operatorname{Var}X=nq(1-q)$.",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "$4\\cdot0.5\\cdot0.5=1$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "באותם פרמטרים: $\\operatorname{Var}Y=npq(1-pq)$.",
+     "answer": 0.36,
+     "tol": 0,
+     "explain": "$4\\cdot0.1\\cdot0.9=0.36$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו $\\rho[X,Y]$?",
+     "answer": 0.3333333333333333,
+     "tol": 0.0006666666666666666,
+     "explain": "$\\frac{0.2}{1\\cdot0.6}=\\frac13$, וגם $\\sqrt{\\frac{p(1-q)}{1-pq}}=\\sqrt{\\frac19}$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 6,
@@ -2275,7 +4127,55 @@
    "confidence": "high",
    "points": 2,
    "part": "ד",
-   "contextId": "c6"
+   "contextId": "c6",
+   "rubric": [
+    {
+     "text": "הצבה $p=1$: $\\rho=1$",
+     "points": 1
+    },
+    {
+     "text": "הסבר: $Y=X$ כשכל הסוללות פגומות",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לפרש $\\rho=1$ כאי-תלות: מתאם $1$ הוא תלות לינארית מלאה."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "ב-$q=0.5$, $p=1$: $\\rho=\\sqrt{\\frac{p(1-q)}{1-pq}}$.",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "$\\sqrt{\\frac{0.5}{0.5}}=1$."
+    },
+    {
+     "type": "choice",
+     "prompt": "מדוע?",
+     "options": [
+      {
+       "id": "a",
+       "value": "כש-$p=1$ כל הסוללות פגומות ולכן $Y=X$"
+      },
+      {
+       "id": "b",
+       "value": "כי $X$ ו-$Y$ בלתי תלויים"
+      },
+      {
+       "id": "c",
+       "value": "כי $Y=0$"
+      },
+      {
+       "id": "d",
+       "value": "כי $q=1$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$Y=X$ ולכן המתאם $\\rho[X,X]=1$. אי-תלות היתה נותנת $0$, ו-$Y=0$ היה נותן שונות $0$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   }
  ]
 }
