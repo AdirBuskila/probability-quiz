@@ -1,0 +1,437 @@
+{
+ "examCode": "24A-C",
+ "verdictSummary": {
+  "agree": 24,
+  "disagree": 0,
+  "unclear": 0
+ },
+ "notes": [
+  "Page check: Q5 prints 'b-1' twice (P(Z=0) and P(Z=k)); the app's second label 'b-2' is a relabel, the page confirms the duplicate.",
+  "Circuit figure rendered: Q1 is a Wheatstone bridge (A: L-T, B: T-R, C: L-U, D: U-R, E: T-U); Q2 is (A||B) in series with (C||D||E). Sim topologies match.",
+  "Q5b/Q5c sims truncate Y at 30 (tail mass 2^-29 lumped on Y=30): truncation error 1e-16 and 2e-14, negligible.",
+  "Own exact (fractions/sympy/enumeration) and own Monte Carlo (4e6 trials, own numpy code, no author helpers) agree with every final answer, numeric step, region and sim exact."
+ ],
+ "answers": {
+  "1a": {
+   "answer": "1/2",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree"
+   ],
+   "region": "agree",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "1b": {
+   "answer": "8/9",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "agree",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "1c": {
+   "answer": "5/9",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "agree",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "1d": {
+   "answer": "1/2",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "agree",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "2a": {
+   "answer": "q=1/9",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "n/a",
+   "firstDivergence": null
+  },
+  "2b": {
+   "answer": "8/81",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "2c": {
+   "answer": "5/243",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "2d": {
+   "answer": "1/9",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "2e": {
+   "answer": "5/297",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "3a": {
+   "answer": "joint: P(D=-1,T=0)=p+q-2pq, P(D=-1,T=1)=pq, P(D=0,T=-1)=(1-p)(1-q)",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "3b": {
+   "answer": "E[D]=pq-p-q, Var[D]=(p+q-pq)(1-p)(1-q)",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "3c": {
+   "answer": "E[T]=p+q-1, Var[T]=p(1-p)+q(1-q)",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "3d": {
+   "answer": "cov=-(p+q)(1-p)(1-q)",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "3e": {
+   "answer": "not independent (P(D=0,T=0)=0 vs (1-p)(1-q)(p+q-2pq))",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "3f": {
+   "answer": "correlated: cov=-(p+q)(1-p)(1-q)!=0",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "4a": {
+   "answer": "a=1, b=3/2",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "4b": {
+   "answer": "F=0 t<0; t^2/2 on [0,1); t-1/2 on [1,3/2); 1 after",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "4c": {
+   "answer": "5/7",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "5a": {
+   "answer": "Bin(n, D/N)",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "5b": {
+   "answer": "p(1-Q)/(p(1-Q)+Q), Q=D/N",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "5c": {
+   "answer": "p/(1-p) * (1/D0) * (Q(1-p)/D0)^k, D0=p(1-Q)+Q",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "6a": {
+   "answer": "2p^2+2p^3-5p^4+2p^5",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "6b": {
+   "answer": "(2p-p^2)(1-(1-p)^3)",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "6c": {
+   "answer": "p(7-9p+3p^2)/(6-9p+5p^2-p^3)",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  }
+ }
+}

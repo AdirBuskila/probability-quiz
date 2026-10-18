@@ -1,0 +1,382 @@
+{
+ "examCode": "24A-D",
+ "verdictSummary": {
+  "agree": 21,
+  "disagree": 0,
+  "unclear": 0
+ },
+ "notes": [
+  "Page check: Q2 b-1..b-4, Q5 a/b-1/b-2, Q6 a/b-1/b-2 labels match the page.",
+  "Circuit figure rendered: Q1 is a Wheatstone bridge (E vertical); Q2 is A || (E-B) || (C-D) with A the horizontal wire. Sim topology matches. Q1 is a subset of Q2 so P(Q2|Q1)=1 (verified by exact enumeration and MC).",
+  "Q5a: the printed question never states the per-candidate birthday probability; the solution assumes 1/365 (non-leap, uniform birthdays). Not an error in the claim, but an assumption the printed text omits. The Q5 sims use an illustrative p=0.25 (labelled as such), lambda=4.",
+  "Q5b/Q5c sims truncate X (Poisson 4) at 25: tail 2.4e-13, truncation error ~5e-15, negligible.",
+  "Own exact and own Monte Carlo agree with every final answer, numeric step, region and sim exact."
+ ],
+ "answers": {
+  "1a": {
+   "answer": "2/9",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "agree",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "1b": {
+   "answer": "4/9",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "agree",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "1c": {
+   "answer": "2/3",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "agree",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "2a": {
+   "answer": "5/36",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "2b": {
+   "answer": "5/108",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "2c": {
+   "answer": "1/6",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "2d": {
+   "answer": "2/45",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "2e": {
+   "answer": "1/18",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "3a": {
+   "answer": "E[D]=-pq, Var[D]=pq(1-pq)",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "3b": {
+   "answer": "E[T]=p+q, Var[T]=p(1-p)+q(1-q)",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "3c": {
+   "answer": "cov=pq(p+q-2)",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "4a": {
+   "answer": "0",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "4b": {
+   "answer": "a=1/4, b=2",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "4c": {
+   "answer": "F=(t+2)^2/8 on [-2,0); 1-(2-t)^2/8 on [0,2)",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "4d": {
+   "answer": "11/32",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "5a": {
+   "answer": "Bin(N,1/365) (p=1/365 not printed in the question text)",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "5b": {
+   "answer": "Poisson(lambda/365)",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "5c": {
+   "answer": "n-k ~ Poisson(lambda*364/365)",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "6a": {
+   "answer": "2p^2+2p^3-5p^4+2p^5",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "6b": {
+   "answer": "1-(1-p)(1-p^2)^2",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  },
+  "6c": {
+   "answer": "1 (Q1 subset of Q2)",
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "solution": "agree",
+   "rubric": "agree (points sum to question points)",
+   "pitfalls": "agree",
+   "steps": [
+    "agree",
+    "agree",
+    "agree",
+    "agree"
+   ],
+   "region": "n/a",
+   "sim": "agree",
+   "firstDivergence": null
+  }
+ }
+}

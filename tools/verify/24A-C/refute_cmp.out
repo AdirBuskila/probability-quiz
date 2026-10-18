@@ -1,0 +1,19 @@
+mismatches: 0
+('24A-C', 2, 'א') NO SIM
+sim exacts compared
+C5b trunc P(Z=0) 0.42857142857142866 closed 0.42857142857142855 err 1.1102230246251565e-16
+C5c trunc P(Z=2) 0.11661807580177033 closed 0.11661807580174927 err 2.1066481892262345e-14
+sum pm 1.0
+D5 poisson trunc tail 2.3991919562149633e-13
+D5b trunc P(Y=2) 0.1839397205857164 closed 0.18393972058572117 err 4.773959005888173e-15
+D5c trunc cond 0.2240418076553935 closed 0.22404180765538775 err 5.745404152435185e-15
+Q1 formula = 2p^2+2p^3-5p^4+2p^5: True
+C6c inter 3p^5-9p^4+7p^3: True
+D6c inter == P(Q1): True
+D6b p+(1-p)(2p^2-p^4) == 1-(1-p)(1-p^2)^2: True
+C6b expansion 6p^2-9p^3+5p^4-p^5: True
+C6c ratio simplifies equal to (3p^5-9p^4+7p^3)/(6p^2-9p^3+5p^4-p^5): True
+C5b forms equal: True
+C3d cov forms equal: True
+D4 var: a*b**4/6
+D4 E|X|: b/3
