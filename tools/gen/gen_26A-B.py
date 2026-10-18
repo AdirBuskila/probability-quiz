@@ -20,7 +20,7 @@ Transcription notes
   P(B) 0.480 official vs 0.592 true). Shipped with the official method, q2/q4 swapped back to the printed
   definitions, solutionSource "solved", official:false and the "הפתרון הרשמי עם תיקון" prefix. Verified exactly
   and by Monte Carlo in tools/verify/26A-B/check.py. Part c is unaffected (official).
-- Q1(a) carries a `region` (the area figure, t = 0.3); the source notes stay in tools/verify/26A-B/regions.json.
+- Q1(a) carries a `region` (the area figure, t = 0.3) and a `sim`; Q1(c) a `sim` (Var[D]).
 - The official solution header notes it is written for second-year level and that Q1 is solved with the
   classical-geometric approach as the question asked; that note is not part of any solution text.
 """
@@ -411,6 +411,18 @@ $$P(\mathsf V)=\frac{2(M-1)(N-2)+2(M-2)(N-1)}{\binom{MN}{3}}.$$
 באופן שקול,
 $$P(\mathsf V)=\frac{4MN-6M-6N+8}{\binom{MN}{3}}.$$""",
     7, image="images/exams/26A-B-Q6-vshapes.png"))
+
+# ------------------------------------------------------------------ area regions + simulations (RAW_SCHEMA `region`, `sim`)
+SIMS = {
+    (1, "א"): {"kind": "area", "params": {"fromRegion": True}, "estimate": "F_D(0.3)=P(XY<=0.3)", "exact": 0.3 - 0.3 * math.log(0.3)},
+    (1, "ג"): {"kind": "area", "params": {"space": {"x": [0, 1], "y": [0, 1]}, "measure": "var", "expr": "x*y"},
+               "estimate": "Var[D]", "exact": 7 / 144},
+}
+
+for _q in questions:
+    _k = (_q["num"], _q.get("part"))
+    if _k in SIMS:
+        _q["sim"] = SIMS[_k]
 
 # ------------------------------------------------------------------ exam
 exam = {

@@ -66,6 +66,14 @@
     ],
     "exact": 0.6611918412977809,
     "caption": "האזור XY ≤ t בריבוע היחידה, עבור t = 0.3 לדוגמה"
+   },
+   "sim": {
+    "kind": "area",
+    "params": {
+     "fromRegion": true
+    },
+    "estimate": "F_D(0.3)=P(XY<=0.3)",
+    "exact": 0.6611918412977809
    }
   },
   {
@@ -92,7 +100,26 @@
    "confidence": "high",
    "points": 8,
    "part": "ג",
-   "contextId": "c1"
+   "contextId": "c1",
+   "sim": {
+    "kind": "area",
+    "params": {
+     "space": {
+      "x": [
+       0,
+       1
+      ],
+      "y": [
+       0,
+       1
+      ]
+     },
+     "measure": "var",
+     "expr": "x*y"
+    },
+    "estimate": "Var[D]",
+    "exact": 0.04861111111111111
+   }
   },
   {
    "num": 2,
