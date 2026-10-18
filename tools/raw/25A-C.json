@@ -300,14 +300,13 @@
    "kind": "computation",
    "topic": "continuous_rv",
    "question": "מהי ההסתברות המותנית $P(X<1/2\\ /\\ X>-1/2)$? (5 נק׳)",
-   "solution": "$$P(X<\\tfrac12\\mid X>-\\tfrac12)=\\frac{P(-\\frac12<X<\\frac12)}{P(X>-\\frac12)}=\\frac{F_X(\\frac12)-F_X(-\\frac12)}{1-F_X(-\\frac12)}=1-\\frac1e\\approx0.63.$$",
-   "solutionSource": "official-pdf",
-   "official": true,
+   "solution": "**הפתרון הרשמי עם תיקון:** בפתרון הרשמי התשובה הסופית היא $1-\\frac1e\\approx0.63$, אבל הצבת $F_X$ מסעיף ב בנוסחה הרשמית נותנת $1-\\frac4{13}e^{-1/2}\\approx0.81$. התיקון נבדק (חישוב מדויק וסימולציה).\n$$P(X<\\tfrac12\\mid X>-\\tfrac12)=\\frac{P(-\\frac12<X<\\frac12)}{P(X>-\\frac12)}=\\frac{F_X(\\frac12)-F_X(-\\frac12)}{1-F_X(-\\frac12)}.$$\nמסעיף ב: $F_X(\\frac12)=1-\\frac14e^{-1/2}$ ו-$F_X(-\\frac12)=\\frac34\\cdot\\frac14=\\frac3{16}$. לכן\n$$P(X<\\tfrac12\\mid X>-\\tfrac12)=\\frac{1-\\frac14e^{-1/2}-\\frac3{16}}{1-\\frac3{16}}=\\frac{\\frac{13}{16}-\\frac14e^{-1/2}}{\\frac{13}{16}}=1-\\frac4{13}e^{-1/2}\\approx0.81.$$",
+   "solutionSource": "solved",
+   "official": false,
    "confidence": "high",
    "points": 5,
    "part": "ג",
-   "contextId": "c3",
-   "hold": "The official key is 1-1/e (about 0.63) but (F(1/2)-F(-1/2))/(1-F(-1/2)) with the official F equals 1-(4/13)e^{-1/2} (about 0.81); confirmed by exact computation and Monte Carlo. See ASK_ADIR."
+   "contextId": "c3"
   },
   {
    "num": 4,
@@ -327,28 +326,26 @@
    "kind": "computation",
    "topic": "circuits",
    "question": "מהי ההסתברות שמעגל $Q_2$ פועל? (8 נק׳)",
-   "solution": "נפעל לפי נוסחת ההסתברות השלמה על $H$ (בפתרון הרשמי מציבים $P(H)=p$):\n$$P(Q_2)=P(Q_2/H)\\,P(H)+P(Q_2/\\overline H)\\,P(\\overline H),\\qquad P(Q_2/\\overline H)=P(Q_1).$$\nכאשר $H$ פועלת, נקבל את המעגל $\\widetilde Q_2$: היחידות $G,F$ במקביל, כך שהן מתנהגות כיחידה אחת $J$ עם $P(J)=p(2-p)$ בטור עם $C$:\n$$P(Q_2/H)=p^2(1+3p-9p^3+8p^4-2p^5).$$\nהצבה בנוסחת ההסתברות השלמה נותנת\n$$P(Q_2)=p^3\\left(2+4p-2p^2-13p^3+14p^4-4p^5\\right).$$",
-   "solutionSource": "official-pdf",
-   "official": true,
+   "solution": "**הפתרון הרשמי עם תיקון:** בשאלה כפי שהודפסה היחידה $H$ פועלת בהסתברות $q$, אבל בפתרון הרשמי הוצב $P(H)=p$, ולכן הפולינום הרשמי $p^3\\left(2+4p-2p^2-13p^3+14p^4-4p^5\\right)$ נכון רק במקרה $q=p$. הפתרון שלהלן הוא הפתרון הרשמי עם $P(H)=q$, ולכן התשובה הסופית שונה מהתשובה הרשמית (ומתלכדת איתה כאשר $q=p$). התיקון נבדק (חישוב מדויק וסימולציה).\nנפעל לפי נוסחת ההסתברות השלמה על $H$:\n$$P(Q_2)=P(Q_2/H)\\,P(H)+P(Q_2/\\overline H)\\,P(\\overline H),\\qquad P(H)=q,\\ P(Q_2/\\overline H)=P(Q_1).$$\nכאשר $H$ פועלת, נקבל את המעגל $\\widetilde Q_2$: היחידות $G,F$ במקביל, כך שהן מתנהגות כיחידה אחת $J$ עם $P(J)=p(2-p)$ בטור עם $C$:\n$$P(Q_2/H)=p^2(1+3p-9p^3+8p^4-2p^5).$$\nהצבה בנוסחת ההסתברות השלמה, עם $P(Q_1)$ מסעיף א, נותנת\n$$P(Q_2)=q\\,p^2\\left(1+3p-9p^3+8p^4-2p^5\\right)+(1-q)\\,p^3\\left(1+2p-4p^3+2p^4\\right).$$\n(עבור $q=p$ מתקבל $p^3\\left(2+4p-2p^2-13p^3+14p^4-4p^5\\right)$.)",
+   "solutionSource": "solved",
+   "official": false,
    "confidence": "high",
    "points": 8,
    "part": "ב",
-   "contextId": "c4",
-   "hold": "The printed unit H works with probability q, but the official solution computes with P(H)=p, so its polynomial p^3(2+4p-2p^2-13p^3+14p^4-4p^5) is the q=p case only (verified by exact enumeration and Monte Carlo). See ASK_ADIR."
+   "contextId": "c4"
   },
   {
    "num": 4,
    "kind": "computation",
    "topic": "circuits",
    "question": "מהי ההסתברות שלפחות אחד המעגלים פעל? (6 נק׳)",
-   "solution": "נסמן $Q=Q_1\\cup Q_2$ ונפעל לפי נוסחת ההסתברות השלמה על ארבעת המקרים של $G$ ו-$H$ (פועלת או לא):\n$$P(Q)=P(Q/G\\cap H)P(G\\cap H)+P(Q/G\\cap\\overline H)P(G\\cap\\overline H)+P(Q/\\overline G\\cap H)P(\\overline G\\cap H)+P(Q/\\overline G\\cap\\overline H)P(\\overline G\\cap\\overline H),$$\nכאשר המחובר האחרון הוא $0$ (שני המעגלים דורשים אחת מהיחידות $G,H$). אחרי הצבה ופישוט מתקבל אותו ביטוי כמו $P(Q_2)$:\n$$P(Q_1\\cup Q_2)=p^3\\left\\{2+4p-2p^2-13p^3+14p^4-4p^5\\right\\}.$$",
-   "solutionSource": "official-pdf",
-   "official": true,
+   "solution": "**הפתרון הרשמי עם תיקון:** בשאלה כפי שהודפסה היחידה $H$ פועלת בהסתברות $q$, אבל בפתרון הרשמי הוצב $P(H)=p$, ולכן הפולינום הרשמי $p^3\\left(2+4p-2p^2-13p^3+14p^4-4p^5\\right)$ נכון רק במקרה $q=p$. הפתרון שלהלן הוא הפתרון הרשמי עם $P(H)=q$, ולכן התשובה הסופית שונה מהתשובה הרשמית (ומתלכדת איתה כאשר $q=p$). התיקון נבדק (חישוב מדויק וסימולציה).\nנסמן $Q=Q_1\\cup Q_2$ ונפעל לפי נוסחת ההסתברות השלמה על ארבעת המקרים של $G$ ו-$H$ (פועלת או לא):\n$$P(Q)=P(Q/G\\cap H)P(G\\cap H)+P(Q/G\\cap\\overline H)P(G\\cap\\overline H)+P(Q/\\overline G\\cap H)P(\\overline G\\cap H)+P(Q/\\overline G\\cap\\overline H)P(\\overline G\\cap\\overline H),$$\nכאשר $P(G\\cap H)=pq$, $P(G\\cap\\overline H)=p(1-q)$, $P(\\overline G\\cap H)=(1-p)q$, והמחובר האחרון הוא $0$ (שני המעגלים דורשים אחת מהיחידות $G,H$). אחרי הצבה ופישוט מתקבל אותו ביטוי כמו $P(Q_2)$ (כל מסלול של $Q_1$ הוא גם מסלול של $Q_2$, ולכן $Q_1\\subseteq Q_2$):\n$$P(Q_1\\cup Q_2)=q\\,p^2\\left(1+3p-9p^3+8p^4-2p^5\\right)+(1-q)\\,p^3\\left(1+2p-4p^3+2p^4\\right).$$",
+   "solutionSource": "solved",
+   "official": false,
    "confidence": "high",
    "points": 6,
    "part": "ג",
-   "contextId": "c4",
-   "hold": "The printed unit H works with probability q, but the official solution computes with P(H)=p, so its polynomial p^3(2+4p-2p^2-13p^3+14p^4-4p^5) is the q=p case only (verified by exact enumeration and Monte Carlo). See ASK_ADIR."
+   "contextId": "c4"
   },
   {
    "num": 4,

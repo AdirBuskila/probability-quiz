@@ -9,10 +9,13 @@ Source: exam pp.1-3, handwritten official solutions on grid paper pp.4-17. Stude
 Transcription notes
 - Part keys: single letters. Q1 prints "א-1..א-3, ב-1, ב-2" -> a, b, c, d, e. Q2 prints "א-1..א-4, ב, ג" -> a..d, e, f.
   The printed label is the first bold token of each question text.
-- Q3 c HOLD: the official key is 1-1/e (about 0.63) but the exact value of the conditional probability with the
-  official a=3/2, b=1/4 is 1-(4/13)e^{-1/2} (about 0.81). See docs/ASK_ADIR.md, tools/verify/25A-C/check.py.
-- Q4 b, c HOLD: the printed unit H works with probability q, but the official polynomials are the q=p case
-  (the solution writes P(H)=p). They are correct only for q=p. Parts a and d do not depend on q and are shipped.
+- Q3 c TYPO RULING (arbiter 2026-10-18, the printed question wins): the official key is 1-1/e (about 0.63) but the
+  official formula with the official a=3/2, b=1/4 gives 1-(4/13)e^{-1/2} (about 0.81). Shipped the corrected value,
+  solutionSource "solved", official:false, "הפתרון הרשמי עם תיקון" prefix.
+- Q4 b, c TYPO RULING: the printed unit H works with probability q, but the official polynomials are the q=p case
+  (the solution writes P(H)=p). Shipped the official method with P(H)=q:
+  P(Q2) = P(Q1 u Q2) = q p^2(1+3p-9p^3+8p^4-2p^5) + (1-q) p^3(1+2p-4p^3+2p^4), solved, official:false, prefix.
+  Parts a and d do not depend on q and stay official. All verified exactly and by Monte Carlo in tools/verify/25A-C/check.py.
 - Q5: the official solution gives only the final formulas (no derivation); they are transcribed as printed.
 - Q1 / Q6 area items carry `region` data (REGIONS below; RAW_SCHEMA `region`).
 - Math never holds Hebrew.
@@ -151,14 +154,14 @@ $$F_X(t)=\begin{cases}0,&t<-1,\\\dfrac34(1+t)^2,&-1\le t<0,\\1-\dfrac14e^{-t},&t
 הגרף: אפס עד $-1$, עלייה פרבולית עד הערך $\frac34$ ב-$t=0$, אחר כך עלייה אקספוננציאלית שואפת ל-$1$.""",
     10, contextId="c3"))
 
-HOLD_Q3C = ("The official key is 1-1/e (about 0.63) but (F(1/2)-F(-1/2))/(1-F(-1/2)) with the official F "
-            "equals 1-(4/13)e^{-1/2} (about 0.81); confirmed by exact computation and Monte Carlo. See ASK_ADIR.")
-
 questions.append(Q(
     3, "ג", "continuous_rv",
     r"מהי ההסתברות המותנית $P(X<1/2\ /\ X>-1/2)$? (5 נק׳)",
-    r"""$$P(X<\tfrac12\mid X>-\tfrac12)=\frac{P(-\frac12<X<\frac12)}{P(X>-\frac12)}=\frac{F_X(\frac12)-F_X(-\frac12)}{1-F_X(-\frac12)}=1-\frac1e\approx0.63.$$""",
-    5, contextId="c3", hold=HOLD_Q3C))
+    r"""**הפתרון הרשמי עם תיקון:** בפתרון הרשמי התשובה הסופית היא $1-\frac1e\approx0.63$, אבל הצבת $F_X$ מסעיף ב בנוסחה הרשמית נותנת $1-\frac4{13}e^{-1/2}\approx0.81$. התיקון נבדק (חישוב מדויק וסימולציה).
+$$P(X<\tfrac12\mid X>-\tfrac12)=\frac{P(-\frac12<X<\frac12)}{P(X>-\frac12)}=\frac{F_X(\frac12)-F_X(-\frac12)}{1-F_X(-\frac12)}.$$
+מסעיף ב: $F_X(\frac12)=1-\frac14e^{-1/2}$ ו-$F_X(-\frac12)=\frac34\cdot\frac14=\frac3{16}$. לכן
+$$P(X<\tfrac12\mid X>-\tfrac12)=\frac{1-\frac14e^{-1/2}-\frac3{16}}{1-\frac3{16}}=\frac{\frac{13}{16}-\frac14e^{-1/2}}{\frac{13}{16}}=1-\frac4{13}e^{-1/2}\approx0.81.$$""",
+    5, contextId="c3", solutionSource="solved", official=False))
 
 # ------------------------------------------------------------------ Q4
 Q4_TXT = (r"סטודנט של המכון הטכנולוגי חולון הרכיב מעגל $\boldsymbol{Q_1}$ מיחידות $A$, $B$, $C$, $D$, $E$, $F$ ו-$G$ הפועלות ללא תלות אחת בשנייה בהסתברויות הזהות $p$." "\n"
@@ -178,28 +181,30 @@ $$P(Q_1/\overline E)=(p^2+p^3-p^5)\cdot p=p^3(1+p-p^3).$$
 $$P(Q_1)=p^4(2-p)(1+p-p^2)+(1-p)p^3(1+p-p^3)=p^3\left\{1+2p-4p^3+2p^4\right\}.$$""",
     8, contextId="c4"))
 
-HOLD_Q4 = ("The printed unit H works with probability q, but the official solution computes with P(H)=p, so its "
-           "polynomial p^3(2+4p-2p^2-13p^3+14p^4-4p^5) is the q=p case only (verified by exact enumeration and Monte Carlo). See ASK_ADIR.")
+FIX_Q4 = (r"**הפתרון הרשמי עם תיקון:** בשאלה כפי שהודפסה היחידה $H$ פועלת בהסתברות $q$, אבל בפתרון הרשמי הוצב $P(H)=p$, "
+          r"ולכן הפולינום הרשמי $p^3\left(2+4p-2p^2-13p^3+14p^4-4p^5\right)$ נכון רק במקרה $q=p$. "
+          r"הפתרון שלהלן הוא הפתרון הרשמי עם $P(H)=q$, ולכן התשובה הסופית שונה מהתשובה הרשמית (ומתלכדת איתה כאשר $q=p$). התיקון נבדק (חישוב מדויק וסימולציה)." "\n")
 
 questions.append(Q(
     4, "ב", "circuits",
     r"מהי ההסתברות שמעגל $Q_2$ פועל? (8 נק׳)",
-    r"""נפעל לפי נוסחת ההסתברות השלמה על $H$ (בפתרון הרשמי מציבים $P(H)=p$):
-$$P(Q_2)=P(Q_2/H)\,P(H)+P(Q_2/\overline H)\,P(\overline H),\qquad P(Q_2/\overline H)=P(Q_1).$$
+    FIX_Q4 + r"""נפעל לפי נוסחת ההסתברות השלמה על $H$:
+$$P(Q_2)=P(Q_2/H)\,P(H)+P(Q_2/\overline H)\,P(\overline H),\qquad P(H)=q,\ P(Q_2/\overline H)=P(Q_1).$$
 כאשר $H$ פועלת, נקבל את המעגל $\widetilde Q_2$: היחידות $G,F$ במקביל, כך שהן מתנהגות כיחידה אחת $J$ עם $P(J)=p(2-p)$ בטור עם $C$:
 $$P(Q_2/H)=p^2(1+3p-9p^3+8p^4-2p^5).$$
-הצבה בנוסחת ההסתברות השלמה נותנת
-$$P(Q_2)=p^3\left(2+4p-2p^2-13p^3+14p^4-4p^5\right).$$""",
-    8, contextId="c4", hold=HOLD_Q4))
+הצבה בנוסחת ההסתברות השלמה, עם $P(Q_1)$ מסעיף א, נותנת
+$$P(Q_2)=q\,p^2\left(1+3p-9p^3+8p^4-2p^5\right)+(1-q)\,p^3\left(1+2p-4p^3+2p^4\right).$$
+(עבור $q=p$ מתקבל $p^3\left(2+4p-2p^2-13p^3+14p^4-4p^5\right)$.)""",
+    8, contextId="c4", solutionSource="solved", official=False))
 
 questions.append(Q(
     4, "ג", "circuits",
     r"מהי ההסתברות שלפחות אחד המעגלים פעל? (6 נק׳)",
-    r"""נסמן $Q=Q_1\cup Q_2$ ונפעל לפי נוסחת ההסתברות השלמה על ארבעת המקרים של $G$ ו-$H$ (פועלת או לא):
+    FIX_Q4 + r"""נסמן $Q=Q_1\cup Q_2$ ונפעל לפי נוסחת ההסתברות השלמה על ארבעת המקרים של $G$ ו-$H$ (פועלת או לא):
 $$P(Q)=P(Q/G\cap H)P(G\cap H)+P(Q/G\cap\overline H)P(G\cap\overline H)+P(Q/\overline G\cap H)P(\overline G\cap H)+P(Q/\overline G\cap\overline H)P(\overline G\cap\overline H),$$
-כאשר המחובר האחרון הוא $0$ (שני המעגלים דורשים אחת מהיחידות $G,H$). אחרי הצבה ופישוט מתקבל אותו ביטוי כמו $P(Q_2)$:
-$$P(Q_1\cup Q_2)=p^3\left\{2+4p-2p^2-13p^3+14p^4-4p^5\right\}.$$""",
-    6, contextId="c4", hold=HOLD_Q4))
+כאשר $P(G\cap H)=pq$, $P(G\cap\overline H)=p(1-q)$, $P(\overline G\cap H)=(1-p)q$, והמחובר האחרון הוא $0$ (שני המעגלים דורשים אחת מהיחידות $G,H$). אחרי הצבה ופישוט מתקבל אותו ביטוי כמו $P(Q_2)$ (כל מסלול של $Q_1$ הוא גם מסלול של $Q_2$, ולכן $Q_1\subseteq Q_2$):
+$$P(Q_1\cup Q_2)=q\,p^2\left(1+3p-9p^3+8p^4-2p^5\right)+(1-q)\,p^3\left(1+2p-4p^3+2p^4\right).$$""",
+    6, contextId="c4", solutionSource="solved", official=False))
 
 questions.append(Q(
     4, "ד", "circuits",

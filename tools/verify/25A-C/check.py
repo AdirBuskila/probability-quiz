@@ -5,9 +5,11 @@ For every final answer two independent checks:
   EXACT : the official formula (at sample parameters) equals an independent exact computation
           (fractions / enumeration / sympy / numerical quadrature).
   MC    : Monte Carlo simulation (>= 10^6 trials) agrees with the official formula within 4 standard errors.
-Official keys are never changed here: a disagreement is reported as MISMATCH and the item is held:
-  Q3c  : official 1-1/e does not equal the exact conditional probability 1-(4/13)e^{-1/2}.
-  Q4b,c: the printed H works with probability q; the official solution uses P(H)=p, so its polynomial is the q=p case.
+Official keys that are wrong for the printed question are shown as MISMATCH and the corrected values are
+shipped under the typo ruling (solved, official:false); the shipped values are asserted exactly and by MC:
+  Q3c  : official 1-1/e; shipped 1-(4/13)e^{-1/2}.
+  Q4b,c: the printed H works with probability q; the official solution uses P(H)=p (the q=p case);
+         shipped P(Q2) = P(Q1 u Q2) = q p^2(1+3p-9p^3+8p^4-2p^5) + (1-q) p^3(1+2p-4p^3+2p^4).
 Output is ASCII only.
 """
 import itertools, math, sys
@@ -119,6 +121,11 @@ mismatch.append(("Q3c", "P(X<1/2 | X>-1/2)", "official 1-1/e=%.6f; exact (F(1/2)
                  % (off_key, ex_true, mc), ex_ok, mc_ok))
 rows.append(("Q3c", "exact value is 1-(4/13)e^{-1/2} (closed form)", abs(ex_true - (1 - 4 / 13 * math.exp(-0.5))) < 1e-12, True,
              "true=%.6f mc=%.6f" % (ex_true, mc)))
+# shipped (typo ruling): 1-(4/13)e^{-1/2}; exact by quadrature of the pdf, MC on the conditioning slice
+ship3c = 1 - 4 / 13 * math.exp(-0.5)
+num_q = integrate.quad(lambda x: aa * (1 + x) if x < 0 else bb * math.exp(-x), -0.5, 0.5, points=[0])[0]
+den_q = integrate.quad(lambda x: aa * (1 + x), -0.5, 0)[0] + integrate.quad(lambda x: bb * math.exp(-x), 0, np.inf)[0]
+rec("Q3c", "shipped P(X<1/2 | X>-1/2) = 1-(4/13)e^{-1/2}", ship3c, num_q / den_q, mc, math.sqrt(mc * (1 - mc) / den.sum()), tol=1e-9)
 
 # ============================================================ Q4   circuits (bridge-type networks)
 p, q = sp.symbols("p q", positive=True)
@@ -169,10 +176,44 @@ q_expr = sp.simplify(Q2p)
 Q2_via_cond = sp.expand(q * reliab({**E1, "H": ("d2", "t")}, cm2, {**pr1, "H": 1}, "s", "t") + (1 - q) * Q1p)
 rows.append(("Q4b", "general-q form: P(Q2) = q P(Q2|H) + (1-q) P(Q1)", sp.expand(Q2p - Q2_via_cond) == 0, True, "sympy"))
 rows.append(("Q4c", "Q1 subset of Q2 (adding H only adds paths): P(Q1 u Q2) = P(Q2)", True, True, "monotone network"))
+# shipped (typo ruling): P(Q2) = P(Q1 u Q2) = q p^2(1+3p-9p^3+8p^4-2p^5) + (1-q) p^3(1+2p-4p^3+2p^4)
+off_Q2H = sp.expand(p ** 2 * (1 + 3 * p - 9 * p ** 3 + 8 * p ** 4 - 2 * p ** 5))
+ship_Q2 = sp.expand(q * off_Q2H + (1 - q) * off_Q1)
+rows.append(("Q4b", "official P(Q2|H) = p^2(1+3p-9p^3+8p^4-2p^5) (enumeration with H on)",
+             sp.expand(reliab({**E1, "H": ("d2", "t")}, cm2, {**pr1, "H": 1}, "s", "t") - off_Q2H) == 0, True, "sympy"))
+rows.append(("Q4b", "shipped P(Q2) = q P(Q2|H) + (1-q) P(Q1) equals the exact network reliability (all p, q)",
+             sp.expand(Q2p - ship_Q2) == 0, True, "sympy"))
+rows.append(("Q4b", "shipped P(Q2) reduces to the official polynomial at q=p", sp.expand(ship_Q2.subs(q, p) - off_Q2) == 0, True, "sympy"))
+
+
+def conn_state(edges, on):
+    par = {}
+
+    def f(a):
+        par.setdefault(a, a)
+        while par[a] != a:
+            a = par[a]
+        return a
+    for c, (u, v) in edges.items():
+        if on.get(c):
+            par[f(u)] = f(v)
+    return f("s") == f("t")
+
+
+Qu = 0
+for st_ in itertools.product((0, 1), repeat=len(cm2)):
+    on_ = dict(zip(cm2, st_))
+    if conn_state(E1, on_) or conn_state(E2, on_):
+        w_ = 1
+        for c in cm2:
+            w_ *= pr2[c] if on_[c] else 1 - pr2[c]
+        Qu += w_
+rows.append(("Q4c", "shipped P(Q1 u Q2) equals the exact union probability (2^8 states, all p, q)",
+             sp.expand(Qu - ship_Q2) == 0, True, "sympy"))
 rows.append(("Q4d", "P(Q2|Q1) = 1 (Q1 subset of Q2): P(Q1 and Q2)=P(Q1) for any q",
              sp.simplify(Q1p / Q1p) == 1, True, "exact"))
 # MC on states with H=p and with generic q
-for pv, qv in ((0.6, 0.6), (0.7, 0.4)):
+for pv, qv in ((0.6, 0.6), (0.7, 0.4), (0.5, 0.9)):
     comp = {c: rng.random(N) < pv for c in cm1}
     H = rng.random(N) < qv
 
@@ -201,7 +242,9 @@ for pv, qv in ((0.6, 0.6), (0.7, 0.4)):
         off_here = float(off_Q2.subs(p, pv))
         mismatch.append(("Q4b", "p=%.1f q=%.1f" % (pv, qv), "official polynomial=%.6f vs exact=%.6f mc=%.6f" % (off_here, ex2, float(q2m.mean())),
                          abs(off_here - ex2) < 1e-9, abs(float(q2m.mean()) - off_here) <= 4 * se_p(ex2)))
-    rec("Q4c", "P(Q1 or Q2) = P(Q2) p=%.1f q=%.1f (MC of the union)" % (pv, qv), ex2, ex2, float((q1m | q2m).mean()), se_p(ex2), tol=1e-12)
+    sh2 = float(ship_Q2.subs({p: pv, q: qv}))
+    rec("Q4b", "shipped P(Q2) p=%.1f q=%.1f" % (pv, qv), sh2, ex2, float(q2m.mean()), se_p(ex2), tol=1e-12)
+    rec("Q4c", "shipped P(Q1 or Q2) p=%.1f q=%.1f (MC of the union)" % (pv, qv), sh2, float(Qu.subs({p: pv, q: qv})), float((q1m | q2m).mean()), se_p(ex2), tol=1e-12)
     rec("Q4d", "P(Q2|Q1) = 1 p=%.1f q=%.1f" % (pv, qv), 1.0, 1.0, float((q1m & q2m).sum() / q1m.sum()), 1e-9)
 
 # ============================================================ Q5   n numbers without replacement from {1..N}
@@ -256,7 +299,7 @@ bad = [r for r in rows if not (r[2] and r[3])]
 for item, what, ex, mc, det in rows:
     print("%-5s ex=%-4s mc=%-4s %s | %s" % (item, "ok" if ex else "FAIL", "ok" if mc else "FAIL", what, det))
 print()
-print("Expected MISMATCHES (official key vs printed question) -> held:")
+print("Expected MISMATCHES (official key vs printed question) -> corrected values shipped (typo ruling):")
 for item, what, det, ex_ok, mc_ok in mismatch:
     print("  %-5s %s | %s | exact=%s mc=%s" % (item, what, det, "match" if ex_ok else "MISMATCH", "match" if mc_ok else "MISMATCH"))
 print()
