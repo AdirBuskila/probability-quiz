@@ -19,6 +19,9 @@ Transcription notes
   question text itself does not state it. Q5(ג) is stated in the official solution with p~ = (1-p)/(1-pQ).
 """
 import json, pathlib
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from verified import src as _vsrc
 
 OUT = pathlib.Path(__file__).resolve().parents[1] / "raw" / "24B-B.json"
 CODE = "24B-B"
@@ -416,8 +419,8 @@ def APPLY(questions):
             assert tot == q["points"], (k, tot, q["points"])
             assert 2 <= len(s[2]) <= 5, (k, len(s[2]))
             q["rubric"], q["pitfalls"], q["steps"] = s[0], s[1], s[2]
-            q["rubricSource"] = "ai-draft"
-            q["stepsSource"] = "ai-draft"
+            q["rubricSource"] = _vsrc(CODE)
+            q["stepsSource"] = _vsrc(CODE)
     assert set(S) <= {(q["num"], q.get("part")) for q in questions}, "steps for unknown items"
 
 

@@ -15,6 +15,9 @@ Transcription notes
 - Q1 area items carry `region` (area figure) and, with the other numeric parts, `sim`: see EXTRAS near the end.
 """
 import json, pathlib
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from verified import src as _vsrc
 
 OUT = pathlib.Path(__file__).resolve().parents[1] / "raw" / "24A-D.json"
 CODE = "24A-D"
@@ -617,8 +620,8 @@ for _q in questions:
     _s = S.get((_q["num"], _q.get("part")))
     if _s and not _q.get("hold"):
         _q["rubric"], _q["pitfalls"], _q["steps"] = _s
-        _q["rubricSource"] = "ai-draft"
-        _q["stepsSource"] = "ai-draft"
+        _q["rubricSource"] = _vsrc(CODE)
+        _q["stepsSource"] = _vsrc(CODE)
 
 
 OUT.parent.mkdir(parents=True, exist_ok=True)

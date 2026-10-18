@@ -1,0 +1,3 @@
+# sittings whose AI rubric/steps passed the blind refuter (orchestrator-maintained; see tools/gen/verified.py)
+24A-C
+24A-D

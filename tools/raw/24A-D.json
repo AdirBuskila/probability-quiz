@@ -130,8 +130,8 @@
      "explain": "$\\frac12\\cdot\\frac23\\cdot\\frac23=\\frac29$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -246,8 +246,8 @@
      "explain": "$\\frac23\\cdot\\frac23=\\frac49$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -351,8 +351,8 @@
      "explain": "$\\frac{4/9}{2/3}=\\frac23$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -427,8 +427,8 @@
      "explain": "$\\frac5{36}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -510,8 +510,8 @@
      "explain": "$\\frac{10}{216}=\\frac5{108}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -595,8 +595,8 @@
      "explain": "$\\frac{1/216}{1/36}=\\frac16$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -680,8 +680,8 @@
      "explain": "$\\frac{1/54}{5/12}=\\frac{12}{270}=\\frac2{45}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -765,8 +765,8 @@
      "explain": "$\\frac{1/108}{1/6}=\\frac1{18}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -865,8 +865,8 @@
      "explain": "$\\mathbb E[D^2]=0.18$, ו-$0.18-0.18^2=0.1476$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -960,8 +960,8 @@
      "explain": "$0.21+0.24=0.45$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1050,8 +1050,8 @@
      "explain": "$-0.36+0.162=-0.198=pq(p+q-2)$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1128,8 +1128,8 @@
      "explain": "$0$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1225,8 +1225,8 @@
      "explain": "$a=\\frac14$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1314,8 +1314,8 @@
      "explain": "$1-\\frac{(2-1)^2}8=\\frac78$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1395,8 +1395,8 @@
      "explain": "$\\frac{33/128}{3/4}=\\frac{11}{32}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -1478,8 +1478,8 @@
      "explain": "$\\binom62\\cdot\\frac1{16}\\cdot\\left(\\frac34\\right)^4=15\\cdot\\frac{81}{4096}=\\frac{1215}{4096}\\approx0.2966$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -1865,8 +1865,8 @@
      "explain": "$\\frac{e^{-1}}2\\approx0.18394$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -2253,8 +2253,8 @@
      "explain": "$\\frac{e^{-3}\\cdot9}{2}\\approx0.22404$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2371,8 +2371,8 @@
      "explain": "$0.6\\cdot0.7056+0.4\\cdot0.5904=0.65952$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2486,8 +2486,8 @@
      "explain": "$0.6+0.4\\cdot0.5904=0.83616$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2605,8 +2605,8 @@
      "explain": "$\\frac{P(Q_1)}{P(Q_1)}=1$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   }
  ]
 }

@@ -6,6 +6,9 @@ exam dict is written. Every expected value stored here is re-derived independent
 Monte Carlo) in tools/verify/<CODE>/steps_check.py, which reads the raw JSON back and compares.
 """
 import math
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from verified import src as _vsrc
 from fractions import Fraction
 
 LETTERS = "abcdefgh"
@@ -59,7 +62,7 @@ def apply(questions, data, code):
         q["rubric"] = d["rubric"]
         q["pitfalls"] = d["pitfalls"]
         q["steps"] = d["steps"]
-        q.update({"rubricSource": "ai-draft", "stepsSource": "ai-draft"})
+        q.update({"rubricSource": _vsrc(code), "stepsSource": _vsrc(code)})
         seen.add(k)
     missing = set(data) - seen
     assert not missing, f"{code}: steps for unknown items {missing}"
