@@ -7,7 +7,9 @@ Source: exam pp.1-3, official handwritten solutions pp.4-15.
 Transcription notes
 - Part keys are single letters (printed label is the bold token at the start of the question text).
   Q4 prints ג-1, ג-2 -> keys ג ד. Q5 prints א-1, א-2, א-3, ב -> keys א ב ג ד.
-- Q3 bonus (key ה, printed "סעיף בונוס", cov[D,T]) has NO official solution in the source -> hold "no-key".
+- Q3 bonus (key ה, printed "סעיף בונוס", cov[D,T]) has NO official solution in the source -> solved
+  (solutionSource "solved", official:false): cov[D,T] = 2np^2(1-p), verified exactly and by Monte Carlo in
+  tools/verify/24A-E/check.py (same question and answer as 24B-C Q3e).
 - Q2(ד) asks to find the roots; the official solution only gives the probability (1/6). The roots (-1 and -5) are
   added as a one-line completion computed from the official event B∩C={35}, and marked as such.
 - The portrait and money-bag pictures in the Q5 header are decoration and are not shipped.
@@ -135,12 +137,19 @@ questions.append(Q(
 $$T\sim\mathrm{Bin}(2n,p).$$""",
     5, contextId="c3"))
 
-questions.append({
-    "num": 3, "part": "ה", "kind": "computation", "topic": "joint_discrete", "points": 5,
-    "question": r"**סעיף בונוס** (אין חובה לפתור!): חשבו את השונות המשותפת $\operatorname{cov}[D,T]$ של משתנים חדשים $D$ ו-$T$.",
-    "contextId": "c3",
-    "hold": "no-key",
-})
+questions.append(Q(
+    3, "ה", "joint_discrete",
+    r"**סעיף בונוס** (אין חובה לפתור!): חשבו את השונות המשותפת $\operatorname{cov}[D,T]$ של משתנים חדשים $D$ ו-$T$.",
+    r"""**פתרון (אין פתרון רשמי לסעיף הבונוס).**
+לפי הבילינאריות של השונות המשותפת,
+$$\operatorname{cov}[D,T]=\operatorname{cov}\Big[\sum_{j=1}^nD_j,\ \sum_{k=1}^nT_k\Big]=\sum_{j=1}^n\sum_{k=1}^n\operatorname{cov}[D_j,T_k].$$
+עבור $j\ne k$ המשתנה $D_j$ תלוי רק בזוג $(X_j,Y_j)$ ו-$T_k$ רק בזוג $(X_k,Y_k)$, והזוגות בלתי תלויים, ולכן $\operatorname{cov}[D_j,T_k]=0$. נשארים רק האיברים $j=k$:
+$$\operatorname{cov}[D,T]=n\operatorname{cov}[D_1,T_1]=n\big(\operatorname{cov}[X_1Y_1,X_1]+\operatorname{cov}[X_1Y_1,Y_1]\big).$$
+מאחר ש-$X_1^2=X_1$ (ברנולי) ו-$X_1,Y_1$ בלתי תלויים,
+$$\operatorname{cov}[X_1Y_1,X_1]=\mathbb{E}[X_1^2Y_1]-\mathbb{E}[X_1Y_1]\,\mathbb{E}[X_1]=p\cdot p-p^2\cdot p=p^2(1-p),$$
+ומאותה סימטריה גם $\operatorname{cov}[X_1Y_1,Y_1]=p^2(1-p)$. לכן
+$$\operatorname{cov}[D,T]=2np^2(1-p).$$""",
+    5, contextId="c3", solutionSource="solved", official=False))
 
 # ------------------------------------------------------------------ Q4
 Q4_TXT = (r"נתבונן במשתנה מקרי $X$ בעל פונקציית הצפיפות מהצורה" "\n"

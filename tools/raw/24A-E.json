@@ -184,13 +184,16 @@
   },
   {
    "num": 3,
-   "part": "ה",
    "kind": "computation",
    "topic": "joint_discrete",
-   "points": 5,
    "question": "**סעיף בונוס** (אין חובה לפתור!): חשבו את השונות המשותפת $\\operatorname{cov}[D,T]$ של משתנים חדשים $D$ ו-$T$.",
-   "contextId": "c3",
-   "hold": "no-key"
+   "solution": "**פתרון (אין פתרון רשמי לסעיף הבונוס).**\nלפי הבילינאריות של השונות המשותפת,\n$$\\operatorname{cov}[D,T]=\\operatorname{cov}\\Big[\\sum_{j=1}^nD_j,\\ \\sum_{k=1}^nT_k\\Big]=\\sum_{j=1}^n\\sum_{k=1}^n\\operatorname{cov}[D_j,T_k].$$\nעבור $j\\ne k$ המשתנה $D_j$ תלוי רק בזוג $(X_j,Y_j)$ ו-$T_k$ רק בזוג $(X_k,Y_k)$, והזוגות בלתי תלויים, ולכן $\\operatorname{cov}[D_j,T_k]=0$. נשארים רק האיברים $j=k$:\n$$\\operatorname{cov}[D,T]=n\\operatorname{cov}[D_1,T_1]=n\\big(\\operatorname{cov}[X_1Y_1,X_1]+\\operatorname{cov}[X_1Y_1,Y_1]\\big).$$\nמאחר ש-$X_1^2=X_1$ (ברנולי) ו-$X_1,Y_1$ בלתי תלויים,\n$$\\operatorname{cov}[X_1Y_1,X_1]=\\mathbb{E}[X_1^2Y_1]-\\mathbb{E}[X_1Y_1]\\,\\mathbb{E}[X_1]=p\\cdot p-p^2\\cdot p=p^2(1-p),$$\nומאותה סימטריה גם $\\operatorname{cov}[X_1Y_1,Y_1]=p^2(1-p)$. לכן\n$$\\operatorname{cov}[D,T]=2np^2(1-p).$$",
+   "solutionSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "points": 5,
+   "part": "ה",
+   "contextId": "c3"
   },
   {
    "num": 4,

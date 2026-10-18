@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Verification harness for 24A-E (probability, reserve-duty moed 9.5.2024). Run: PYTHONUTF8=1 py tools/verify/24A-E/check.py
 Every final answer: EXACT (fractions / enumeration / sympy / quadrature) AND Monte Carlo (>=10^6 trials, 4 SE).
-Symbolic answers are checked at sample parameter values. Q3 bonus (cov[D,T]) has no key and is held, not checked.
+Symbolic answers are checked at sample parameter values. Q3 bonus (Q3e, cov[D,T]) has no key: shipped as solved, 2np^2(1-p), checked exactly and by MC.
 Output is ASCII only."""
 import itertools, math
 from fractions import Fraction as Fr
@@ -84,6 +84,18 @@ for n, p in ((3, Fr(3, 10)), (5, Fr(1, 2)), (4, Fr(4, 5))):
                 nxt[a + b] = nxt.get(a + b, Fr(0)) + va * vb
         conv = nxt
     rows.append(("Q3c", "convolution == Bin(n,p^2) n=%d" % n, all(conv[k] == math.comb(n, k) * p ** (2 * k) * (1 - p ** 2) ** (n - k) for k in conv), True, ""))
+    # Q3e (bonus, solved): cov[D,T] = 2 n p^2 (1-p); exact by enumerating all 2n Bernoulli bits
+    cov_ship = 2 * n * p ** 2 * (1 - p)
+    ED = ET = EDT = Fr(0)
+    for bits in itertools.product((0, 1), repeat=2 * n):
+        w = Fr(1); d = t = 0
+        for j in range(n):
+            a, b = bits[2 * j], bits[2 * j + 1]
+            w *= (p if a else 1 - p) * (p if b else 1 - p); d += a * b; t += a + b
+        ED += w * d; ET += w * t; EDT += w * d * t
+    Df = D.astype(float); Tf = T.astype(float)
+    sd = float(np.std((Df - Df.mean()) * (Tf - Tf.mean())) / math.sqrt(N))
+    rec("Q3e", "cov[D,T]=2np^2(1-p) n=%d p=%s" % (n, p), cov_ship, EDT - ED * ET, float(np.cov(Df, Tf)[0, 1]), sd)
 
 # ---------------- Q4: parabola pdf
 a_, b_ = sp.symbols("a b", positive=True)

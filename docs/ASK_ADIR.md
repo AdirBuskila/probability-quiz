@@ -13,13 +13,6 @@ Open questions for Adir. One entry per item; the orchestrator moves it to Resolv
 - Status: hold
 -->
 
-### 24A-E Q3 bonus (ה) - no official solution for cov[D,T]
-- Path: official PDF of sitting 24A-E (handwritten solutions)
-- Page: exam p.2 (Q3 bonus, 5 pts, optional); solutions end after Q3 ד on p.8
-- Question: the bonus part asks cov[D,T] for D = sum of D_j, T = sum of T_j; the official solution has no answer for it.
-- Needed: route to the solver (no-key); not a key dispute.
-- Status: hold (no-key; question text transcribed, not in the bank)
-
 ### 24B-C Q1 b - printed text says "shorter" but defines Z = max(X,Y)
 - Path: official PDF of sitting 24B-C
 - Page: exam p.1 (Q1 b)
@@ -70,6 +63,13 @@ Open questions for Adir. One entry per item; the orchestrator moves it to Resolv
 - Status: hold (key disagreement; question text transcribed, not in the bank)
 
 ## Resolved
+
+### 24A-E Q3 bonus (ה) - no official solution for cov[D,T]
+- Path: official PDF of sitting 24A-E (handwritten solutions)
+- Page: exam p.2 (Q3 bonus, 5 pts, optional); solutions end after Q3 ד on p.8
+- Question: the bonus part asks cov[D,T] for D = sum of D_j, T = sum of T_j; the official solution has no answer for it.
+- Needed: route to the solver (no-key); not a key dispute.
+- Status: resolved 2026-10-18 by the solver (no-key route). Shipped as solved, official:false: cov[D,T] = n cov[X_1Y_1, X_1+Y_1] = 2np^2(1-p) (pairs independent across j, X^2 = X). check.py asserts it exactly (full enumeration) and by Monte Carlo (2*10^6 trials) at (n,p) = (3,3/10), (5,1/2), (4,4/5). Same question and answer as 24B-C Q3 bonus.
 
 ### 24B-C Q6 a, b - official expansions contain arithmetic slips
 - Path: official PDF of sitting 24B-C, see sitting code only
