@@ -1,0 +1,105 @@
+{
+  "slug": "probability",
+  "titleHe": "הסתברות",
+  "descriptionHe": "תרגול מבחנים - הסתברות",
+  "accent": "#fdba74",
+  "accent2": "#7c3aed",
+  "sourceFolder": "C:/Users/Adir/Desktop/C24-BSC/שנה ב/סמסטר א/הסתברות",
+  "topics": [
+    [
+      "basics_events",
+      "מושגי יסוד ואלגברה של מאורעות"
+    ],
+    [
+      "combinatorics",
+      "קומבינטוריקה, דגימה עם ובלי החזרה"
+    ],
+    [
+      "conditional_bayes",
+      "הסתברות מותנית, שלמה ובייס"
+    ],
+    [
+      "independence",
+      "אי-תלות ומאורעות זרים"
+    ],
+    [
+      "discrete_rv",
+      "משתנה מקרי בדיד: תוחלת ושונות"
+    ],
+    [
+      "special_discrete",
+      "התפלגויות מיוחדות: בינומית, גאומטרית, פואסון, היפרגאומטרית"
+    ],
+    [
+      "joint_discrete",
+      "משתנה דו-ממדי בדיד, שונות משותפת ומקדם מתאם"
+    ],
+    [
+      "continuous_rv",
+      "משתנה רציף: צפיפות והתפלגות מצטברת"
+    ],
+    [
+      "uniform_geometric",
+      "התפלגות אחידה והסתברות גיאומטרית (שיטת השטח)"
+    ],
+    [
+      "exp_normal",
+      "מעריכית, נורמלית ומשפט הגבול המרכזי"
+    ],
+    [
+      "circuits",
+      "מעגלים חשמליים ואמינות מערכות"
+    ],
+    [
+      "minmax_transform",
+      "מינימום, מקסימום ופונקציות של משתנים"
+    ]
+  ],
+  "briefs": [],
+  "needHelp": [
+    {
+      "id": "geo",
+      "titleHe": "הסתברות גיאומטרית: שיטת השטח",
+      "icon": "📐",
+      "topic": "uniform_geometric",
+      "entryLabelHe": "צריך עזרה בשיטת השטח?"
+    },
+    {
+      "id": "pdf",
+      "titleHe": "משתנה רציף: צפיפות, התפלגות מצטברת ופרמטרים",
+      "icon": "📈",
+      "topic": "continuous_rv",
+      "entryLabelHe": "צריך עזרה בפונקציית צפיפות?"
+    },
+    {
+      "id": "circ",
+      "titleHe": "מעגלים חשמליים ואמינות",
+      "icon": "🔌",
+      "topic": "circuits",
+      "entryLabelHe": "צריך עזרה במעגלים?"
+    },
+    {
+      "id": "joint",
+      "titleHe": "משתנים בדידים משותפים, שונות משותפת ואי-תלות",
+      "icon": "🎲",
+      "topic": "joint_discrete",
+      "entryLabelHe": "צריך עזרה במשתנים משותפים?"
+    },
+    {
+      "id": "events",
+      "titleHe": "מאורעות, הסתברות מותנית ובייס",
+      "icon": "🔀",
+      "topic": "conditional_bayes",
+      "entryLabelHe": "צריך עזרה בהסתברות מותנית?"
+    },
+    {
+      "id": "which_model",
+      "titleHe": "איזה מודל זה? זיהוי ההתפלגות והכלי",
+      "icon": "🧭",
+      "topic": "special_discrete",
+      "entryLabelHe": "לא בטוחים איזה מודל להפעיל?"
+    }
+  ],
+  "storePrefix": "probability",
+  "includeDrafts": false
+}
