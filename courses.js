@@ -11539,9 +11539,9 @@ window.COURSES = {
         }
        ],
        "correctId": "b",
-       "explain": "**היפרגאומטרית $\\mathrm{Hyp}(12,7,4)$**: בוחרים בלי החזרה מאוסף סופי, ולכן ההרכב משתנה אחרי כל בחירה.\nלמה לא האחרות:\n✗ בינומית $\\mathrm{Bin}(4,\\frac7{12})$: היא מניחה שהסיכוי לאישה נשאר $\\frac7{12}$ בכל בחירה, אבל בלי החזרה הוא משתנה. היא נותנת $0.3$ בערך במקום $0.424$.\n✗ גאומטרית: אין כאן המתנה להצלחה ראשונה, מספר הבחירות קבוע.\n✗ פואסון $P(7/3)$: אין כאן אירועים נדירים בקצב; יש אוכלוסייה סופית קטנה, ולכן הפואסון לא מתאים.",
+       "explain": "**היפרגאומטרית $\\mathrm{Hyp}(12,7,4)$**: בוחרים בלי החזרה מאוסף סופי, ולכן ההרכב משתנה אחרי כל בחירה.\nלמה לא האחרות:\n✗ בינומית $\\mathrm{Bin}(4,\\frac7{12})$: היא מניחה שהסיכוי לאישה נשאר $\\frac7{12}$ בכל בחירה, אבל בלי החזרה הוא משתנה. היא נותנת $0.354$ במקום $0.424$.\n✗ גאומטרית: אין כאן המתנה להצלחה ראשונה, מספר הבחירות קבוע.\n✗ פואסון $P(7/3)$: אין כאן אירועים נדירים בקצב; יש אוכלוסייה סופית קטנה, ולכן הפואסון לא מתאים.",
        "promptHtml": "ועדה של 4 אנשים נבחרת באקראי מתוך 7 נשים ו-5 גברים (אף אחד לא יכול להיבחר פעמיים). מהי ההסתברות שבוועדה בדיוק 2 נשים?<br><br>איזה מודל או כלי נכון לשאלה הזאת?",
-       "explainHtml": "<strong>היפרגאומטרית <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mrow><mi mathvariant=\"normal\">H</mi><mi mathvariant=\"normal\">y</mi><mi mathvariant=\"normal\">p</mi></mrow><mo stretchy=\"false\">(</mo><mn>12</mn><mo separator=\"true\">,</mo><mn>7</mn><mo separator=\"true\">,</mo><mn>4</mn><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">\\mathrm{Hyp}(12,7,4)</annotation></semantics></math></span></strong>: בוחרים בלי החזרה מאוסף סופי, ולכן ההרכב משתנה אחרי כל בחירה.<br>למה לא האחרות:<br>✗ בינומית <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mrow><mi mathvariant=\"normal\">B</mi><mi mathvariant=\"normal\">i</mi><mi mathvariant=\"normal\">n</mi></mrow><mo stretchy=\"false\">(</mo><mn>4</mn><mo separator=\"true\">,</mo><mfrac><mn>7</mn><mn>12</mn></mfrac><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">\\mathrm{Bin}(4,\\frac7{12})</annotation></semantics></math></span>: היא מניחה שהסיכוי לאישה נשאר <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mfrac><mn>7</mn><mn>12</mn></mfrac></mrow><annotation encoding=\"application/x-tex\">\\frac7{12}</annotation></semantics></math></span> בכל בחירה, אבל בלי החזרה הוא משתנה. היא נותנת <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>0.3</mn></mrow><annotation encoding=\"application/x-tex\">0.3</annotation></semantics></math></span> בערך במקום <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>0.424</mn></mrow><annotation encoding=\"application/x-tex\">0.424</annotation></semantics></math></span>.<br>✗ גאומטרית: אין כאן המתנה להצלחה ראשונה, מספר הבחירות קבוע.<br>✗ פואסון <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>P</mi><mo stretchy=\"false\">(</mo><mn>7</mn><mi mathvariant=\"normal\">/</mi><mn>3</mn><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">P(7/3)</annotation></semantics></math></span>: אין כאן אירועים נדירים בקצב; יש אוכלוסייה סופית קטנה, ולכן הפואסון לא מתאים."
+       "explainHtml": "<strong>היפרגאומטרית <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mrow><mi mathvariant=\"normal\">H</mi><mi mathvariant=\"normal\">y</mi><mi mathvariant=\"normal\">p</mi></mrow><mo stretchy=\"false\">(</mo><mn>12</mn><mo separator=\"true\">,</mo><mn>7</mn><mo separator=\"true\">,</mo><mn>4</mn><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">\\mathrm{Hyp}(12,7,4)</annotation></semantics></math></span></strong>: בוחרים בלי החזרה מאוסף סופי, ולכן ההרכב משתנה אחרי כל בחירה.<br>למה לא האחרות:<br>✗ בינומית <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mrow><mi mathvariant=\"normal\">B</mi><mi mathvariant=\"normal\">i</mi><mi mathvariant=\"normal\">n</mi></mrow><mo stretchy=\"false\">(</mo><mn>4</mn><mo separator=\"true\">,</mo><mfrac><mn>7</mn><mn>12</mn></mfrac><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">\\mathrm{Bin}(4,\\frac7{12})</annotation></semantics></math></span>: היא מניחה שהסיכוי לאישה נשאר <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mfrac><mn>7</mn><mn>12</mn></mfrac></mrow><annotation encoding=\"application/x-tex\">\\frac7{12}</annotation></semantics></math></span> בכל בחירה, אבל בלי החזרה הוא משתנה. היא נותנת <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>0.354</mn></mrow><annotation encoding=\"application/x-tex\">0.354</annotation></semantics></math></span> במקום <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>0.424</mn></mrow><annotation encoding=\"application/x-tex\">0.424</annotation></semantics></math></span>.<br>✗ גאומטרית: אין כאן המתנה להצלחה ראשונה, מספר הבחירות קבוע.<br>✗ פואסון <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>P</mi><mo stretchy=\"false\">(</mo><mn>7</mn><mi mathvariant=\"normal\">/</mi><mn>3</mn><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">P(7/3)</annotation></semantics></math></span>: אין כאן אירועים נדירים בקצב; יש אוכלוסייה סופית קטנה, ולכן הפואסון לא מתאים."
       },
       "sim": {
        "kind": "urn",
@@ -15865,7 +15865,7 @@ window.COURSES = {
           "k": 32
          },
          {
-          "p": 7.452150008191438e-12,
+          "p": 7.451150807469276e-12,
           "n": 33,
           "k": 33
          }
@@ -18864,7 +18864,7 @@ window.COURSES = {
           "k": 32
          },
          {
-          "p": 7.452150008191438e-12,
+          "p": 7.451150807469276e-12,
           "n": 33,
           "k": 33
          }
@@ -21863,7 +21863,7 @@ window.COURSES = {
           "k": 32
          },
          {
-          "p": 7.452150008191438e-12,
+          "p": 7.451150807469276e-12,
           "n": 33,
           "k": 33
          }
@@ -26717,7 +26717,7 @@ window.COURSES = {
           "k": 28
          },
          {
-          "p": 2.5579538487363607e-12,
+          "p": 2.557176692619123e-12,
           "n": 29,
           "k": 29
          }
@@ -29066,7 +29066,7 @@ window.COURSES = {
           "k": 28
          },
          {
-          "p": 2.5579538487363607e-12,
+          "p": 2.557176692619123e-12,
           "n": 29,
           "k": 29
          }

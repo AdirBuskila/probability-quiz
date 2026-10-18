@@ -1,0 +1,16 @@
+{
+  "course": "events",
+  "refuter": "blind refuter B (own exact enumeration with fractions + own numpy Monte Carlo; authors' check scripts not imported)",
+  "verdict": "agree",
+  "questions_checked": 51,
+  "numeric": "all numeric keys agree with my exact values and MC (urn, dice, Bayes, divisibility counts)",
+  "mcq": "all mcq keys agree, one defensible option each (C01-Q2/Q3/Q5 b, C02-Q5 a, C03-Q3/Q5 a, C04-Q2/Q5 a, C05-Q4 a, C06-Q6 c, C07-Q5 a [q must be >= 0.1], C08-Q1/Q3/Q4 a, C09-Q2 a)",
+  "findbug": "C01-Q6 line 2, C02-Q6 line 2, C04-Q3 line 2, C05-Q5 line 2, C06-Q5 line 2, C07-Q3 line 2, C08-Q5 line 2, C09-Q5 line 1 (0-based); each has exactly one wrong line, all other lines true; all agree with the key",
+  "lessons": "recomputed A_8=112, A_4=225, A_2=450 ranges, p/q/s cell table, urn examples 3/28 and 9/64, 0.032/0.625 Bayes example; all correct",
+  "sims": "all sims model the stated experiment (joint cell probabilities re-derived by hand); sim checks pass",
+  "teach_before_ask": "ok (symmetry P(R_k)=D/N and P(R3/R2)=(D-1)/(N-1) taught in C09 lesson before use)",
+  "boss": "C04/C07/C09 bank pulls 25A-C-Q2a, 25A-C-Q2b, 24B-B-Q2c and boss 24A-B-Q2b, 25A-A-Q2d, 25A-B-Q2a, 25A-B-Q2e, 25B-A-Q2d, 24B-B-Q2d exist, topics conditional_bayes / basics_events / independence, sittings all verified",
+  "disagreements": [],
+  "fixed": [],
+  "notes": ["no order steps in this course"]
+}

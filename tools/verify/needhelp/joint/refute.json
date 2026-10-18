@@ -1,0 +1,15 @@
+{
+  "course": "joint",
+  "refuter": "blind refuter B (own exact enumeration with fractions + own numpy Monte Carlo, 2e6 trials; authors' check scripts not imported)",
+  "verdict": "agree",
+  "questions_checked": 45,
+  "numeric": "all 31 numeric keys agree with my exact values (tight, within 0.0006) and with my MC within 4.5 SE",
+  "mcq": "all 14 mcq keys agree; each has exactly one defensible option (C01-Q2 b, C01-Q4 a, C02-Q3 a, C02-Q5 a, C04-Q6 a, C05-Q1/2/4/5/6 a, C06-Q4 a, C08-Q3 a, C08-Q5 a)",
+  "lessons": "recomputed lesson tables and examples (3-toss table with p, marginals, E/Cov example, conditional example, A=[[X,1],[1,Y]] example Cov=pq(2-p-q)); all correct",
+  "sims": "every sim models the stated experiment (checked expr/event/given per question); sim checks pass",
+  "teach_before_ask": "ok",
+  "boss": "24S-A-Q3a, 24S-A-Q3b, 24A-C-Q3a, 24A-C-Q3d, 25S-C-Q3e, 25A-B-Q6b exist in questions.json, topic joint_discrete, sittings 24S-A 24A-C 25S-C 25A-B all listed in verified_sittings.txt",
+  "disagreements": [],
+  "fixed": [],
+  "notes": ["no order or findbug steps in this course"]
+}

@@ -1,0 +1,16 @@
+{
+  "course": "which_model",
+  "refuter": "blind refuter B (own exact computation with fractions/math.comb + own numpy Monte Carlo of the raw experiment, incl. size-biased, thinning, splitting, lotto, geometric parity; authors' check scripts not imported)",
+  "verdict": "agree (one wording fix)",
+  "questions_checked": 48,
+  "numeric": "all 25 numeric keys agree with exact values and MC",
+  "choice": "all 22 'which model?' steps have exactly one model that fits the story as written (C01 Q1 Bin, Q3 Hyp, Q5 Hyp; C02 G, Bin, NegBin; C03 Poisson, Poisson approx; C04 thinning, Bin(10,pq); C05 indicators x3; C06 size bias x3; C07 total prob, Bayes, total prob; C08 Poisson split, Hyp, geometric parity). Every distractor reason is true; I recomputed every number quoted in distractor reasons (0.5 vs 0.432, 0.386, 0.276, 0.264, 0.597/0.594, 0.311, 0.011, 0.268, 0.345, 0.615, 0.4, 0.9, 0.25, 0.214, 0.089, 0.422, 0.0002, 0.041, 0.049, 0.222, 0.444, 2.7, 2.5, 26.67, 20, 30, 0.2205, 1.5, 2.5, 5).",
+  "minor_note": "C03-Q4 option a (exact Bin(100,0.02)) is only wrong because the stem demands the rare-events approximation; the stem says so explicitly, accepted.",
+  "lessons": "recomputed lesson examples (0.36 vs 0.3; 1/8; e^-1; size-bias 2.5; parity 1/3; 0.65, 0.4/0.65); correct",
+  "sims": "all sims model the stated experiment; sim checks pass",
+  "teach_before_ask": "ok",
+  "boss": "24A-A-Q5b (thinning), 25B-A-Q6b (Poisson thinning), 26A-B-Q2b (geometric even), 24A-B-Q5a (Bin with replacement), 25A-B-Q5b (urn, P(R_2) without info on first draw = D/N) all exist, topic special_discrete, sittings 24A-A 25B-A 26A-B 24A-B 25A-B all in verified_sittings.txt. The stored id 25A-B-Q5b is correct and on-topic: it is the urn P(R2) question that C07/C09 teach (total probability or symmetry). It is the urn sibling of 25A-B-Q5a, not of the chairs question Q6b (which belongs to joint).",
+  "disagreements": [],
+  "fixed": ["L1P2 distractor Bin(4,7/12): reason said it gives '0.3 בערך', true value is 0.354; changed to $0.354$ in defs.py and rebuilt C01.js"],
+  "notes": ["no order or findbug steps in this course"]
+}
