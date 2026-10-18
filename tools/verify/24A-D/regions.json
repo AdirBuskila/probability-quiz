@@ -1,0 +1,6 @@
+{
+  "_note": "Region data for the Q1-type (uniform/area) items of 24A-D. RAW_SCHEMA has no `region` field, so it lives here. Ids are built question ids. Unit square (X1, X2) uniform; the plot uses x = X1, y = X2.",
+  "24A-D-Q1a": {"sampleSpace": {"x": [0, 1], "y": [0, 1]}, "distribution": "uniform on the sample space", "event": ["x + y <= 2/3"], "conditioning": null, "areaFormula": "(1/2)(2/3)^2 = 2/9"},
+  "24A-D-Q1b": {"sampleSpace": {"x": [0, 1], "y": [0, 1]}, "distribution": "uniform on the sample space", "event": ["x < 2/3", "y < 2/3"], "conditioning": null, "areaFormula": "(2/3)^2 = 4/9"},
+  "24A-D-Q1c": {"sampleSpace": {"x": [0, 1], "y": [0, 1]}, "distribution": "uniform on the sample space", "event": ["x + y <= 1"], "conditioning": ["x <= 2/3"], "areaFormula": "(1/2 - 1/18) / (2/3) = 2/3"}
+}
