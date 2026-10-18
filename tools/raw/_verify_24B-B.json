@@ -1,0 +1,871 @@
+{
+ "examCode": "24B-B",
+ "refuter": "claude (blind re-derivation, independent exact + Monte Carlo)",
+ "counts": {
+  "agree": 22,
+  "disagree": 0,
+  "unclear": 0
+ },
+ "answers": {
+  "1a": {
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "myAnswer": "1/5"
+  },
+  "1b": {
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "myAnswer": "3/4"
+  },
+  "1c": {
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "myAnswer": "1/4"
+  },
+  "1d": {
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "myAnswer": "(1+p)/2"
+  },
+  "1e": {
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "myAnswer": "1/2 (any p)"
+  },
+  "2a": {
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "myAnswer": "D/N"
+  },
+  "2b": {
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "myAnswer": "D/N"
+  },
+  "2c": {
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "myAnswer": "D/N"
+  },
+  "2d": {
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "myAnswer": "(D-1)/(N-1)"
+  },
+  "3a": {
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "myAnswer": "4/9"
+  },
+  "3b": {
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "myAnswer": "1/3"
+  },
+  "3c": {
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "myAnswer": "1/9"
+  },
+  "3d": {
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "myAnswer": "1/2"
+  },
+  "4a": {
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "myAnswer": "a=1/3, b=1"
+  },
+  "4b": {
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "myAnswer": "F=(1+3t)^2/6 on [-1/3,0), 1/3-(1-3t)^2/6 on [0,1/3), t on [1/3,1)"
+  },
+  "4c": {
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "myAnswer": "41/72"
+  },
+  "5a": {
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "myAnswer": "Bin(N,p)"
+  },
+  "5b": {
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "myAnswer": "Bin(N,pQ), Q=1/365 (assumed, not printed)"
+  },
+  "5c": {
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "myAnswer": "n-k ~ Bin(N-k, p(1-Q)/(1-pQ))"
+  },
+  "6a": {
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "myAnswer": "2p^2+2p^3-5p^4+2p^5"
+  },
+  "6b": {
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "myAnswer": "(2p-p^2)(1-(1-p)^3)=6p^2-9p^3+5p^4-p^5"
+  },
+  "6c": {
+   "agrees": true,
+   "confident": true,
+   "transcriptionIssues": "",
+   "myAnswer": "p(3p^2-9p+7)/((2-p)(p^2-3p+3))"
+  }
+ },
+ "items": {
+  "1a": {
+   "verdict": "agree",
+   "myAnswer": "1/5",
+   "solution": "agree",
+   "rubric": "agree (points sum to the question points; items match the question)",
+   "pitfalls": "agree (each describes a real error with the stated wrong value)",
+   "steps": [
+    {
+     "index": 0,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    }
+   ],
+   "region": "agree (event/given match the printed event; exact recomputed)",
+   "sim": "agree (models the printed experiment; exact recomputed)",
+   "note": ""
+  },
+  "1b": {
+   "verdict": "agree",
+   "myAnswer": "3/4",
+   "solution": "agree",
+   "rubric": "agree (points sum to the question points; items match the question)",
+   "pitfalls": "agree (each describes a real error with the stated wrong value)",
+   "steps": [
+    {
+     "index": 0,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    }
+   ],
+   "region": "agree (event/given match the printed event; exact recomputed)",
+   "sim": "agree (models the printed experiment; exact recomputed)",
+   "note": ""
+  },
+  "1c": {
+   "verdict": "agree",
+   "myAnswer": "1/4",
+   "solution": "agree",
+   "rubric": "agree (points sum to the question points; items match the question)",
+   "pitfalls": "agree (each describes a real error with the stated wrong value)",
+   "steps": [
+    {
+     "index": 0,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    }
+   ],
+   "region": "agree (event/given match the printed event; exact recomputed)",
+   "sim": "agree (models the printed experiment; exact recomputed)",
+   "note": ""
+  },
+  "1d": {
+   "verdict": "agree",
+   "myAnswer": "(1+p)/2",
+   "solution": "agree",
+   "rubric": "agree (points sum to the question points; items match the question)",
+   "pitfalls": "agree (each describes a real error with the stated wrong value)",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    }
+   ],
+   "region": "none",
+   "sim": "agree (models the printed experiment; exact recomputed)",
+   "note": ""
+  },
+  "1e": {
+   "verdict": "agree",
+   "myAnswer": "1/2 (any p)",
+   "solution": "agree",
+   "rubric": "agree (points sum to the question points; items match the question)",
+   "pitfalls": "agree (each describes a real error with the stated wrong value)",
+   "steps": [
+    {
+     "index": 0,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    }
+   ],
+   "region": "none",
+   "sim": "agree (models the printed experiment; exact recomputed)",
+   "note": ""
+  },
+  "2a": {
+   "verdict": "agree",
+   "myAnswer": "D/N",
+   "solution": "agree",
+   "rubric": "agree (points sum to the question points; items match the question)",
+   "pitfalls": "agree (each describes a real error with the stated wrong value)",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    }
+   ],
+   "region": "none",
+   "sim": "agree (models the printed experiment; exact recomputed)",
+   "note": ""
+  },
+  "2b": {
+   "verdict": "agree",
+   "myAnswer": "D/N",
+   "solution": "agree",
+   "rubric": "agree (points sum to the question points; items match the question)",
+   "pitfalls": "agree (each describes a real error with the stated wrong value)",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 4,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    }
+   ],
+   "region": "none",
+   "sim": "agree (models the printed experiment; exact recomputed)",
+   "note": ""
+  },
+  "2c": {
+   "verdict": "agree",
+   "myAnswer": "D/N",
+   "solution": "agree",
+   "rubric": "agree (points sum to the question points; items match the question)",
+   "pitfalls": "agree (each describes a real error with the stated wrong value)",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    }
+   ],
+   "region": "none",
+   "sim": "agree (models the printed experiment; exact recomputed)",
+   "note": ""
+  },
+  "2d": {
+   "verdict": "agree",
+   "myAnswer": "(D-1)/(N-1)",
+   "solution": "agree",
+   "rubric": "agree (points sum to the question points; items match the question)",
+   "pitfalls": "agree (each describes a real error with the stated wrong value)",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    }
+   ],
+   "region": "none",
+   "sim": "agree (models the printed experiment; exact recomputed)",
+   "note": ""
+  },
+  "3a": {
+   "verdict": "agree",
+   "myAnswer": "4/9",
+   "solution": "agree",
+   "rubric": "agree (points sum to the question points; items match the question)",
+   "pitfalls": "agree (each describes a real error with the stated wrong value)",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    }
+   ],
+   "region": "none",
+   "sim": "agree (models the printed experiment; exact recomputed)",
+   "note": ""
+  },
+  "3b": {
+   "verdict": "agree",
+   "myAnswer": "1/3",
+   "solution": "agree",
+   "rubric": "agree (points sum to the question points; items match the question)",
+   "pitfalls": "agree (each describes a real error with the stated wrong value)",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    }
+   ],
+   "region": "none",
+   "sim": "agree (models the printed experiment; exact recomputed)",
+   "note": ""
+  },
+  "3c": {
+   "verdict": "agree",
+   "myAnswer": "1/9",
+   "solution": "agree",
+   "rubric": "agree (points sum to the question points; items match the question)",
+   "pitfalls": "agree (each describes a real error with the stated wrong value)",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    }
+   ],
+   "region": "none",
+   "sim": "agree (models the printed experiment; exact recomputed)",
+   "note": ""
+  },
+  "3d": {
+   "verdict": "agree",
+   "myAnswer": "1/2",
+   "solution": "agree",
+   "rubric": "agree (points sum to the question points; items match the question)",
+   "pitfalls": "agree (each describes a real error with the stated wrong value)",
+   "steps": [
+    {
+     "index": 0,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    }
+   ],
+   "region": "none",
+   "sim": "agree (models the printed experiment; exact recomputed)",
+   "note": ""
+  },
+  "4a": {
+   "verdict": "agree",
+   "myAnswer": "a=1/3, b=1",
+   "solution": "agree",
+   "rubric": "agree (points sum to the question points; items match the question)",
+   "pitfalls": "agree (each describes a real error with the stated wrong value)",
+   "steps": [
+    {
+     "index": 0,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 1,
+     "type": "choice",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    }
+   ],
+   "region": "none",
+   "sim": "agree (models the printed experiment; exact recomputed)",
+   "note": ""
+  },
+  "4b": {
+   "verdict": "agree",
+   "myAnswer": "F=(1+3t)^2/6 on [-1/3,0), 1/3-(1-3t)^2/6 on [0,1/3), t on [1/3,1)",
+   "solution": "agree",
+   "rubric": "agree (points sum to the question points; items match the question)",
+   "pitfalls": "agree (each describes a real error with the stated wrong value)",
+   "steps": [
+    {
+     "index": 0,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    }
+   ],
+   "region": "none",
+   "sim": "agree (models the printed experiment; exact recomputed)",
+   "note": ""
+  },
+  "4c": {
+   "verdict": "agree",
+   "myAnswer": "41/72",
+   "solution": "agree",
+   "rubric": "agree (points sum to the question points; items match the question)",
+   "pitfalls": "agree (each describes a real error with the stated wrong value)",
+   "steps": [
+    {
+     "index": 0,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    }
+   ],
+   "region": "none",
+   "sim": "agree (models the printed experiment; exact recomputed)",
+   "note": ""
+  },
+  "5a": {
+   "verdict": "agree",
+   "myAnswer": "Bin(N,p)",
+   "solution": "agree",
+   "rubric": "agree (points sum to the question points; items match the question)",
+   "pitfalls": "agree (each describes a real error with the stated wrong value)",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    }
+   ],
+   "region": "none",
+   "sim": "agree (models the printed experiment; exact recomputed)",
+   "note": ""
+  },
+  "5b": {
+   "verdict": "agree",
+   "myAnswer": "Bin(N,pQ), Q=1/365 (assumed, not printed)",
+   "solution": "agree",
+   "rubric": "agree (points sum to the question points; items match the question)",
+   "pitfalls": "agree (each describes a real error with the stated wrong value)",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    }
+   ],
+   "region": "none",
+   "sim": "agree (models the printed experiment; exact recomputed)",
+   "note": "NOTE (not a disagreement): the printed question never states the birth probability; the solution assumes Q=1/365. Fine, but the question text could say so."
+  },
+  "5c": {
+   "verdict": "agree",
+   "myAnswer": "n-k ~ Bin(N-k, p(1-Q)/(1-pQ))",
+   "solution": "agree",
+   "rubric": "agree (points sum to the question points; items match the question)",
+   "pitfalls": "agree (each describes a real error with the stated wrong value)",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    }
+   ],
+   "region": "none",
+   "sim": "agree (models the printed experiment; exact recomputed)",
+   "note": "NOTE: same Q=1/365 assumption as 5b."
+  },
+  "6a": {
+   "verdict": "agree",
+   "myAnswer": "2p^2+2p^3-5p^4+2p^5",
+   "solution": "agree",
+   "rubric": "agree (points sum to the question points; items match the question)",
+   "pitfalls": "agree (each describes a real error with the stated wrong value)",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    }
+   ],
+   "region": "none",
+   "sim": "agree (models the printed experiment; exact recomputed)",
+   "note": ""
+  },
+  "6b": {
+   "verdict": "agree",
+   "myAnswer": "(2p-p^2)(1-(1-p)^3)=6p^2-9p^3+5p^4-p^5",
+   "solution": "agree",
+   "rubric": "agree (points sum to the question points; items match the question)",
+   "pitfalls": "agree (each describes a real error with the stated wrong value)",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    }
+   ],
+   "region": "none",
+   "sim": "agree (models the printed experiment; exact recomputed)",
+   "note": ""
+  },
+  "6c": {
+   "verdict": "agree",
+   "myAnswer": "p(3p^2-9p+7)/((2-p)(p^2-3p+3))",
+   "solution": "agree",
+   "rubric": "agree (points sum to the question points; items match the question)",
+   "pitfalls": "agree (each describes a real error with the stated wrong value)",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree",
+     "note": "agree (recomputed with own exact + Monte Carlo)"
+    }
+   ],
+   "region": "none",
+   "sim": "agree (models the printed experiment; exact recomputed)",
+   "note": ""
+  }
+ }
+}
