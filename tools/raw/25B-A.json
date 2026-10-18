@@ -52,7 +52,60 @@
    "confidence": "high",
    "points": 4,
    "part": "א",
-   "contextId": "c1"
+   "contextId": "c1",
+   "rubric": [
+    {
+     "text": "אורך כל ניצב: שטח $\\frac12\\cdot\\ell^2=\\frac12$ ולכן $\\ell=1$",
+     "points": 2
+    },
+    {
+     "text": "נקודה אקראית על צלע באורך $1$ היא $U_c(0,1)$",
+     "points": 1
+    },
+    {
+     "text": "אי-תלות בין בחירת שתי הנקודות",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לחשוב שהצלעות באורך $\\frac12$ (שטח $\\frac12$ הוא השטח כולו, לא אורך הצלע).",
+    "להתייחס לאורך היתר $\\sqrt2$ כאילו הנקודה נבחרת עליו."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "אורך כל אחת משתי הצלעות הניצבות (משולש ישר זווית ושווה שוקיים בעל שטח $\\frac12$).",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "$\\frac12\\ell^2=\\frac12\\Rightarrow\\ell=1$."
+    },
+    {
+     "type": "choice",
+     "prompt": "איך מפולגים $X$ ו-$Y$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$U_c(0,1)$ ובלתי תלויים"
+      },
+      {
+       "id": "b",
+       "value": "$U_c\\left(0,\\frac12\\right)$"
+      },
+      {
+       "id": "c",
+       "value": "$U_c(0,\\sqrt2)$"
+      },
+      {
+       "id": "d",
+       "value": "$\\mathrm{Exp}(1)$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "נקודה אקראית על צלע באורך $1$ אחידה על $(0,1)$. $\\sqrt2$ הוא אורך היתר, שעליו לא נבחרות הנקודות."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 1,
@@ -94,7 +147,95 @@
     },
     "estimate": "P(L<1)",
     "exact": 0.7853981633974483
-   }
+   },
+   "rubric": [
+    {
+     "text": "$L=\\sqrt{X^2+Y^2}$ והצגת $P(L<1)$ כיחס שטחים",
+     "points": 2
+    },
+    {
+     "text": "$|\\Omega|=1$",
+     "points": 1
+    },
+    {
+     "text": "האזור הוא רבע עיגול ברדיוס $1$ בתוך הריבוע",
+     "points": 1
+    },
+    {
+     "text": "שטח $\\frac\\pi4$ והתשובה",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "להשתמש בשטח עיגול שלם $\\pi$ ולשכוח שרק הרבע החיובי בתוך הריבוע.",
+    "לקחת רדיוס $\\sqrt2$ במקום $1$."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "$X$ ו-$Y$ בלתי תלויים ואחידים על $(0,1)$. איזה כלי מתאים לחישוב הסתברות של אירוע שמוגדר על שניהם?",
+     "options": [
+      {
+       "id": "a",
+       "value": "שיטת השטח: $(X,Y)$ אחידה על ריבוע היחידה, וההסתברות היא שטח האירוע חלקי $|\\Omega|$"
+      },
+      {
+       "id": "b",
+       "value": "התפלגות בינומית"
+      },
+      {
+       "id": "c",
+       "value": "נוסחת ההסתברות השלמה על ערכים בדידים"
+      },
+      {
+       "id": "d",
+       "value": "התפלגות פואסון"
+      }
+     ],
+     "correctId": "a",
+     "explain": "שני משתנים רציפים אחידים ובלתי תלויים נותנים התפלגות אחידה על ריבוע, ולכן הסתברות = שטח. הבינומית והפואסונית סופרות הצלחות, והשלמה על ערכים בדידים אינה רלוונטית לתחום רציף."
+    },
+    {
+     "type": "numeric",
+     "prompt": "שטח מרחב המדגם $|\\Omega|$, ריבוע היחידה $(0,1)\\times(0,1)$.",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "$|\\Omega|=1\\cdot1=1$."
+    },
+    {
+     "type": "choice",
+     "prompt": "מהו האזור $\\{x^2+y^2<1\\}$ בתוך ריבוע היחידה?",
+     "options": [
+      {
+       "id": "a",
+       "value": "רבע עיגול ברדיוס $1$"
+      },
+      {
+       "id": "b",
+       "value": "חצי עיגול ברדיוס $1$"
+      },
+      {
+       "id": "c",
+       "value": "משולש $x+y<1$"
+      },
+      {
+       "id": "d",
+       "value": "רבע עיגול ברדיוס $\\sqrt2$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$x,y>0$ ולכן רק הרבע הראשון של העיגול ברדיוס $1$. משולש הוא האזור $x+y<1$, ורדיוס $\\sqrt2$ חורג מהריבוע."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(L<1)$? (עד שלוש ספרות אחרי הנקודה)",
+     "answer": 0.7853981633974483,
+     "tol": 0.001,
+     "explain": "$\\frac\\pi4\\approx0.785$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 1,
@@ -136,7 +277,65 @@
     },
     "estimate": "P(S<1/4)",
     "exact": 0.8465735902799727
-   }
+   },
+   "rubric": [
+    {
+     "text": "$S=\\frac12XY$ ולכן $S<\\frac14\\iff XY<\\frac12$",
+     "points": 1
+    },
+    {
+     "text": "גבול ההיפרבולה $y=\\frac1{2x}$ חותך את $y=1$ ב-$x=\\frac12$",
+     "points": 1
+    },
+    {
+     "text": "שטח התחום $0<x<\\frac12$ הוא $\\frac12$",
+     "points": 1
+    },
+    {
+     "text": "האינטגרל $\\int_{1/2}^1\\frac{dx}{2x}=\\frac{\\ln2}2$",
+     "points": 1
+    },
+    {
+     "text": "סכום: $\\frac12(1+\\ln2)$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לשכוח שעבור $x<\\frac12$ כל $y\\in(0,1)$ מתאים, ולבצע אינטגרל מ-$0$ (האינטגרל מתבדר).",
+    "לטעות במקדם: $S<\\frac14$ שקול ל-$XY<\\frac12$ ולא ל-$XY<\\frac14$."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "שטח מרחב המדגם $|\\Omega|$, ריבוע היחידה $(0,1)\\times(0,1)$.",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "$|\\Omega|=1\\cdot1=1$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "באיזה $x$ ההיפרבולה $y=\\frac1{2x}$ חותכת את הישר $y=1$?",
+     "answer": 0.5,
+     "tol": 0,
+     "explain": "$\\frac1{2x}=1\\Rightarrow x=\\frac12$. משמאל לו כל $y\\in(0,1)$ מתאים."
+    },
+    {
+     "type": "numeric",
+     "prompt": "שטח האזור לימין של זה: $\\int_{1/2}^1\\frac{dx}{2x}$ (עד שלוש ספרות).",
+     "answer": 0.34657359027997264,
+     "tol": 0.001,
+     "explain": "$\\frac12\\ln x\\big|_{1/2}^1=\\frac{\\ln2}2\\approx0.3466$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(S<\\frac14)$? (עד שלוש ספרות)",
+     "answer": 0.8465735902799727,
+     "tol": 0.001,
+     "explain": "$\\frac12+\\frac{\\ln2}2\\approx0.8466$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 1,
@@ -185,7 +384,78 @@
     },
     "estimate": "P(L<1 | S<1/4)",
     "exact": 0.9277376147981501
-   }
+   },
+   "rubric": [
+    {
+     "text": "הגדרת ההסתברות המותנית: $\\frac{P(L<1\\cap S<\\frac14)}{P(S<\\frac14)}$",
+     "points": 1
+    },
+    {
+     "text": "$P(S<\\frac14)=\\frac12(1+\\ln2)$ מהסעיף הקודם",
+     "points": 1
+    },
+    {
+     "text": "רבע העיגול כולו מתחת להיפרבולה: $x^2+y^2<1\\Rightarrow xy<\\frac12$",
+     "points": 2
+    },
+    {
+     "text": "לכן החיתוך הוא $\\frac\\pi4$ והתשובה $\\frac{\\pi}{2(1+\\ln2)}$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לחשב את החיתוך כשטח בין העיגול להיפרבולה: הרבע כולו כלול באזור $xy<\\frac12$.",
+    "לחלק ב-$P(L<1)$ במקום ב-$P(S<\\frac14)$."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "שטח מרחב המדגם $|\\Omega|$, ריבוע היחידה $(0,1)\\times(0,1)$.",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "$|\\Omega|=1\\cdot1=1$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "הסתברות אירוע התנאי $P(S<\\frac14)$ (סעיף ג). עד שלוש ספרות.",
+     "answer": 0.8465735902799727,
+     "tol": 0.001,
+     "explain": "$\\frac12(1+\\ln2)\\approx0.8466$."
+    },
+    {
+     "type": "choice",
+     "prompt": "מהו האזור $\\{L<1\\}\\cap\\{S<\\frac14\\}$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "כל רבע העיגול, כי $x^2+y^2<1$ גורר $xy\\le\\frac{x^2+y^2}2<\\frac12$"
+      },
+      {
+       "id": "b",
+       "value": "שטח בין העיגול להיפרבולה"
+      },
+      {
+       "id": "c",
+       "value": "ריבוע היחידה כולו"
+      },
+      {
+       "id": "d",
+       "value": "קבוצה ריקה"
+      }
+     ],
+     "correctId": "a",
+     "explain": "אי-שוויון ממוצעים: $xy\\le\\frac{x^2+y^2}{2}$. בתוך הרבע הערך קטן מ-$\\frac12$, ולכן החיתוך הוא כל הרבע ושטחו $\\frac\\pi4$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי ההסתברות המותנית? (עד שלוש ספרות)",
+     "answer": 0.9277376147981501,
+     "tol": 0.001,
+     "explain": "$\\frac{\\pi/4}{\\frac12(1+\\ln2)}=\\frac{\\pi}{2(1+\\ln2)}\\approx0.928$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 1,
@@ -217,7 +487,85 @@
     },
     "estimate": "Var[S]",
     "exact": 0.012152777777777778
-   }
+   },
+   "rubric": [
+    {
+     "text": "$\\mathbb{E}[S]=\\frac12\\mathbb{E}[X]\\mathbb{E}[Y]=\\frac18$ מאי-תלות",
+     "points": 2
+    },
+    {
+     "text": "$\\mathbb{E}[X^2]=\\mathbb{E}[Y^2]=\\frac13$",
+     "points": 1
+    },
+    {
+     "text": "$\\operatorname{Var}[XY]=\\mathbb{E}[X^2]\\mathbb{E}[Y^2]-(\\mathbb{E}[X]\\mathbb{E}[Y])^2=\\frac7{144}$",
+     "points": 2
+    },
+    {
+     "text": "$\\operatorname{Var}[S]=\\frac14\\operatorname{Var}[XY]=\\frac7{576}$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לכתוב $\\operatorname{Var}[XY]=\\operatorname{Var}[X]\\operatorname{Var}[Y]=\\frac1{144}$: זו נוסחה שגויה.",
+    "לשכוח את המקדם $\\frac14$ ב-$\\operatorname{Var}[\\frac12XY]$."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איזה כלל מאפשר לחשב את $\\mathbb{E}[XY]$ ואת $\\mathbb{E}[X^2Y^2]$ ישירות?",
+     "options": [
+      {
+       "id": "a",
+       "value": "אי-תלות: התוחלת של מכפלה היא מכפלת התוחלות"
+      },
+      {
+       "id": "b",
+       "value": "ליניאריות בלבד: $\\mathbb{E}[XY]=\\mathbb{E}[X]+\\mathbb{E}[Y]$"
+      },
+      {
+       "id": "c",
+       "value": "נוסחת ההסתברות השלמה"
+      },
+      {
+       "id": "d",
+       "value": "שיטת השטח על אירוע"
+      }
+     ],
+     "correctId": "a",
+     "explain": "אי-תלות מאפשרת לפרק תוחלת של מכפלת פונקציות. ליניאריות נותנת סכום, לא מכפלה (ונותנת $1$ במקום $\\frac14$)."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $\\mathbb{E}[S]$?",
+     "answer": 0.125,
+     "tol": 0,
+     "explain": "$\\frac12\\cdot\\frac12\\cdot\\frac12=\\frac18$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "$\\mathbb{E}[X^2]=\\int_0^1x^2\\,dx$.",
+     "answer": 0.3333333333333333,
+     "tol": 0.0006666666666666666,
+     "explain": "$\\frac13$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "$\\operatorname{Var}[XY]=\\mathbb{E}[X^2]\\mathbb{E}[Y^2]-\\left(\\mathbb{E}[X]\\mathbb{E}[Y]\\right)^2$.",
+     "answer": 0.04861111111111111,
+     "tol": 9.722222222222223e-05,
+     "explain": "$\\frac19-\\frac1{16}=\\frac7{144}$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $\\operatorname{Var}[S]$? (עד חמש ספרות)",
+     "answer": 0.012152777777777778,
+     "tol": 2e-05,
+     "explain": "$\\frac14\\cdot\\frac7{144}=\\frac7{576}\\approx0.01215$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -230,7 +578,101 @@
    "confidence": "high",
    "points": 5,
    "part": "א",
-   "contextId": "c2"
+   "contextId": "c2",
+   "sim": {
+    "kind": "custom_discrete",
+    "estimate": "P(A) ב-(p,q,s)=(0.6,0.7,0.8)",
+    "exact": 0.5142857142857142,
+    "params": {
+     "joint": [
+      {
+       "p": 0.42857142857142855,
+       "A": 1,
+       "B": 1
+      },
+      {
+       "p": 0.08571428571428572,
+       "A": 1,
+       "B": 0
+      },
+      {
+       "p": 0.2857142857142857,
+       "A": 0,
+       "B": 1
+      },
+      {
+       "p": 0.2,
+       "A": 0,
+       "B": 0
+      }
+     ],
+     "event": "A == 1"
+    }
+   },
+   "rubric": [
+    {
+     "text": "הצגת $P(A/B)$ באמצעות $P(A\\cap B)=P(A)+P(B)-s$",
+     "points": 2
+    },
+    {
+     "text": "משוואה $(1)$: $P(A)+(1-p)P(B)=s$",
+     "points": 1
+    },
+    {
+     "text": "מהנתון השני: $P(B)=1-\\frac{1-s}q$",
+     "points": 1
+    },
+    {
+     "text": "הצבה: $P(A)=s-(1-p)\\left(1-\\frac{1-s}q\\right)$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "להניח ש-$A$ ו-$B$ בלתי תלויים ולכתוב $P(A\\cap B)=P(A)P(B)$: אין זה נתון.",
+    "לטעות ב-$P(\\overline{A\\cup B})=1-s$ לעומת $P(\\overline A)P(\\overline B)$."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איך מתרגמים את שלושת הנתונים למשוואות ב-$P(A)$ וב-$P(B)$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$P(A\\cap B)=pP(B)$ ו-$P(A\\cup B)=P(A)+P(B)-P(A\\cap B)$, ומשלים $P(\\overline A\\cap\\overline B)=1-s$"
+      },
+      {
+       "id": "b",
+       "value": "$P(A\\cap B)=P(A)P(B)$ (אי-תלות)"
+      },
+      {
+       "id": "c",
+       "value": "$P(A\\cup B)=P(A)+P(B)$ (זרים)"
+      },
+      {
+       "id": "d",
+       "value": "נוסחת בייס בלבד"
+      }
+     ],
+     "correctId": "a",
+     "explain": "לא נתון שהמאורעות בלתי תלויים או זרים. מהגדרת המותנה ומהכלה-הפרדה מקבלים את שתי המשוואות."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$, $q=0.7$, $s=0.8$: $P(B)=1-\\frac{1-s}q$ (עד שש ספרות).",
+     "answer": 0.7142857142857143,
+     "tol": 0.0014285714285714286,
+     "explain": "$1-\\frac{0.2}{0.7}=\\frac57\\approx0.714286$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "באותם ערכים: $P(A)=s-(1-p)P(B)$.",
+     "answer": 0.5142857142857142,
+     "tol": 0.0010285714285714284,
+     "explain": "$0.8-0.4\\cdot\\frac57=\\frac{18}{35}\\approx0.514286$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -243,7 +685,96 @@
    "confidence": "high",
    "points": 5,
    "part": "ב",
-   "contextId": "c2"
+   "contextId": "c2",
+   "sim": {
+    "kind": "custom_discrete",
+    "estimate": "P(B) ב-(p,q,s)=(0.6,0.7,0.8)",
+    "exact": 0.7142857142857143,
+    "params": {
+     "joint": [
+      {
+       "p": 0.42857142857142855,
+       "A": 1,
+       "B": 1
+      },
+      {
+       "p": 0.08571428571428572,
+       "A": 1,
+       "B": 0
+      },
+      {
+       "p": 0.2857142857142857,
+       "A": 0,
+       "B": 1
+      },
+      {
+       "p": 0.2,
+       "A": 0,
+       "B": 0
+      }
+     ],
+     "event": "B == 1"
+    }
+   },
+   "rubric": [
+    {
+     "text": "$P(\\overline A\\cap\\overline B)=P(\\overline{A\\cup B})=1-s$",
+     "points": 2
+    },
+    {
+     "text": "$P(\\overline A/\\overline B)=\\frac{1-s}{1-P(B)}=q$",
+     "points": 2
+    },
+    {
+     "text": "פתרון: $P(B)=1-\\frac{1-s}q$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "להפעיל את משוואת המותנה על $P(A/B)$ במקום על $P(\\overline A/\\overline B)$, שהיא שנותנת את $P(B)$ ישירות."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מהו המונה ב-$P(\\overline A/\\overline B)$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$P(\\overline A\\cap\\overline B)=1-P(A\\cup B)=1-s$"
+      },
+      {
+       "id": "b",
+       "value": "$P(\\overline A)$"
+      },
+      {
+       "id": "c",
+       "value": "$1-P(A)-P(B)$"
+      },
+      {
+       "id": "d",
+       "value": "$s$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "לפי דה-מורגן $\\overline A\\cap\\overline B=\\overline{A\\cup B}$. הביטוי $1-P(A)-P(B)$ שגוי כי $A$ ו-$B$ אינם זרים."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$q=0.7$, $s=0.8$: $P(\\overline B)=\\frac{1-s}q$ (עד שש ספרות).",
+     "answer": 0.2857142857142857,
+     "tol": 0.0005714285714285714,
+     "explain": "$\\frac{0.2}{0.7}=\\frac27$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו $P(B)$?",
+     "answer": 0.7142857142857143,
+     "tol": 0.0014285714285714286,
+     "explain": "$1-\\frac27=\\frac57$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -256,7 +787,97 @@
    "confidence": "high",
    "points": 5,
    "part": "ג",
-   "contextId": "c2"
+   "contextId": "c2",
+   "sim": {
+    "kind": "custom_discrete",
+    "estimate": "P(A n B) ב-(p,q,s)=(0.6,0.7,0.8)",
+    "exact": 0.42857142857142855,
+    "params": {
+     "joint": [
+      {
+       "p": 0.42857142857142855,
+       "A": 1,
+       "B": 1
+      },
+      {
+       "p": 0.08571428571428572,
+       "A": 1,
+       "B": 0
+      },
+      {
+       "p": 0.2857142857142857,
+       "A": 0,
+       "B": 1
+      },
+      {
+       "p": 0.2,
+       "A": 0,
+       "B": 0
+      }
+     ],
+     "event": "A == 1 and B == 1"
+    }
+   },
+   "rubric": [
+    {
+     "text": "$P(A\\cap B)=P(A/B)P(B)=pP(B)$",
+     "points": 2
+    },
+    {
+     "text": "שימוש ב-$P(B)$ מסעיף ב",
+     "points": 1
+    },
+    {
+     "text": "התשובה $p\\left(1-\\frac{1-s}q\\right)$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לחשב $P(A)P(B)$ כמו באי-תלות.",
+    "לשכוח שהמותנה הוא $P(A/B)$ ולא $P(B/A)$."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איך מחשבים את $P(A\\cap B)$ מהנתונים?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$P(A/B)\\cdot P(B)=pP(B)$"
+      },
+      {
+       "id": "b",
+       "value": "$P(A)P(B)$"
+      },
+      {
+       "id": "c",
+       "value": "$P(A/B)\\cdot P(A)$"
+      },
+      {
+       "id": "d",
+       "value": "$s-P(A)-P(B)$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "כלל המכפלה: חיתוך = מותנה כפול התנאי. השאר דורשים אי-תלות, תנאי אחר, או נותנים סימן הפוך."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$, $q=0.7$, $s=0.8$: $P(B)$ (סעיף ב).",
+     "answer": 0.7142857142857143,
+     "tol": 0.0014285714285714286,
+     "explain": "$\\frac57$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו $P(A\\cap B)$?",
+     "answer": 0.42857142857142855,
+     "tol": 0.0008571428571428571,
+     "explain": "$0.6\\cdot\\frac57=\\frac37\\approx0.428571$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -269,7 +890,59 @@
    "confidence": "high",
    "points": 5,
    "part": "ד",
-   "contextId": "c2"
+   "contextId": "c2",
+   "rubric": [
+    {
+     "text": "דרישת $P(B)\\ge0$",
+     "points": 2
+    },
+    {
+     "text": "$1-\\frac{1-s}q\\ge0\\iff q\\ge1-s$",
+     "points": 2
+    },
+    {
+     "text": "מסקנה: $q<1-s$ אינו אפשרי",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לבדוק רק ש-$P(B)\\le1$ ולשכוח את אי-השליליות."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "ב-$q=0.1$, $s=0.8$: מהו $P(B)=1-\\frac{1-s}q$?",
+     "answer": -1.0,
+     "tol": 0,
+     "explain": "$1-\\frac{0.2}{0.1}=-1$: הסתברות שלילית."
+    },
+    {
+     "type": "choice",
+     "prompt": "האם ייתכן $q<1-s$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "לא: אז $P(B)<0$"
+      },
+      {
+       "id": "b",
+       "value": "כן: אין הגבלה על $q$"
+      },
+      {
+       "id": "c",
+       "value": "כן, אם $p$ גדול מספיק"
+      },
+      {
+       "id": "d",
+       "value": "לא: אז $P(A)>1$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$P(B)\\ge0$ שקול ל-$q\\ge1-s$. אם $q<1-s$ מתקבל $P(B)<0$, בלתי אפשרי, וזה לא תלוי ב-$p$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -282,7 +955,60 @@
    "confidence": "high",
    "points": 5,
    "part": "ה",
-   "contextId": "c2"
+   "contextId": "c2",
+   "rubric": [
+    {
+     "text": "אי-תלות נותנת $P(A/B)=P(A)=p$",
+     "points": 1
+    },
+    {
+     "text": "אי-תלות נותנת גם $P(\\overline A/\\overline B)=P(\\overline A)=q$",
+     "points": 2
+    },
+    {
+     "text": "$q=1-P(A)=1-p$ ולכן $p=1-q$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "להסיק $p=q$ במקום $p=1-q$ (השוו $P(A)$ עם $P(\\overline A)$).",
+    "לחפש תנאי על $s$: התנאי $p=1-q$ אינו תלוי ב-$s$ כאן."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מה גוררת אי-תלות של $A$ ו-$B$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$P(A/B)=P(A)$ וגם $P(\\overline A/\\overline B)=P(\\overline A)$"
+      },
+      {
+       "id": "b",
+       "value": "$P(A\\cap B)=0$"
+      },
+      {
+       "id": "c",
+       "value": "$P(A/B)=P(\\overline A/\\overline B)$"
+      },
+      {
+       "id": "d",
+       "value": "$P(A\\cup B)=1$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "אי-תלות פירושה שההתניה אינה משנה את ההסתברות, גם עבור המשלימים. $P(A\\cap B)=0$ הוא זרות."
+    },
+    {
+     "type": "numeric",
+     "prompt": "אם $q=0.3$ והמאורעות בלתי תלויים, כמה הוא $p$?",
+     "answer": 0.7,
+     "tol": 0,
+     "explain": "$p=1-q=0.7$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -295,7 +1021,131 @@
    "confidence": "high",
    "points": 15,
    "part": "א",
-   "contextId": "c3"
+   "contextId": "c3",
+   "sim": {
+    "kind": "circuit",
+    "estimate": "P(Q) ב-p=0.8, N=(1,2,3)",
+    "exact": 0.964864,
+    "params": {
+     "event": "S",
+     "network": {
+      "type": "parallel",
+      "children": [
+       {
+        "type": "comp",
+        "id": "g1",
+        "p": 0.8
+       },
+       {
+        "type": "series",
+        "children": [
+         {
+          "type": "comp",
+          "id": "g2a",
+          "p": 0.8
+         },
+         {
+          "type": "comp",
+          "id": "g2b",
+          "p": 0.8
+         }
+        ]
+       },
+       {
+        "type": "series",
+        "children": [
+         {
+          "type": "comp",
+          "id": "g3a",
+          "p": 0.8
+         },
+         {
+          "type": "comp",
+          "id": "g3b",
+          "p": 0.8
+         },
+         {
+          "type": "comp",
+          "id": "g3c",
+          "p": 0.8
+         }
+        ]
+       }
+      ]
+     }
+    }
+   },
+   "rubric": [
+    {
+     "text": "הגדרת $A_j$ ו-$P(A_j)=p^{N_j}$ (כל שערי הגשר פתוחים)",
+     "points": 4
+    },
+    {
+     "text": "$Q=A_1\\cup A_2\\cup A_3$ ומעבר למשלים",
+     "points": 4
+    },
+    {
+     "text": "אי-תלות בין הגשרים",
+     "points": 3
+    },
+    {
+     "text": "התשובה $1-\\prod_j\\left(1-p^{N_j}\\right)$",
+     "points": 4
+    }
+   ],
+   "pitfalls": [
+    "לחבר את $P(A_j)$: האירועים אינם זרים.",
+    "להשתמש בבינומית על מספר השערים: חשוב אילו שערים פתוחים, ויש לפתוח את כל שערי אותו גשר."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "אסתר עוברת אם לפחות גשר אחד פתוח לגמרי. איזו גישה מתאימה?",
+     "options": [
+      {
+       "id": "a",
+       "value": "משלים: $1-P(\\text{all bridges blocked})$ ואי-תלות בין הגשרים"
+      },
+      {
+       "id": "b",
+       "value": "סכום $\\sum p^{N_j}$ (כאילו הגשרים זרים)"
+      },
+      {
+       "id": "c",
+       "value": "מכפלה $\\prod p^{N_j}$ (כל הגשרים פתוחים)"
+      },
+      {
+       "id": "d",
+       "value": "בינומית על מספר השערים הפתוחים"
+      }
+     ],
+     "correctId": "a",
+     "explain": "האירוע 'לפחות אחד' נחשב דרך המשלים. סכום הסתברויות דורש זרות, מכפלה היא 'כולם', ובינומית אינה מבחינה בין שערי גשרים שונים."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.8$ ו-$(N_1,N_2,N_3)=(1,2,3)$: $P(A_2)$.",
+     "answer": 0.64,
+     "tol": 0,
+     "explain": "$0.8^2=0.64$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "באותם ערכים: הסתברות שכל שלושת הגשרים חסומים, $\\prod(1-p^{N_j})$ (עד שש ספרות).",
+     "answer": 0.035136,
+     "tol": 0,
+     "explain": "$0.2\\cdot0.36\\cdot0.488=0.035136$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי ההסתברות שאסתר עוברת?",
+     "answer": 0.964864,
+     "tol": 0,
+     "explain": "$1-0.035136=0.964864$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -308,7 +1158,120 @@
    "confidence": "high",
    "points": 5,
    "part": "ב",
-   "contextId": "c3"
+   "contextId": "c3",
+   "sim": {
+    "kind": "circuit",
+    "estimate": "P(A2 | Q) ב-p=0.8, N=(1,2,3)",
+    "exact": 0.6633059166887768,
+    "params": {
+     "event": "g2a == 1 and g2b == 1",
+     "given": "S == 1",
+     "network": {
+      "type": "parallel",
+      "children": [
+       {
+        "type": "comp",
+        "id": "g1",
+        "p": 0.8
+       },
+       {
+        "type": "series",
+        "children": [
+         {
+          "type": "comp",
+          "id": "g2a",
+          "p": 0.8
+         },
+         {
+          "type": "comp",
+          "id": "g2b",
+          "p": 0.8
+         }
+        ]
+       },
+       {
+        "type": "series",
+        "children": [
+         {
+          "type": "comp",
+          "id": "g3a",
+          "p": 0.8
+         },
+         {
+          "type": "comp",
+          "id": "g3b",
+          "p": 0.8
+         },
+         {
+          "type": "comp",
+          "id": "g3c",
+          "p": 0.8
+         }
+        ]
+       }
+      ]
+     }
+    }
+   },
+   "rubric": [
+    {
+     "text": "נוסחת בייס: $P(A_2/Q)=\\frac{P(Q/A_2)P(A_2)}{P(Q)}$",
+     "points": 2
+    },
+    {
+     "text": "$P(Q/A_2)=1$ כי אם גשר $2$ פתוח היא עוברת",
+     "points": 1
+    },
+    {
+     "text": "הצבת $P(A_2)=p^{N_2}$ ו-$P(Q)$ מסעיף א",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לחשב את $P(Q/A_2)$ כ-$P(A_2)$: אם הגשר השני פתוח, ההצלחה בטוחה."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מה $P(Q/A_2)$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$1$: גשר $2$ פתוח, ולכן עוברת"
+      },
+      {
+       "id": "b",
+       "value": "$p^{N_2}$"
+      },
+      {
+       "id": "c",
+       "value": "$P(Q)$"
+      },
+      {
+       "id": "d",
+       "value": "$0$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$A_2\\subseteq Q$ ולכן $P(Q/A_2)=1$, וזה מצמצם את בייס ל-$P(A_2)/P(Q)$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.8$, $N=(1,2,3)$: $P(A_2)$.",
+     "answer": 0.64,
+     "tol": 0,
+     "explain": "$0.64$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(A_2/Q)$? (עד שש ספרות)",
+     "answer": 0.6633059166887768,
+     "tol": 0.0013266118333775537,
+     "explain": "$\\frac{0.64}{0.964864}\\approx0.663317$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -321,7 +1284,109 @@
    "confidence": "high",
    "points": 5,
    "part": "ג",
-   "contextId": "c3"
+   "contextId": "c3",
+   "sim": {
+    "kind": "circuit",
+    "estimate": "P(not A2 | Q) ב-p=0.8, N=(1,2,3)",
+    "exact": 0.33669408331122314,
+    "params": {
+     "event": "not (g2a == 1 and g2b == 1)",
+     "given": "S == 1",
+     "network": {
+      "type": "parallel",
+      "children": [
+       {
+        "type": "comp",
+        "id": "g1",
+        "p": 0.8
+       },
+       {
+        "type": "series",
+        "children": [
+         {
+          "type": "comp",
+          "id": "g2a",
+          "p": 0.8
+         },
+         {
+          "type": "comp",
+          "id": "g2b",
+          "p": 0.8
+         }
+        ]
+       },
+       {
+        "type": "series",
+        "children": [
+         {
+          "type": "comp",
+          "id": "g3a",
+          "p": 0.8
+         },
+         {
+          "type": "comp",
+          "id": "g3b",
+          "p": 0.8
+         },
+         {
+          "type": "comp",
+          "id": "g3c",
+          "p": 0.8
+         }
+        ]
+       }
+      ]
+     }
+    }
+   },
+   "rubric": [
+    {
+     "text": "משלים בתוך המותנה: $1-P(A_2/Q)$",
+     "points": 3
+    },
+    {
+     "text": "הצבת התשובה מסעיף ב",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לחשב $1-P(A_2)$ במקום $1-P(A_2/Q)$."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איך מחשבים את $P(\\overline{A_2}/Q)$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$1-P(A_2/Q)$"
+      },
+      {
+       "id": "b",
+       "value": "$1-P(A_2)$"
+      },
+      {
+       "id": "c",
+       "value": "$P(\\overline{A_2})P(Q)$"
+      },
+      {
+       "id": "d",
+       "value": "$1-P(Q/A_2)$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "המשלים נעשה בתוך אותו תנאי $Q$. השאר מחליפים או מתעלמים מהתנאי ($1-P(Q/A_2)=0$)."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.8$, $N=(1,2,3)$: מהי $P(\\overline{A_2}/Q)$?",
+     "answer": 0.33669408331122314,
+     "tol": 0.0006733881666224463,
+     "explain": "$1-0.663317=0.336683$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 4,
@@ -334,7 +1399,116 @@
    "confidence": "high",
    "points": 8,
    "part": "א",
-   "contextId": "c4"
+   "contextId": "c4",
+   "sim": {
+    "kind": "pdf",
+    "estimate": "E[X] ב-μ=0.1 (a=0.96, b=0.52)",
+    "exact": 0.1,
+    "params": {
+     "pieces": [
+      {
+       "from": -1,
+       "to": 0,
+       "expr": "0.96*(x+1)"
+      },
+      {
+       "from": 0,
+       "to": 1,
+       "expr": "0.52"
+      }
+     ],
+     "measure": "mean",
+     "expr": "x"
+    }
+   },
+   "rubric": [
+    {
+     "text": "שונות סופית גוררת $c=g=0$ (האינטגרלים של $x^2f$ מתבדרים)",
+     "points": 2
+    },
+    {
+     "text": "נרמול: $\\frac a2+b=1$",
+     "points": 2
+    },
+    {
+     "text": "תוחלת: $-\\frac a6+\\frac b2=\\mu$",
+     "points": 2
+    },
+    {
+     "text": "פתרון: $a=\\frac65(1-2\\mu)$, $b=\\frac25(1+3\\mu)$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לדרוש $c=0$ מהנרמול בלבד: $\\int_1^\\infty\\frac{c}{x^3}dx=\\frac c2$ מתכנס; רק התנאי על השונות פוסל את $c$.",
+    "לטעות באינטגרל $\\int_{-1}^0x(x+1)\\,dx=-\\frac16$."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איזה כלי מתאים למציאת מקדמי הצפיפות?",
+     "options": [
+      {
+       "id": "a",
+       "value": "נרמול $\\int f=1$ ותוחלת $\\int xf=\\mu$, ותנאי השונות הסופית"
+      },
+      {
+       "id": "b",
+       "value": "שיטת השטח"
+      },
+      {
+       "id": "c",
+       "value": "נוסחת בייס"
+      },
+      {
+       "id": "d",
+       "value": "התפלגות בינומית"
+      }
+     ],
+     "correctId": "a",
+     "explain": "הצפיפות נתונה עד כדי מקדמים; מה שנתון הוא התוחלת והשונות הסופית. שיטת השטח, בייס ובינומית אינם מתאימים."
+    },
+    {
+     "type": "choice",
+     "prompt": "מדוע $c=0$ ו-$g=0$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "אחרת $\\mathbb{E}[X^2]$ מתבדר: $\\int_1^\\infty\\frac{dx}x$ ו-$\\int_1^\\infty x^2dx$ מתבדרים"
+      },
+      {
+       "id": "b",
+       "value": "כי הנרמול מחייב $c=0$ ($\\int_1^\\infty\\frac{c}{x^3}$ מתבדר)"
+      },
+      {
+       "id": "c",
+       "value": "כי התוחלת הסופית לבדה פוסלת את $c$"
+      },
+      {
+       "id": "d",
+       "value": "כי הצפיפות אינה יכולה להיות חיובית ב-$x\\ge1$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$\\int_1^\\infty c/x^3\\,dx=\\frac c2$ מתכנס, ולכן הנרמול והתוחלת לא פוסלים את $c$; רק $\\mathbb{E}[X^2]$ (עם $x^2\\cdot\\frac{c}{x^3}=\\frac cx$) מתבדר."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $\\mu=0$: מהו $a$?",
+     "answer": 1.2,
+     "tol": 0,
+     "explain": "$a=\\frac65(1-2\\mu)=\\frac65$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $\\mu=0$: מהו $b$?",
+     "answer": 0.4,
+     "tol": 0,
+     "explain": "$b=\\frac25(1+3\\mu)=\\frac25$. בדיקה: $\\frac a2+b=\\frac35+\\frac25=1$ ו-$-\\frac a6+\\frac b2=-\\frac15+\\frac15=0$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 4,
@@ -347,7 +1521,66 @@
    "confidence": "high",
    "points": 5,
    "part": "ב",
-   "contextId": "c4"
+   "contextId": "c4",
+   "rubric": [
+    {
+     "text": "צפיפות אי-שלילית: $a\\ge0$ ו-$b\\ge0$",
+     "points": 1
+    },
+    {
+     "text": "$a\\ge0\\Rightarrow\\mu\\le\\frac12$",
+     "points": 2
+    },
+    {
+     "text": "$b\\ge0\\Rightarrow\\mu\\ge-\\frac13$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לבדוק רק את $a$ ולשכוח את $b$, או להפך."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מה התנאי על $a$ ו-$b$ כדי שהפונקציה תהיה צפיפות?",
+     "options": [
+      {
+       "id": "a",
+       "value": "שניהם אי-שליליים"
+      },
+      {
+       "id": "b",
+       "value": "שניהם קטנים מ-$1$"
+      },
+      {
+       "id": "c",
+       "value": "$a+b=1$"
+      },
+      {
+       "id": "d",
+       "value": "$a=b$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "צפיפות חייבת להיות $\\ge0$ (הנרמול כבר סופק על ידי הפתרון)."
+    },
+    {
+     "type": "numeric",
+     "prompt": "הערך הגדול ביותר של $\\mu$ ($a\\ge0$).",
+     "answer": 0.5,
+     "tol": 0,
+     "explain": "$1-2\\mu\\ge0\\Rightarrow\\mu\\le\\frac12$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "הערך הקטן ביותר של $\\mu$ ($b\\ge0$) (עד שלוש ספרות).",
+     "answer": -0.3333333333333333,
+     "tol": 0.001,
+     "explain": "$1+3\\mu\\ge0\\Rightarrow\\mu\\ge-\\frac13$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 4,
@@ -360,7 +1593,98 @@
    "confidence": "high",
    "points": 8,
    "part": "ג",
-   "contextId": "c4"
+   "contextId": "c4",
+   "sim": {
+    "kind": "pdf",
+    "estimate": "F(-1/2) ב-μ=0 (a=6/5, b=2/5)",
+    "exact": 0.15,
+    "params": {
+     "pieces": [
+      {
+       "from": -1,
+       "to": 0,
+       "expr": "1.2*(x+1)"
+      },
+      {
+       "from": 0,
+       "to": 1,
+       "expr": "0.4"
+      }
+     ],
+     "event": "x < -1/2"
+    }
+   },
+   "rubric": [
+    {
+     "text": "פיצול לתחומים: $t<-1$, $-1\\le t<0$, $0\\le t<1$, $t\\ge1$",
+     "points": 2
+    },
+    {
+     "text": "$-1\\le t<0$: $\\frac a2(t+1)^2$",
+     "points": 2
+    },
+    {
+     "text": "$0\\le t<1$: $\\frac a2+bt$ (כולל המסה שנצברה)",
+     "points": 2
+    },
+    {
+     "text": "הצבת $a,b$ והגרף: $F=1$ מ-$t=1$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לשכוח להוסיף את המסה $\\frac a2$ בתחום $0\\le t<1$.",
+    "לצייר את הקטע הראשון כקו ישר במקום פרבולה."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מהי צורת $F_X(t)$ בקטע $-1\\le t<0$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "פרבולה עולה (אינטגרל של פונקציה ליניארית)"
+      },
+      {
+       "id": "b",
+       "value": "קו ישר"
+      },
+      {
+       "id": "c",
+       "value": "אקספוננט"
+      },
+      {
+       "id": "d",
+       "value": "קבוע"
+      }
+     ],
+     "correctId": "a",
+     "explain": "הצפיפות שם ליניארית $a(x+1)$, ואינטגרל שלה ריבועי."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $\\mu=0$: $F_X\\left(-\\frac12\\right)$.",
+     "answer": 0.15,
+     "tol": 0,
+     "explain": "$\\frac a2\\left(\\frac12\\right)^2=\\frac35\\cdot\\frac14=0.15$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $\\mu=0$: $F_X(0)$.",
+     "answer": 0.6,
+     "tol": 0,
+     "explain": "$\\frac a2=0.6$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $\\mu=0$: $F_X\\left(\\frac12\\right)$.",
+     "answer": 0.8,
+     "tol": 0,
+     "explain": "$0.6+0.4\\cdot0.5=0.8$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 4,
@@ -373,7 +1697,49 @@
    "confidence": "high",
    "points": 4,
    "part": "ד",
-   "contextId": "c4"
+   "contextId": "c4",
+   "rubric": [
+    {
+     "text": "$P(X>-\\frac12)=1-F_X(-\\frac12)$ והצגה כיחס",
+     "points": 1
+    },
+    {
+     "text": "$P(-\\frac12<X<1)=F_X(1)-F_X(-\\frac12)=1-F_X(-\\frac12)$",
+     "points": 2
+    },
+    {
+     "text": "היחס הוא $1$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לחשב את $F_X(1)$ כ-$F_X(-\\frac12)$ או להפך."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "עבור $\\mu=0$: הסתברות אירוע התנאי $P(X>-\\frac12)$.",
+     "answer": 0.85,
+     "tol": 0,
+     "explain": "$1-0.15=0.85$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $\\mu=0$: $P\\left(-\\frac12<X<1\\right)$.",
+     "answer": 0.85,
+     "tol": 0,
+     "explain": "$F_X(1)-F_X(-\\frac12)=1-0.15=0.85$ כי $F_X(1)=1$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P\\left(X<1\\mid X>-\\frac12\\right)$?",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "$\\frac{0.85}{0.85}=1$: כל המסה שמימין ל-$-\\frac12$ נמצאת מתחת ל-$1$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 5,
@@ -386,7 +1752,99 @@
    "confidence": "high",
    "points": 3,
    "part": "א",
-   "contextId": "c5"
+   "contextId": "c5",
+   "sim": {
+    "kind": "circuit",
+    "estimate": "P(Q0) ב-p=0.6",
+    "exact": 0.504,
+    "params": {
+     "event": "S",
+     "network": {
+      "type": "series",
+      "children": [
+       {
+        "type": "comp",
+        "id": "A",
+        "p": 0.6
+       },
+       {
+        "type": "parallel",
+        "children": [
+         {
+          "type": "comp",
+          "id": "B",
+          "p": 0.6
+         },
+         {
+          "type": "comp",
+          "id": "C",
+          "p": 0.6
+         }
+        ]
+       }
+      ]
+     }
+    }
+   },
+   "rubric": [
+    {
+     "text": "$Q_0=A\\cap(B\\cup C)$ (טור של $A$ עם הזוג המקביל)",
+     "points": 1
+    },
+    {
+     "text": "$P(B\\cup C)=2p-p^2$",
+     "points": 1
+    },
+    {
+     "text": "$P(Q_0)=p^2(2-p)$ מאי-תלות",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "להכפיל $p^3$ (להתעלם מכך ש-$B$ ו-$C$ מקבילות)."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איך בנוי $Q_0$ ואיך מחשבים?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$A$ בטור עם הזוג המקביל $B,C$: מכפילים $p\\cdot(2p-p^2)$"
+      },
+      {
+       "id": "b",
+       "value": "שלושתן במקביל"
+      },
+      {
+       "id": "c",
+       "value": "שלושתן בטור"
+      },
+      {
+       "id": "d",
+       "value": "בינומית $\\mathrm{Bin}(3,p)$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "טור דורש ששני החלקים יפעלו: $A$ והזוג. המקבילי מצליח אם לפחות אחת מ-$B,C$ פועלת."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$: $P(B\\cup C)$.",
+     "answer": 0.84,
+     "tol": 0,
+     "explain": "$2p-p^2=1.2-0.36=0.84$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$: $P(Q_0)$.",
+     "answer": 0.504,
+     "tol": 0,
+     "explain": "$0.6\\cdot0.84=0.504$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 5,
@@ -400,7 +1858,92 @@
    "points": 3,
    "part": "ב",
    "contextId": "c5",
-   "image": "images/exams/25B-A-Q5-example.png"
+   "image": "images/exams/25B-A-Q5-example.png",
+   "sim": {
+    "kind": "circuit",
+    "estimate": "P(Q') = P(Q0) ב-p=0.6",
+    "exact": 0.504,
+    "params": {
+     "event": "S",
+     "network": {
+      "type": "series",
+      "children": [
+       {
+        "type": "comp",
+        "id": "A",
+        "p": 0.6
+       },
+       {
+        "type": "parallel",
+        "children": [
+         {
+          "type": "comp",
+          "id": "B",
+          "p": 0.6
+         },
+         {
+          "type": "comp",
+          "id": "C",
+          "p": 0.6
+         }
+        ]
+       }
+      ]
+     }
+    }
+   },
+   "rubric": [
+    {
+     "text": "המעגל החדש הוא אותה טופולוגיה עם אותן יחידות במקומות אחרים",
+     "points": 1
+    },
+    {
+     "text": "לכל היחידות אותה הסתברות $p$ ולכן אותה הנוסחה",
+     "points": 1
+    },
+    {
+     "text": "$P(Q')=p^2(2-p)$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לחשב את הסידורים השונים בנפרד: ההסתברות שהמעגל פועל זהה לכל סידור."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מדוע ההסתברות שהמעגל החדש פועל שווה לזו של $Q_0$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "אותה טופולוגיה ובכל המקומות יחידה בהסתברות $p$, בלי קשר לזהות היחידה"
+      },
+      {
+       "id": "b",
+       "value": "כי הוא תמיד זהה ל-$Q_0$"
+      },
+      {
+       "id": "c",
+       "value": "כי $p=1$"
+      },
+      {
+       "id": "d",
+       "value": "כי הסידור לא משנה את המבנה"
+      }
+     ],
+     "correctId": "a",
+     "explain": "ההסתברות תלויה רק במבנה ובהסתברויות, שלא משתנים. 'תמיד זהה ל-$Q_0$' שגוי: חלק מהסידורים נותנים מעגל שונה, אך אותה הסתברות."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$: $P(Q')$.",
+     "answer": 0.504,
+     "tol": 0,
+     "explain": "$p^2(2-p)=0.504$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 5,
@@ -414,7 +1957,136 @@
    "points": 10,
    "part": "ג",
    "contextId": "c5",
-   "image": "images/exams/25B-A-Q5-example.png"
+   "image": "images/exams/25B-A-Q5-example.png",
+   "sim": {
+    "kind": "custom_discrete",
+    "estimate": "P(Q0 n Q') ב-p=0.6 (סידור אקראי R)",
+    "exact": 0.408,
+    "params": {
+     "vars": {
+      "A": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.4,
+        0.6
+       ]
+      },
+      "B": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.4,
+        0.6
+       ]
+      },
+      "C": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.4,
+        0.6
+       ]
+      },
+      "R": {
+       "values": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "probs": [
+        0.16666666666666666,
+        0.16666666666666666,
+        0.16666666666666666,
+        0.16666666666666666,
+        0.16666666666666666,
+        0.16666666666666666
+       ]
+      }
+     },
+     "event": "(A == 1 and (B == 1 or C == 1)) and ((R <= 2 and A == 1 and (B == 1 or C == 1)) or ((R == 3 or R == 6) and B == 1 and (A == 1 or C == 1)) or ((R == 4 or R == 5) and C == 1 and (A == 1 or B == 1)))"
+    }
+   },
+   "rubric": [
+    {
+     "text": "ששת הסידורים שווי הסתברות $\\frac16$, נוסחת ההסתברות השלמה",
+     "points": 2
+    },
+    {
+     "text": "סידורים I ו-II: $Q'\\equiv Q_0$ ולכן $p^2(2-p)$",
+     "points": 2
+    },
+    {
+     "text": "סידורים III-VI: החיתוך הוא $A\\cap B$ או $A\\cap C$, והסתברותו $p^2$",
+     "points": 4
+    },
+    {
+     "text": "סכום: $\\frac{p^2}3(4-p)$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "להכפיל $P(Q_0)P(Q')$: המעגלים משתמשים באותן יחידות ולכן תלויים.",
+    "לספור פחות מ-$6$ סידורים, או לתת להם משקל לא שווה."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "המעגל החדש הוא סידור אקראי של שלוש היחידות. מה הגישה?",
+     "options": [
+      {
+       "id": "a",
+       "value": "הסתברות שלמה על ששת הסידורים השווי-הסתברות"
+      },
+      {
+       "id": "b",
+       "value": "מכפלה $P(Q_0)P(Q')$"
+      },
+      {
+       "id": "c",
+       "value": "בייס"
+      },
+      {
+       "id": "d",
+       "value": "בינומית"
+      }
+     ],
+     "correctId": "a",
+     "explain": "החיתוך תלוי בסידור, ולכן מתנים על הסידור. מכפלה דורשת אי-תלות, וכאן הן אותן יחידות."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$, בהינתן סידור I או II: מהי $P(Q_0\\cap Q')$?",
+     "answer": 0.504,
+     "tol": 0,
+     "explain": "$Q'\\equiv Q_0$ ולכן החיתוך הוא $Q_0$: $0.504$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$, בהינתן סידור III, IV, V או VI: מהי $P(Q_0\\cap Q')$ (שווה ל-$P(A\\cap B)$)?",
+     "answer": 0.36,
+     "tol": 0,
+     "explain": "$p^2=0.36$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו $P(Q_0\\cap Q')$?",
+     "answer": 0.408,
+     "tol": 0,
+     "explain": "$\\frac16\\{2\\cdot0.504+4\\cdot0.36\\}=0.408=\\frac{p^2}3(4-p)$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 5,
@@ -428,7 +2100,108 @@
    "points": 5,
    "part": "ד",
    "contextId": "c5",
-   "image": "images/exams/25B-A-Q5-example.png"
+   "image": "images/exams/25B-A-Q5-example.png",
+   "sim": {
+    "kind": "custom_discrete",
+    "estimate": "P(Q' | Q0) ב-p=0.6",
+    "exact": 0.8095238095238095,
+    "params": {
+     "vars": {
+      "A": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.4,
+        0.6
+       ]
+      },
+      "B": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.4,
+        0.6
+       ]
+      },
+      "C": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.4,
+        0.6
+       ]
+      },
+      "R": {
+       "values": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "probs": [
+        0.16666666666666666,
+        0.16666666666666666,
+        0.16666666666666666,
+        0.16666666666666666,
+        0.16666666666666666,
+        0.16666666666666666
+       ]
+      }
+     },
+     "event": "((R <= 2 and A == 1 and (B == 1 or C == 1)) or ((R == 3 or R == 6) and B == 1 and (A == 1 or C == 1)) or ((R == 4 or R == 5) and C == 1 and (A == 1 or B == 1)))",
+     "given": "(A == 1 and (B == 1 or C == 1))"
+    }
+   },
+   "rubric": [
+    {
+     "text": "הגדרה: $\\frac{P(Q_0\\cap Q')}{P(Q_0)}$",
+     "points": 1
+    },
+    {
+     "text": "הצבת סעיפים א ו-ג",
+     "points": 2
+    },
+    {
+     "text": "פישוט: $\\frac13\\cdot\\frac{4-p}{2-p}$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לחלק ב-$P(Q')$ במקום ב-$P(Q_0)$; שניהם שווים כאן, אך ההגדרה היא ב-$P(Q_0)$ כאירוע התנאי."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$: הסתברות אירוע התנאי $P(Q_0)$.",
+     "answer": 0.504,
+     "tol": 0,
+     "explain": "$0.504$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$: $P(Q_0\\cap Q')$ (סעיף ג).",
+     "answer": 0.408,
+     "tol": 0,
+     "explain": "$0.408$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(Q'/Q_0)$? (עד שש ספרות)",
+     "answer": 0.8095238095238095,
+     "tol": 0.0016190476190476191,
+     "explain": "$\\frac{0.408}{0.504}=\\frac{4-p}{3(2-p)}\\approx0.809524$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 5,
@@ -442,7 +2215,132 @@
    "points": 4,
    "part": "ה",
    "contextId": "c5",
-   "image": "images/exams/25B-A-Q5-example.png"
+   "image": "images/exams/25B-A-Q5-example.png",
+   "sim": {
+    "kind": "custom_discrete",
+    "estimate": "P(Q' | not Q0) ב-p=0.6",
+    "exact": 0.1935483870967742,
+    "params": {
+     "vars": {
+      "A": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.4,
+        0.6
+       ]
+      },
+      "B": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.4,
+        0.6
+       ]
+      },
+      "C": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.4,
+        0.6
+       ]
+      },
+      "R": {
+       "values": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "probs": [
+        0.16666666666666666,
+        0.16666666666666666,
+        0.16666666666666666,
+        0.16666666666666666,
+        0.16666666666666666,
+        0.16666666666666666
+       ]
+      }
+     },
+     "event": "((R <= 2 and A == 1 and (B == 1 or C == 1)) or ((R == 3 or R == 6) and B == 1 and (A == 1 or C == 1)) or ((R == 4 or R == 5) and C == 1 and (A == 1 or B == 1)))",
+     "given": "not (A == 1 and (B == 1 or C == 1))"
+    }
+   },
+   "rubric": [
+    {
+     "text": "$P(Q'\\cap\\overline{Q_0})=P(Q')-P(Q'\\cap Q_0)$",
+     "points": 2
+    },
+    {
+     "text": "$P(\\overline{Q_0})=1-p^2(2-p)$",
+     "points": 1
+    },
+    {
+     "text": "הצבה ופישוט: $\\frac23\\cdot\\frac{p^2(1-p)}{1-p^2(2-p)}$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לחשב $1-P(Q'/Q_0)$: המשלים כאן הוא של אירוע התנאי, לא של אירוע המבוקש."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איך מחשבים את $P(Q'\\cap\\overline{Q_0})$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$P(Q')-P(Q'\\cap Q_0)$"
+      },
+      {
+       "id": "b",
+       "value": "$P(Q')P(\\overline{Q_0})$"
+      },
+      {
+       "id": "c",
+       "value": "$1-P(Q'\\cap Q_0)$"
+      },
+      {
+       "id": "d",
+       "value": "$P(\\overline{Q_0})-P(Q_0\\cap Q')$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "פיצול $Q'$ לפי $Q_0$ ו-$\\overline{Q_0}$. מכפלה דורשת אי-תלות, והאחרים אינם נכונים."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$: הסתברות אירוע התנאי $P(\\overline{Q_0})$.",
+     "answer": 0.496,
+     "tol": 0,
+     "explain": "$1-0.504=0.496$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$: $P(Q'\\cap\\overline{Q_0})$.",
+     "answer": 0.096,
+     "tol": 0,
+     "explain": "$0.504-0.408=0.096$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(Q'/\\overline{Q_0})$? (עד שש ספרות)",
+     "answer": 0.1935483870967742,
+     "tol": 0.0003870967741935484,
+     "explain": "$\\frac{0.096}{0.496}\\approx0.193548$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 6,
@@ -455,7 +2353,74 @@
    "confidence": "high",
    "points": 10,
    "part": "א",
-   "contextId": "c6"
+   "contextId": "c6",
+   "sim": {
+    "kind": "urn",
+    "estimate": "P(W=2) ב-N=5, p=0.2",
+    "exact": 0.2048,
+    "params": {
+     "counts": {
+      "hit": 1,
+      "miss": 4
+     },
+     "draws": 5,
+     "replace": true,
+     "event": "hit == 2"
+    }
+   },
+   "rubric": [
+    {
+     "text": "כל מועמד נולד ביום ההרשמה בהסתברות $p=\\frac1{365}$, בלתי תלוי באחרים",
+     "points": 4
+    },
+    {
+     "text": "$N$ ניסויי ברנולי ולכן $\\mathrm{Bin}(N,p)$",
+     "points": 3
+    },
+    {
+     "text": "פונקציית ההסתברות $\\binom Nkp^k(1-p)^{N-k}$",
+     "points": 3
+    }
+   ],
+   "pitfalls": [
+    "להשתמש בפואסון: $N$ נתון וסופי ולכן הבינומית מדויקת.",
+    "לטעות ולהשתמש ב-$\\frac1{365}$ בהסתברות הכישלון."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "ידוע ש-$N$ מועמדים מילאו טופס. איזה מודל מתאים למספר שנולדו ביום ההרשמה?",
+     "options": [
+      {
+       "id": "a",
+       "value": "בינומי $\\mathrm{Bin}(N,p)$: $N$ ניסויים בלתי תלויים"
+      },
+      {
+       "id": "b",
+       "value": "היפרגאומטרי: אין אוכלוסייה סופית עם מספר ידוע של 'הצלחות'"
+      },
+      {
+       "id": "c",
+       "value": "גאומטרי: $N$ קבוע"
+      },
+      {
+       "id": "d",
+       "value": "פואסון: $N$ ידוע ולכן אין צורך בקירוב"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$N$ ידוע והמועמדים בלתי תלויים: בינומי מדויק. פואסון יהיה קירוב בלבד."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$N=5$, $p=0.2$: $P(W=2)$.",
+     "answer": 0.2048,
+     "tol": 0,
+     "explain": "$\\binom52\\cdot0.2^2\\cdot0.8^3=10\\cdot0.04\\cdot0.512=0.2048$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 6,
@@ -468,7 +2433,1260 @@
    "confidence": "high",
    "points": 10,
    "part": "ב",
-   "contextId": "c6"
+   "contextId": "c6",
+   "sim": {
+    "kind": "custom_discrete",
+    "estimate": "P(Y=2) ב-λ=2, p=0.5",
+    "exact": 0.18393972058572117,
+    "params": {
+     "joint": [
+      {
+       "p": 0.1353352832366127,
+       "X": 0,
+       "Y": 0
+      },
+      {
+       "p": 0.1353352832366127,
+       "X": 1,
+       "Y": 0
+      },
+      {
+       "p": 0.1353352832366127,
+       "X": 1,
+       "Y": 1
+      },
+      {
+       "p": 0.06766764161830635,
+       "X": 2,
+       "Y": 0
+      },
+      {
+       "p": 0.1353352832366127,
+       "X": 2,
+       "Y": 1
+      },
+      {
+       "p": 0.06766764161830635,
+       "X": 2,
+       "Y": 2
+      },
+      {
+       "p": 0.02255588053943545,
+       "X": 3,
+       "Y": 0
+      },
+      {
+       "p": 0.06766764161830635,
+       "X": 3,
+       "Y": 1
+      },
+      {
+       "p": 0.06766764161830635,
+       "X": 3,
+       "Y": 2
+      },
+      {
+       "p": 0.02255588053943545,
+       "X": 3,
+       "Y": 3
+      },
+      {
+       "p": 0.005638970134858863,
+       "X": 4,
+       "Y": 0
+      },
+      {
+       "p": 0.02255588053943545,
+       "X": 4,
+       "Y": 1
+      },
+      {
+       "p": 0.033833820809153176,
+       "X": 4,
+       "Y": 2
+      },
+      {
+       "p": 0.02255588053943545,
+       "X": 4,
+       "Y": 3
+      },
+      {
+       "p": 0.005638970134858863,
+       "X": 4,
+       "Y": 4
+      },
+      {
+       "p": 0.0011277940269717726,
+       "X": 5,
+       "Y": 0
+      },
+      {
+       "p": 0.005638970134858863,
+       "X": 5,
+       "Y": 1
+      },
+      {
+       "p": 0.011277940269717726,
+       "X": 5,
+       "Y": 2
+      },
+      {
+       "p": 0.011277940269717726,
+       "X": 5,
+       "Y": 3
+      },
+      {
+       "p": 0.005638970134858863,
+       "X": 5,
+       "Y": 4
+      },
+      {
+       "p": 0.0011277940269717726,
+       "X": 5,
+       "Y": 5
+      },
+      {
+       "p": 0.0001879656711619621,
+       "X": 6,
+       "Y": 0
+      },
+      {
+       "p": 0.0011277940269717726,
+       "X": 6,
+       "Y": 1
+      },
+      {
+       "p": 0.0028194850674294314,
+       "X": 6,
+       "Y": 2
+      },
+      {
+       "p": 0.0037593134232392416,
+       "X": 6,
+       "Y": 3
+      },
+      {
+       "p": 0.0028194850674294314,
+       "X": 6,
+       "Y": 4
+      },
+      {
+       "p": 0.0011277940269717726,
+       "X": 6,
+       "Y": 5
+      },
+      {
+       "p": 0.0001879656711619621,
+       "X": 6,
+       "Y": 6
+      },
+      {
+       "p": 2.6852238737423154e-05,
+       "X": 7,
+       "Y": 0
+      },
+      {
+       "p": 0.0001879656711619621,
+       "X": 7,
+       "Y": 1
+      },
+      {
+       "p": 0.0005638970134858863,
+       "X": 7,
+       "Y": 2
+      },
+      {
+       "p": 0.0009398283558098104,
+       "X": 7,
+       "Y": 3
+      },
+      {
+       "p": 0.0009398283558098104,
+       "X": 7,
+       "Y": 4
+      },
+      {
+       "p": 0.0005638970134858863,
+       "X": 7,
+       "Y": 5
+      },
+      {
+       "p": 0.0001879656711619621,
+       "X": 7,
+       "Y": 6
+      },
+      {
+       "p": 2.6852238737423154e-05,
+       "X": 7,
+       "Y": 7
+      },
+      {
+       "p": 3.3565298421778943e-06,
+       "X": 8,
+       "Y": 0
+      },
+      {
+       "p": 2.6852238737423154e-05,
+       "X": 8,
+       "Y": 1
+      },
+      {
+       "p": 9.398283558098104e-05,
+       "X": 8,
+       "Y": 2
+      },
+      {
+       "p": 0.0001879656711619621,
+       "X": 8,
+       "Y": 3
+      },
+      {
+       "p": 0.0002349570889524526,
+       "X": 8,
+       "Y": 4
+      },
+      {
+       "p": 0.0001879656711619621,
+       "X": 8,
+       "Y": 5
+      },
+      {
+       "p": 9.398283558098104e-05,
+       "X": 8,
+       "Y": 6
+      },
+      {
+       "p": 2.6852238737423154e-05,
+       "X": 8,
+       "Y": 7
+      },
+      {
+       "p": 3.3565298421778943e-06,
+       "X": 8,
+       "Y": 8
+      },
+      {
+       "p": 3.7294776024198825e-07,
+       "X": 9,
+       "Y": 0
+      },
+      {
+       "p": 3.3565298421778943e-06,
+       "X": 9,
+       "Y": 1
+      },
+      {
+       "p": 1.3426119368711577e-05,
+       "X": 9,
+       "Y": 2
+      },
+      {
+       "p": 3.132761186032701e-05,
+       "X": 9,
+       "Y": 3
+      },
+      {
+       "p": 4.699141779049052e-05,
+       "X": 9,
+       "Y": 4
+      },
+      {
+       "p": 4.699141779049052e-05,
+       "X": 9,
+       "Y": 5
+      },
+      {
+       "p": 3.132761186032701e-05,
+       "X": 9,
+       "Y": 6
+      },
+      {
+       "p": 1.3426119368711577e-05,
+       "X": 9,
+       "Y": 7
+      },
+      {
+       "p": 3.3565298421778943e-06,
+       "X": 9,
+       "Y": 8
+      },
+      {
+       "p": 3.7294776024198825e-07,
+       "X": 9,
+       "Y": 9
+      },
+      {
+       "p": 3.7294776024198824e-08,
+       "X": 10,
+       "Y": 0
+      },
+      {
+       "p": 3.7294776024198825e-07,
+       "X": 10,
+       "Y": 1
+      },
+      {
+       "p": 1.6782649210889471e-06,
+       "X": 10,
+       "Y": 2
+      },
+      {
+       "p": 4.475373122903859e-06,
+       "X": 10,
+       "Y": 3
+      },
+      {
+       "p": 7.831902965081753e-06,
+       "X": 10,
+       "Y": 4
+      },
+      {
+       "p": 9.398283558098104e-06,
+       "X": 10,
+       "Y": 5
+      },
+      {
+       "p": 7.831902965081753e-06,
+       "X": 10,
+       "Y": 6
+      },
+      {
+       "p": 4.475373122903859e-06,
+       "X": 10,
+       "Y": 7
+      },
+      {
+       "p": 1.6782649210889471e-06,
+       "X": 10,
+       "Y": 8
+      },
+      {
+       "p": 3.7294776024198825e-07,
+       "X": 10,
+       "Y": 9
+      },
+      {
+       "p": 3.7294776024198824e-08,
+       "X": 10,
+       "Y": 10
+      },
+      {
+       "p": 3.390434184018075e-09,
+       "X": 11,
+       "Y": 0
+      },
+      {
+       "p": 3.729477602419883e-08,
+       "X": 11,
+       "Y": 1
+      },
+      {
+       "p": 1.8647388012099412e-07,
+       "X": 11,
+       "Y": 2
+      },
+      {
+       "p": 5.594216403629825e-07,
+       "X": 11,
+       "Y": 3
+      },
+      {
+       "p": 1.118843280725965e-06,
+       "X": 11,
+       "Y": 4
+      },
+      {
+       "p": 1.5663805930163507e-06,
+       "X": 11,
+       "Y": 5
+      },
+      {
+       "p": 1.5663805930163507e-06,
+       "X": 11,
+       "Y": 6
+      },
+      {
+       "p": 1.118843280725965e-06,
+       "X": 11,
+       "Y": 7
+      },
+      {
+       "p": 5.594216403629825e-07,
+       "X": 11,
+       "Y": 8
+      },
+      {
+       "p": 1.8647388012099412e-07,
+       "X": 11,
+       "Y": 9
+      },
+      {
+       "p": 3.729477602419883e-08,
+       "X": 11,
+       "Y": 10
+      },
+      {
+       "p": 3.390434184018075e-09,
+       "X": 11,
+       "Y": 11
+      },
+      {
+       "p": 2.8253618200150626e-10,
+       "X": 12,
+       "Y": 0
+      },
+      {
+       "p": 3.390434184018075e-09,
+       "X": 12,
+       "Y": 1
+      },
+      {
+       "p": 1.8647388012099415e-08,
+       "X": 12,
+       "Y": 2
+      },
+      {
+       "p": 6.215796004033137e-08,
+       "X": 12,
+       "Y": 3
+      },
+      {
+       "p": 1.398554100907456e-07,
+       "X": 12,
+       "Y": 4
+      },
+      {
+       "p": 2.2376865614519295e-07,
+       "X": 12,
+       "Y": 5
+      },
+      {
+       "p": 2.610634321693918e-07,
+       "X": 12,
+       "Y": 6
+      },
+      {
+       "p": 2.2376865614519295e-07,
+       "X": 12,
+       "Y": 7
+      },
+      {
+       "p": 1.398554100907456e-07,
+       "X": 12,
+       "Y": 8
+      },
+      {
+       "p": 6.215796004033137e-08,
+       "X": 12,
+       "Y": 9
+      },
+      {
+       "p": 1.8647388012099415e-08,
+       "X": 12,
+       "Y": 10
+      },
+      {
+       "p": 3.390434184018075e-09,
+       "X": 12,
+       "Y": 11
+      },
+      {
+       "p": 2.8253618200150626e-10,
+       "X": 12,
+       "Y": 12
+      },
+      {
+       "p": 2.1733552461654328e-11,
+       "X": 13,
+       "Y": 0
+      },
+      {
+       "p": 2.8253618200150626e-10,
+       "X": 13,
+       "Y": 1
+      },
+      {
+       "p": 1.6952170920090376e-09,
+       "X": 13,
+       "Y": 2
+      },
+      {
+       "p": 6.215796004033138e-09,
+       "X": 13,
+       "Y": 3
+      },
+      {
+       "p": 1.5539490010082844e-08,
+       "X": 13,
+       "Y": 4
+      },
+      {
+       "p": 2.797108201814912e-08,
+       "X": 13,
+       "Y": 5
+      },
+      {
+       "p": 3.729477602419883e-08,
+       "X": 13,
+       "Y": 6
+      },
+      {
+       "p": 3.729477602419883e-08,
+       "X": 13,
+       "Y": 7
+      },
+      {
+       "p": 2.797108201814912e-08,
+       "X": 13,
+       "Y": 8
+      },
+      {
+       "p": 1.5539490010082844e-08,
+       "X": 13,
+       "Y": 9
+      },
+      {
+       "p": 6.215796004033138e-09,
+       "X": 13,
+       "Y": 10
+      },
+      {
+       "p": 1.6952170920090376e-09,
+       "X": 13,
+       "Y": 11
+      },
+      {
+       "p": 2.8253618200150626e-10,
+       "X": 13,
+       "Y": 12
+      },
+      {
+       "p": 2.1733552461654328e-11,
+       "X": 13,
+       "Y": 13
+      },
+      {
+       "p": 1.5523966044038805e-12,
+       "X": 14,
+       "Y": 0
+      },
+      {
+       "p": 2.1733552461654328e-11,
+       "X": 14,
+       "Y": 1
+      },
+      {
+       "p": 1.4126809100075313e-10,
+       "X": 14,
+       "Y": 2
+      },
+      {
+       "p": 5.650723640030125e-10,
+       "X": 14,
+       "Y": 3
+      },
+      {
+       "p": 1.5539490010082845e-09,
+       "X": 14,
+       "Y": 4
+      },
+      {
+       "p": 3.107898002016569e-09,
+       "X": 14,
+       "Y": 5
+      },
+      {
+       "p": 4.661847003024853e-09,
+       "X": 14,
+       "Y": 6
+      },
+      {
+       "p": 5.3278251463141174e-09,
+       "X": 14,
+       "Y": 7
+      },
+      {
+       "p": 4.661847003024853e-09,
+       "X": 14,
+       "Y": 8
+      },
+      {
+       "p": 3.107898002016569e-09,
+       "X": 14,
+       "Y": 9
+      },
+      {
+       "p": 1.5539490010082845e-09,
+       "X": 14,
+       "Y": 10
+      },
+      {
+       "p": 5.650723640030125e-10,
+       "X": 14,
+       "Y": 11
+      },
+      {
+       "p": 1.4126809100075313e-10,
+       "X": 14,
+       "Y": 12
+      },
+      {
+       "p": 2.1733552461654328e-11,
+       "X": 14,
+       "Y": 13
+      },
+      {
+       "p": 1.5523966044038805e-12,
+       "X": 14,
+       "Y": 14
+      },
+      {
+       "p": 1.034931069602587e-13,
+       "X": 15,
+       "Y": 0
+      },
+      {
+       "p": 1.5523966044038805e-12,
+       "X": 15,
+       "Y": 1
+      },
+      {
+       "p": 1.0866776230827164e-11,
+       "X": 15,
+       "Y": 2
+      },
+      {
+       "p": 4.7089363666917706e-11,
+       "X": 15,
+       "Y": 3
+      },
+      {
+       "p": 1.4126809100075313e-10,
+       "X": 15,
+       "Y": 4
+      },
+      {
+       "p": 3.1078980020165687e-10,
+       "X": 15,
+       "Y": 5
+      },
+      {
+       "p": 5.179830003360948e-10,
+       "X": 15,
+       "Y": 6
+      },
+      {
+       "p": 6.659781432892648e-10,
+       "X": 15,
+       "Y": 7
+      },
+      {
+       "p": 6.659781432892648e-10,
+       "X": 15,
+       "Y": 8
+      },
+      {
+       "p": 5.179830003360948e-10,
+       "X": 15,
+       "Y": 9
+      },
+      {
+       "p": 3.1078980020165687e-10,
+       "X": 15,
+       "Y": 10
+      },
+      {
+       "p": 1.4126809100075313e-10,
+       "X": 15,
+       "Y": 11
+      },
+      {
+       "p": 4.7089363666917706e-11,
+       "X": 15,
+       "Y": 12
+      },
+      {
+       "p": 1.0866776230827164e-11,
+       "X": 15,
+       "Y": 13
+      },
+      {
+       "p": 1.5523966044038805e-12,
+       "X": 15,
+       "Y": 14
+      },
+      {
+       "p": 1.034931069602587e-13,
+       "X": 15,
+       "Y": 15
+      },
+      {
+       "p": 6.468319185016169e-15,
+       "X": 16,
+       "Y": 0
+      },
+      {
+       "p": 1.034931069602587e-13,
+       "X": 16,
+       "Y": 1
+      },
+      {
+       "p": 7.761983022019402e-13,
+       "X": 16,
+       "Y": 2
+      },
+      {
+       "p": 3.6222587436090544e-12,
+       "X": 16,
+       "Y": 3
+      },
+      {
+       "p": 1.1772340916729427e-11,
+       "X": 16,
+       "Y": 4
+      },
+      {
+       "p": 2.8253618200150625e-11,
+       "X": 16,
+       "Y": 5
+      },
+      {
+       "p": 5.179830003360948e-11,
+       "X": 16,
+       "Y": 6
+      },
+      {
+       "p": 7.399757147658497e-11,
+       "X": 16,
+       "Y": 7
+      },
+      {
+       "p": 8.32472679111581e-11,
+       "X": 16,
+       "Y": 8
+      },
+      {
+       "p": 7.399757147658497e-11,
+       "X": 16,
+       "Y": 9
+      },
+      {
+       "p": 5.179830003360948e-11,
+       "X": 16,
+       "Y": 10
+      },
+      {
+       "p": 2.8253618200150625e-11,
+       "X": 16,
+       "Y": 11
+      },
+      {
+       "p": 1.1772340916729427e-11,
+       "X": 16,
+       "Y": 12
+      },
+      {
+       "p": 3.6222587436090544e-12,
+       "X": 16,
+       "Y": 13
+      },
+      {
+       "p": 7.761983022019402e-13,
+       "X": 16,
+       "Y": 14
+      },
+      {
+       "p": 1.034931069602587e-13,
+       "X": 16,
+       "Y": 15
+      },
+      {
+       "p": 6.468319185016169e-15,
+       "X": 16,
+       "Y": 16
+      },
+      {
+       "p": 3.804893638244805e-16,
+       "X": 17,
+       "Y": 0
+      },
+      {
+       "p": 6.468319185016169e-15,
+       "X": 17,
+       "Y": 1
+      },
+      {
+       "p": 5.174655348012935e-14,
+       "X": 17,
+       "Y": 2
+      },
+      {
+       "p": 2.5873276740064676e-13,
+       "X": 17,
+       "Y": 3
+      },
+      {
+       "p": 9.055646859022636e-13,
+       "X": 17,
+       "Y": 4
+      },
+      {
+       "p": 2.3544681833458856e-12,
+       "X": 17,
+       "Y": 5
+      },
+      {
+       "p": 4.708936366691771e-12,
+       "X": 17,
+       "Y": 6
+      },
+      {
+       "p": 7.399757147658498e-12,
+       "X": 17,
+       "Y": 7
+      },
+      {
+       "p": 9.249696434573122e-12,
+       "X": 17,
+       "Y": 8
+      },
+      {
+       "p": 9.249696434573122e-12,
+       "X": 17,
+       "Y": 9
+      },
+      {
+       "p": 7.399757147658498e-12,
+       "X": 17,
+       "Y": 10
+      },
+      {
+       "p": 4.708936366691771e-12,
+       "X": 17,
+       "Y": 11
+      },
+      {
+       "p": 2.3544681833458856e-12,
+       "X": 17,
+       "Y": 12
+      },
+      {
+       "p": 9.055646859022636e-13,
+       "X": 17,
+       "Y": 13
+      },
+      {
+       "p": 2.5873276740064676e-13,
+       "X": 17,
+       "Y": 14
+      },
+      {
+       "p": 5.174655348012935e-14,
+       "X": 17,
+       "Y": 15
+      },
+      {
+       "p": 6.468319185016169e-15,
+       "X": 17,
+       "Y": 16
+      },
+      {
+       "p": 3.804893638244805e-16,
+       "X": 17,
+       "Y": 17
+      },
+      {
+       "p": 2.1138297990248917e-17,
+       "X": 18,
+       "Y": 0
+      },
+      {
+       "p": 3.804893638244805e-16,
+       "X": 18,
+       "Y": 1
+      },
+      {
+       "p": 3.2341595925080844e-15,
+       "X": 18,
+       "Y": 2
+      },
+      {
+       "p": 1.7248851160043117e-14,
+       "X": 18,
+       "Y": 3
+      },
+      {
+       "p": 6.468319185016169e-14,
+       "X": 18,
+       "Y": 4
+      },
+      {
+       "p": 1.8111293718045272e-13,
+       "X": 18,
+       "Y": 5
+      },
+      {
+       "p": 3.924113638909809e-13,
+       "X": 18,
+       "Y": 6
+      },
+      {
+       "p": 6.727051952416815e-13,
+       "X": 18,
+       "Y": 7
+      },
+      {
+       "p": 9.249696434573122e-13,
+       "X": 18,
+       "Y": 8
+      },
+      {
+       "p": 1.0277440482859024e-12,
+       "X": 18,
+       "Y": 9
+      },
+      {
+       "p": 9.249696434573122e-13,
+       "X": 18,
+       "Y": 10
+      },
+      {
+       "p": 6.727051952416815e-13,
+       "X": 18,
+       "Y": 11
+      },
+      {
+       "p": 3.924113638909809e-13,
+       "X": 18,
+       "Y": 12
+      },
+      {
+       "p": 1.8111293718045272e-13,
+       "X": 18,
+       "Y": 13
+      },
+      {
+       "p": 6.468319185016169e-14,
+       "X": 18,
+       "Y": 14
+      },
+      {
+       "p": 1.7248851160043117e-14,
+       "X": 18,
+       "Y": 15
+      },
+      {
+       "p": 3.2341595925080844e-15,
+       "X": 18,
+       "Y": 16
+      },
+      {
+       "p": 3.804893638244805e-16,
+       "X": 18,
+       "Y": 17
+      },
+      {
+       "p": 2.1138297990248917e-17,
+       "X": 18,
+       "Y": 18
+      },
+      {
+       "p": 1.112541999486785e-18,
+       "X": 19,
+       "Y": 0
+      },
+      {
+       "p": 2.1138297990248917e-17,
+       "X": 19,
+       "Y": 1
+      },
+      {
+       "p": 1.9024468191224026e-16,
+       "X": 19,
+       "Y": 2
+      },
+      {
+       "p": 1.0780531975026948e-15,
+       "X": 19,
+       "Y": 3
+      },
+      {
+       "p": 4.312212790010779e-15,
+       "X": 19,
+       "Y": 4
+      },
+      {
+       "p": 1.2936638370032338e-14,
+       "X": 19,
+       "Y": 5
+      },
+      {
+       "p": 3.018548953007545e-14,
+       "X": 19,
+       "Y": 6
+      },
+      {
+       "p": 5.6058766270140126e-14,
+       "X": 19,
+       "Y": 7
+      },
+      {
+       "p": 8.408814940521019e-14,
+       "X": 19,
+       "Y": 8
+      },
+      {
+       "p": 1.0277440482859023e-13,
+       "X": 19,
+       "Y": 9
+      },
+      {
+       "p": 1.0277440482859023e-13,
+       "X": 19,
+       "Y": 10
+      },
+      {
+       "p": 8.408814940521019e-14,
+       "X": 19,
+       "Y": 11
+      },
+      {
+       "p": 5.6058766270140126e-14,
+       "X": 19,
+       "Y": 12
+      },
+      {
+       "p": 3.018548953007545e-14,
+       "X": 19,
+       "Y": 13
+      },
+      {
+       "p": 1.2936638370032338e-14,
+       "X": 19,
+       "Y": 14
+      },
+      {
+       "p": 4.312212790010779e-15,
+       "X": 19,
+       "Y": 15
+      },
+      {
+       "p": 1.0780531975026948e-15,
+       "X": 19,
+       "Y": 16
+      },
+      {
+       "p": 1.9024468191224026e-16,
+       "X": 19,
+       "Y": 17
+      },
+      {
+       "p": 2.1138297990248917e-17,
+       "X": 19,
+       "Y": 18
+      },
+      {
+       "p": 1.112541999486785e-18,
+       "X": 19,
+       "Y": 19
+      },
+      {
+       "p": 5.562709997433925e-20,
+       "X": 20,
+       "Y": 0
+      },
+      {
+       "p": 1.112541999486785e-18,
+       "X": 20,
+       "Y": 1
+      },
+      {
+       "p": 1.0569148995124458e-17,
+       "X": 20,
+       "Y": 2
+      },
+      {
+       "p": 6.341489397074675e-17,
+       "X": 20,
+       "Y": 3
+      },
+      {
+       "p": 2.695132993756737e-16,
+       "X": 20,
+       "Y": 4
+      },
+      {
+       "p": 8.624425580021558e-16,
+       "X": 20,
+       "Y": 5
+      },
+      {
+       "p": 2.1561063950053896e-15,
+       "X": 20,
+       "Y": 6
+      },
+      {
+       "p": 4.312212790010779e-15,
+       "X": 20,
+       "Y": 7
+      },
+      {
+       "p": 7.007345783767516e-15,
+       "X": 20,
+       "Y": 8
+      },
+      {
+       "p": 9.34312771169002e-15,
+       "X": 20,
+       "Y": 9
+      },
+      {
+       "p": 1.0277440482859023e-14,
+       "X": 20,
+       "Y": 10
+      },
+      {
+       "p": 9.34312771169002e-15,
+       "X": 20,
+       "Y": 11
+      },
+      {
+       "p": 7.007345783767516e-15,
+       "X": 20,
+       "Y": 12
+      },
+      {
+       "p": 4.312212790010779e-15,
+       "X": 20,
+       "Y": 13
+      },
+      {
+       "p": 2.1561063950053896e-15,
+       "X": 20,
+       "Y": 14
+      },
+      {
+       "p": 8.624425580021558e-16,
+       "X": 20,
+       "Y": 15
+      },
+      {
+       "p": 2.695132993756737e-16,
+       "X": 20,
+       "Y": 16
+      },
+      {
+       "p": 6.341489397074675e-17,
+       "X": 20,
+       "Y": 17
+      },
+      {
+       "p": 1.0569148995124458e-17,
+       "X": 20,
+       "Y": 18
+      },
+      {
+       "p": 1.112541999486785e-18,
+       "X": 20,
+       "Y": 19
+      },
+      {
+       "p": 5.562709997433925e-20,
+       "X": 20,
+       "Y": 20
+      }
+     ],
+     "event": "Y == 2"
+    }
+   },
+   "rubric": [
+    {
+     "text": "$Y\\sim\\mathrm{P}(\\lambda p)$ (דילול פואסון) או חישוב ישיר",
+     "points": 2
+    },
+    {
+     "text": "נוסחת ההסתברות השלמה: $\\sum_{j\\ge k}P(Y=k/X=j)P(X=j)$",
+     "points": 3
+    },
+    {
+     "text": "שימוש ברמז עם $a=\\lambda(1-p)$",
+     "points": 3
+    },
+    {
+     "text": "התוצאה $\\frac{(\\lambda p)^k}{k!}e^{-\\lambda p}$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "להשתמש בבינומית $\\mathrm{Bin}(X,p)$ עם $X$ קבוע: מספר המועמדים אקראי.",
+    "לטעות ב-$a=\\lambda p$ ברמז; הסכום הוא על האלה שאינם נספרים: $a=\\lambda(1-p)$."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "$X\\sim\\mathrm{P}(\\lambda)$ ממלאים טופס, וכל אחד נולד ביום ההרשמה בהסתברות $p$ בלי תלות. מהו המודל ל-$Y$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "דילול פואסון: $Y\\sim\\mathrm{P}(\\lambda p)$"
+      },
+      {
+       "id": "b",
+       "value": "$\\mathrm{Bin}(N,p)$ עם $N$ קבוע"
+      },
+      {
+       "id": "c",
+       "value": "$\\mathrm{P}(\\lambda)$ (הדילול לא משנה)"
+      },
+      {
+       "id": "d",
+       "value": "גאומטרי"
+      }
+     ],
+     "correctId": "a",
+     "explain": "מספר המועמדים אקראי (פואסון), ולכן בינומית עם $N$ קבוע אינה מתאימה. דילול של פואסון נשאר פואסון עם פרמטר מוקטן."
+    },
+    {
+     "type": "choice",
+     "prompt": "איזה $a$ מציבים בסכום $\\sum_{j\\ge k}\\binom jk\\frac{a^j}{j!}$ מהרמז?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$a=\\lambda(1-p)$"
+      },
+      {
+       "id": "b",
+       "value": "$a=\\lambda p$"
+      },
+      {
+       "id": "c",
+       "value": "$a=\\lambda$"
+      },
+      {
+       "id": "d",
+       "value": "$a=1-p$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "אחרי הוצאת $\\frac{p^k}{(1-p)^k}$ נשאר $\\frac{[\\lambda(1-p)]^j}{j!}$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$\\lambda=2$, $p=0.5$: $P(Y=0)$ (עד שש ספרות).",
+     "answer": 0.36787944117144233,
+     "tol": 0.0007357588823428847,
+     "explain": "$e^{-\\lambda p}=e^{-1}\\approx0.367879$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "באותם ערכים: $P(Y=2)$.",
+     "answer": 0.18393972058572117,
+     "tol": 0.00036787944117144236,
+     "explain": "$\\frac{(\\lambda p)^2}{2!}e^{-\\lambda p}=\\frac{e^{-1}}2\\approx0.18394$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 6,
@@ -481,7 +3699,1232 @@
    "confidence": "high",
    "points": 5,
    "part": "ג",
-   "contextId": "c6"
+   "contextId": "c6",
+   "sim": {
+    "kind": "custom_discrete",
+    "estimate": "P(X=3 | Y=1) ב-λ=2, p=0.5",
+    "exact": 0.18393972058572117,
+    "params": {
+     "joint": [
+      {
+       "p": 0.1353352832366127,
+       "X": 0,
+       "Y": 0
+      },
+      {
+       "p": 0.1353352832366127,
+       "X": 1,
+       "Y": 0
+      },
+      {
+       "p": 0.1353352832366127,
+       "X": 1,
+       "Y": 1
+      },
+      {
+       "p": 0.06766764161830635,
+       "X": 2,
+       "Y": 0
+      },
+      {
+       "p": 0.1353352832366127,
+       "X": 2,
+       "Y": 1
+      },
+      {
+       "p": 0.06766764161830635,
+       "X": 2,
+       "Y": 2
+      },
+      {
+       "p": 0.02255588053943545,
+       "X": 3,
+       "Y": 0
+      },
+      {
+       "p": 0.06766764161830635,
+       "X": 3,
+       "Y": 1
+      },
+      {
+       "p": 0.06766764161830635,
+       "X": 3,
+       "Y": 2
+      },
+      {
+       "p": 0.02255588053943545,
+       "X": 3,
+       "Y": 3
+      },
+      {
+       "p": 0.005638970134858863,
+       "X": 4,
+       "Y": 0
+      },
+      {
+       "p": 0.02255588053943545,
+       "X": 4,
+       "Y": 1
+      },
+      {
+       "p": 0.033833820809153176,
+       "X": 4,
+       "Y": 2
+      },
+      {
+       "p": 0.02255588053943545,
+       "X": 4,
+       "Y": 3
+      },
+      {
+       "p": 0.005638970134858863,
+       "X": 4,
+       "Y": 4
+      },
+      {
+       "p": 0.0011277940269717726,
+       "X": 5,
+       "Y": 0
+      },
+      {
+       "p": 0.005638970134858863,
+       "X": 5,
+       "Y": 1
+      },
+      {
+       "p": 0.011277940269717726,
+       "X": 5,
+       "Y": 2
+      },
+      {
+       "p": 0.011277940269717726,
+       "X": 5,
+       "Y": 3
+      },
+      {
+       "p": 0.005638970134858863,
+       "X": 5,
+       "Y": 4
+      },
+      {
+       "p": 0.0011277940269717726,
+       "X": 5,
+       "Y": 5
+      },
+      {
+       "p": 0.0001879656711619621,
+       "X": 6,
+       "Y": 0
+      },
+      {
+       "p": 0.0011277940269717726,
+       "X": 6,
+       "Y": 1
+      },
+      {
+       "p": 0.0028194850674294314,
+       "X": 6,
+       "Y": 2
+      },
+      {
+       "p": 0.0037593134232392416,
+       "X": 6,
+       "Y": 3
+      },
+      {
+       "p": 0.0028194850674294314,
+       "X": 6,
+       "Y": 4
+      },
+      {
+       "p": 0.0011277940269717726,
+       "X": 6,
+       "Y": 5
+      },
+      {
+       "p": 0.0001879656711619621,
+       "X": 6,
+       "Y": 6
+      },
+      {
+       "p": 2.6852238737423154e-05,
+       "X": 7,
+       "Y": 0
+      },
+      {
+       "p": 0.0001879656711619621,
+       "X": 7,
+       "Y": 1
+      },
+      {
+       "p": 0.0005638970134858863,
+       "X": 7,
+       "Y": 2
+      },
+      {
+       "p": 0.0009398283558098104,
+       "X": 7,
+       "Y": 3
+      },
+      {
+       "p": 0.0009398283558098104,
+       "X": 7,
+       "Y": 4
+      },
+      {
+       "p": 0.0005638970134858863,
+       "X": 7,
+       "Y": 5
+      },
+      {
+       "p": 0.0001879656711619621,
+       "X": 7,
+       "Y": 6
+      },
+      {
+       "p": 2.6852238737423154e-05,
+       "X": 7,
+       "Y": 7
+      },
+      {
+       "p": 3.3565298421778943e-06,
+       "X": 8,
+       "Y": 0
+      },
+      {
+       "p": 2.6852238737423154e-05,
+       "X": 8,
+       "Y": 1
+      },
+      {
+       "p": 9.398283558098104e-05,
+       "X": 8,
+       "Y": 2
+      },
+      {
+       "p": 0.0001879656711619621,
+       "X": 8,
+       "Y": 3
+      },
+      {
+       "p": 0.0002349570889524526,
+       "X": 8,
+       "Y": 4
+      },
+      {
+       "p": 0.0001879656711619621,
+       "X": 8,
+       "Y": 5
+      },
+      {
+       "p": 9.398283558098104e-05,
+       "X": 8,
+       "Y": 6
+      },
+      {
+       "p": 2.6852238737423154e-05,
+       "X": 8,
+       "Y": 7
+      },
+      {
+       "p": 3.3565298421778943e-06,
+       "X": 8,
+       "Y": 8
+      },
+      {
+       "p": 3.7294776024198825e-07,
+       "X": 9,
+       "Y": 0
+      },
+      {
+       "p": 3.3565298421778943e-06,
+       "X": 9,
+       "Y": 1
+      },
+      {
+       "p": 1.3426119368711577e-05,
+       "X": 9,
+       "Y": 2
+      },
+      {
+       "p": 3.132761186032701e-05,
+       "X": 9,
+       "Y": 3
+      },
+      {
+       "p": 4.699141779049052e-05,
+       "X": 9,
+       "Y": 4
+      },
+      {
+       "p": 4.699141779049052e-05,
+       "X": 9,
+       "Y": 5
+      },
+      {
+       "p": 3.132761186032701e-05,
+       "X": 9,
+       "Y": 6
+      },
+      {
+       "p": 1.3426119368711577e-05,
+       "X": 9,
+       "Y": 7
+      },
+      {
+       "p": 3.3565298421778943e-06,
+       "X": 9,
+       "Y": 8
+      },
+      {
+       "p": 3.7294776024198825e-07,
+       "X": 9,
+       "Y": 9
+      },
+      {
+       "p": 3.7294776024198824e-08,
+       "X": 10,
+       "Y": 0
+      },
+      {
+       "p": 3.7294776024198825e-07,
+       "X": 10,
+       "Y": 1
+      },
+      {
+       "p": 1.6782649210889471e-06,
+       "X": 10,
+       "Y": 2
+      },
+      {
+       "p": 4.475373122903859e-06,
+       "X": 10,
+       "Y": 3
+      },
+      {
+       "p": 7.831902965081753e-06,
+       "X": 10,
+       "Y": 4
+      },
+      {
+       "p": 9.398283558098104e-06,
+       "X": 10,
+       "Y": 5
+      },
+      {
+       "p": 7.831902965081753e-06,
+       "X": 10,
+       "Y": 6
+      },
+      {
+       "p": 4.475373122903859e-06,
+       "X": 10,
+       "Y": 7
+      },
+      {
+       "p": 1.6782649210889471e-06,
+       "X": 10,
+       "Y": 8
+      },
+      {
+       "p": 3.7294776024198825e-07,
+       "X": 10,
+       "Y": 9
+      },
+      {
+       "p": 3.7294776024198824e-08,
+       "X": 10,
+       "Y": 10
+      },
+      {
+       "p": 3.390434184018075e-09,
+       "X": 11,
+       "Y": 0
+      },
+      {
+       "p": 3.729477602419883e-08,
+       "X": 11,
+       "Y": 1
+      },
+      {
+       "p": 1.8647388012099412e-07,
+       "X": 11,
+       "Y": 2
+      },
+      {
+       "p": 5.594216403629825e-07,
+       "X": 11,
+       "Y": 3
+      },
+      {
+       "p": 1.118843280725965e-06,
+       "X": 11,
+       "Y": 4
+      },
+      {
+       "p": 1.5663805930163507e-06,
+       "X": 11,
+       "Y": 5
+      },
+      {
+       "p": 1.5663805930163507e-06,
+       "X": 11,
+       "Y": 6
+      },
+      {
+       "p": 1.118843280725965e-06,
+       "X": 11,
+       "Y": 7
+      },
+      {
+       "p": 5.594216403629825e-07,
+       "X": 11,
+       "Y": 8
+      },
+      {
+       "p": 1.8647388012099412e-07,
+       "X": 11,
+       "Y": 9
+      },
+      {
+       "p": 3.729477602419883e-08,
+       "X": 11,
+       "Y": 10
+      },
+      {
+       "p": 3.390434184018075e-09,
+       "X": 11,
+       "Y": 11
+      },
+      {
+       "p": 2.8253618200150626e-10,
+       "X": 12,
+       "Y": 0
+      },
+      {
+       "p": 3.390434184018075e-09,
+       "X": 12,
+       "Y": 1
+      },
+      {
+       "p": 1.8647388012099415e-08,
+       "X": 12,
+       "Y": 2
+      },
+      {
+       "p": 6.215796004033137e-08,
+       "X": 12,
+       "Y": 3
+      },
+      {
+       "p": 1.398554100907456e-07,
+       "X": 12,
+       "Y": 4
+      },
+      {
+       "p": 2.2376865614519295e-07,
+       "X": 12,
+       "Y": 5
+      },
+      {
+       "p": 2.610634321693918e-07,
+       "X": 12,
+       "Y": 6
+      },
+      {
+       "p": 2.2376865614519295e-07,
+       "X": 12,
+       "Y": 7
+      },
+      {
+       "p": 1.398554100907456e-07,
+       "X": 12,
+       "Y": 8
+      },
+      {
+       "p": 6.215796004033137e-08,
+       "X": 12,
+       "Y": 9
+      },
+      {
+       "p": 1.8647388012099415e-08,
+       "X": 12,
+       "Y": 10
+      },
+      {
+       "p": 3.390434184018075e-09,
+       "X": 12,
+       "Y": 11
+      },
+      {
+       "p": 2.8253618200150626e-10,
+       "X": 12,
+       "Y": 12
+      },
+      {
+       "p": 2.1733552461654328e-11,
+       "X": 13,
+       "Y": 0
+      },
+      {
+       "p": 2.8253618200150626e-10,
+       "X": 13,
+       "Y": 1
+      },
+      {
+       "p": 1.6952170920090376e-09,
+       "X": 13,
+       "Y": 2
+      },
+      {
+       "p": 6.215796004033138e-09,
+       "X": 13,
+       "Y": 3
+      },
+      {
+       "p": 1.5539490010082844e-08,
+       "X": 13,
+       "Y": 4
+      },
+      {
+       "p": 2.797108201814912e-08,
+       "X": 13,
+       "Y": 5
+      },
+      {
+       "p": 3.729477602419883e-08,
+       "X": 13,
+       "Y": 6
+      },
+      {
+       "p": 3.729477602419883e-08,
+       "X": 13,
+       "Y": 7
+      },
+      {
+       "p": 2.797108201814912e-08,
+       "X": 13,
+       "Y": 8
+      },
+      {
+       "p": 1.5539490010082844e-08,
+       "X": 13,
+       "Y": 9
+      },
+      {
+       "p": 6.215796004033138e-09,
+       "X": 13,
+       "Y": 10
+      },
+      {
+       "p": 1.6952170920090376e-09,
+       "X": 13,
+       "Y": 11
+      },
+      {
+       "p": 2.8253618200150626e-10,
+       "X": 13,
+       "Y": 12
+      },
+      {
+       "p": 2.1733552461654328e-11,
+       "X": 13,
+       "Y": 13
+      },
+      {
+       "p": 1.5523966044038805e-12,
+       "X": 14,
+       "Y": 0
+      },
+      {
+       "p": 2.1733552461654328e-11,
+       "X": 14,
+       "Y": 1
+      },
+      {
+       "p": 1.4126809100075313e-10,
+       "X": 14,
+       "Y": 2
+      },
+      {
+       "p": 5.650723640030125e-10,
+       "X": 14,
+       "Y": 3
+      },
+      {
+       "p": 1.5539490010082845e-09,
+       "X": 14,
+       "Y": 4
+      },
+      {
+       "p": 3.107898002016569e-09,
+       "X": 14,
+       "Y": 5
+      },
+      {
+       "p": 4.661847003024853e-09,
+       "X": 14,
+       "Y": 6
+      },
+      {
+       "p": 5.3278251463141174e-09,
+       "X": 14,
+       "Y": 7
+      },
+      {
+       "p": 4.661847003024853e-09,
+       "X": 14,
+       "Y": 8
+      },
+      {
+       "p": 3.107898002016569e-09,
+       "X": 14,
+       "Y": 9
+      },
+      {
+       "p": 1.5539490010082845e-09,
+       "X": 14,
+       "Y": 10
+      },
+      {
+       "p": 5.650723640030125e-10,
+       "X": 14,
+       "Y": 11
+      },
+      {
+       "p": 1.4126809100075313e-10,
+       "X": 14,
+       "Y": 12
+      },
+      {
+       "p": 2.1733552461654328e-11,
+       "X": 14,
+       "Y": 13
+      },
+      {
+       "p": 1.5523966044038805e-12,
+       "X": 14,
+       "Y": 14
+      },
+      {
+       "p": 1.034931069602587e-13,
+       "X": 15,
+       "Y": 0
+      },
+      {
+       "p": 1.5523966044038805e-12,
+       "X": 15,
+       "Y": 1
+      },
+      {
+       "p": 1.0866776230827164e-11,
+       "X": 15,
+       "Y": 2
+      },
+      {
+       "p": 4.7089363666917706e-11,
+       "X": 15,
+       "Y": 3
+      },
+      {
+       "p": 1.4126809100075313e-10,
+       "X": 15,
+       "Y": 4
+      },
+      {
+       "p": 3.1078980020165687e-10,
+       "X": 15,
+       "Y": 5
+      },
+      {
+       "p": 5.179830003360948e-10,
+       "X": 15,
+       "Y": 6
+      },
+      {
+       "p": 6.659781432892648e-10,
+       "X": 15,
+       "Y": 7
+      },
+      {
+       "p": 6.659781432892648e-10,
+       "X": 15,
+       "Y": 8
+      },
+      {
+       "p": 5.179830003360948e-10,
+       "X": 15,
+       "Y": 9
+      },
+      {
+       "p": 3.1078980020165687e-10,
+       "X": 15,
+       "Y": 10
+      },
+      {
+       "p": 1.4126809100075313e-10,
+       "X": 15,
+       "Y": 11
+      },
+      {
+       "p": 4.7089363666917706e-11,
+       "X": 15,
+       "Y": 12
+      },
+      {
+       "p": 1.0866776230827164e-11,
+       "X": 15,
+       "Y": 13
+      },
+      {
+       "p": 1.5523966044038805e-12,
+       "X": 15,
+       "Y": 14
+      },
+      {
+       "p": 1.034931069602587e-13,
+       "X": 15,
+       "Y": 15
+      },
+      {
+       "p": 6.468319185016169e-15,
+       "X": 16,
+       "Y": 0
+      },
+      {
+       "p": 1.034931069602587e-13,
+       "X": 16,
+       "Y": 1
+      },
+      {
+       "p": 7.761983022019402e-13,
+       "X": 16,
+       "Y": 2
+      },
+      {
+       "p": 3.6222587436090544e-12,
+       "X": 16,
+       "Y": 3
+      },
+      {
+       "p": 1.1772340916729427e-11,
+       "X": 16,
+       "Y": 4
+      },
+      {
+       "p": 2.8253618200150625e-11,
+       "X": 16,
+       "Y": 5
+      },
+      {
+       "p": 5.179830003360948e-11,
+       "X": 16,
+       "Y": 6
+      },
+      {
+       "p": 7.399757147658497e-11,
+       "X": 16,
+       "Y": 7
+      },
+      {
+       "p": 8.32472679111581e-11,
+       "X": 16,
+       "Y": 8
+      },
+      {
+       "p": 7.399757147658497e-11,
+       "X": 16,
+       "Y": 9
+      },
+      {
+       "p": 5.179830003360948e-11,
+       "X": 16,
+       "Y": 10
+      },
+      {
+       "p": 2.8253618200150625e-11,
+       "X": 16,
+       "Y": 11
+      },
+      {
+       "p": 1.1772340916729427e-11,
+       "X": 16,
+       "Y": 12
+      },
+      {
+       "p": 3.6222587436090544e-12,
+       "X": 16,
+       "Y": 13
+      },
+      {
+       "p": 7.761983022019402e-13,
+       "X": 16,
+       "Y": 14
+      },
+      {
+       "p": 1.034931069602587e-13,
+       "X": 16,
+       "Y": 15
+      },
+      {
+       "p": 6.468319185016169e-15,
+       "X": 16,
+       "Y": 16
+      },
+      {
+       "p": 3.804893638244805e-16,
+       "X": 17,
+       "Y": 0
+      },
+      {
+       "p": 6.468319185016169e-15,
+       "X": 17,
+       "Y": 1
+      },
+      {
+       "p": 5.174655348012935e-14,
+       "X": 17,
+       "Y": 2
+      },
+      {
+       "p": 2.5873276740064676e-13,
+       "X": 17,
+       "Y": 3
+      },
+      {
+       "p": 9.055646859022636e-13,
+       "X": 17,
+       "Y": 4
+      },
+      {
+       "p": 2.3544681833458856e-12,
+       "X": 17,
+       "Y": 5
+      },
+      {
+       "p": 4.708936366691771e-12,
+       "X": 17,
+       "Y": 6
+      },
+      {
+       "p": 7.399757147658498e-12,
+       "X": 17,
+       "Y": 7
+      },
+      {
+       "p": 9.249696434573122e-12,
+       "X": 17,
+       "Y": 8
+      },
+      {
+       "p": 9.249696434573122e-12,
+       "X": 17,
+       "Y": 9
+      },
+      {
+       "p": 7.399757147658498e-12,
+       "X": 17,
+       "Y": 10
+      },
+      {
+       "p": 4.708936366691771e-12,
+       "X": 17,
+       "Y": 11
+      },
+      {
+       "p": 2.3544681833458856e-12,
+       "X": 17,
+       "Y": 12
+      },
+      {
+       "p": 9.055646859022636e-13,
+       "X": 17,
+       "Y": 13
+      },
+      {
+       "p": 2.5873276740064676e-13,
+       "X": 17,
+       "Y": 14
+      },
+      {
+       "p": 5.174655348012935e-14,
+       "X": 17,
+       "Y": 15
+      },
+      {
+       "p": 6.468319185016169e-15,
+       "X": 17,
+       "Y": 16
+      },
+      {
+       "p": 3.804893638244805e-16,
+       "X": 17,
+       "Y": 17
+      },
+      {
+       "p": 2.1138297990248917e-17,
+       "X": 18,
+       "Y": 0
+      },
+      {
+       "p": 3.804893638244805e-16,
+       "X": 18,
+       "Y": 1
+      },
+      {
+       "p": 3.2341595925080844e-15,
+       "X": 18,
+       "Y": 2
+      },
+      {
+       "p": 1.7248851160043117e-14,
+       "X": 18,
+       "Y": 3
+      },
+      {
+       "p": 6.468319185016169e-14,
+       "X": 18,
+       "Y": 4
+      },
+      {
+       "p": 1.8111293718045272e-13,
+       "X": 18,
+       "Y": 5
+      },
+      {
+       "p": 3.924113638909809e-13,
+       "X": 18,
+       "Y": 6
+      },
+      {
+       "p": 6.727051952416815e-13,
+       "X": 18,
+       "Y": 7
+      },
+      {
+       "p": 9.249696434573122e-13,
+       "X": 18,
+       "Y": 8
+      },
+      {
+       "p": 1.0277440482859024e-12,
+       "X": 18,
+       "Y": 9
+      },
+      {
+       "p": 9.249696434573122e-13,
+       "X": 18,
+       "Y": 10
+      },
+      {
+       "p": 6.727051952416815e-13,
+       "X": 18,
+       "Y": 11
+      },
+      {
+       "p": 3.924113638909809e-13,
+       "X": 18,
+       "Y": 12
+      },
+      {
+       "p": 1.8111293718045272e-13,
+       "X": 18,
+       "Y": 13
+      },
+      {
+       "p": 6.468319185016169e-14,
+       "X": 18,
+       "Y": 14
+      },
+      {
+       "p": 1.7248851160043117e-14,
+       "X": 18,
+       "Y": 15
+      },
+      {
+       "p": 3.2341595925080844e-15,
+       "X": 18,
+       "Y": 16
+      },
+      {
+       "p": 3.804893638244805e-16,
+       "X": 18,
+       "Y": 17
+      },
+      {
+       "p": 2.1138297990248917e-17,
+       "X": 18,
+       "Y": 18
+      },
+      {
+       "p": 1.112541999486785e-18,
+       "X": 19,
+       "Y": 0
+      },
+      {
+       "p": 2.1138297990248917e-17,
+       "X": 19,
+       "Y": 1
+      },
+      {
+       "p": 1.9024468191224026e-16,
+       "X": 19,
+       "Y": 2
+      },
+      {
+       "p": 1.0780531975026948e-15,
+       "X": 19,
+       "Y": 3
+      },
+      {
+       "p": 4.312212790010779e-15,
+       "X": 19,
+       "Y": 4
+      },
+      {
+       "p": 1.2936638370032338e-14,
+       "X": 19,
+       "Y": 5
+      },
+      {
+       "p": 3.018548953007545e-14,
+       "X": 19,
+       "Y": 6
+      },
+      {
+       "p": 5.6058766270140126e-14,
+       "X": 19,
+       "Y": 7
+      },
+      {
+       "p": 8.408814940521019e-14,
+       "X": 19,
+       "Y": 8
+      },
+      {
+       "p": 1.0277440482859023e-13,
+       "X": 19,
+       "Y": 9
+      },
+      {
+       "p": 1.0277440482859023e-13,
+       "X": 19,
+       "Y": 10
+      },
+      {
+       "p": 8.408814940521019e-14,
+       "X": 19,
+       "Y": 11
+      },
+      {
+       "p": 5.6058766270140126e-14,
+       "X": 19,
+       "Y": 12
+      },
+      {
+       "p": 3.018548953007545e-14,
+       "X": 19,
+       "Y": 13
+      },
+      {
+       "p": 1.2936638370032338e-14,
+       "X": 19,
+       "Y": 14
+      },
+      {
+       "p": 4.312212790010779e-15,
+       "X": 19,
+       "Y": 15
+      },
+      {
+       "p": 1.0780531975026948e-15,
+       "X": 19,
+       "Y": 16
+      },
+      {
+       "p": 1.9024468191224026e-16,
+       "X": 19,
+       "Y": 17
+      },
+      {
+       "p": 2.1138297990248917e-17,
+       "X": 19,
+       "Y": 18
+      },
+      {
+       "p": 1.112541999486785e-18,
+       "X": 19,
+       "Y": 19
+      },
+      {
+       "p": 5.562709997433925e-20,
+       "X": 20,
+       "Y": 0
+      },
+      {
+       "p": 1.112541999486785e-18,
+       "X": 20,
+       "Y": 1
+      },
+      {
+       "p": 1.0569148995124458e-17,
+       "X": 20,
+       "Y": 2
+      },
+      {
+       "p": 6.341489397074675e-17,
+       "X": 20,
+       "Y": 3
+      },
+      {
+       "p": 2.695132993756737e-16,
+       "X": 20,
+       "Y": 4
+      },
+      {
+       "p": 8.624425580021558e-16,
+       "X": 20,
+       "Y": 5
+      },
+      {
+       "p": 2.1561063950053896e-15,
+       "X": 20,
+       "Y": 6
+      },
+      {
+       "p": 4.312212790010779e-15,
+       "X": 20,
+       "Y": 7
+      },
+      {
+       "p": 7.007345783767516e-15,
+       "X": 20,
+       "Y": 8
+      },
+      {
+       "p": 9.34312771169002e-15,
+       "X": 20,
+       "Y": 9
+      },
+      {
+       "p": 1.0277440482859023e-14,
+       "X": 20,
+       "Y": 10
+      },
+      {
+       "p": 9.34312771169002e-15,
+       "X": 20,
+       "Y": 11
+      },
+      {
+       "p": 7.007345783767516e-15,
+       "X": 20,
+       "Y": 12
+      },
+      {
+       "p": 4.312212790010779e-15,
+       "X": 20,
+       "Y": 13
+      },
+      {
+       "p": 2.1561063950053896e-15,
+       "X": 20,
+       "Y": 14
+      },
+      {
+       "p": 8.624425580021558e-16,
+       "X": 20,
+       "Y": 15
+      },
+      {
+       "p": 2.695132993756737e-16,
+       "X": 20,
+       "Y": 16
+      },
+      {
+       "p": 6.341489397074675e-17,
+       "X": 20,
+       "Y": 17
+      },
+      {
+       "p": 1.0569148995124458e-17,
+       "X": 20,
+       "Y": 18
+      },
+      {
+       "p": 1.112541999486785e-18,
+       "X": 20,
+       "Y": 19
+      },
+      {
+       "p": 5.562709997433925e-20,
+       "X": 20,
+       "Y": 20
+      }
+     ],
+     "event": "X == 3",
+     "given": "Y == 1"
+    }
+   },
+   "rubric": [
+    {
+     "text": "נוסחת בייס: $\\frac{P(Y=k/X=n)P(X=n)}{P(Y=k)}$",
+     "points": 2
+    },
+    {
+     "text": "הצבת בינומית, פואסון ו-$P(Y=k)$ מסעיף ב",
+     "points": 2
+    },
+    {
+     "text": "פישוט: פואסון עם פרמטר $\\lambda(1-p)$ מוסט ב-$k$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לשכוח שהערכים האפשריים הם $n\\ge k$ (מספר הממלאים לפחות $k$)."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איזו נוסחה מתאימה ל-$P(X=n/Y=k)$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "בייס, עם $P(Y=k/X=n)$ בינומית"
+      },
+      {
+       "id": "b",
+       "value": "הסתברות שלמה על $Y$"
+      },
+      {
+       "id": "c",
+       "value": "$P(X=n)P(Y=k)$ (אי-תלות)"
+      },
+      {
+       "id": "d",
+       "value": "בינומית $\\mathrm{Bin}(n,p)$ בלבד"
+      }
+     ],
+     "correctId": "a",
+     "explain": "מחשבים הסתברות לסיבה בהינתן התוצאה: בייס. $X$ ו-$Y$ תלויים (ל-$Y\\le X$)."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$\\lambda=2$, $p=0.5$: $P(X=1/Y=1)$ (עד שש ספרות).",
+     "answer": 0.36787944117144233,
+     "tol": 0.0007357588823428847,
+     "explain": "$n=k$: $\\frac{[\\lambda(1-p)]^0}{0!}e^{-1}=e^{-1}\\approx0.367879$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "באותם ערכים: $P(X=3/Y=1)$.",
+     "answer": 0.18393972058572117,
+     "tol": 0.00036787944117144236,
+     "explain": "$\\frac{1^{2}}{2!}e^{-1}=\\frac{e^{-1}}2\\approx0.18394$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   }
  ]
 }

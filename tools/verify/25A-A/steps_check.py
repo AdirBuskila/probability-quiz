@@ -19,6 +19,7 @@ BY = {(q["num"], q.get("part")): q for q in RAW["questions"]}
 N = 2_000_000
 rng = np.random.default_rng(20250217)
 rows = []
+checked = set()
 
 
 def S(num, part, i):
@@ -26,6 +27,7 @@ def S(num, part, i):
 
 
 def ex(num, part, i, val, what):
+    checked.add((num, part, i))
     s = S(num, part, i)
     ok = s["type"] == "numeric" and abs(s["answer"] - float(val)) <= 1e-9
     rows.append((f"Q{num}{part}#{i}", "EXACT " + what, ok, f"stored={s.get('answer')} exact={float(val):.9f}"))
@@ -104,7 +106,7 @@ norm = sp.integrate(a * sp.exp(x), (x, -sp.oo, 0)) + sp.integrate(b * x, (x, 0, 
 mean = sp.integrate(x * a * sp.exp(x), (x, -sp.oo, 0)) + sp.integrate(x * b * x, (x, 0, 1))
 sol = sp.solve([norm - 1, mean - mu], [a, b], dict=True)[0]
 claim("Q3a#1", sp.integrate(1 / x, (x, 1, sp.oo)) == sp.oo, "int_1^oo dx/x diverges so c=0")
-ex(3, "א", 2, sol[a].subs(mu, 0), "a at mu=0"); ex(3, "א", 3, sol[b].subs(mu, 0), "b at mu=0")
+ex(3, "א", 1, 0, "c = 0 (forced by divergence, previous claim)"); ex(3, "א", 2, sol[a].subs(mu, 0), "a at mu=0"); ex(3, "א", 3, sol[b].subs(mu, 0), "b at mu=0")
 ex(3, "ב", 0, sol[a].subs(mu, 1), "a at mu=1")
 fa, fb = sol[a].subs(mu, 0), sol[b].subs(mu, 0)
 F = lambda tt: (fa * sp.exp(tt) if tt < 0 else fa + fb * sp.integrate(x, (x, 0, tt)))
@@ -202,6 +204,12 @@ ex(6, "ג", 4, sp.sqrt(sp.Rational(1, 5) * sp.Rational(1, 2) / (1 - sp.Rational(
 claim("Q6c empirical", abs(np.cov(X_, Y_)[0, 1] - 0.2) < 0.004 and abs(np.corrcoef(X_, Y_)[0, 1] - 1 / 3) < 0.002 and abs(X_.var() - 1) < 0.01 and abs(Y_.var() - .36) < 0.01,
       "empirical cov/var/rho match 0.2, 1, 0.36, 1/3")
 ex(6, "ד", 0, sp.sqrt(sp.Rational(1, 2) / sp.Rational(1, 2)), "rho at p=1")
+
+# ---------------------------------------------------------------- coverage: every numeric step must have an EXACT check
+for (num_, part_), q_ in BY.items():
+    for i_, st_ in enumerate(q_.get("steps", [])):
+        if st_["type"] == "numeric" and (num_, part_, i_) not in checked:
+            rows.append((f"Q{num_}{part_}#{i_}", "COVERAGE numeric step without an exact check", False, ""))
 
 # ---------------------------------------------------------------- report
 bad = 0
