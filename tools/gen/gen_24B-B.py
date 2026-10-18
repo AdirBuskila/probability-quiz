@@ -10,10 +10,11 @@ Transcription notes
   first bold token of each question text). Map: Q1 a=א-1, b=א-2, c=א-3, d=ב-1, e=ב-2;
   Q6 a=א, b=ב-1, c=ב-2.
 - Q1 area items (b, c) have region data in tools/verify/24B-B/regions.json (no `region` field in RAW_SCHEMA).
-- Q3(ד) HOLD: the official solution gives 20/36 = 5/9 for P(number even | digit sum odd). The sample space of
-  "digit sum odd" has 40 ordered pairs (5 odd digits x 4 even, in both orders), 20 of them with an even units digit,
-  so the exact value is 1/2. Official key kept in the item text, held, see docs/ASK_ADIR.md and
-  tools/verify/24B-B/check.py.
+- Q3(ד) TYPO RULING (arbiter 2026-10-18, the printed question wins): the official solution gives 20/36 = 5/9 for
+  P(number even | digit sum odd). "Digit sum odd" has 40 ordered pairs (5 odd digits x 4 even, in both orders),
+  20 of them with an even units digit, so the exact value is 1/2. Shipped 1/2 with the official method and the
+  denominator corrected, solutionSource "solved", official:false, "הפתרון הרשמי עם תיקון" prefix; verified exactly
+  and by Monte Carlo in tools/verify/24B-B/check.py.
 - Q5: the official solution takes Q = 1/365 (probability that a student has a birthday on 1 September); the
   question text itself does not state it. Q5(ג) is stated in the official solution with p~ = (1-p)/(1-pQ).
 """
@@ -161,14 +162,16 @@ questions.append(Q(
 $$P(\div5)=\frac{8}{72}=\frac19.$$""",
     7, contextId="c3"))
 
-HOLD3D = ("The official solution gives 20/36 = 5/9, but 'digit sum odd' has 40 ordered pairs (5 odd x 4 even, both orders), "
-          "20 of which have an even units digit, so the exact value is 20/40 = 1/2. The official key does not match; see ASK_ADIR.")
 questions.append(Q(
     3, "ד", "conditional_bayes",
     r"אם ידוע כי סכום הספרות מהווה מספר אי זוגי, מהי ההסתברות שמספר עצמו הוא כן זוגי?",
-    Q3_X + r"""לפי הגדרת ההסתברות המותנית:
-$$P(\text{number even}\mid X+Y\text{ odd})=\frac{P(\text{number even}\cap X+Y\text{ odd})}{P(X+Y\text{ odd})}=\frac{|\{\text{number even}\cap X+Y\text{ odd}\}|}{|\{X+Y\text{ odd}\}|}=\frac{20}{36}=\frac59\quad\text{(as printed in the official solution)}.$$""",
-    4, contextId="c3", hold=HOLD3D))
+    r"""**הפתרון הרשמי עם תיקון:** בפתרון הרשמי המכנה הוא $36$ והתשובה $\frac{20}{36}=\frac59$. אבל יש $40$ זוגות סדורים שסכום ספרותיהם אי-זוגי, ולכן המכנה הנכון הוא $40$ והתשובה $\frac12$. התיקון נבדק (ספירה מדויקת וסימולציה).
+""" + Q3_X + r"""לפי הגדרת ההסתברות המותנית:
+$$P(\text{number even}\mid X+Y\text{ odd})=\frac{P(\text{number even}\cap X+Y\text{ odd})}{P(X+Y\text{ odd})}=\frac{|\{\text{number even}\cap X+Y\text{ odd}\}|}{|\{X+Y\text{ odd}\}|}.$$
+סכום הספרות אי-זוגי אם ורק אם ספרה אחת אי-זוגית (5 אפשרויות) והאחרת זוגית (4 אפשרויות), בשני הסדרים: $|\{X+Y\text{ odd}\}|=2\cdot5\cdot4=40$.
+המספר זוגי כאשר בנוסף ספרת האחדות $Y$ זוגית, כלומר $X$ אי-זוגית ו-$Y$ זוגית: $5\cdot4=20$ זוגות. לכן
+$$P(\text{number even}\mid X+Y\text{ odd})=\frac{20}{40}=\frac12.$$""",
+    4, contextId="c3", solutionSource="solved", official=False))
 
 # ------------------------------------------------------------------ Q4
 Q4_LEAD = r"לפניכם גרף עבור פונקציית צפיפות ההסתברות $f_Z(z)$ של משתנה מקרי $Z$."

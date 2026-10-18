@@ -201,14 +201,13 @@
    "kind": "computation",
    "topic": "conditional_bayes",
    "question": "אם ידוע כי סכום הספרות מהווה מספר אי זוגי, מהי ההסתברות שמספר עצמו הוא כן זוגי?",
-   "solution": "נסמן ב-$X$ את ספרת העשרות וב-$Y$ את ספרת האחדות. מרחב המדגם: $|\\Omega|=9\\cdot8=72$ זוגות סדורים.\nלפי הגדרת ההסתברות המותנית:\n$$P(\\text{number even}\\mid X+Y\\text{ odd})=\\frac{P(\\text{number even}\\cap X+Y\\text{ odd})}{P(X+Y\\text{ odd})}=\\frac{|\\{\\text{number even}\\cap X+Y\\text{ odd}\\}|}{|\\{X+Y\\text{ odd}\\}|}=\\frac{20}{36}=\\frac59\\quad\\text{(as printed in the official solution)}.$$",
-   "solutionSource": "official-pdf",
-   "official": true,
+   "solution": "**הפתרון הרשמי עם תיקון:** בפתרון הרשמי המכנה הוא $36$ והתשובה $\\frac{20}{36}=\\frac59$. אבל יש $40$ זוגות סדורים שסכום ספרותיהם אי-זוגי, ולכן המכנה הנכון הוא $40$ והתשובה $\\frac12$. התיקון נבדק (ספירה מדויקת וסימולציה).\nנסמן ב-$X$ את ספרת העשרות וב-$Y$ את ספרת האחדות. מרחב המדגם: $|\\Omega|=9\\cdot8=72$ זוגות סדורים.\nלפי הגדרת ההסתברות המותנית:\n$$P(\\text{number even}\\mid X+Y\\text{ odd})=\\frac{P(\\text{number even}\\cap X+Y\\text{ odd})}{P(X+Y\\text{ odd})}=\\frac{|\\{\\text{number even}\\cap X+Y\\text{ odd}\\}|}{|\\{X+Y\\text{ odd}\\}|}.$$\nסכום הספרות אי-זוגי אם ורק אם ספרה אחת אי-זוגית (5 אפשרויות) והאחרת זוגית (4 אפשרויות), בשני הסדרים: $|\\{X+Y\\text{ odd}\\}|=2\\cdot5\\cdot4=40$.\nהמספר זוגי כאשר בנוסף ספרת האחדות $Y$ זוגית, כלומר $X$ אי-זוגית ו-$Y$ זוגית: $5\\cdot4=20$ זוגות. לכן\n$$P(\\text{number even}\\mid X+Y\\text{ odd})=\\frac{20}{40}=\\frac12.$$",
+   "solutionSource": "solved",
+   "official": false,
    "confidence": "high",
    "points": 4,
    "part": "ד",
-   "contextId": "c3",
-   "hold": "The official solution gives 20/36 = 5/9, but 'digit sum odd' has 40 ordered pairs (5 odd x 4 even, both orders), 20 of which have an even units digit, so the exact value is 20/40 = 1/2. The official key does not match; see ASK_ADIR."
+   "contextId": "c3"
   },
   {
    "num": 4,

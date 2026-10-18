@@ -5,7 +5,8 @@ Every final answer gets two independent checks:
   EXACT : the official formula (at sample parameters) equals an independent exact computation
           (fractions / enumeration / sympy).
   MC    : Monte Carlo (>= 10^6 trials) agrees with the official formula within 4 standard errors.
-Official keys are never changed. Q3d disagrees with the exact value (official 5/9, exact 1/2) and is HELD.
+Q3d: the printed official key 5/9 is wrong for the printed question (exact 1/2); shipped 1/2 under the
+typo ruling (solved, official:false). The check asserts the shipped 1/2 exactly and by MC, and that 5/9 fails both.
 Output is ASCII only.
 """
 import itertools, math, sys
@@ -85,11 +86,13 @@ oddsum = [(a, b) for a, b in pairs if (a + b) % 2 == 1]
 ex3d = Fr(sum(b % 2 == 0 for a, b in oddsum), len(oddsum))
 Sodd = (G.sum(axis=1) % 2 == 1)
 mc3d = float(np.mean(Num[Sodd] % 2 == 0)); nS = int(Sodd.sum())
-off3d = Fr(5, 9)
+off3d = Fr(5, 9)          # printed official key (wrong for the printed question)
+ship3d = Fr(1, 2)         # shipped corrected value (typo ruling)
 d_ex = (off3d == ex3d)
 d_mc = abs(mc3d - float(off3d)) <= 4 * math.sqrt(.25 / nS)
-print("Q3d: odd-sum pairs=%d, with even number=%d, exact=%s official=%s mc=%.6f" % (
-    len(oddsum), sum(b % 2 == 0 for a, b in oddsum), ex3d, off3d, mc3d))
+rec("Q3d", "P(even | digit sum odd) shipped 1/2", ship3d, ex3d, mc3d, math.sqrt(.25 / nS))
+print("Q3d: odd-sum pairs=%d, with even number=%d, exact=%s official=%s shipped=%s mc=%.6f" % (
+    len(oddsum), sum(b % 2 == 0 for a, b in oddsum), ex3d, off3d, ship3d, mc3d))
 
 # ============================================================ Q4
 z = sp.symbols("z", real=True)
@@ -205,7 +208,7 @@ bad = [r for r in rows if not (r[2] and r[3])]
 for item, what, ex, mc, det in rows:
     print("%-5s ex=%-4s mc=%-4s %s | %s" % (item, "ok" if ex else "FAIL", "ok" if mc else "FAIL", what, det))
 print()
-print("Q3d HOLD: official 5/9 vs exact %s: exact-match=%s mc-match=%s (expected: both False)" % (ex3d, d_ex, d_mc))
+print("Q3d typo ruling: printed official 5/9 vs exact %s: exact-match=%s mc-match=%s (expected: both False); shipped 1/2" % (ex3d, d_ex, d_mc))
 print("TOTAL checks: %d, failing: %d" % (len(rows), len(bad)))
 for r in bad:
     print("  FAIL:", r[0], r[1], r[4])

@@ -13,13 +13,6 @@ Open questions for Adir. One entry per item; the orchestrator moves it to Resolv
 - Status: hold
 -->
 
-### 24B-B Q3 d - official answer 5/9 disagrees with the exact value 1/2
-- Path: official PDF of sitting 24B-B, see sitting code only
-- Page: solution p.9 (printed Q3 d: P(number even | digit sum odd))
-- Question: the official solution gives 20/36 = 5/9. Two distinct digits from 1..9 give 72 ordered pairs; "digit sum odd" has 40 of them (5 odd x 4 even, both orders), and the number is even exactly when the units digit is even: 20 of the 40. So the exact value is 20/40 = 1/2 (exact enumeration and 2*10^6-trial Monte Carlo 0.5002 in tools/verify/24B-B/check.py). The official denominator 36 does not match any reading of the printed condition.
-- Needed: ship the corrected 1/2 (official:false, solved) or keep the printed 5/9?
-- Status: hold (Q3d held, in the raw JSON with the official text; not in the bank)
-
 ### 24A-E Q3 bonus (ה) - no official solution for cov[D,T]
 - Path: official PDF of sitting 24A-E (handwritten solutions)
 - Page: exam p.2 (Q3 bonus, 5 pts, optional); solutions end after Q3 ד on p.8
@@ -84,6 +77,13 @@ Open questions for Adir. One entry per item; the orchestrator moves it to Resolv
 - Status: hold (key disagreement; question text transcribed, not in the bank)
 
 ## Resolved
+
+### 24B-B Q3 d - official answer 5/9 disagrees with the exact value 1/2
+- Path: official PDF of sitting 24B-B, see sitting code only
+- Page: solution p.9 (printed Q3 d: P(number even | digit sum odd))
+- Question: the official solution gives 20/36 = 5/9. Two distinct digits from 1..9 give 72 ordered pairs; "digit sum odd" has 40 of them (5 odd x 4 even, both orders), and the number is even exactly when the units digit is even: 20 of the 40. So the exact value is 20/40 = 1/2 (exact enumeration and 2*10^6-trial Monte Carlo 0.5002 in tools/verify/24B-B/check.py). The official denominator 36 does not match any reading of the printed condition.
+- Needed: ship the corrected 1/2 (official:false, solved) or keep the printed 5/9?
+- Status: resolved 2026-10-18 by the arbiter under the standing rulings (the printed question wins; final-answer error -> typo ruling). Re-read from the rendered pages: the printed condition is "digit sum odd", which has 40 ordered pairs; the official denominator 36 is a slip. Shipped 1/2 with the official method and the corrected denominator, solutionSource solved, official:false, prefix "הפתרון הרשמי עם תיקון". check.py asserts 1/2 exactly (enumeration) and by Monte Carlo (2*10^6 trials, 0.5002). Adir can override.
 
 ### 26A-B Q3 a, b, d - official key uses different q2/q4 labels than the printed question
 - Path: official PDF of sitting 26A-B (typed solutions), see sitting code only
