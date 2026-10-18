@@ -86,6 +86,14 @@
     ],
     "exact": 0.7853981633974483,
     "caption": "האזור x²+y²<1 (רבע עיגול)"
+   },
+   "sim": {
+    "kind": "area",
+    "params": {
+     "fromRegion": true
+    },
+    "estimate": "P(L<1)",
+    "exact": 0.7853981633974483
    }
   },
   {
@@ -120,6 +128,14 @@
     ],
     "exact": 0.8465735902799727,
     "caption": "האזור xy<1/2 (S<1/4)"
+   },
+   "sim": {
+    "kind": "area",
+    "params": {
+     "fromRegion": true
+    },
+    "estimate": "P(S<1/4)",
+    "exact": 0.8465735902799727
    }
   },
   {
@@ -161,6 +177,14 @@
     ],
     "exact": 0.9277376147981501,
     "caption": "L<1 בהינתן S<1/4"
+   },
+   "sim": {
+    "kind": "area",
+    "params": {
+     "fromRegion": true
+    },
+    "estimate": "P(L<1 | S<1/4)",
+    "exact": 0.9277376147981501
    }
   },
   {
@@ -174,7 +198,26 @@
    "confidence": "high",
    "points": 6,
    "part": "ה",
-   "contextId": "c1"
+   "contextId": "c1",
+   "sim": {
+    "kind": "area",
+    "params": {
+     "space": {
+      "x": [
+       0,
+       1
+      ],
+      "y": [
+       0,
+       1
+      ]
+     },
+     "measure": "var",
+     "expr": "x*y/2"
+    },
+    "estimate": "Var[S]",
+    "exact": 0.012152777777777778
+   }
   },
   {
    "num": 2,

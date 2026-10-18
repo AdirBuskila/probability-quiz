@@ -17,7 +17,7 @@ Transcription notes
 - Q1-type area items carry `region` data (REGIONS below; RAW_SCHEMA `region`).
 - Math never holds Hebrew.
 """
-import json, pathlib
+import json, math, pathlib
 
 OUT = pathlib.Path(__file__).resolve().parents[1] / "raw" / "25B-A.json"
 CODE = "25B-A"
@@ -349,6 +349,20 @@ for _q in questions:
     _r = REGIONS.get((_q["num"], _q.get("part")))
     if _r is not None:
         _q["region"] = _r
+
+# ------------------------------------------------------------------ area regions + simulations (RAW_SCHEMA `region`, `sim`)
+_U2 = {"x": [0, 1], "y": [0, 1]}
+SIMS = {
+    (1, "ב"): {"kind": "area", "params": {"fromRegion": True}, "estimate": "P(L<1)", "exact": math.pi / 4},
+    (1, "ג"): {"kind": "area", "params": {"fromRegion": True}, "estimate": "P(S<1/4)", "exact": 0.5 * (1 + math.log(2))},
+    (1, "ד"): {"kind": "area", "params": {"fromRegion": True}, "estimate": "P(L<1 | S<1/4)", "exact": math.pi / (2 * (1 + math.log(2)))},
+    (1, "ה"): {"kind": "area", "params": {"space": _U2, "measure": "var", "expr": "x*y/2"}, "estimate": "Var[S]", "exact": 7 / 576},
+}
+
+for _q in questions:
+    _k = (_q["num"], _q.get("part"))
+    if _k in SIMS:
+        _q["sim"] = SIMS[_k]
 
 # ------------------------------------------------------------------ exam
 exam = {
