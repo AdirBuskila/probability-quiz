@@ -523,9 +523,12 @@
    "topic": "discrete_rv",
    "question": "**סעיף בונוס 1:** חשבו את השונויות $\\operatorname{var}[X_L]$ ו-$\\operatorname{var}[X_R]$. הציבו $N=2$ והסבירו את התוצאה! (5 נק׳ - הניקוד יינתן רק עבור פתרון מלא.)\n**הערה:** לידיעתך,\n$$\\sum_{k=1}^{N}k=\\frac{N(N+1)}2,\\qquad\\sum_{k=1}^{N}k^2=\\frac{N(N+1)(2N+1)}6,\\qquad\\sum_{k=1}^{N}k^3=\\frac{N^2(N+1)^2}4.$$\n(הסכום $\\sum k^3$ נועד לסעיפי הבונוס.)",
    "points": 5,
+   "solution": "**פתרון (אין פתרון רשמי לסעיפי הבונוס).**\nנשתמש בפונקציות ההסתברות השוליות מסעיף ג ובתוחלות מסעיף ד, ו-$\\operatorname{var}[X]=\\mathbb{E}[X^2]-(\\mathbb{E}[X])^2$.\n**עבור $X_L$:**\n$$\\mathbb{E}[X_L^2]=\\sum_{k=1}^{N-1}k^2\\cdot\\frac{2(N-k)}{N(N-1)}=\\frac2{N(N-1)}\\Bigl\\{N\\sum_{k=1}^{N-1}k^2-\\sum_{k=1}^{N-1}k^3\\Bigr\\}.$$\nעם $\\sum_{k=1}^{N-1}k^2=\\frac{(N-1)N(2N-1)}6$ ו-$\\sum_{k=1}^{N-1}k^3=\\frac{(N-1)^2N^2}4$:\n$$N\\cdot\\frac{(N-1)N(2N-1)}6-\\frac{(N-1)^2N^2}4=N^2(N-1)\\Bigl\\{\\frac{2N-1}6-\\frac{N-1}4\\Bigr\\}=\\frac{N^2(N-1)(N+1)}{12},$$\nולכן $\\mathbb{E}[X_L^2]=\\frac{N(N+1)}6$ ו-\n$$\\operatorname{var}[X_L]=\\frac{N(N+1)}6-\\frac{(N+1)^2}9=\\frac{(N+1)(3N-2N-2)}{18}=\\frac{(N+1)(N-2)}{18}.$$\n**עבור $X_R$:**\n$$\\mathbb{E}[X_R^2]=\\sum_{k=2}^{N}k^2\\cdot\\frac{2(k-1)}{N(N-1)}=\\frac2{N(N-1)}\\Bigl\\{\\sum_{k=1}^{N}k^3-\\sum_{k=1}^{N}k^2\\Bigr\\}=\\frac2{N(N-1)}\\cdot\\frac{N(N+1)\\{3N(N+1)-2(2N+1)\\}}{12}.$$\nמאחר ש-$3N^2-N-2=(3N+2)(N-1)$, מתקבל $\\mathbb{E}[X_R^2]=\\frac{(N+1)(3N+2)}6$, ולכן\n$$\\operatorname{var}[X_R]=\\frac{(N+1)(3N+2)}6-\\frac{4(N+1)^2}9=\\frac{(N+1)(9N+6-8N-8)}{18}=\\frac{(N+1)(N-2)}{18}.$$\nכלומר $\\operatorname{var}[X_L]=\\operatorname{var}[X_R]=\\frac{(N+1)(N-2)}{18}$ (גם בגלל הסימטריה: $N+1-X_R$ מתפלג כמו $X_L$).\n**הצבת $N=2$:** $\\operatorname{var}[X_L]=\\operatorname{var}[X_R]=0$. הסבר: כאשר $N=2$ תמיד $X_L=1$ ו-$X_R=2$ (סעיף ד), ולמשתנה דטרמיניסטי אין פיזור.",
+   "solutionSource": "solved",
+   "official": false,
+   "confidence": "high",
    "part": "ה",
-   "contextId": "c6",
-   "hold": "no-key: the official solution file (pp.4-23) ends after part Q6-ד; the bonus parts ה and ו have no worked solution."
+   "contextId": "c6"
   },
   {
    "num": 6,
@@ -533,9 +536,12 @@
    "topic": "joint_discrete",
    "question": "**סעיף בונוס 2:** חשבו את מקדם המתאם $\\rho[X_L,X_R]$. האם הנוסחה שפיתחת נכונה גם עבור $N=2$? נמקו! (5 נק׳ - הניקוד יינתן רק עבור פתרון מלא.)\n**הערה:** לידיעתך,\n$$\\sum_{k=1}^{N}k=\\frac{N(N+1)}2,\\qquad\\sum_{k=1}^{N}k^2=\\frac{N(N+1)(2N+1)}6,\\qquad\\sum_{k=1}^{N}k^3=\\frac{N^2(N+1)^2}4.$$\n(הסכום $\\sum k^3$ נועד לסעיפי הבונוס.)",
    "points": 5,
+   "solution": "**פתרון (אין פתרון רשמי לסעיפי הבונוס).**\n$$\\rho[X_L,X_R]=\\frac{\\operatorname{cov}[X_L,X_R]}{\\sqrt{\\operatorname{var}[X_L]\\operatorname{var}[X_R]}},\\qquad\\operatorname{cov}[X_L,X_R]=\\mathbb{E}[X_LX_R]-\\mathbb{E}[X_L]\\,\\mathbb{E}[X_R].$$\nלפי ההתפלגות המשותפת מסעיף ב,\n$$\\mathbb{E}[X_LX_R]=\\sum_{j<k}jk\\cdot\\frac2{N(N-1)}=\\frac2{N(N-1)}\\cdot\\frac12\\Bigl\\{\\Bigl(\\sum_{k=1}^Nk\\Bigr)^2-\\sum_{k=1}^Nk^2\\Bigr\\}=\\frac1{N(N-1)}\\Bigl\\{\\frac{N^2(N+1)^2}4-\\frac{N(N+1)(2N+1)}6\\Bigr\\}.$$\nכמו בסעיף הקודם $3N(N+1)-2(2N+1)=(3N+2)(N-1)$, ולכן $\\mathbb{E}[X_LX_R]=\\frac{(N+1)(3N+2)}{12}$. עם התוחלות מסעיף ד:\n$$\\operatorname{cov}[X_L,X_R]=\\frac{(N+1)(3N+2)}{12}-\\frac{N+1}3\\cdot\\frac{2(N+1)}3=\\frac{(N+1)(9N+6-8N-8)}{36}=\\frac{(N+1)(N-2)}{36}.$$\nעם השונויות מסעיף הבונוס הקודם, עבור $N\\ge3$:\n$$\\rho[X_L,X_R]=\\frac{\\frac{(N+1)(N-2)}{36}}{\\frac{(N+1)(N-2)}{18}}=\\frac12.$$\nמקדם המתאם אינו תלוי ב-$N$.\n**עבור $N=2$ הנוסחה לא נכונה:** שתי השונויות ושונות משותפת שוות $0$, והביטוי $\\frac00$ אינו מוגדר. $X_L$ ו-$X_R$ הם קבועים, ולכן מקדם המתאם שלהם לא מוגדר (הצמצום ב-$(N-2)$ מותר רק כאשר $N\\ne2$).",
+   "solutionSource": "solved",
+   "official": false,
+   "confidence": "high",
    "part": "ו",
-   "contextId": "c6",
-   "hold": "no-key: the official solution file (pp.4-23) ends after part Q6-ד; the bonus parts ה and ו have no worked solution."
+   "contextId": "c6"
   }
  ]
 }

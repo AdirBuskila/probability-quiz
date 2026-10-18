@@ -27,13 +27,6 @@ Open questions for Adir. One entry per item; the orchestrator moves it to Resolv
 - Needed: route to the solver (no-key); not a key dispute.
 - Status: hold (no-key; question text transcribed, not in the bank)
 
-### 25A-B Q6 e, f - bonus parts with no official solution
-- Path: official PDF of sitting 25A-B (handwritten solutions), see sitting code only
-- Page: exam p.3 (Q6 bonus 1 and 2); the solution file ends after Q6 d (p.23)
-- Question: the variances var[X_L], var[X_R] (bonus 1) and the correlation rho[X_L,X_R] (bonus 2) have no worked solution.
-- Needed: the solver route (no-key); nothing from Adir unless a key exists.
-- Status: hold (no-key)
-
 ### 25B-B Q2 f - bonus (disjoint events): official key s = q is wrong or incomplete
 - Path: official PDF of sitting 25B-B (handwritten solutions), see sitting code only
 - Page: exam p.2 (Q2 d, printed as the bonus part "disjoint"); solution p.8 (last box)
@@ -42,6 +35,13 @@ Open questions for Adir. One entry per item; the orchestrator moves it to Resolv
 - Status: hold (key disagreement; question text transcribed, not in the bank)
 
 ## Resolved
+
+### 25A-B Q6 e, f - bonus parts with no official solution
+- Path: official PDF of sitting 25A-B (handwritten solutions), see sitting code only
+- Page: exam p.3 (Q6 bonus 1 and 2); the solution file ends after Q6 d (p.23)
+- Question: the variances var[X_L], var[X_R] (bonus 1) and the correlation rho[X_L,X_R] (bonus 2) have no worked solution.
+- Needed: the solver route (no-key); nothing from Adir unless a key exists.
+- Status: resolved 2026-10-18 by the solver (no-key route). Both bonus parts ship as solved, official:false, built on the official parts b-d with the hint sums. Q6 e: var[X_L] = var[X_R] = (N+1)(N-2)/18 (0 for N=2: both are constants). Q6 f: cov[X_L,X_R] = (N+1)(N-2)/36, so rho = 1/2 for every N >= 3; for N = 2 the formula does not hold (0/0, constants have no correlation coefficient). check.py asserts these exactly (enumeration, N = 2..12) and by Monte Carlo (2*10^6 trials, N = 3, 7, 20).
 
 ### 25A-C Q4 b, c - printed H works with probability q, the official polynomial is the q=p case
 - Path: official PDF of sitting 25A-C (handwritten solutions), see sitting code only

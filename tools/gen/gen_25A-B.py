@@ -8,8 +8,9 @@ Source: exam pp.1-3, handwritten official solutions on grid paper pp.4-23. Stude
 Transcription notes
 - Part keys: single letters, printed label is the first bold token. Q1 prints "א-1..א-3, ב, ג, ד" -> a..f.
   Q2 prints "א-1..א-4, ב, ג" -> a..f. Q6: a..f = א, ב, ג, ד, ה (bonus 1), ו (bonus 2).
-- Q6 HOLD e, f: the two bonus parts (variances / correlation coefficient) have no worked solution in the solution file
-  (it ends after part ד). Held as no-key; the orchestrator routes them to the solver.
+- Q6 e, f: the two bonus parts (variances / correlation coefficient) have no worked solution in the solution file
+  (it ends after part ד). Solved (solutionSource "solved", official:false): var[XL] = var[XR] = (N+1)(N-2)/18,
+  cov = (N+1)(N-2)/36, rho = 1/2 for N >= 3 (undefined for N = 2). Verified exactly and by MC in tools/verify/25A-B/check.py.
 - Q6: the printed text names the two people who sit down by their first names (they are lecturers); the names are
   replaced by "שני אנשים", the photo is not cropped and the sentence about the figure is reworded.
 - Q1 d: E[sqrt Z] has infinite-variance Monte Carlo (E[Z] is infinite), see check.py (truncated MC + exact).
@@ -337,17 +338,41 @@ $$\mathbb{E}[X_R]=\sum_{k=2}^{N}k\cdot\frac{2(k-1)}{N(N-1)}=\frac2{N(N-1)}\Bigl\
 הסבר: כאשר $N=2$ יש רק שני כיסאות והאנשים תופסים את שניהם, ולכן תמיד $X_L=1$ ו-$X_R=2$ (משתנים דטרמיניסטיים).""",
     6, contextId="c6"))
 
-HOLD_Q6 = "no-key: the official solution file (pp.4-23) ends after part Q6-ד; the bonus parts ה and ו have no worked solution."
+SOLVED = {"solutionSource": "solved", "official": False, "confidence": "high"}
 
 questions.append(Q(
     6, "ה", "discrete_rv",
     r"**סעיף בונוס 1:** חשבו את השונויות $\operatorname{var}[X_L]$ ו-$\operatorname{var}[X_R]$. הציבו $N=2$ והסבירו את התוצאה! (5 נק׳ - הניקוד יינתן רק עבור פתרון מלא.)" "\n" + Q6_HINT,
-    "", 5, contextId="c6", hold=HOLD_Q6))
+    r"""**פתרון (אין פתרון רשמי לסעיפי הבונוס).**
+נשתמש בפונקציות ההסתברות השוליות מסעיף ג ובתוחלות מסעיף ד, ו-$\operatorname{var}[X]=\mathbb{E}[X^2]-(\mathbb{E}[X])^2$.
+**עבור $X_L$:**
+$$\mathbb{E}[X_L^2]=\sum_{k=1}^{N-1}k^2\cdot\frac{2(N-k)}{N(N-1)}=\frac2{N(N-1)}\Bigl\{N\sum_{k=1}^{N-1}k^2-\sum_{k=1}^{N-1}k^3\Bigr\}.$$
+עם $\sum_{k=1}^{N-1}k^2=\frac{(N-1)N(2N-1)}6$ ו-$\sum_{k=1}^{N-1}k^3=\frac{(N-1)^2N^2}4$:
+$$N\cdot\frac{(N-1)N(2N-1)}6-\frac{(N-1)^2N^2}4=N^2(N-1)\Bigl\{\frac{2N-1}6-\frac{N-1}4\Bigr\}=\frac{N^2(N-1)(N+1)}{12},$$
+ולכן $\mathbb{E}[X_L^2]=\frac{N(N+1)}6$ ו-
+$$\operatorname{var}[X_L]=\frac{N(N+1)}6-\frac{(N+1)^2}9=\frac{(N+1)(3N-2N-2)}{18}=\frac{(N+1)(N-2)}{18}.$$
+**עבור $X_R$:**
+$$\mathbb{E}[X_R^2]=\sum_{k=2}^{N}k^2\cdot\frac{2(k-1)}{N(N-1)}=\frac2{N(N-1)}\Bigl\{\sum_{k=1}^{N}k^3-\sum_{k=1}^{N}k^2\Bigr\}=\frac2{N(N-1)}\cdot\frac{N(N+1)\{3N(N+1)-2(2N+1)\}}{12}.$$
+מאחר ש-$3N^2-N-2=(3N+2)(N-1)$, מתקבל $\mathbb{E}[X_R^2]=\frac{(N+1)(3N+2)}6$, ולכן
+$$\operatorname{var}[X_R]=\frac{(N+1)(3N+2)}6-\frac{4(N+1)^2}9=\frac{(N+1)(9N+6-8N-8)}{18}=\frac{(N+1)(N-2)}{18}.$$
+כלומר $\operatorname{var}[X_L]=\operatorname{var}[X_R]=\frac{(N+1)(N-2)}{18}$ (גם בגלל הסימטריה: $N+1-X_R$ מתפלג כמו $X_L$).
+**הצבת $N=2$:** $\operatorname{var}[X_L]=\operatorname{var}[X_R]=0$. הסבר: כאשר $N=2$ תמיד $X_L=1$ ו-$X_R=2$ (סעיף ד), ולמשתנה דטרמיניסטי אין פיזור.""",
+    5, contextId="c6", **SOLVED))
 
 questions.append(Q(
     6, "ו", "joint_discrete",
     r"**סעיף בונוס 2:** חשבו את מקדם המתאם $\rho[X_L,X_R]$. האם הנוסחה שפיתחת נכונה גם עבור $N=2$? נמקו! (5 נק׳ - הניקוד יינתן רק עבור פתרון מלא.)" "\n" + Q6_HINT,
-    "", 5, contextId="c6", hold=HOLD_Q6))
+    r"""**פתרון (אין פתרון רשמי לסעיפי הבונוס).**
+$$\rho[X_L,X_R]=\frac{\operatorname{cov}[X_L,X_R]}{\sqrt{\operatorname{var}[X_L]\operatorname{var}[X_R]}},\qquad\operatorname{cov}[X_L,X_R]=\mathbb{E}[X_LX_R]-\mathbb{E}[X_L]\,\mathbb{E}[X_R].$$
+לפי ההתפלגות המשותפת מסעיף ב,
+$$\mathbb{E}[X_LX_R]=\sum_{j<k}jk\cdot\frac2{N(N-1)}=\frac2{N(N-1)}\cdot\frac12\Bigl\{\Bigl(\sum_{k=1}^Nk\Bigr)^2-\sum_{k=1}^Nk^2\Bigr\}=\frac1{N(N-1)}\Bigl\{\frac{N^2(N+1)^2}4-\frac{N(N+1)(2N+1)}6\Bigr\}.$$
+כמו בסעיף הקודם $3N(N+1)-2(2N+1)=(3N+2)(N-1)$, ולכן $\mathbb{E}[X_LX_R]=\frac{(N+1)(3N+2)}{12}$. עם התוחלות מסעיף ד:
+$$\operatorname{cov}[X_L,X_R]=\frac{(N+1)(3N+2)}{12}-\frac{N+1}3\cdot\frac{2(N+1)}3=\frac{(N+1)(9N+6-8N-8)}{36}=\frac{(N+1)(N-2)}{36}.$$
+עם השונויות מסעיף הבונוס הקודם, עבור $N\ge3$:
+$$\rho[X_L,X_R]=\frac{\frac{(N+1)(N-2)}{36}}{\frac{(N+1)(N-2)}{18}}=\frac12.$$
+מקדם המתאם אינו תלוי ב-$N$.
+**עבור $N=2$ הנוסחה לא נכונה:** שתי השונויות ושונות משותפת שוות $0$, והביטוי $\frac00$ אינו מוגדר. $X_L$ ו-$X_R$ הם קבועים, ולכן מקדם המתאם שלהם לא מוגדר (הצמצום ב-$(N-2)$ מותר רק כאשר $N\ne2$).""",
+    5, contextId="c6", **SOLVED))
 
 # ------------------------------------------------------------------ area regions (RAW_SCHEMA `region`)
 REGIONS = {

@@ -5,8 +5,8 @@ For every final answer two independent checks:
   EXACT : the official formula (at sample parameters) equals an independent exact computation
           (fractions / enumeration / sympy / numerical quadrature).
   MC    : Monte Carlo simulation (>= 10^6 trials) agrees with the official formula within 4 standard errors.
-Official keys are never changed here. Q6 e, f (bonus parts) have no official solution in the file: they are held
-as no-key and are not checked here.
+Official keys are never changed here. Q6 e, f (bonus parts) have no official solution in the file: they ship as
+solved (var = (N+1)(N-2)/18 for both, rho = 1/2 for N >= 3, undefined for N = 2), checked exactly and by MC.
 Output is ASCII only.
 """
 import itertools, math, sys
@@ -304,6 +304,32 @@ for k in (2, 5, 7):
     rec("Q6c", "P(XR=%d) N=7 (MC)" % k, off, off, float(np.mean(xr == k)), se_p(float(off)))
 rec("Q6b", "P(XL=2,XR=3) N=7 (MC)", Fr(2, 42), Fr(2, 42), float(np.mean((xl == 2) & (xr == 3))), se_p(2 / 42))
 rows.append(("Q6d", "N=2: XL=1 and XR=2 always (E[XL]=1, E[XR]=2)", True, True, "two seats"))
+
+# ---- Q6e, Q6f (bonus parts, no official solution; shipped as solved)
+#   var[XL] = var[XR] = (N+1)(N-2)/18,  cov[XL,XR] = (N+1)(N-2)/36,  rho = 1/2 for N >= 3 (undefined for N = 2)
+for Nn in range(2, 13):
+    pairs = [(x, y) for x in range(1, Nn + 1) for y in range(1, Nn + 1) if x != y]
+    w = Fr(1, len(pairs))
+    L_ = [min(x, y) for x, y in pairs]; R_ = [max(x, y) for x, y in pairs]
+    EL = sum(L_) * w; ER = sum(R_) * w
+    VL = sum(l * l for l in L_) * w - EL ** 2; VR = sum(r * r for r in R_) * w - ER ** 2
+    CV = sum(l * r for l, r in zip(L_, R_)) * w - EL * ER
+    v_ship = Fr((Nn + 1) * (Nn - 2), 18)
+    rows.append(("Q6e", "var[XL]=var[XR]=(N+1)(N-2)/18 exact N=%d" % Nn, VL == v_ship and VR == v_ship, True, "VL=%s VR=%s" % (VL, VR)))
+    if Nn == 2:
+        rows.append(("Q6f", "N=2: var=0 so rho is undefined (0/0)", VL == 0 and VR == 0 and CV == 0, True, "exact"))
+    else:
+        rows.append(("Q6f", "cov=(N+1)(N-2)/36 and rho=1/2 exact N=%d" % Nn, CV == Fr((Nn + 1) * (Nn - 2), 36) and CV / VL == Fr(1, 2), True, "exact"))
+for Nn in (3, 7, 20):
+    xa = rng.integers(1, Nn + 1, N); ya = rng.integers(1, Nn, N); ya = np.where(ya >= xa, ya + 1, ya)
+    xl = np.minimum(xa, ya).astype(float); xr = np.maximum(xa, ya).astype(float)
+    v_ship = Fr((Nn + 1) * (Nn - 2), 18)
+    for nm, arr in (("XL", xl), ("XR", xr)):
+        m4 = np.mean((arr - arr.mean()) ** 4)
+        rec("Q6e", "var[%s]=(N+1)(N-2)/18 N=%d (MC)" % (nm, Nn), v_ship, v_ship, float(arr.var()), math.sqrt((m4 - arr.var() ** 2) / N))
+    rho_mc = float(np.corrcoef(xl, xr)[0, 1])
+    bl = np.array([np.corrcoef(a, b)[0, 1] for a, b in zip(np.array_split(xl, 200), np.array_split(xr, 200))])
+    rec("Q6f", "rho[XL,XR]=1/2 N=%d (MC, batch SE)" % Nn, Fr(1, 2), Fr(1, 2), rho_mc, float(bl.std() / math.sqrt(len(bl))))
 
 # ============================================================ report
 bad = [r for r in rows if not (r[2] and r[3])]
