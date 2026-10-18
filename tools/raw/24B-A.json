@@ -85,7 +85,43 @@
     "params": {
      "fromRegion": true
     }
-   }
+   },
+   "rubric": [
+    {
+     "text": "גישה גאומטרית: הסתברות = שטח האירוע חלקי $|\\Omega|=L^2$ (או $F_X$ של אחידה)",
+     "points": 2
+    },
+    {
+     "text": "האירוע $X<L/3$ הוא רצועה ברוחב $L/3$ לכל גובה הריבוע",
+     "points": 2
+    },
+    {
+     "text": "התשובה $\\frac13$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לחשב שטח ולא לחלק ב-$|\\Omega|$ (כאן זה מתחבא כי $L=1$)",
+    "להתייחס ל-$Y$ כאילו הוא מגביל את האירוע"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "נקבע $L=1$ (היחס אינו תלוי ב-$L$). מהו שטח מרחב המדגם $|\\Omega|$ של הזוג $(X,Y)$?",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "הריבוע $(0,1)^2$ הוא מרחב המדגם של $(X,Y)$, ושטחו $1$. אלא אם $|\\Omega|\\ne1$, ההסתברות פשוט שווה לשטח; חשוב לבדוק זאת."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו שטח האירוע $\\{X<\\frac13\\}$ בתוך הריבוע? (שבר או עשרוני)",
+     "answer": 0.3333,
+     "tol": 0.0006,
+     "explain": "רצועה ברוחב $\\frac13$ וגובה $1$: שטח $\\frac13$, ולכן $P=\\frac{1/3}{1}=\\frac13$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 1,
@@ -132,7 +168,43 @@
     "params": {
      "fromRegion": true
     }
-   }
+   },
+   "rubric": [
+    {
+     "text": "גישה גאומטרית או $1-F_Y(L/4)$",
+     "points": 2
+    },
+    {
+     "text": "האירוע $Y>L/4$ הוא רצועה ברוחב $\\frac34L$ (או משלים של רצועה)",
+     "points": 2
+    },
+    {
+     "text": "התשובה $\\frac34$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "להפוך את האי-שוויון ולחשב $P(Y<L/4)=\\frac14$",
+    "לשכוח את החילוק ב-$|\\Omega|$"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "נקבע $L=1$ (היחס אינו תלוי ב-$L$). מהו שטח מרחב המדגם $|\\Omega|$ של הזוג $(X,Y)$?",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "הריבוע $(0,1)^2$ הוא מרחב המדגם של $(X,Y)$, ושטחו $1$. אלא אם $|\\Omega|\\ne1$, ההסתברות פשוט שווה לשטח; חשוב לבדוק זאת."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו שטח האירוע $\\{Y>\\frac14\\}$ בתוך הריבוע?",
+     "answer": 0.75,
+     "tol": 0,
+     "explain": "רצועה בגובה $1-\\frac14=\\frac34$ וברוחב $1$: שטח $\\frac34$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 1,
@@ -179,7 +251,54 @@
     "params": {
      "fromRegion": true
     }
-   }
+   },
+   "rubric": [
+    {
+     "text": "הצגת $\\Omega$ כריבוע ו-$|\\Omega|=L^2$",
+     "points": 1
+    },
+    {
+     "text": "זיהוי המשלים $X+Y>\\frac43L$ כמשולש פינתי בקודקוד $(L,L)$",
+     "points": 2
+    },
+    {
+     "text": "שטח המשולש $\\frac12\\left(\\frac{2L}{3}\\right)^2$ והחסרתו מ-$L^2$",
+     "points": 1
+    },
+    {
+     "text": "התשובה $\\frac79$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לחשב את שטח המשולש כ-$\\frac12\\cdot\\frac43\\cdot\\frac43$ (לא לחתוך אותו עם הריבוע)",
+    "לשכוח את החילוק ב-$|\\Omega|$"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "נקבע $L=1$ (היחס אינו תלוי ב-$L$). מהו שטח מרחב המדגם $|\\Omega|$ של הזוג $(X,Y)$?",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "הריבוע $(0,1)^2$ הוא מרחב המדגם של $(X,Y)$, ושטחו $1$. אלא אם $|\\Omega|\\ne1$, ההסתברות פשוט שווה לשטח; חשוב לבדוק זאת."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו שטח המשלים $\\{X+Y>\\frac43\\}$ בתוך הריבוע? (משולש בפינה $(1,1)$) (שבר או עשרוני)",
+     "answer": 0.2222,
+     "tol": 0.0006,
+     "explain": "הישר $x+y=\\frac43$ חותך את הצלעות ב-$(1,\\frac13)$ וב-$(\\frac13,1)$: ניצבי המשולש $\\frac23$, שטחו $\\frac12\\cdot\\frac49=\\frac29$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו שטח האירוע $\\{X+Y\\le\\frac43\\}$? (שבר או עשרוני)",
+     "answer": 0.7778,
+     "tol": 0.0006,
+     "explain": "$1-\\frac29=\\frac79$, ולכן $P=\\frac79$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 1,
@@ -238,7 +357,70 @@
     "params": {
      "fromRegion": true
     }
-   }
+   },
+   "rubric": [
+    {
+     "text": "פירוק האירוע $Z<\\frac L3$ לפי איזה גפרור קצר יותר (או איחוד $X<\\frac L3$ או $Y<\\frac L3$)",
+     "points": 2
+    },
+    {
+     "text": "חישוב השטחים: $\\frac5{18}L^2$ לכל חלק (או משלים בשטח $\\frac49L^2$)",
+     "points": 2
+    },
+    {
+     "text": "התשובה $\\frac59$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לחבר $\\frac13+\\frac13=\\frac23$ ולשכוח שהחיתוך נספר פעמיים",
+    "לכתוב $\\min(X,Y)<c$ כחיתוך (זה $\\max$)"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "נקבע $L=1$ (היחס אינו תלוי ב-$L$). מהו שטח מרחב המדגם $|\\Omega|$ של הזוג $(X,Y)$?",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "הריבוע $(0,1)^2$ הוא מרחב המדגם של $(X,Y)$, ושטחו $1$. אלא אם $|\\Omega|\\ne1$, ההסתברות פשוט שווה לשטח; חשוב לבדוק זאת."
+    },
+    {
+     "type": "choice",
+     "prompt": "$Z=\\min(X,Y)$. איזה תיאור של האירוע $Z<\\frac13$ נכון?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$X<\\frac13$ **או** $Y<\\frac13$: איחוד של שתי רצועות"
+      },
+      {
+       "id": "b",
+       "value": "$X<\\frac13$ **וגם** $Y<\\frac13$: ריבוע פינתי"
+      },
+      {
+       "id": "c",
+       "value": "$X+Y<\\frac13$: משולש פינתי"
+      }
+     ],
+     "correctId": "a",
+     "explain": "המינימום קטן מ-$\\frac13$ כאשר לפחות אחד קטן מ-$\\frac13$. החיתוך הוא האירוע $\\max<\\frac13$ (שטח $\\frac19$), והמשולש שטחו $\\frac1{18}$; שניהם אינם $\\frac59$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו שטח המשלים $\\{X\\ge\\frac13\\ \\text{and}\\ Y\\ge\\frac13\\}$? (שבר או עשרוני)",
+     "answer": 0.4444,
+     "tol": 0.0006,
+     "explain": "ריבוע בצלע $\\frac23$: שטח $\\frac49$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(Z<\\frac13)$? (שבר או עשרוני)",
+     "answer": 0.5556,
+     "tol": 0.0006,
+     "explain": "$1-\\frac49=\\frac59$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 1,
@@ -305,7 +487,61 @@
     "params": {
      "fromRegion": true
     }
-   }
+   },
+   "rubric": [
+    {
+     "text": "הגדרת הסתברות מותנית כמנה של שטחים: $\\frac{P(Z<\\frac L2\\cap X>\\frac L4)}{P(X>\\frac L4)}$",
+     "points": 1
+    },
+    {
+     "text": "המכנה $P(X>\\frac L4)=\\frac34$",
+     "points": 1
+    },
+    {
+     "text": "שטח החיתוך $\\frac12$ (שני חלקים בני $\\frac14$)",
+     "points": 2
+    },
+    {
+     "text": "התשובה $\\frac23$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לחלק ב-$|\\Omega|=1$ במקום בשטח התנאי $\\frac34$",
+    "להניח ש-$Z<\\frac L2$ ו-$X>\\frac L4$ בלתי תלויים ולכפול"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "נקבע $L=1$ (היחס אינו תלוי ב-$L$). מהו שטח מרחב המדגם $|\\Omega|$ של הזוג $(X,Y)$?",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "הריבוע $(0,1)^2$ הוא מרחב המדגם של $(X,Y)$, ושטחו $1$. אלא אם $|\\Omega|\\ne1$, ההסתברות פשוט שווה לשטח; חשוב לבדוק זאת."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו שטח אזור התנאי $\\{X>\\frac14\\}$ (המכנה, לפני החילוק ב-$|\\Omega|$)?",
+     "answer": 0.75,
+     "tol": 0,
+     "explain": "רצועה ברוחב $\\frac34$: שטח $\\frac34$; זה $P(X>\\frac14)$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו שטח החיתוך $\\{\\min(X,Y)<\\frac12\\}\\cap\\{X>\\frac14\\}$?",
+     "answer": 0.5,
+     "tol": 0,
+     "explain": "באזור $X>\\frac14$ (שטח $\\frac34$) מסירים את הפינה $\\{X\\ge\\frac12,Y\\ge\\frac12\\}$ בשטח $\\frac14$: נשאר $\\frac12$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי ההסתברות המותנית? (שבר או עשרוני)",
+     "answer": 0.6667,
+     "tol": 0.0006,
+     "explain": "$\\frac{1/2}{3/4}=\\frac23$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -339,7 +575,55 @@
      "draws": 1,
      "event": "v1 == 3"
     }
-   }
+   },
+   "rubric": [
+    {
+     "text": "מרחב המדגם: 10 ספרות שוות סיכוי, $|\\Omega|=10$",
+     "points": 2
+    },
+    {
+     "text": "מספר התוצאות הנוחות $|A|=1$",
+     "points": 1
+    },
+    {
+     "text": "התשובה $\\frac1{10}$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לבלבל בין מספר הספרות להסתברות ולכתוב $\\frac13$"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מוציאים ספרה אחת מתוך $10$. איזה מודל מתאים?",
+     "options": [
+      {
+       "id": "a",
+       "value": "מרחב מדגם אחיד סופי: $P=\\frac{|A|}{|\\Omega|}$ (הגישה הקלאסית)"
+      },
+      {
+       "id": "b",
+       "value": "התפלגות גאומטרית: מחכים להופעה הראשונה של הספרה $3$"
+      },
+      {
+       "id": "c",
+       "value": "התפלגות בינומית $\\mathrm{Bin}(10,\\frac1{10})$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "הוצאה בודדת מתוך אוסף שוות-סיכוי היא מרחב אחיד. גאומטרית ובינומית מתארות סדרות של ניסויים חוזרים, ואין כאן סדרה."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי ההסתברות שהספרה שהוצאה היא $3$?",
+     "answer": 0.1,
+     "tol": 0,
+     "explain": "$\\frac{|A|}{|\\Omega|}=\\frac1{10}$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -373,7 +657,70 @@
      "draws": 2,
      "event": "v2 == 3"
     }
-   }
+   },
+   "rubric": [
+    {
+     "text": "זיהוי הוצאה ללא החזרה ובחירת כלל המכפלה (התניה בהוצאה הראשונה)",
+     "points": 2
+    },
+    {
+     "text": "$P(3_1^c)=\\frac9{10}$ ואז $P(3_2\\mid3_1^c)=\\frac19$",
+     "points": 3
+    },
+    {
+     "text": "התשובה $\\frac1{10}$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "להניח אי-תלות בין שתי ההוצאות ולכתוב $\\frac1{10}\\cdot\\frac1{10}$ או $\\frac9{10}\\cdot\\frac1{10}$",
+    "לשכוח שהספרה השנייה יכולה להיות $3$ רק אם הראשונה אינה $3$"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מוציאים שתי ספרות ללא החזרה. איזה מודל מתאים לשאלה על הספרה השנייה?",
+     "options": [
+      {
+       "id": "a",
+       "value": "ללא החזרה: כל הוצאה מותנית בקודמותיה, ולכן כופלים הסתברויות מותנות (או סופרים סדרות)"
+      },
+      {
+       "id": "b",
+       "value": "הוצאות בלתי תלויות, כמו $\\mathrm{Bin}(n,\\frac1{10})$: בכל מקום ההסתברות היא $\\frac1{10}$ כי זה ניסוי חוזר"
+      },
+      {
+       "id": "c",
+       "value": "התפלגות גאומטרית: מחכים להופעה הראשונה של הספרה $3$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "בלי החזרה ההוצאות תלויות: למשל $P(3_2\\mid 3_1)=0\\ne\\frac1{10}$, ולכן הבינומית אינה מתאימה. הגאומטרית נותנת $(\\frac9{10})^{k-1}\\frac1{10}$ (למשל $0.0387$ בהוצאה העשירית, לא $0.1$)."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי ההסתברות שהספרה הראשונה אינה $3$?",
+     "answer": 0.9,
+     "tol": 0,
+     "explain": "$9$ ספרות מתוך $10$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "בהינתן שהראשונה אינה $3$, מהי ההסתברות שהשנייה היא $3$? (שבר או עשרוני)",
+     "answer": 0.1111,
+     "tol": 0.0006,
+     "explain": "נותרו $9$ ספרות ו-$3$ ביניהן: $\\frac19$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(3_2)$?",
+     "answer": 0.1,
+     "tol": 0,
+     "explain": "$\\frac9{10}\\cdot\\frac19=\\frac1{10}$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -407,7 +754,70 @@
      "draws": 3,
      "event": "v3 == 3"
     }
-   }
+   },
+   "rubric": [
+    {
+     "text": "הספרה השלישית היא $3$ רק אם שתי הראשונות אינן $3$",
+     "points": 2
+    },
+    {
+     "text": "$\\frac9{10}\\cdot\\frac89$ ואז $\\frac18$",
+     "points": 3
+    },
+    {
+     "text": "התשובה $\\frac1{10}$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לכפול $\\frac9{10}\\cdot\\frac9{10}\\cdot\\frac1{10}$ (כאילו עם החזרה)",
+    "לחשב את ההסתברות ש-$3$ יופיע באחת מהשלוש ולא במקום השלישי דווקא"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מוציאים שלוש ספרות ללא החזרה. איזה מודל מתאים?",
+     "options": [
+      {
+       "id": "a",
+       "value": "ללא החזרה: כל הוצאה מותנית בקודמותיה, ולכן כופלים הסתברויות מותנות (או סופרים סדרות)"
+      },
+      {
+       "id": "b",
+       "value": "הוצאות בלתי תלויות, כמו $\\mathrm{Bin}(n,\\frac1{10})$: בכל מקום ההסתברות היא $\\frac1{10}$ כי זה ניסוי חוזר"
+      },
+      {
+       "id": "c",
+       "value": "התפלגות גאומטרית: מחכים להופעה הראשונה של הספרה $3$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "בלי החזרה ההוצאות תלויות: למשל $P(3_2\\mid 3_1)=0\\ne\\frac1{10}$, ולכן הבינומית אינה מתאימה. הגאומטרית נותנת $(\\frac9{10})^{k-1}\\frac1{10}$ (למשל $0.0387$ בהוצאה העשירית, לא $0.1$)."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי ההסתברות ששתי הספרות הראשונות אינן $3$?",
+     "answer": 0.8,
+     "tol": 0,
+     "explain": "$\\frac9{10}\\cdot\\frac89=\\frac8{10}$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "בהינתן ששתיהן אינן $3$, מהי ההסתברות שהשלישית היא $3$?",
+     "answer": 0.125,
+     "tol": 0,
+     "explain": "נותרו $8$ ספרות, ביניהן $3$: $\\frac18$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(3_3)$?",
+     "answer": 0.1,
+     "tol": 0,
+     "explain": "$\\frac45\\cdot\\frac18=\\frac1{10}$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -441,7 +851,70 @@
      "draws": 10,
      "event": "v10 == 3"
     }
-   }
+   },
+   "rubric": [
+    {
+     "text": "כלל המכפלה עם $10$ גורמים, או טיעון סימטריה/ספירה",
+     "points": 3
+    },
+    {
+     "text": "צמצום המכפלה הטלסקופית $\\frac9{10}\\cdot\\frac89\\cdots\\frac12\\cdot1$",
+     "points": 2
+    },
+    {
+     "text": "התשובה $\\frac1{10}$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לחשב $\\left(\\frac9{10}\\right)^9\\frac1{10}$ כאילו הוצאות בלתי תלויות",
+    "לכתוב $10!$ במקום $9!$ במונה"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מוציאים את כל $10$ הספרות ללא החזרה. איזה מודל מתאים?",
+     "options": [
+      {
+       "id": "a",
+       "value": "מרחב אחיד על תמורות של $10$ הספרות: סופרים תמורות שבהן $3$ במקום האחרון"
+      },
+      {
+       "id": "b",
+       "value": "התפלגות גאומטרית: $P=(\\frac9{10})^9\\cdot\\frac1{10}$"
+      },
+      {
+       "id": "c",
+       "value": "בינומית $\\mathrm{Bin}(10,\\frac1{10})$: $P=\\frac1{10}$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "הוצאה ללא החזרה של כל הספרות היא תמורה אקראית. הגאומטרית מניחה אי-תלות, ולכן נותנת $0.0387$; הבינומית סופרת הצלחות ולא מתארת סדר."
+    },
+    {
+     "type": "numeric",
+     "prompt": "כמה תמורות של $10$ הספרות מסיימות ב-$3$?",
+     "answer": 362880.0,
+     "tol": 0,
+     "explain": "שאר $9$ הספרות מסודרות בכל דרך: $9!=362880$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "כמה תמורות יש בסך הכול?",
+     "answer": 3628800.0,
+     "tol": 0,
+     "explain": "$10!=3628800$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(3_{10})$?",
+     "answer": 0.1,
+     "tol": 0,
+     "explain": "$\\frac{9!}{10!}=\\frac1{10}$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -454,7 +927,100 @@
    "confidence": "high",
    "points": 5,
    "part": "א",
-   "contextId": "c3"
+   "contextId": "c3",
+   "sim": {
+    "kind": "custom_discrete",
+    "estimate": "P(D=1, T=2) ב-p=0.3",
+    "exact": 0.21,
+    "params": {
+     "vars": {
+      "X": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      },
+      "Y": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      }
+     },
+     "event": "X*(X-Y)+X^2*Y^2 == 1 and X+(X-Y) == 2"
+    }
+   },
+   "rubric": [
+    {
+     "text": "פישוט $D=X$ ו-$T=2X-Y$ בעזרת $X^2=X$, $Y^2=Y$",
+     "points": 2
+    },
+    {
+     "text": "טבלת ארבע התוצאות של $(X,Y)$ עם ערכי $(D,T)$ והסתברויותיהן",
+     "points": 2
+    },
+    {
+     "text": "הטבלה המשותפת המלאה עם השוליות",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "להשאיר את $X^2$ בלי לפשט (לברנולי $X^2=X$)",
+    "לכתוב את המשותפת כמכפלת השוליות (שני המשתנים תלויים באותם $X,Y$)"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איך מחשבים את ההסתברות המשותפת של $(D,T)$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "למנות את ארבעת הצירופים של $(X,Y)$, לחשב $(D,T)$ לכל אחד, ולצרף הסתברות מכפלה (בלתי תלויים)"
+      },
+      {
+       "id": "b",
+       "value": "$(D,T)$ מתפלג בינומית, כי $T$ סכום של ניסויי ברנולי"
+      },
+      {
+       "id": "c",
+       "value": "ההסתברות המשותפת היא מכפלת השוליות $P_D(d)P_T(t)$, כי $D$ ו-$T$ נבנו מאותם משתנים בלתי תלויים"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$(D,T)$ היא פונקציה של $(X,Y)$ בלבד, ולכן ממנים את 4 התוצאות. $T=2X-Y$ מקבל גם $-1$ ולכן אינו בינומי; ובטבלה $P(D=0,T=1)=0$ בעוד מכפלת השוליות חיובית."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו $T$ כאשר $X=0$ ו-$Y=1$?",
+     "answer": -1.0,
+     "tol": 0,
+     "explain": "$T=2\\cdot0-1=-1$ (בדקו גם דרך העקבה של המטריצה)."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.3$, מהי $P(D=1,T=2)$?",
+     "answer": 0.21,
+     "tol": 0,
+     "explain": "$D=1,T=2$ רק עבור $(X,Y)=(1,0)$: $p(1-p)=0.21$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "בטבלה המשותפת עם $D\\in\\{0,1\\}$ ו-$T\\in\\{-1,0,1,2\\}$, כמה מתוך $8$ התאים שווים ל-$0$?",
+     "answer": 4.0,
+     "tol": 0,
+     "explain": "רק ארבעה תאים אפשריים; ארבעת האחרים $(0,1),(0,2),(1,-1),(1,0)$ הם $0$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -467,7 +1033,86 @@
    "confidence": "high",
    "points": 4,
    "part": "ב",
-   "contextId": "c3"
+   "contextId": "c3",
+   "sim": {
+    "kind": "custom_discrete",
+    "estimate": "Var[D] ב-p=0.3",
+    "exact": 0.21,
+    "params": {
+     "vars": {
+      "X": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      },
+      "Y": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      }
+     },
+     "measure": "var",
+     "expr": "X*(X-Y)+X^2*Y^2"
+    }
+   },
+   "rubric": [
+    {
+     "text": "זיהוי $D=X$",
+     "points": 2
+    },
+    {
+     "text": "$\\mathbb E[D]=p$",
+     "points": 1
+    },
+    {
+     "text": "$\\operatorname{Var}[D]=p(1-p)$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לבלבל עם המקרה $D=XY$ ולכתוב $\\mathrm{Ber}(p^2)$"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מהי ההתפלגות של $D$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$\\mathrm{Ber}(p)$"
+      },
+      {
+       "id": "b",
+       "value": "$\\mathrm{Ber}(p^2)$"
+      },
+      {
+       "id": "c",
+       "value": "$\\mathrm{Bin}(2,p)$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$D=X(X-Y)+X^2Y^2=X$ לכל ערך של $Y$, ולכן $D\\sim\\mathrm{Ber}(p)$; $P(D=1)=p$ ולא $p^2$ (ב-$p=0.3$: $0.3$ מול $0.09$), וגם $D$ אינו מקבל $2$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.3$, מהי $\\operatorname{Var}[D]$?",
+     "answer": 0.21,
+     "tol": 0,
+     "explain": "$p(1-p)=0.21$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -480,7 +1125,89 @@
    "confidence": "high",
    "points": 4,
    "part": "ג",
-   "contextId": "c3"
+   "contextId": "c3",
+   "sim": {
+    "kind": "custom_discrete",
+    "estimate": "Var[T] ב-p=0.3",
+    "exact": 1.05,
+    "params": {
+     "vars": {
+      "X": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      },
+      "Y": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      }
+     },
+     "measure": "var",
+     "expr": "X+(X-Y)"
+    }
+   },
+   "rubric": [
+    {
+     "text": "$T=2X-Y$ וליניאריות התוחלת: $\\mathbb E[T]=p$",
+     "points": 2
+    },
+    {
+     "text": "אי-תלות: $\\operatorname{Var}[T]=4\\operatorname{Var}[X]+\\operatorname{Var}[Y]$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לכתוב $\\operatorname{Var}[2X-Y]=2\\operatorname{Var}[X]-\\operatorname{Var}[Y]$ (השונות של $-Y$ היא חיובית)"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איזה ביטוי נכון עבור $\\operatorname{Var}[2X-Y]$ כש-$X,Y$ בלתי תלויים?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$4\\operatorname{Var}[X]+\\operatorname{Var}[Y]$"
+      },
+      {
+       "id": "b",
+       "value": "$2\\operatorname{Var}[X]-\\operatorname{Var}[Y]$"
+      },
+      {
+       "id": "c",
+       "value": "$(2-1)^2\\operatorname{Var}[X]$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$\\operatorname{Var}[aX+bY]=a^2\\operatorname{Var}[X]+b^2\\operatorname{Var}[Y]$. הביטוי השני הוא כמעט תמיד שגוי (ב-$p=0.3$: $0.21\\ne1.05$), והשלישי מניח $Y=X$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.3$, מהי $\\mathbb E[T]$?",
+     "answer": 0.3,
+     "tol": 0,
+     "explain": "$2p-p=p=0.3$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.3$, מהי $\\operatorname{Var}[T]$?",
+     "answer": 1.05,
+     "tol": 0,
+     "explain": "$5p(1-p)=5\\cdot0.21=1.05$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -493,7 +1220,84 @@
    "confidence": "high",
    "points": 4,
    "part": "ד",
-   "contextId": "c3"
+   "contextId": "c3",
+   "sim": {
+    "kind": "custom_discrete",
+    "estimate": "cov[D,T] ב-p=0.3",
+    "exact": 0.42,
+    "params": {
+     "vars": {
+      "X": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      },
+      "Y": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      }
+     },
+     "measure": "cov",
+     "expr": [
+      "X*(X-Y)+X^2*Y^2",
+      "X+(X-Y)"
+     ]
+    }
+   },
+   "rubric": [
+    {
+     "text": "$\\operatorname{Cov}=\\mathbb E[DT]-\\mathbb E[D]\\mathbb E[T]$",
+     "points": 1
+    },
+    {
+     "text": "$\\mathbb E[DT]=\\mathbb E[X(2X-Y)]=2p-p^2$ (שימוש ב-$X^2=X$ ובאי-התלות)",
+     "points": 2
+    },
+    {
+     "text": "התשובה $2p(1-p)$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לכתוב $\\mathbb E[X^2]=p^2$ במקום $p$",
+    "להסיק $\\operatorname{Cov}=0$ מאי-התלות של $X,Y$ (אבל $D,T$ תלויים)"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.3$, מהי $\\mathbb E[DT]$?",
+     "answer": 0.51,
+     "tol": 0,
+     "explain": "$\\mathbb E[X(2X-Y)]=2p-p^2=0.6-0.09=0.51$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.3$, מהו המכפלה $\\mathbb E[D]\\,\\mathbb E[T]$?",
+     "answer": 0.09,
+     "tol": 0,
+     "explain": "$p\\cdot p=0.09$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.3$, מהי $\\operatorname{cov}[D,T]$?",
+     "answer": 0.42,
+     "tol": 0,
+     "explain": "$0.51-0.09=0.42=2p(1-p)$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -506,7 +1310,89 @@
    "confidence": "med",
    "points": 4,
    "part": "ה",
-   "contextId": "c3"
+   "contextId": "c3",
+   "sim": {
+    "kind": "custom_discrete",
+    "estimate": "P(D=0, T=1) ב-p=0.3",
+    "exact": 0,
+    "params": {
+     "vars": {
+      "X": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      },
+      "Y": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      }
+     },
+     "event": "X*(X-Y)+X^2*Y^2 == 0 and X+(X-Y) == 1"
+    }
+   },
+   "rubric": [
+    {
+     "text": "זיהוי תא אפס בטבלה המשותפת: $P(D=0,T=1)=0$",
+     "points": 2
+    },
+    {
+     "text": "השוואה למכפלת השוליות החיובית $(1-p)p^2$",
+     "points": 1
+    },
+    {
+     "text": "מסקנה: תלויים",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לבדוק תא אחד שבו המכפלה במקרה שווה ולהסיק אי-תלות",
+    "להסיק אי-תלות מכך ש-$X,Y$ בלתי תלויים"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(D=0,T=1)$? ($D=X$, ו-$T=1$ רק כש-$X=Y=1$.)",
+     "answer": 0.0,
+     "tol": 0,
+     "explain": "אם $D=0$ אז $X=0$, ואז $T=-Y\\le0$, ולכן $T=1$ בלתי אפשרי."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.3$, מהו המכפלה $P(D=0)\\,P(T=1)$?",
+     "answer": 0.063,
+     "tol": 0,
+     "explain": "$0.7\\cdot0.09=0.063>0$."
+    },
+    {
+     "type": "choice",
+     "prompt": "האם $D$ ו-$T$ בלתי תלויים?",
+     "options": [
+      {
+       "id": "a",
+       "value": "לא: $P(D=0,T=1)=0\\ne P(D=0)P(T=1)>0$"
+      },
+      {
+       "id": "b",
+       "value": "כן, כי $X$ ו-$Y$ בלתי תלויים"
+      }
+     ],
+     "correctId": "a",
+     "explain": "אי-תלות של $X,Y$ אינה גוררת אי-תלות של פונקציות שונות של שניהם יחד; מספיק תא אחד שבו המשותפת שונה ממכפלת השוליות."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -519,7 +1405,85 @@
    "confidence": "high",
    "points": 4,
    "part": "ו",
-   "contextId": "c3"
+   "contextId": "c3",
+   "sim": {
+    "kind": "custom_discrete",
+    "estimate": "cov[D,T] ב-p=0.3",
+    "exact": 0.42,
+    "params": {
+     "vars": {
+      "X": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      },
+      "Y": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      }
+     },
+     "measure": "cov",
+     "expr": [
+      "X*(X-Y)+X^2*Y^2",
+      "X+(X-Y)"
+     ]
+    }
+   },
+   "rubric": [
+    {
+     "text": "חישוב $\\operatorname{Cov}[D,T]=2p(1-p)$ (מהסעיף הקודם)",
+     "points": 2
+    },
+    {
+     "text": "$\\operatorname{Cov}\\ne0$ עבור $0<p<1$, ולכן מתואמים",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "להניח שתלות גוררת מתאם ולהיפך"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.3$, מהי $\\operatorname{cov}[D,T]$?",
+     "answer": 0.42,
+     "tol": 0,
+     "explain": "$2p(1-p)=0.42$."
+    },
+    {
+     "type": "choice",
+     "prompt": "איזו טענה על תלות ומתאם נכונה תמיד?",
+     "options": [
+      {
+       "id": "a",
+       "value": "בלתי תלויים $\\Rightarrow$ בלתי מתואמים"
+      },
+      {
+       "id": "b",
+       "value": "בלתי מתואמים $\\Rightarrow$ בלתי תלויים"
+      },
+      {
+       "id": "c",
+       "value": "בלתי תלויים $\\Leftrightarrow$ בלתי מתואמים"
+      }
+     ],
+     "correctId": "a",
+     "explain": "אי-תלות גוררת $\\operatorname{Cov}=0$, אך לא להיפך (דוגמה: $X$ סימטרי ו-$X^2$). לכן $\\operatorname{Cov}\\ne0$ כאן מראה גם תלות."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 4,
@@ -532,7 +1496,96 @@
    "confidence": "high",
    "points": 10,
    "part": "א",
-   "contextId": "c4"
+   "contextId": "c4",
+   "sim": {
+    "kind": "pdf",
+    "estimate": "E[Z] ב-a=1/2, b=1",
+    "exact": 0.375,
+    "params": {
+     "pieces": [
+      {
+       "from": "-1/2",
+       "to": 0,
+       "expr": "-2*x"
+      },
+      {
+       "from": 0,
+       "to": "1/2",
+       "expr": "2*x"
+      },
+      {
+       "from": "1/2",
+       "to": 1,
+       "expr": "1"
+      }
+     ],
+     "measure": "mean",
+     "expr": "x"
+    }
+   },
+   "rubric": [
+    {
+     "text": "נרמול: סכום שטחי שני המשולשים והמלבן שווה $1$, ולכן $b=1$",
+     "points": 3
+    },
+    {
+     "text": "תוחלת: שני האינטגרלים הראשונים מתבטלים והשלישי $\\frac{b^2-a^2}2$",
+     "points": 4
+    },
+    {
+     "text": "פתרון $a=\\frac12$, $b=1$",
+     "points": 3
+    }
+   ],
+   "pitfalls": [
+    "לרשום את הצפיפות על $(-a,0)$ כ-$\\frac za$ (היא $-\\frac za$, אי-שלילית)",
+    "לשכוח שהשטח מתחת למשולש השמאלי נספר בנרמול"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "אילו תנאים קובעים את שני הפרמטרים $a,b$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "נרמול $\\int f=1$ ביחד עם הנתון $\\mathbb E[Z]=\\frac38$"
+      },
+      {
+       "id": "b",
+       "value": "נרמול בלבד"
+      },
+      {
+       "id": "c",
+       "value": "הנתון $\\mathbb E[Z]=\\frac38$ בלבד"
+      }
+     ],
+     "correctId": "a",
+     "explain": "יש שני נעלמים ולכן שתי משוואות. נרמול לבדו נותן $b=1$ לכל $a$; התוחלת $\\frac{1-a^2}2$ משתנה עם $a$ ולכן היא שקובעת אותו."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו $b$? (שטח המשולשים $\\frac a2+\\frac a2$ בתוספת מלבן ברוחב $b-a$ וגובה $1$ שווה $1$.)",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "$a+(b-a)=b=1$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עם $b=1$, התוחלת היא $\\frac{1-a^2}2=\\frac38$. מהו $a^2$?",
+     "answer": 0.25,
+     "tol": 0,
+     "explain": "$1-a^2=\\frac34$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו $a$?",
+     "answer": 0.5,
+     "tol": 0,
+     "explain": "$a>0$ ולכן $a=\\frac12$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 4,
@@ -545,7 +1598,74 @@
    "confidence": "high",
    "points": 10,
    "part": "ב",
-   "contextId": "c4"
+   "contextId": "c4",
+   "rubric": [
+    {
+     "text": "אינטגרציה של הצפיפות על כל קטע: $-2z$, $2z$ ו-$1$",
+     "points": 4
+    },
+    {
+     "text": "$F(t)$ על ארבעת הקטעים, כולל $\\frac14$ בנקודה $0$",
+     "points": 4
+    },
+    {
+     "text": "שרטוט הגרף (רציף, עולה, מ-$0$ ל-$1$)",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לשכוח את ההסתברות $\\frac14$ שנצברה לפני $0$ ולרשום $F(t)=t^2$ ב-$(0,\\frac12)$",
+    "לא לוודא ש-$F$ רציפה בנקודות החיבור"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "מהי $F_Z(0)=P(Z\\le0)$? (שטח המשולש השמאלי)",
+     "answer": 0.25,
+     "tol": 0,
+     "explain": "$\\int_{-1/2}^0(-2z)\\,dz=\\frac14$."
+    },
+    {
+     "type": "choice",
+     "prompt": "איזו נוסחה נכונה ל-$F_Z(t)$ עבור $0\\le t<\\frac12$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$\\frac14+t^2$"
+      },
+      {
+       "id": "b",
+       "value": "$t^2$"
+      },
+      {
+       "id": "c",
+       "value": "$\\frac14-t^2$"
+      },
+      {
+       "id": "d",
+       "value": "$2t$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$F(t)=F(0)+\\int_0^t2z\\,dz=\\frac14+t^2$. הנוסחה $t^2$ שוכחת את המסה שלפני $0$; $\\frac14-t^2$ היא הנוסחה ל-$t<0$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $F_Z(\\frac14)$?",
+     "answer": 0.3125,
+     "tol": 0,
+     "explain": "$\\frac14+\\frac1{16}=\\frac5{16}$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $F_Z(\\frac34)$? (על $[\\frac12,1)$ מתקיים $F=t$.)",
+     "answer": 0.75,
+     "tol": 0,
+     "explain": "$F(\\frac12)=\\frac12$, והצפיפות $1$ מוסיפה $\\frac14$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 4,
@@ -584,7 +1704,54 @@
      "event": "x > 1/4",
      "given": "abs(x) < 1/2"
     }
-   }
+   },
+   "rubric": [
+    {
+     "text": "הגדרת ההסתברות המותנית כמנה של הפרשי $F$",
+     "points": 1
+    },
+    {
+     "text": "המכנה $P(|Z|<\\frac12)=F(\\frac12)-F(-\\frac12)=\\frac12$",
+     "points": 2
+    },
+    {
+     "text": "המונה $F(\\frac12)-F(\\frac14)=\\frac3{16}$",
+     "points": 1
+    },
+    {
+     "text": "התשובה $\\frac38$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לחלק ב-$P(Z>\\frac14)$ במקום ב-$P(|Z|<\\frac12)$",
+    "לשכוח שהאירוע $\\{Z>\\frac14\\}\\cap\\{|Z|<\\frac12\\}$ הוא $\\{\\frac14<Z<\\frac12\\}$"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(|Z|<\\frac12)=F(\\frac12)-F(-\\frac12)$? (המכנה)",
+     "answer": 0.5,
+     "tol": 0,
+     "explain": "$\\frac12-0=\\frac12$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(\\frac14<Z<\\frac12)=F(\\frac12)-F(\\frac14)$? (המונה)",
+     "answer": 0.1875,
+     "tol": 0,
+     "explain": "$\\frac12-\\frac5{16}=\\frac3{16}$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי ההסתברות המותנית?",
+     "answer": 0.375,
+     "tol": 0,
+     "explain": "$\\frac{3/16}{1/2}=\\frac38$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 5,
@@ -597,7 +1764,77 @@
    "confidence": "high",
    "points": 10,
    "part": "א",
-   "contextId": "c5"
+   "contextId": "c5",
+   "sim": {
+    "kind": "urn",
+    "estimate": "E[X] בשלוש משפחות בגדלים 2,3,7",
+    "exact": 4,
+    "params": {
+     "values": [
+      2,
+      3,
+      7
+     ],
+     "draws": 1,
+     "measure": "mean",
+     "expr": "v1"
+    }
+   },
+   "rubric": [
+    {
+     "text": "כל משפחה נבחרת בהסתברות $\\frac1N$ (בחירה אחידה של משפחה)",
+     "points": 4
+    },
+    {
+     "text": "טבלת ההתפלגות של $X$",
+     "points": 3
+    },
+    {
+     "text": "$\\mathbb E[X]=\\frac{n_1+\\cdots+n_N}N$",
+     "points": 3
+    }
+   ],
+   "pitfalls": [
+    "לשקלל את המשפחות לפי גודלן (זו שאלה ב')"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "בוחרים **משפחה** באקראי. מהי $P(X=n_i)$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$\\frac1N$"
+      },
+      {
+       "id": "b",
+       "value": "$\\frac{n_i}{n_1+\\cdots+n_N}$"
+      },
+      {
+       "id": "c",
+       "value": "$\\frac{n_i}{N}$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "המדגם הוא משפחה, כולן שוות סיכוי: $\\frac1N$. $\\frac{n_i}{n}$ הוא הכלל למשתתף שנבחר (גודל ממושקל), ו-$\\frac{n_i}N$ אינו אפילו התפלגות (סכומו אינו $1$)."
+    },
+    {
+     "type": "numeric",
+     "prompt": "נדגים עם $N=3$ משפחות בגדלים $2,3,7$ (סך הכול $n=12$ משתתפים). מהי $P(X=7)$? (שבר או עשרוני)",
+     "answer": 0.3333,
+     "tol": 0.0006,
+     "explain": "$\\frac1N=\\frac13$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "באותו מדגם, מהי $\\mathbb E[X]$?",
+     "answer": 4.0,
+     "tol": 0,
+     "explain": "$\\frac{2+3+7}3=4$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 5,
@@ -610,7 +1847,87 @@
    "confidence": "high",
    "points": 10,
    "part": "ב",
-   "contextId": "c5"
+   "contextId": "c5",
+   "sim": {
+    "kind": "urn",
+    "estimate": "E[Y] בשלוש משפחות בגדלים 2,3,7",
+    "exact": 5.166666666666667,
+    "params": {
+     "values": [
+      2,
+      2,
+      3,
+      3,
+      3,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7
+     ],
+     "draws": 1,
+     "measure": "mean",
+     "expr": "v1"
+    }
+   },
+   "rubric": [
+    {
+     "text": "זיהוי שבחירת משתתף נותנת משפחה $i$ בהסתברות $\\frac{n_i}{n}$",
+     "points": 4
+    },
+    {
+     "text": "טבלת ההתפלגות של $Y$",
+     "points": 3
+    },
+    {
+     "text": "$\\mathbb E[Y]=\\frac{\\sum n_i^2}{\\sum n_i}$",
+     "points": 3
+    }
+   ],
+   "pitfalls": [
+    "להשתמש שוב ב-$\\frac1N$ ולקבל $\\mathbb E[Y]=\\mathbb E[X]$",
+    "לחשב $\\sum n_i\\cdot\\frac{n_i}{N}$ (מחלק שגוי)"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "בוחרים **משתתף** באקראי ו-$Y$ הוא גודל משפחתו. מהי $P(Y=n_i)$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$\\frac{n_i}{n_1+\\cdots+n_N}$"
+      },
+      {
+       "id": "b",
+       "value": "$\\frac1N$"
+      },
+      {
+       "id": "c",
+       "value": "$\\frac{n_i^2}{n_1^2+\\cdots+n_N^2}$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "המשפחה $i$ מכילה $n_i$ משתתפים מתוך $n$ ולכן נבחרת בהסתברות $\\frac{n_i}n$: משפחות גדולות מיוצגות יתר על המידה. $\\frac1N$ הוא כלל המשפחה, והשלישי אינו מתאים לספירת משתתפים."
+    },
+    {
+     "type": "numeric",
+     "prompt": "נדגים עם $N=3$ משפחות בגדלים $2,3,7$ (סך הכול $n=12$ משתתפים). מהי $P(Y=7)$? (שבר או עשרוני)",
+     "answer": 0.5833,
+     "tol": 0.0006,
+     "explain": "$\\frac7{12}$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "באותו מדגם, מהי $\\mathbb E[Y]$? (שבר או עשרוני)",
+     "answer": 5.1667,
+     "tol": 0.0006,
+     "explain": "$\\frac{2^2+3^2+7^2}{12}=\\frac{62}{12}=\\frac{31}6$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 5,
@@ -623,7 +1940,78 @@
    "confidence": "high",
    "points": 5,
    "part": "ג",
-   "contextId": "c5"
+   "contextId": "c5",
+   "sim": {
+    "kind": "urn",
+    "estimate": "Var[X] בשלוש משפחות בגדלים 2,3,7",
+    "exact": 4.666666666666667,
+    "params": {
+     "values": [
+      2,
+      3,
+      7
+     ],
+     "draws": 1,
+     "measure": "var",
+     "expr": "v1"
+    }
+   },
+   "rubric": [
+    {
+     "text": "$\\mathbb E[Y]=\\frac{\\mathbb E[X^2]}{\\mathbb E[X]}$",
+     "points": 2
+    },
+    {
+     "text": "$\\frac{\\mathbb E[Y]}{\\mathbb E[X]}=1+\\frac{\\operatorname{Var}[X]}{(\\mathbb E[X])^2}$",
+     "points": 2
+    },
+    {
+     "text": "מסקנה: $\\mathbb E[Y]\\ge\\mathbb E[X]$ (ושוויון רק כש-$\\operatorname{Var}=0$)",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "להסיק שהממוצעים שווים כי 'שניהם גודל משפחה'",
+    "לשכוח ש-$\\operatorname{Var}\\ge0$ ולטעות בכיוון"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "נדגים עם $N=3$ משפחות בגדלים $2,3,7$ (סך הכול $n=12$ משתתפים). מהי $\\operatorname{Var}[X]$? (שבר או עשרוני)",
+     "answer": 4.6667,
+     "tol": 0.0006,
+     "explain": "$\\mathbb E[X^2]=\\frac{4+9+49}3=\\frac{62}3$, ו-$\\frac{62}3-16=\\frac{14}3$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "באותו מדגם, מהו היחס $\\frac{\\mathbb E[Y]}{\\mathbb E[X]}$? (שבר או עשרוני)",
+     "answer": 1.2917,
+     "tol": 0.0006,
+     "explain": "$\\frac{31/6}{4}=\\frac{31}{24}=1+\\frac{14/3}{16}$."
+    },
+    {
+     "type": "choice",
+     "prompt": "מה נכון לגבי $\\mathbb E[Y]$ ו-$\\mathbb E[X]$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$\\mathbb E[Y]\\ge\\mathbb E[X]$ תמיד, ושוויון רק כש-$\\operatorname{Var}[X]=0$"
+      },
+      {
+       "id": "b",
+       "value": "$\\mathbb E[Y]=\\mathbb E[X]$ תמיד"
+      },
+      {
+       "id": "c",
+       "value": "$\\mathbb E[Y]<\\mathbb E[X]$ תמיד"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$\\frac{\\mathbb E[Y]}{\\mathbb E[X]}=1+\\frac{\\operatorname{Var}[X]}{(\\mathbb E[X])^2}\\ge1$. בדוגמה היחס $\\frac{31}{24}>1$, ולכן שתי הטענות האחרות נכשלות."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 6,
@@ -636,7 +2024,106 @@
    "confidence": "high",
    "points": 9,
    "part": "א",
-   "contextId": "c6"
+   "contextId": "c6",
+   "sim": {
+    "kind": "circuit",
+    "estimate": "P(Q1) ב-p=0.6",
+    "exact": 0.4464,
+    "params": {
+     "event": "S",
+     "network": {
+      "type": "series",
+      "children": [
+       {
+        "type": "comp",
+        "id": "D",
+        "p": 0.6
+       },
+       {
+        "type": "parallel",
+        "children": [
+         {
+          "type": "series",
+          "children": [
+           {
+            "type": "comp",
+            "id": "A",
+            "p": 0.6
+           },
+           {
+            "type": "comp",
+            "id": "B",
+            "p": 0.6
+           }
+          ]
+         },
+         {
+          "type": "comp",
+          "id": "C",
+          "p": 0.6
+         }
+        ]
+       }
+      ]
+     }
+    }
+   },
+   "rubric": [
+    {
+     "text": "קריאת המעגל: $Q_1=\\bigl((A\\cap B)\\cup C\\bigr)\\cap D$",
+     "points": 3
+    },
+    {
+     "text": "$P\\bigl((A\\cap B)\\cup C\\bigr)=p^2+p-p^3$ (הכלה והפרדה, בלתי תלויים)",
+     "points": 3
+    },
+    {
+     "text": "הכפלה ב-$P(D)$: $p^2(1+p-p^2)$",
+     "points": 3
+    }
+   ],
+   "pitfalls": [
+    "לחשב $P((A\\cap B)\\cup C)=p^2+p$ ולשכוח להחסיר את החיתוך",
+    "להחליף בין טור למקביל"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איזה ביטוי מתאר את $Q_1$ לפי האיור?",
+     "options": [
+      {
+       "id": "a",
+       "value": "טור של $D$ עם מקבץ: ענף ($A$ בטור $B$) מקביל ל-$C$"
+      },
+      {
+       "id": "b",
+       "value": "מקבץ מקבילי של $A,B,C$ בטור עם $D$"
+      },
+      {
+       "id": "c",
+       "value": "טור של $A,B,C,D$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "האיור: $D$ בטור לפני מקבץ ששני ענפיו הם $A{-}B$ בטור ו-$C$ לבד. אפשרות ב' מניחה שלושה ענפים מקבילים, ואפשרות ג' מחייבת את כל הרכיבים."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$, מהי ההסתברות שהמקבץ $(A\\cap B)\\cup C$ פועל?",
+     "answer": 0.744,
+     "tol": 0,
+     "explain": "$p^2+p-p^3=0.36+0.6-0.216=0.744$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$, מהי $P(Q_1)$?",
+     "answer": 0.4464,
+     "tol": 0,
+     "explain": "$0.6\\cdot0.744=0.4464$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 6,
@@ -649,7 +2136,112 @@
    "confidence": "high",
    "points": 9,
    "part": "ב",
-   "contextId": "c6"
+   "contextId": "c6",
+   "sim": {
+    "kind": "circuit",
+    "estimate": "P(Q1 וגם Q2) ב-p=0.6, q=0.5",
+    "exact": 0.3456,
+    "params": {
+     "event": "D and ((A and B) or C) and D and (A or (E and B))",
+     "network": {
+      "type": "series",
+      "children": [
+       {
+        "type": "comp",
+        "id": "A",
+        "p": 0.6
+       },
+       {
+        "type": "comp",
+        "id": "B",
+        "p": 0.6
+       },
+       {
+        "type": "comp",
+        "id": "C",
+        "p": 0.6
+       },
+       {
+        "type": "comp",
+        "id": "D",
+        "p": 0.6
+       },
+       {
+        "type": "comp",
+        "id": "E",
+        "p": 0.5
+       }
+      ]
+     }
+    }
+   },
+   "rubric": [
+    {
+     "text": "זיהוי שהמעגלים תלויים (יחידות משותפות) והתניה ב-$A$",
+     "points": 2
+    },
+    {
+     "text": "$A$ פועל: $\\tilde Q=D\\cap(B\\cup C)$, ההסתברות $p^2(2-p)$",
+     "points": 3
+    },
+    {
+     "text": "$A$ אינו פועל: $\\tilde Q=D\\cap C\\cap E\\cap B$, ההסתברות $p^3q$",
+     "points": 2
+    },
+    {
+     "text": "הסתברות שלמה וצמצום: $p^3[1+(1-p)(1+q)]$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "להכפיל $P(Q_1)P(Q_2)$ למרות היחידות המשותפות",
+    "לשכוח את $D$ שנדרש בשני המעגלים"
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איך מחשבים את $P(Q_1\\cap Q_2)$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "ל-$Q_1$ ו-$Q_2$ יחידות משותפות, ולכן לא מכפילים: מתנים ביחידה משותפת ($A$) ומשתמשים בהסתברות שלמה"
+      },
+      {
+       "id": "b",
+       "value": "$P(Q_1\\cap Q_2)=P(Q_1)\\,P(Q_2)$, כי הם שני מעגלים נפרדים"
+      },
+      {
+       "id": "c",
+       "value": "$P(Q_1\\cap Q_2)=P(Q_1)+P(Q_2)$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "בשני המעגלים מופיעות $A,B,D$, ולכן אין אי-תלות. בנקודה $p=0.6,q=0.5$: המכפלה $0.4464\\cdot0.432=0.1928$, אבל הערך הנכון $0.3456$; והסכום גדול מ-$0.8$ ואינו הסתברות של חיתוך."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$: בהינתן ש-$A$ פועל, מהי $P(Q_1\\cap Q_2)$? ($Q_2$ פועל אם $D$ פועל, ו-$Q_1$ דורש $D\\cap(B\\cup C)$.)",
+     "answer": 0.504,
+     "tol": 0,
+     "explain": "$p(2p-p^2)=0.6\\cdot0.84=0.504$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$, $q=0.5$: בהינתן ש-$A$ אינו פועל, מהי $P(Q_1\\cap Q_2)$? (נדרש $D\\cap C\\cap E\\cap B$)",
+     "answer": 0.108,
+     "tol": 0,
+     "explain": "$p^3q=0.216\\cdot0.5=0.108$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "באותם ערכים, מהי $P(Q_1\\cap Q_2)$?",
+     "answer": 0.3456,
+     "tol": 0,
+     "explain": "$0.6\\cdot0.504+0.4\\cdot0.108=0.3024+0.0432=0.3456$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 6,
@@ -662,7 +2254,89 @@
    "confidence": "high",
    "points": 7,
    "part": "ג",
-   "contextId": "c6"
+   "contextId": "c6",
+   "sim": {
+    "kind": "circuit",
+    "estimate": "P(Q2 | Q1) ב-p=0.6, q=0.5",
+    "exact": 0.7741935483870968,
+    "params": {
+     "event": "D and (A or (E and B))",
+     "given": "D and ((A and B) or C)",
+     "network": {
+      "type": "series",
+      "children": [
+       {
+        "type": "comp",
+        "id": "A",
+        "p": 0.6
+       },
+       {
+        "type": "comp",
+        "id": "B",
+        "p": 0.6
+       },
+       {
+        "type": "comp",
+        "id": "C",
+        "p": 0.6
+       },
+       {
+        "type": "comp",
+        "id": "D",
+        "p": 0.6
+       },
+       {
+        "type": "comp",
+        "id": "E",
+        "p": 0.5
+       }
+      ]
+     }
+    }
+   },
+   "rubric": [
+    {
+     "text": "הגדרת הסתברות מותנית: $\\frac{P(Q_1\\cap Q_2)}{P(Q_1)}$",
+     "points": 2
+    },
+    {
+     "text": "שימוש בתוצאות הסעיפים הקודמים לחישוב המונה והמכנה",
+     "points": 3
+    },
+    {
+     "text": "פישוט ל-$p\\cdot\\frac{1+(1-p)(1+q)}{1+(1-p)p}$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לחלק ב-$P(Q_2)$ במקום ב-$P(Q_1)$ (התנאי הוא $Q_1$)",
+    "לטעות בהצבה ולקבל הסתברות גדולה מ-$1$"
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "ב-$p=0.6$, $q=0.5$: מהי $P(Q_1)$? (המכנה: אירוע התנאי)",
+     "answer": 0.4464,
+     "tol": 0,
+     "explain": "$0.4464$ מסעיף א."
+    },
+    {
+     "type": "numeric",
+     "prompt": "באותם ערכים, מהי $P(Q_1\\cap Q_2)$? (המונה)",
+     "answer": 0.3456,
+     "tol": 0,
+     "explain": "$0.3456$ מסעיף ב."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(Q_2\\mid Q_1)$? (שבר או עשרוני)",
+     "answer": 0.7742,
+     "tol": 0.0006,
+     "explain": "$\\frac{0.3456}{0.4464}=\\frac{24}{31}\\approx0.7742$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   }
  ]
 }
