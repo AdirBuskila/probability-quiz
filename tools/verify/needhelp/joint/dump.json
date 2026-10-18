@@ -1,0 +1,654 @@
+{
+ "courseId": "joint",
+ "levels": [
+  {
+   "id": "C01",
+   "order": 1,
+   "boss": false,
+   "questions": [
+    {
+     "id": "joint-C01-Q1",
+     "step": {
+      "type": "numeric",
+      "prompt": "הטבלה הבאה היא התפלגות משותפת של $(X,Y)$ שבה תא אחד חסר, והוא מסומן ב-$k$:\n$$\\begin{array}{c|ccc}x\\backslash y&0&1&2\\\\ \\hline 0&0.10&0.20&0.15\\\\ 1&0.25&0.05&k\\end{array}$$\nמהו $k$ ? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "joint-C01-Q2",
+     "question": "ארבעה תאים של טבלה משותפת של $(X,Y)$ בשני ערכים לכל משתנה הם $0.4,\\ 0.3,\\ 0.2,\\ 0.2$. האם זו טבלה תקינה?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "כן, כל התאים בין 0 ל-1"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "לא, הסכום הוא 1.1 ולא 1"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "לא, אסור שיהיו שני תאים שווים"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "כן, כי יש ארבעה תאים וארבעה ערכים"
+      }
+     ]
+    },
+    {
+     "id": "joint-C01-Q3",
+     "step": {
+      "type": "numeric",
+      "prompt": "מטילים מטבע הוגן שלוש פעמים. $X$ הוא מספר העצים בשתי ההטלות הראשונות ו-$Y$ מספר העצים בשתי ההטלות האחרונות. מהו $P_{XY}(1,1)=P(X=1,\\ Y=1)$ ? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "joint-C01-Q4",
+     "question": "באותו ניסוי של שלוש הטלות הוגנות ($X$ בשתי הראשונות, $Y$ בשתי האחרונות), מהו $P(X=2,\\ Y=0)$ ?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "$0$"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "$\\frac18$"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "$\\frac14$"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "$\\frac1{16}$"
+      }
+     ]
+    },
+    {
+     "id": "joint-C01-Q5",
+     "step": {
+      "type": "numeric",
+      "prompt": "מטילים קובייה הוגנת פעמיים. $X$ היא תוצאת ההטלה הראשונה, ו-$Y=1$ אם סכום שתי ההטלות לפחות $10$, ו-$Y=0$ אחרת. מהו $P(X=6,\\ Y=1)$ ? (אפשר שבר או עשרוני)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "C02",
+   "order": 2,
+   "boss": false,
+   "questions": [
+    {
+     "id": "joint-C02-Q1",
+     "step": {
+      "type": "numeric",
+      "prompt": "מטילים מטבע הוגן שלוש פעמים. $X$ הוא מספר העצים בשתי ההטלות הראשונות ו-$Y$ בשתי האחרונות. הטבלה המשותפת:\n$$\\begin{array}{c|ccc}x\\backslash y&0&1&2\\\\ \\hline 0&\\frac18&\\frac18&0\\\\ 1&\\frac18&\\frac14&\\frac18\\\\ 2&0&\\frac18&\\frac18\\end{array}$$\nמהו $P_X(1)$ ? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "joint-C02-Q2",
+     "step": {
+      "type": "numeric",
+      "prompt": "מטילים מטבע הוגן שלוש פעמים. $X$ הוא מספר העצים בשתי ההטלות הראשונות ו-$Y$ בשתי האחרונות, והטבלה המשותפת:\n$$\\begin{array}{c|ccc}x\\backslash y&0&1&2\\\\ \\hline 0&\\frac18&\\frac18&0\\\\ 1&\\frac18&\\frac14&\\frac18\\\\ 2&0&\\frac18&\\frac18\\end{array}$$\nמהו $P_Y(2)$ ? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "joint-C02-Q3",
+     "question": "$X$ הוא מספר העצים בשתי ההטלות הראשונות מבין שלוש הטלות של מטבע הוגן, והשוליים שלו הם $P_X(0)=\\frac14$, $P_X(1)=\\frac12$, $P_X(2)=\\frac14$. מהי ההתפלגות של $X$ ?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "$\\mathrm{Bin}(2,\\frac12)$"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "$\\mathrm{Bin}(3,\\frac12)$"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "$\\mathrm{Ber}(\\frac12)$"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "$\\mathrm{Geo}(\\frac12)$"
+      }
+     ]
+    },
+    {
+     "id": "joint-C02-Q4",
+     "step": {
+      "type": "numeric",
+      "prompt": "$X$ ו-$Y$ הם שני ביטים הוגנים בלתי תלויים. נגדיר $D=XY$ ו-$T=X+Y$. הטבלה המשותפת של $(D,T)$:\n$$\\begin{array}{c|ccc}d\\backslash t&0&1&2\\\\ \\hline 0&\\frac14&\\frac12&0\\\\ 1&0&0&\\frac14\\end{array}$$\nמהו $P_D(0)$ ? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "joint-C02-Q5",
+     "question": "שני מטבעות הוגנים. ידוע ש-$P_X(0)=P_X(1)=\\frac12$ ו-$P_Y(0)=P_Y(1)=\\frac12$. מה אפשר להסיק על הטבלה המשותפת $P_{XY}$ ?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "אי אפשר לקבוע אותה, כי שוליים זהים מתאימים לכמה טבלאות שונות"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "היא חייבת להיות $\\frac14$ בכל תא"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "היא חייבת להיות $\\frac12$ על האלכסון ו-$0$ מחוץ לו"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "היא נקבעת באופן יחיד כמכפלת השוליים"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "C03",
+   "order": 3,
+   "boss": false,
+   "questions": [
+    {
+     "id": "joint-C03-Q1",
+     "step": {
+      "type": "numeric",
+      "prompt": "בטבלה של שלוש הטלות הוגנות (מופיעה בשיעור), מהו $E[X]$ ?"
+     }
+    },
+    {
+     "id": "joint-C03-Q2",
+     "step": {
+      "type": "numeric",
+      "prompt": "באותה טבלה (שלוש הטלות הוגנות, $X$ בשתי הראשונות ו-$Y$ בשתי האחרונות):\n$$\\begin{array}{c|ccc}x\\backslash y&0&1&2\\\\ \\hline 0&\\frac18&\\frac18&0\\\\ 1&\\frac18&\\frac14&\\frac18\\\\ 2&0&\\frac18&\\frac18\\end{array}$$\nמהו $E[XY]$ ? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "joint-C03-Q3",
+     "step": {
+      "type": "numeric",
+      "prompt": "באותו ניסוי (שלוש הטלות הוגנות, $X$ בשתי הראשונות ו-$Y$ בשתי האחרונות), מהו $E[X+Y]$ ? (רמז: $E[X]=E[Y]=1$)"
+     }
+    },
+    {
+     "id": "joint-C03-Q4",
+     "step": {
+      "type": "numeric",
+      "prompt": "באותה טבלה (שלוש הטלות הוגנות, $X$ בשתי הראשונות ו-$Y$ בשתי האחרונות), מהו $E\\left[\\,|X-Y|\\,\\right]$ ? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "joint-C03-Q5",
+     "step": {
+      "type": "numeric",
+      "prompt": "באותה טבלה (שלוש הטלות הוגנות, $X$ בשתי הראשונות ו-$Y$ בשתי האחרונות), מהו $E\\left[\\max(X,Y)\\right]$ ? (אפשר שבר או עשרוני)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "C04",
+   "order": 4,
+   "boss": false,
+   "questions": [
+    {
+     "id": "joint-C04-Q1",
+     "step": {
+      "type": "numeric",
+      "prompt": "בטבלה של $(D,T)$ שבשיעור: $E[D]=\\frac14$, $E[T]=1$. מהי השונות המשותפת $\\mathrm{Cov}(D,T)$ ? (רמז: חשבו קודם $E[DT]$ מהטבלה. אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "joint-C04-Q2",
+     "step": {
+      "type": "numeric",
+      "prompt": "באותה טבלה של $(D,T)$ ($D=XY$, $T=X+Y$ לשני ביטים הוגנים): מהי $\\mathrm{Var}[D]$ ? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "joint-C04-Q3",
+     "step": {
+      "type": "numeric",
+      "prompt": "באותה טבלה של $(D,T)$: מהי $\\mathrm{Var}[T]$ ? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "joint-C04-Q4",
+     "step": {
+      "type": "numeric",
+      "prompt": "באותה טבלה של $(D,T)$ ידוע ש-$\\mathrm{Cov}(D,T)=\\frac14$, $\\mathrm{Var}[D]=\\frac3{16}$ ו-$\\mathrm{Var}[T]=\\frac12$. מהו מקדם המתאם $\\rho(D,T)$ ? (עשרוני, דיוק של שלוש ספרות)"
+     }
+    },
+    {
+     "id": "joint-C04-Q5",
+     "step": {
+      "type": "numeric",
+      "prompt": "מטילים מטבע הוגן שלוש פעמים. $X$ הוא מספר העצים בשתי הראשונות ו-$Y$ בשתי האחרונות. ידוע ש-$\\mathrm{Var}[X]=\\mathrm{Var}[Y]=\\frac12$ ו-$\\mathrm{Cov}(X,Y)=\\frac14$. מהי $\\mathrm{Var}[X+Y]$ ? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "joint-C04-Q6",
+     "question": "$X$ הוא משתנה מקרי עם שונות חיובית, ו-$Y=3-2X$. מהו $\\rho(X,Y)$ ?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "$-1$"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "$-2$"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "$1$"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "$0$"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "C05",
+   "order": 5,
+   "boss": false,
+   "questions": [
+    {
+     "id": "joint-C05-Q1",
+     "question": "נתונה טבלה משותפת:\n$$\\begin{array}{c|cc}x\\backslash y&0&1\\\\ \\hline 0&0.06&0.14\\\\ 1&0.24&0.56\\end{array}$$\nהאם $X$ ו-$Y$ בלתי תלויים?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "כן, כל תא שווה למכפלת השוליים שלו"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "לא, התאים אינם שווים זה לזה"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "לא, כי הסכום 1"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "אי אפשר לדעת בלי לחשב שונות משותפת"
+      }
+     ]
+    },
+    {
+     "id": "joint-C05-Q2",
+     "question": "מטילים מטבע הוגן שלוש פעמים. $X$ הוא מספר העצים בשתי הראשונות ו-$Y$ בשתי האחרונות, והטבלה:\n$$\\begin{array}{c|ccc}x\\backslash y&0&1&2\\\\ \\hline 0&\\frac18&\\frac18&0\\\\ 1&\\frac18&\\frac14&\\frac18\\\\ 2&0&\\frac18&\\frac18\\end{array}$$\nהאם $X$ ו-$Y$ בלתי תלויים?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "לא, כי $P(X=0,Y=2)=0$ בעוד $P_X(0)P_Y(2)=\\frac1{16}$"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "כן, כי ההטלות בלתי תלויות"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "כן, כי $P_X=P_Y$"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "לא, כי יש בטבלה שני תאים השווים $\\frac14$"
+      }
+     ]
+    },
+    {
+     "id": "joint-C05-Q3",
+     "step": {
+      "type": "numeric",
+      "prompt": "$X$ אחיד על $\\{-1,0,1\\}$ ו-$Y=X^2$. מהי השונות המשותפת $\\mathrm{Cov}(X,Y)$ ?"
+     }
+    },
+    {
+     "id": "joint-C05-Q4",
+     "question": "באותו זוג ($X$ אחיד על $\\{-1,0,1\\}$ ו-$Y=X^2$, שבו $\\mathrm{Cov}=0$): האם $X$ ו-$Y$ בלתי תלויים?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "לא, הם תלויים אף שהם בלתי מתואמים"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "כן, כי Cov = 0"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "כן, כי Y ו-X מקבלים ערכים שונים"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "לא, כי הם מתואמים"
+      }
+     ]
+    },
+    {
+     "id": "joint-C05-Q5",
+     "question": "ידוע ש-$\\mathrm{Cov}(X,Y)=0$. מה בהכרח נכון?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "$E[XY]=E[X]E[Y]$, אבל אין הכרח שהם בלתי תלויים"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "X ו-Y בלתי תלויים"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "$X$ ו-$Y$ זרים"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "$X=0$ או $Y=0$"
+      }
+     ]
+    },
+    {
+     "id": "joint-C05-Q6",
+     "question": "$X$ הוא ביט הוגן ו-$Y=1-X$. האם $X$ ו-$Y$ בלתי מתואמים?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "לא, $\\mathrm{Cov}(X,Y)=-\\frac14\\ne0$"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "כן, כי הם מקבלים ערכים שונים"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "כן, כי הם בלתי תלויים"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "לא, כי $\\mathrm{Cov}(X,Y)=\\frac14$"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "C06",
+   "order": 6,
+   "boss": false,
+   "questions": [
+    {
+     "id": "joint-C06-Q1",
+     "step": {
+      "type": "numeric",
+      "prompt": "בטבלה של שלוש ההטלות (בשיעור): מהו $P(X=0\\mid Y=0)$ ? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "joint-C06-Q2",
+     "step": {
+      "type": "numeric",
+      "prompt": "באותה טבלה (שלוש הטלות הוגנות): מהי $E[X\\mid Y=0]$ ? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "joint-C06-Q3",
+     "step": {
+      "type": "numeric",
+      "prompt": "באותה טבלה (שלוש הטלות הוגנות): מהי $E[X\\mid Y=2]$ ? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "joint-C06-Q4",
+     "question": "באותה טבלה (שלוש הטלות הוגנות, $X$ בשתי הראשונות ו-$Y$ בשתי האחרונות): מהו $P(Y=0\\mid X=1)$ ?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "$\\frac14$"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "$\\frac12$"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "$\\frac18$"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "$\\frac13$"
+      }
+     ]
+    },
+    {
+     "id": "joint-C06-Q5",
+     "step": {
+      "type": "numeric",
+      "prompt": "$X$ ו-$Y$ הם שני ביטים הוגנים בלתי תלויים, $D=XY$ ו-$T=X+Y$, והטבלה של $(D,T)$:\n$$\\begin{array}{c|ccc}d\\backslash t&0&1&2\\\\ \\hline 0&\\frac14&\\frac12&0\\\\ 1&0&0&\\frac14\\end{array}$$\nמהו $P(T=1\\mid D=0)$ ? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "joint-C06-Q6",
+     "step": {
+      "type": "numeric",
+      "prompt": "בטבלה של שלוש ההטלות ידוע ש-$P_Y=(\\frac14,\\frac12,\\frac14)$, ושהתוחלות המותנות הן $E[X\\mid Y=0]=\\frac12$, $E[X\\mid Y=1]=1$, $E[X\\mid Y=2]=\\frac32$. בעזרת נוסחת התוחלת השלמה, מהי $E[X]$ ? (אפשר שבר או עשרוני)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "C07",
+   "order": 7,
+   "boss": false,
+   "questions": [
+    {
+     "id": "joint-C07-Q1",
+     "step": {
+      "type": "numeric",
+      "prompt": "מטילים קובייה הוגנת פעמיים. $M_1$ הוא המינימום ו-$M_2$ המקסימום של שתי התוצאות. מהו $P(M_1=2,\\ M_2=5)$ ? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "joint-C07-Q2",
+     "step": {
+      "type": "numeric",
+      "prompt": "מטילים קובייה הוגנת פעמיים. מהו $P(M_1=3,\\ M_2=3)$, כלומר ששתי התוצאות שוות $3$ ? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "joint-C07-Q3",
+     "step": {
+      "type": "numeric",
+      "prompt": "בוחרים שני מספרים שונים באקראי, ללא החזרה, מתוך $\\{1,2,3,4,5,6\\}$. מהו $P(M_1=2,\\ M_2=5)$ ? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "joint-C07-Q4",
+     "step": {
+      "type": "numeric",
+      "prompt": "בוחרים שני מספרים שונים, ללא החזרה, מתוך $\\{1,\\dots,6\\}$. בכמה תאים $(j,k)$ של טבלת $(M_1,M_2)$ ההסתברות חיובית?"
+     }
+    },
+    {
+     "id": "joint-C07-Q5",
+     "step": {
+      "type": "numeric",
+      "prompt": "בוחרים שלושה מספרים שונים באקראי, ללא החזרה, מתוך $\\{1,\\dots,10\\}$. מהו $P(M_1=2,\\ M_2=7)$ ? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "joint-C07-Q6",
+     "step": {
+      "type": "numeric",
+      "prompt": "מטילים קובייה הוגנת פעמיים. מהי ההסתברות ש-$M_2-M_1=1$, כלומר שהתוצאות עוקבות? (אפשר שבר או עשרוני)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "C08",
+   "order": 8,
+   "boss": false,
+   "questions": [
+    {
+     "id": "joint-C08-Q1",
+     "step": {
+      "type": "numeric",
+      "prompt": "$X,Y\\sim\\mathrm{Ber}(\\frac12)$ בלתי תלויים, ונתונה המטריצה $\\boldsymbol C=\\begin{pmatrix}X&0\\\\0&Y\\end{pmatrix}$ עם $D=\\det\\boldsymbol C$. מהו $P(D=1)$ ? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "joint-C08-Q2",
+     "step": {
+      "type": "numeric",
+      "prompt": "$X,Y\\sim\\mathrm{Ber}(p)$ בלתי תלויים (אותו $p$), ו-$D=\\det\\begin{pmatrix}X&0\\\\0&Y\\end{pmatrix}=XY$. עבור איזה $p$ מתקיים $P(D=1)=0.36$ ? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "joint-C08-Q3",
+     "question": "$X\\sim\\mathrm{Ber}(p)$ ו-$Y\\sim\\mathrm{Ber}(q)$ בלתי תלויים. עבור $\\boldsymbol C=\\begin{pmatrix}X&0\\\\0&Y\\end{pmatrix}$ מגדירים $D=\\det\\boldsymbol C=XY$ ו-$T=\\mathrm{tr}\\,\\boldsymbol C=X+Y$. מהו $P(D=0,\\ T=1)$ ?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "$p+q-2pq$"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "$p+q-pq$"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "$p+q$"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "$2pq$"
+      }
+     ]
+    },
+    {
+     "id": "joint-C08-Q4",
+     "step": {
+      "type": "numeric",
+      "prompt": "$X\\sim\\mathrm{Ber}(\\frac14)$ ו-$Y\\sim\\mathrm{Ber}(\\frac12)$ בלתי תלויים, ונתונה $\\boldsymbol G=\\begin{pmatrix}X&Y\\\\1&Y\\end{pmatrix}$ עם $D=\\det\\boldsymbol G=XY-Y$ ו-$T=\\mathrm{tr}\\,\\boldsymbol G=X+Y$. מהי $\\mathrm{Cov}(D,T)$ ? (אפשר שבר או עשרוני)"
+     }
+    },
+    {
+     "id": "joint-C08-Q5",
+     "question": "$X,Y$ ברנולי בלתי תלויים, ונתונה $\\boldsymbol Q=\\begin{pmatrix}Y&X\\\\1&0\\end{pmatrix}$ עם $D=\\det\\boldsymbol Q$ ו-$T=\\mathrm{tr}\\,\\boldsymbol Q$. האם $D$ ו-$T$ בלתי תלויים?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "כן, כי D תלוי רק ב-X ו-T תלוי רק ב-Y"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "לא, כי שניהם מוגדרים מאותה מטריצה"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "לא, כי יש תא אפס בטבלה"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "כן, אבל רק אם p = q"
+      }
+     ]
+    },
+    {
+     "id": "joint-C08-Q6",
+     "step": {
+      "type": "numeric",
+      "prompt": "$X,Y\\sim\\mathrm{Ber}(\\frac12)$ בלתי תלויים, ו-$\\boldsymbol B=\\begin{pmatrix}X&Y\\\\Y&X\\end{pmatrix}$ עם $D=\\det\\boldsymbol B$ ו-$T=\\mathrm{tr}\\,\\boldsymbol B$. מהו מקדם המתאם $\\rho(D,T)$ ? (עשרוני, דיוק של שלוש ספרות)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "C09",
+   "order": 9,
+   "boss": true,
+   "questions": [
+    {
+     "id": "bank:24S-A-Q3a",
+     "bankId": "24S-A-Q3a"
+    },
+    {
+     "id": "bank:24S-A-Q3b",
+     "bankId": "24S-A-Q3b"
+    },
+    {
+     "id": "bank:24A-C-Q3a",
+     "bankId": "24A-C-Q3a"
+    },
+    {
+     "id": "bank:24A-C-Q3d",
+     "bankId": "24A-C-Q3d"
+    },
+    {
+     "id": "bank:25S-C-Q3e",
+     "bankId": "25S-C-Q3e"
+    },
+    {
+     "id": "bank:25A-B-Q6b",
+     "bankId": "25A-B-Q6b"
+    }
+   ]
+  }
+ ]
+}
