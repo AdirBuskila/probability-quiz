@@ -59,7 +59,82 @@
    "confidence": "high",
    "points": 14,
    "part": "ב",
-   "contextId": "c1"
+   "contextId": "c1",
+   "region": [
+    {
+     "space": {
+      "x": [
+       0,
+       1
+      ],
+      "y": [
+       0,
+       1
+      ]
+     },
+     "labels": {
+      "x": "X",
+      "y": "Y"
+     },
+     "event": [
+      {
+       "expr": "x^2+y^2",
+       "op": "<",
+       "c": 1
+      }
+     ],
+     "exact": 0.7853981633974483,
+     "caption": "האירוע L<1: רבע עיגול ברדיוס 1"
+    },
+    {
+     "space": {
+      "x": [
+       0,
+       1
+      ],
+      "y": [
+       0,
+       1
+      ]
+     },
+     "labels": {
+      "x": "X",
+      "y": "Y"
+     },
+     "event": [
+      {
+       "expr": "x^2+y^2",
+       "op": ">",
+       "c": "1/4"
+      },
+      {
+       "expr": "x^2+y^2",
+       "op": "<",
+       "c": 1
+      }
+     ],
+     "exact": 0.5890486225480862,
+     "caption": "האירוע 1/2<L<1: טבעת רבע עיגול"
+    }
+   ],
+   "sim": {
+    "kind": "area",
+    "estimate": "P(1/2<L<1)",
+    "exact": 0.5890486225480862,
+    "params": {
+     "space": {
+      "x": [
+       0,
+       1
+      ],
+      "y": [
+       0,
+       1
+      ]
+     },
+     "event": "x^2+y^2 > 1/4 and x^2+y^2 < 1"
+    }
+   }
   },
   {
    "num": 1,
@@ -72,7 +147,47 @@
    "confidence": "high",
    "points": 7,
    "part": "ג",
-   "contextId": "c1"
+   "contextId": "c1",
+   "region": {
+    "space": {
+     "x": [
+      0,
+      1
+     ],
+     "y": [
+      0,
+      1
+     ]
+    },
+    "labels": {
+     "x": "X",
+     "y": "Y"
+    },
+    "event": [
+     {
+      "a": 1,
+      "b": -1,
+      "c": "1/3",
+      "op": "<"
+     },
+     {
+      "a": 1,
+      "b": -1,
+      "c": "-1/3",
+      "op": ">"
+     }
+    ],
+    "exact": 0.5555555555555556,
+    "caption": "האירוע |X-Y|<1/3 (רצועה סביב האלכסון)"
+   },
+   "sim": {
+    "kind": "area",
+    "estimate": "P(L<sqrt(10)/3)",
+    "exact": 0.5555555555555556,
+    "params": {
+     "fromRegion": true
+    }
+   }
   },
   {
    "num": 2,
@@ -84,7 +199,16 @@
    "official": true,
    "confidence": "high",
    "points": 7,
-   "part": "א"
+   "part": "א",
+   "sim": {
+    "kind": "dice",
+    "estimate": "P(sum ever = 5)",
+    "exact": 0.30877057613168724,
+    "params": {
+     "n": 5,
+     "event": "d1 == 5 or d1+d2 == 5 or d1+d2+d3 == 5 or d1+d2+d3+d4 == 5 or d1+d2+d3+d4+d5 == 5"
+    }
+   }
   },
   {
    "num": 2,
@@ -96,7 +220,16 @@
    "official": true,
    "confidence": "high",
    "points": 6,
-   "part": "ב"
+   "part": "ב",
+   "sim": {
+    "kind": "dice",
+    "estimate": "P(sum = 5)",
+    "exact": 0.1111111111111111,
+    "params": {
+     "n": 2,
+     "event": "sum == 5"
+    }
+   }
   },
   {
    "num": 2,
@@ -108,7 +241,16 @@
    "official": true,
    "confidence": "high",
    "points": 6,
-   "part": "ג"
+   "part": "ג",
+   "sim": {
+    "kind": "dice",
+    "estimate": "P(sum = 5)",
+    "exact": 0.027777777777777776,
+    "params": {
+     "n": 3,
+     "event": "sum == 5"
+    }
+   }
   },
   {
    "num": 2,
@@ -120,7 +262,17 @@
    "official": true,
    "confidence": "high",
    "points": 6,
-   "part": "ד"
+   "part": "ד",
+   "sim": {
+    "kind": "dice",
+    "estimate": "P(sum = 5 | d1+d2 = 3)",
+    "exact": 0.16666666666666666,
+    "params": {
+     "n": 3,
+     "event": "sum == 5",
+     "given": "d1+d2 == 3"
+    }
+   }
   },
   {
    "num": 3,
@@ -211,7 +363,28 @@
    "confidence": "high",
    "points": 5,
    "part": "ג",
-   "contextId": "c4"
+   "contextId": "c4",
+   "sim": {
+    "kind": "pdf",
+    "estimate": "P(X>-1/2 | X<1)",
+    "exact": 0.6200781926018402,
+    "params": {
+     "pieces": [
+      {
+       "from": -1,
+       "to": 0,
+       "expr": "2/3"
+      },
+      {
+       "from": 0,
+       "to": 30,
+       "expr": "1/3*exp(-x)"
+      }
+     ],
+     "event": "x > -1/2",
+     "given": "x < 1"
+    }
+   }
   },
   {
    "num": 5,
