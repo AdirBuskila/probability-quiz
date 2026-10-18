@@ -51,7 +51,40 @@
    "confidence": "high",
    "points": 7,
    "part": "א",
-   "contextId": "c1"
+   "contextId": "c1",
+   "region": {
+    "space": {
+     "x": [
+      0,
+      1
+     ],
+     "y": [
+      0,
+      1
+     ]
+    },
+    "labels": {
+     "x": "X",
+     "y": "Y"
+    },
+    "event": [
+     {
+      "expr": "x*y",
+      "op": "<",
+      "c": "1/2"
+     }
+    ],
+    "exact": 0.8465735902799727,
+    "caption": "האירוע S=XY<1/2"
+   },
+   "sim": {
+    "kind": "area",
+    "estimate": "P(S<1/2)",
+    "exact": 0.8465735902799727,
+    "params": {
+     "fromRegion": true
+    }
+   }
   },
   {
    "num": 1,
@@ -64,7 +97,40 @@
    "confidence": "high",
    "points": 7,
    "part": "ב",
-   "contextId": "c1"
+   "contextId": "c1",
+   "region": {
+    "space": {
+     "x": [
+      0,
+      1
+     ],
+     "y": [
+      0,
+      1
+     ]
+    },
+    "labels": {
+     "x": "X",
+     "y": "Y"
+    },
+    "event": [
+     {
+      "expr": "x^2+y^2",
+      "op": "<",
+      "c": "1/4"
+     }
+    ],
+    "exact": 0.19634954084936207,
+    "caption": "האירוע L<1/2: רבע עיגול ברדיוס 1/2"
+   },
+   "sim": {
+    "kind": "area",
+    "estimate": "P(L<1/2)",
+    "exact": 0.19634954084936207,
+    "params": {
+     "fromRegion": true
+    }
+   }
   },
   {
    "num": 1,
@@ -77,7 +143,48 @@
    "confidence": "high",
    "points": 5,
    "part": "ג",
-   "contextId": "c1"
+   "contextId": "c1",
+   "region": {
+    "space": {
+     "x": [
+      0,
+      1
+     ],
+     "y": [
+      0,
+      1
+     ]
+    },
+    "labels": {
+     "x": "X",
+     "y": "Y"
+    },
+    "event": [
+     {
+      "expr": "x*y",
+      "op": "<",
+      "c": "1/5"
+     }
+    ],
+    "exact": 0.2772588722239781,
+    "caption": "האירוע S<1/5 בהינתן X>1/2",
+    "given": [
+     {
+      "a": 1,
+      "b": 0,
+      "c": "1/2",
+      "op": ">"
+     }
+    ]
+   },
+   "sim": {
+    "kind": "area",
+    "estimate": "P(S<1/5 | X>1/2)",
+    "exact": 0.2772588722239781,
+    "params": {
+     "fromRegion": true
+    }
+   }
   },
   {
    "num": 1,
@@ -90,7 +197,26 @@
    "confidence": "high",
    "points": 6,
    "part": "ד",
-   "contextId": "c1"
+   "contextId": "c1",
+   "sim": {
+    "kind": "area",
+    "estimate": "Var[S]",
+    "exact": 0.04861111111111111,
+    "params": {
+     "space": {
+      "x": [
+       0,
+       1
+      ],
+      "y": [
+       0,
+       1
+      ]
+     },
+     "measure": "var",
+     "expr": "x*y"
+    }
+   }
   },
   {
    "num": 2,
@@ -103,7 +229,16 @@
    "confidence": "high",
    "points": 5,
    "part": "א",
-   "contextId": "c2"
+   "contextId": "c2",
+   "sim": {
+    "kind": "dice",
+    "estimate": "P(X1=X2)",
+    "exact": 0.16666666666666666,
+    "params": {
+     "n": 2,
+     "event": "d1 == d2"
+    }
+   }
   },
   {
    "num": 2,
@@ -129,7 +264,17 @@
    "confidence": "high",
    "points": 7,
    "part": "ג",
-   "contextId": "c2"
+   "contextId": "c2",
+   "sim": {
+    "kind": "dice",
+    "estimate": "P(X1X2 odd | X1!=X2)",
+    "exact": 0.2,
+    "params": {
+     "n": 2,
+     "event": "d1*d2 % 2 == 1",
+     "given": "d1 != d2"
+    }
+   }
   },
   {
    "num": 2,
@@ -142,7 +287,17 @@
    "confidence": "high",
    "points": 7,
    "part": "ד",
-   "contextId": "c2"
+   "contextId": "c2",
+   "sim": {
+    "kind": "dice",
+    "estimate": "P(X1-X2 even | X1!=X2)",
+    "exact": 0.4,
+    "params": {
+     "n": 2,
+     "event": "abs(d1-d2) % 2 == 0",
+     "given": "d1 != d2"
+    }
+   }
   },
   {
    "num": 3,
@@ -233,7 +388,33 @@
    "confidence": "high",
    "points": 5,
    "part": "ג",
-   "contextId": "c4"
+   "contextId": "c4",
+   "sim": {
+    "kind": "pdf",
+    "estimate": "P(X>-2 | X<3)",
+    "exact": 0.9048094807356181,
+    "params": {
+     "pieces": [
+      {
+       "from": -30,
+       "to": -1,
+       "expr": "e/4*exp(x)"
+      },
+      {
+       "from": -1,
+       "to": 1,
+       "expr": "1/4"
+      },
+      {
+       "from": 1,
+       "to": 30,
+       "expr": "e/4*exp(-x)"
+      }
+     ],
+     "event": "x > -2",
+     "given": "x < 3"
+    }
+   }
   },
   {
    "num": 5,

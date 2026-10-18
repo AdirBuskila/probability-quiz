@@ -8,7 +8,7 @@ a different hand, no name on it).
 
 Transcription notes
 - Part keys are single letters. Q1 prints a-1, a-2, a-3, b, stored as a b c d. Map: Q1 a=א-1, b=א-2, c=א-3, d=ב.
-- Q1 area items (a, b, c) have region data in tools/verify/24S-B/regions.json (no `region` field in RAW_SCHEMA).
+- Q1 area items carry `region` (area figure) and, with the other numeric parts, `sim`: see EXTRAS near the end.
 - Q3 here defines Y as the number of heads in all THREE tosses (different from 24S-A Q3).
 - Q4(א): the official line "E[X]=0 => a=b" is justified in the text by integrating x f(x) on both tails (the
   official note is only partly legible; the calculation is exact).
@@ -254,6 +254,65 @@ exam = {
     },
     "questions": questions,
 }
+
+# ---- area figures (region.js) and "simulate it" specs (sim.js), keyed by (num, part).
+# Regions were moved here from the old verify regions file; every sim exact is the shipped final answer.
+from math import pi, log, e as _E
+U = {"x": [0, 1], "y": [0, 1]}
+XY = {"x": "X", "y": "Y"}
+
+
+def lin(a, b, c, op):
+    return {"a": a, "b": b, "c": c, "op": op}
+
+
+def REG(event, exact, caption, given=None, space=U):
+    r = {"space": space, "labels": XY, "event": event, "exact": exact, "caption": caption}
+    if given:
+        r["given"] = given
+    return r
+
+
+def AREA(label, exact, **kw):
+    return {"kind": "area", "estimate": label, "exact": exact, "params": dict(kw) if kw else {"fromRegion": True}}
+
+
+def DICE(label, exact, n, event, given=None, weights=None):
+    p = {"n": n, "event": event}
+    if given:
+        p["given"] = given
+    if weights:
+        p["weights"] = weights
+    return {"kind": "dice", "estimate": label, "exact": exact, "params": p}
+
+
+def PDF(label, exact, pieces, event, given=None):
+    p = {"pieces": [{"from": a, "to": b, "expr": x} for a, b, x in pieces], "event": event}
+    if given:
+        p["given"] = given
+    return {"kind": "pdf", "estimate": label, "exact": exact, "params": p}
+
+
+EXTRAS = {
+    (1, "א"): {"region": REG([{"expr": "x*y", "op": "<", "c": "1/2"}], 0.5 + log(2) / 2, "האירוע S=XY<1/2"),
+               "sim": AREA("P(S<1/2)", 0.5 + log(2) / 2)},
+    (1, "ב"): {"region": REG([{"expr": "x^2+y^2", "op": "<", "c": "1/4"}], pi / 16, "האירוע L<1/2: רבע עיגול ברדיוס 1/2"),
+               "sim": AREA("P(L<1/2)", pi / 16)},
+    (1, "ג"): {"region": REG([{"expr": "x*y", "op": "<", "c": "1/5"}], 2 * log(2) / 5, "האירוע S<1/5 בהינתן X>1/2",
+                             given=[lin(1, 0, "1/2", ">")]),
+               "sim": AREA("P(S<1/5 | X>1/2)", 2 * log(2) / 5)},
+    (1, "ד"): {"sim": AREA("Var[S]", 7 / 144, space=U, measure="var", expr="x*y")},
+    (2, "א"): {"sim": DICE("P(X1=X2)", 1 / 6, 2, "d1 == d2")},
+    (2, "ג"): {"sim": DICE("P(X1X2 odd | X1!=X2)", 1 / 5, 2, "d1*d2 % 2 == 1", "d1 != d2")},
+    (2, "ד"): {"sim": DICE("P(X1-X2 even | X1!=X2)", 2 / 5, 2, "abs(d1-d2) % 2 == 0", "d1 != d2")},
+    (4, "ג"): {"sim": PDF("P(X>-2 | X<3)", (4 * _E ** 2 - _E - 1) / (4 * _E ** 2 - 1),
+                          [(-30, -1, "e/4*exp(x)"), (-1, 1, "1/4"), (1, 30, "e/4*exp(-x)")], "x > -2", "x < 3")},
+}
+for _q in questions:
+    _x = EXTRAS.get((_q["num"], _q.get("part")))
+    if _x:
+        _q.update(_x)
+
 
 OUT.parent.mkdir(parents=True, exist_ok=True)
 OUT.write_text(json.dumps(exam, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
