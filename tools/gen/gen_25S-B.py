@@ -13,7 +13,7 @@ Transcription notes
   solution treats it as without replacement (it writes X1 != X2), and that reading is the one transcribed.
 - Q3 printed hint (sum x^n/(n-k)!) is kept in parts that use it.
 - Math never holds Hebrew; Hebrew event names inside the official solution are replaced by the symbols D1, D2 etc.
-- Q1 region data: tools/verify/25S-B/regions.json (RAW_SCHEMA has no `region` field).
+- Q1 region data and the sim specs live in the REGIONS / SIMS blocks above the exam dict.
 - The page-1 cover (lecturer names) is not copied anywhere.
 """
 import json, pathlib
@@ -284,6 +284,29 @@ questions.append(Q(
 $$P(X_{\min}=2,X_{\max}=1)=0\ne P(X_{\min}=2)\cdot P(X_{\max}=1)=\frac{1+2(N-2)}{N^2}\cdot\frac1{N^2}=\frac{1+2(N-2)}{N^4}.$$
 (עבור $N\ge2$.)""",
     4, contextId="c6"))
+
+# ------------------------------------------------------------------ area regions + simulations (RAW_SCHEMA `region`, `sim`)
+_SQ = {"x": [0, "pi"], "y": [0, "pi"]}
+_LB = {"x": "α1", "y": "α2"}
+_UP = {"a": -2, "b": 1, "c": 0, "op": ">"}
+_STRIP = [{"a": -1, "b": 1, "c": "pi/2", "op": "<"}, {"a": -1, "b": 1, "c": "-pi/2", "op": ">"}]
+REGIONS = {
+    (1, "א"): {"space": _SQ, "labels": _LB, "event": [_UP], "exact": 0.25, "caption": "האזור α2>2α1"},
+    (1, "ב"): {"space": _SQ, "labels": _LB, "event": _STRIP, "exact": 0.75, "caption": "β חדה: |α1-α2|<π/2"},
+    (1, "ג"): {"space": _SQ, "labels": _LB, "event": _STRIP, "given": [_UP], "exact": 0.5, "caption": "β חדה בהינתן α2>2α1"},
+}
+SIMS = {
+    (1, "א"): {"kind": "area", "params": {"fromRegion": True}, "estimate": "P(a2>2a1)", "exact": 0.25},
+    (1, "ב"): {"kind": "area", "params": {"fromRegion": True}, "estimate": "P(|a1-a2|<pi/2)", "exact": 0.75},
+    (1, "ג"): {"kind": "area", "params": {"fromRegion": True}, "estimate": "P(|a1-a2|<pi/2 | a2>2a1)", "exact": 0.5},
+}
+
+for _q in questions:
+    _k = (_q["num"], _q.get("part"))
+    if _k in REGIONS:
+        _q["region"] = REGIONS[_k]
+    if _k in SIMS:
+        _q["sim"] = SIMS[_k]
 
 # ------------------------------------------------------------------ exam
 exam = {
