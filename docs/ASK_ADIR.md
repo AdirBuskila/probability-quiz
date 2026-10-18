@@ -48,6 +48,13 @@ Open questions for Adir. One entry per item; the orchestrator moves it to Resolv
 - Needed: route to the solver (no-key); not a key dispute.
 - Status: hold (no-key; question text transcribed, not in the bank)
 
+### 25S-A Q3 e - bonus part, official solution explicitly withheld
+- Path: official PDF of sitting 25S-A (handwritten solutions), see sitting code only
+- Page: exam p.2 (Q3 e, bonus 5 pts: n balls drawn without replacement, probability that the last two are both red); solution p.9 ends Q3 d with the note that the bonus solution will not be published
+- Question: no official answer. Solver value (pure symmetry): D(D-1)/(N(N-1)); confirmed by Monte Carlo (>= 10^6 trials) at four (N, D, n) in tools/verify/25S-A/check.py (printed as INFO, not compared with any key).
+- Needed: route to the solver (no-key); not a key dispute.
+- Status: hold (no-key; question text transcribed, not in the bank)
+
 ## Resolved
 
 ### 26A-B Q3 a, b, d - official key uses different q2/q4 labels than the printed question
