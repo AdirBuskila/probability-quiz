@@ -14,10 +14,11 @@ Transcription notes
 - Q5 part ד: the official solution defines the event "both travelled through the pub" as the intersection of the two
   pub routes; that definition is transcribed as printed.
 - Math never holds Hebrew.
-- Q1 region data: tools/verify/25S-A/regions.json (RAW_SCHEMA has no `region` field).
+- Q1 parts a-d carry `region` data (REGIONS below; moved from tools/verify/25S-A/regions.json) and every simulable part a `sim`.
 - The page-1 cover (lecturer names) is not copied anywhere.
 """
-import json, pathlib
+import json, math, pathlib
+from fractions import Fraction as Fr
 
 OUT = pathlib.Path(__file__).resolve().parents[1] / "raw" / "25S-A.json"
 CODE = "25S-A"
@@ -333,6 +334,350 @@ $$P(Q_{A\to R})=\binom{X+Y}{X}p^X(1-p)^Y,\qquad P(Q_{R\to B})=\binom{m+n-X-Y}{m-
 $$P\bigl(R\in A\to B\mid Q_{A\to B}\bigr)=\frac{\binom{X+Y}{X}p^X(1-p)^Y\binom{m+n-X-Y}{m-X}p^{m-X}(1-p)^{n-Y}}{\binom{n+m}{m}p^m(1-p)^n}=\frac{\binom{X+Y}{X}\binom{m+n-X-Y}{m-X}}{\binom{n+m}{m}}.$$
 (החזקות של $p$ ו-$1-p$ מצטמצמות.) אפשר לראות שזו ההתפלגות ההיפרגאומטרית $\mathrm{Hyp}(X+Y,\,n+m,\,m)$. התשובה אינה תלויה ב-$p$!""",
     10, contextId="c6"))
+
+# ------------------------------------------------------------------ area regions (RAW_SCHEMA `region`; moved from tools/verify/25S-A/regions.json)
+R12 = {"x": [0, 1], "y": [0, 2]}
+XL = {"x": "X1", "y": "X2"}
+REGIONS = {
+    (1, "א"): {"space": R12, "labels": XL, "event": [{"a": 1, "b": -1, "c": 0, "op": ">"}], "exact": 0.25, "caption": "האזור x1>x2"},
+    (1, "ב"): {"space": R12, "labels": XL, "event": {"any": [[{"a": 1, "c": 0.5, "op": "<"}], [{"b": 1, "c": 0.5, "op": "<"}]]}, "exact": 0.625,
+               "caption": "האזור x1<1/2 או x2<1/2"},
+    (1, "ג"): {"space": R12, "labels": XL, "event": [{"a": 1, "b": 1, "c": 1, "op": "<="}], "exact": 0.25, "caption": "האזור x1+x2<=1"},
+    (1, "ד"): {"space": R12, "labels": XL, "event": [{"a": 1, "c": 0.5, "op": ">"}], "given": [{"a": 1, "b": 1, "c": 2, "op": ">"}], "exact": 0.75,
+               "caption": "x1>1/2 בהינתן x1+x2>2"},
+}
+for _q in questions:
+    _r = REGIONS.get((_q["num"], _q.get("part")))
+    if _r is not None:
+        _q["region"] = _r
+
+# ------------------------------------------------------------------ simulations (RAW_SCHEMA `sim`)
+# Symbolic answers are simulated at a stated sample value (given in each `estimate`). Not simulated: Q2 part ו
+# (an impossibility argument), Q6 part א (a deterministic count).
+def J(pAB, pAnB, pnAB, pnAnB):
+    return [{"p": pAB, "A": 1, "B": 1}, {"p": pAnB, "A": 1, "B": 0}, {"p": pnAB, "A": 0, "B": 1}, {"p": pnAnB, "A": 0, "B": 0}]
+
+
+# Q2: p=P(A\B)=0.2, q=P(A and B)=0.3, s=P(A|B)=0.6  =>  P(B)=0.5
+_J2 = J(0.3, 0.2, 0.2, 0.3)
+_URN = {"counts": {"red": 5, "black": 7}}
+_PDF4 = {"pieces": [{"from": 0, "to": 1, "expr": "x"}, {"from": 1, "to": 1.25, "expr": "2"}]}
+_ROADS = {"network": {"type": "parallel", "children": [{"type": "comp", "id": c, "p": 0.6} for c in "ABCD"]}}
+_QE = "(A == 1 or (B == 1 and C == 1 and D == 1))"
+_QS = "(B == 1 or (A == 1 and C == 1 and D == 1))"
+_STEPS = {"vars": {("S%d" % i): {"values": [0, 1], "probs": [0.4, 0.6]} for i in range(1, 6)}}
+_SUM5 = "S1 + S2 + S3 + S4 + S5 == 3"
+
+SIMS = {
+    (1, "א"): {"kind": "area", "params": {"fromRegion": True}, "estimate": "P(X1>X2)", "exact": 0.25},
+    (1, "ב"): {"kind": "area", "params": {"fromRegion": True}, "estimate": "P(X1<1/2 or X2<1/2)", "exact": 0.625},
+    (1, "ג"): {"kind": "area", "params": {"fromRegion": True}, "estimate": "P(X1+X2<=1)", "exact": 0.25},
+    (1, "ד"): {"kind": "area", "params": {"fromRegion": True}, "estimate": "P(X1>1/2 | X1+X2>2)", "exact": 0.75},
+    (2, "א"): {"kind": "custom_discrete", "params": {"joint": _J2, "event": "A == 1"}, "estimate": "P(A)=p+q ב-p=0.2,q=0.3,s=0.6", "exact": 0.5},
+    (2, "ב"): {"kind": "custom_discrete", "params": {"joint": _J2, "event": "B == 1"}, "estimate": "P(B)=q/s ב-p=0.2,q=0.3,s=0.6", "exact": 0.5},
+    (2, "ג"): {"kind": "custom_discrete", "params": {"joint": _J2, "event": "A == 1", "given": "B == 0"}, "estimate": "P(A|not B)=ps/(s-q) ב-p=0.2,q=0.3,s=0.6", "exact": 0.4},
+    (2, "ד"): {"kind": "custom_discrete", "params": {"joint": _J2, "event": "A == 0", "given": "B == 1"}, "estimate": "P(not A|B)=1-s ב-s=0.6", "exact": 0.4},
+    (2, "ה"): {"kind": "custom_discrete", "params": {"joint": _J2, "event": "A == 0", "given": "B == 0"}, "estimate": "P(not A|not B) ב-p=0.2,q=0.3,s=0.6", "exact": 0.6},
+    # independent: p=0.2, q=0.3, s=p+q=0.5  =>  P(B)=0.6, P(A and B)=0.3=P(A)P(B)
+    (2, "ז"): {"kind": "custom_discrete", "params": {"joint": J(0.3, 0.2, 0.3, 0.2), "event": "A == 1 and B == 1"}, "estimate": "P(A and B)=P(A)P(B) ב-p=0.2,q=0.3,s=0.5", "exact": 0.3},
+    # Q3: D=5 red of N=12
+    (3, "א"): {"kind": "urn", "params": dict(_URN, draws=1, event="red_1 == 1"), "estimate": "P(R1) ב-D=5,N=12", "exact": 5 / 12},
+    (3, "ב"): {"kind": "urn", "params": dict(_URN, draws=2, event="red_2 == 1"), "estimate": "P(R2) ב-D=5,N=12", "exact": 5 / 12},
+    (3, "ג"): {"kind": "urn", "params": dict(_URN, draws=3, event="red_3 == 1"), "estimate": "P(R3) ב-D=5,N=12", "exact": 5 / 12},
+    (3, "ד"): {"kind": "urn", "params": dict(_URN, draws=5, event="red_5 == 1"), "estimate": "P(R5) ב-D=5,N=12,n=5", "exact": 5 / 12},
+    (3, "ה"): {"kind": "urn", "params": dict(_URN, draws=5, event="red_4 == 1 and red_5 == 1"), "estimate": "P(R4 and R5) ב-D=5,N=12,n=5", "exact": 5 / 33},
+    # Q4: a=1, b=5/4, c=2
+    (4, "א"): {"kind": "pdf", "params": dict(_PDF4, measure="mean", expr="x"), "estimate": "E[X]=43/48", "exact": 43 / 48},
+    (4, "ב"): {"kind": "pdf", "params": dict(_PDF4, event="x <= 1.1"), "estimate": "F_X(1.1)", "exact": 0.7},
+    (4, "ג"): {"kind": "pdf", "params": dict(_PDF4, event="x > 1"), "estimate": "P(X>1)", "exact": 0.5},
+    # Q5 at p=0.6
+    (5, "א"): {"kind": "circuit", "params": dict(_ROADS, event=_QE), "estimate": "P1 ב-p=0.6", "exact": 0.6 + 0.6 ** 3 - 0.6 ** 4},
+    (5, "ב"): {"kind": "circuit", "params": dict(_ROADS, event=_QE + " and " + _QS), "estimate": "P2 ב-p=0.6", "exact": 0.36 * (1 + 1.2 - 0.72)},
+    (5, "ג"): {"kind": "circuit", "params": dict(_ROADS, event=_QE + " and not " + _QS), "estimate": "P3 ב-p=0.6", "exact": 0.6 - 0.36 - 0.216 + 0.1296},
+    (5, "ד"): {"kind": "circuit", "params": dict(_ROADS, event="A == 1 and B == 1 and C == 1 and D == 1", given=_QE + " and " + _QS),
+               "estimate": "P4=P(all four open | both arrive) ב-p=0.6", "exact": 0.36 / (1 + 1.2 - 0.72)},
+    # Q6: m=3 steps right, n=2 up, p=0.6
+    (6, "ב"): {"kind": "custom_discrete", "params": dict(_STEPS, event=_SUM5), "estimate": "P(reach the corner) ב-m=3,n=2,p=0.6", "exact": 10 * 0.6 ** 3 * 0.4 ** 2},
+    (6, "ג"): {"kind": "custom_discrete", "params": dict(_STEPS, event="S1 + S2 == 1", given=_SUM5), "estimate": "P(through (1,1) | reached corner) ב-m=3,n=2 (בלי תלות ב-p)", "exact": 0.6},
+}
+for _q in questions:
+    _s = SIMS.get((_q["num"], _q.get("part")))
+    if _s is not None:
+        _q["sim"] = _s
+
+# ------------------------------------------------------------------ rubric / pitfalls / steps (ai-draft)
+# Every expected value is re-derived independently (exact fractions / enumeration / sympy, and Monte Carlo where a kind
+# applies) in tools/verify/25S-A/steps_check.py, which reads the generated raw JSON back.
+FRAC = 0.0006   # tolerance when the answer is a non-terminating value entered as a 3-4 digit decimal
+
+
+def O(*v):
+    return [{"id": "abcdefgh"[i], "value": t} for i, t in enumerate(v)]
+
+
+def CH(prompt, opts, ans, explain):
+    return {"type": "choice", "prompt": prompt, "options": O(*opts), "correctId": "abcdefgh"[ans], "explain": explain}
+
+
+def NU(prompt, val, explain, region=None):
+    a = round(float(val), 4)
+    exact = abs(a - float(val)) < 1e-12
+    s = {"type": "numeric", "prompt": prompt + ("" if exact else " (שבר או עשרוני)"), "answer": a,
+         "tol": 0 if exact else FRAC, "explain": explain}
+    if region is not None:
+        s["region"] = region
+    return s
+
+
+def RB(*r):
+    return [{"text": t, "points": p} for t, p in r]
+
+
+S = {}
+
+
+def ADD(num, part, rub, pit, steps):
+    S[(num, part)] = (rub, pit, steps)
+
+
+OMEGA = r"מהו שטח מרחב המדגם $|\Omega|$ של הזוג $(X_1,X_2)$, כאשר $X_1\sim U(0,1)$ ו-$X_2\sim U(0,2)$?"
+OMEGA_X = r"המלבן $(0,1)\times(0,2)$ הוא מרחב המדגם, ושטחו $2$. ההסתברות היא שטח האירוע חלקי $2$."
+
+ADD(1, "א",
+    RB((r"גישה גאומטרית: שטח חלקי $|\Omega|=2$", 1), (r"האזור $x_2<x_1$ הוא משולש עם ניצבים $1$ ו-$1$ (הישר $x_2=x_1$ יוצא מהמלבן ב-$x_1=1$)", 3), (r"התשובה $\frac14$", 1)),
+    [r"לחלק ב-$1$ ולקבל $\frac12$", r"לחשוב שהמשולש מגיע עד $x_2=2$"],
+    [NU(OMEGA, 2, OMEGA_X),
+     NU(r"מהו שטח האזור $\{x_2<x_1\}$ בתוך המלבן?", Fr(1, 2), r"משולש ישר-זווית עם ניצבים $1$ ו-$1$: שטח $\frac12$.", region=REGIONS[(1, "א")]),
+     NU(r"מהי $P(X_1>X_2)$?", Fr(1, 4), r"$\frac{1/2}{2}=\frac14$.")])
+
+ADD(1, "ב",
+    RB((r"כלל החיבור והמשלים", 1), (r"$P(X_1<\frac12)=\frac12$ ו-$P(X_2<\frac12)=\frac14$", 2), (r"התשובה $\frac58$", 2)),
+    [r"לחבר $\frac12+\frac14$ בלי לחסר את החיתוך", r"לחשב $P(X_2<\frac12)=\frac12$ במקום $\frac14$ (הטווח של $X_2$ הוא $2$)"],
+    [NU(OMEGA, 2, OMEGA_X),
+     NU(r"מהו שטח המלבן המשלים $\{x_1\ge\frac12\}\cap\{x_2\ge\frac12\}$?", Fr(3, 4), r"$\frac12\cdot\frac32=\frac34$.", region=REGIONS[(1, "ב")]),
+     NU(r"מהי ההסתברות ש-$X_1<\frac12$ או $X_2<\frac12$?", Fr(5, 8), r"$1-\frac{3/4}{2}=\frac58$.")])
+
+ADD(1, "ג",
+    RB((r"הצגת האירוע כמשולש מתחת לישר $x_2=1-x_1$", 3), (r"שטח $\frac12$", 2), (r"חלוקה ב-$|\Omega|=2$: $\frac14$", 3)),
+    [r"לחלק ב-$1$ ולקבל $\frac12$", r"לבלבל בין $x_1+x_2\le1$ ל-$x_1+x_2\le2$"],
+    [NU(OMEGA, 2, OMEGA_X),
+     NU(r"מהו שטח האזור $\{x_1+x_2\le1\}$ בתוך המלבן?", Fr(1, 2), r"משולש ישר-זווית עם ניצבים $1$ ו-$1$ (מוכל כולו במלבן).", region=REGIONS[(1, "ג")]),
+     NU(r"מהי $P(X_1+X_2\le1)$?", Fr(1, 4), r"$\frac{1/2}{2}=\frac14$.")])
+
+ADD(1, "ד",
+    RB((r"הגדרת ההסתברות המותנית כיחס שטחים (המכנה $|\Omega|$ משותף)", 2), (r"שטח התנאי $\{x_2>2-x_1\}$: $\frac12$", 2), (r"שטח החיתוך (טרפז): $\frac38$", 2), (r"היחס $\frac34$", 1)),
+    [r"לחלק את שטח החיתוך ב-$|\Omega|=2$ אבל לא את שטח התנאי, או להפך", r"לחשב את שטח החיתוך כמשולש במקום טרפז"],
+    [NU(OMEGA, 2, OMEGA_X),
+     NU(r"מהו שטח התנאי $\{x_1+x_2>2\}$ בתוך המלבן?", Fr(1, 2), r"משולש עם קודקודים $(0,2)$, $(1,1)$, $(1,2)$: שטח $\frac12$."),
+     NU(r"מהו שטח החיתוך $\{x_1>\frac12\}\cap\{x_1+x_2>2\}$?", Fr(3, 8), r"$\int_{1/2}^{1}x_1\,dx_1=\frac38$ (טרפז).", region=REGIONS[(1, "ד")]),
+     NU(r"מהי $P(X_1>\frac12\mid X_1+X_2>2)$?", Fr(3, 4), r"$\frac{3/8}{1/2}=\frac34$.")])
+
+# Q2: sample p = 0.2, q = 0.3, s = 0.6
+Q2S = r"נקבע $p=0.2$, $q=0.3$, $s=0.6$. "
+ADD(2, "א",
+    RB((r"פירוק $A$ לחלק שמחוץ ל-$B$ ולחלק שבתוכו", 2), (r"$P(A)=p+q$", 1)),
+    [r"להחסיר את החיתוך ($p+q-q$)"],
+    [CH(r"כיצד מחשבים את $P(A)$ מ-$P(A\setminus B)$ ו-$P(A\cap B)$?",
+        [r"$P(A)=P(A\setminus B)+P(A\cap B)$: שני חלקים זרים של $A$", r"$P(A)=P(A\setminus B)\cdot P(A\cap B)$", r"$P(A)=P(A\setminus B)+P(A\cap B)-P(A\setminus B)P(A\cap B)$"], 0,
+        r"שני החלקים זרים, ולכן אין מה לחסר (השלישית) ואין להכפיל (השנייה: $0.06$ במקום $0.5$)."),
+     NU(Q2S + r"מהי $P(A)$?", Fr(1, 2), r"$0.2+0.3=0.5$.")])
+
+ADD(2, "ב",
+    RB((r"הגדרת ההסתברות המותנית: $s=\frac{P(A\cap B)}{P(B)}$", 2), (r"$P(B)=\frac qs$", 1)),
+    [r"להפוך את היחס ולכתוב $\frac sq$ (יוצא גדול מ-$1$)"],
+    [CH(r"נתון $P(A\mid B)=s$ ו-$P(A\cap B)=q$. כיצד מחלצים את $P(B)$?",
+        [r"$P(B)=\dfrac{P(A\cap B)}{P(A\mid B)}=\dfrac qs$", r"$P(B)=\dfrac sq$", r"$P(B)=q\cdot s$"], 0,
+        r"השנייה נותנת $2>1$ בדוגמה, והשלישית נותנת $0.18$ שאינו מקיים $P(A\mid B)=\frac{0.3}{0.18}\ne0.6$."),
+     NU(Q2S + r"מהי $P(B)$?", Fr(1, 2), r"$\frac{0.3}{0.6}=0.5$.")])
+
+ADD(2, "ג",
+    RB((r"הגדרת ההסתברות המותנית עם התנאי $\overline B$", 1), (r"$P(A\cap\overline B)=P(A\setminus B)=p$", 1), (r"$P(\overline B)=1-\frac qs$ והתשובה $\frac{ps}{s-q}$", 1)),
+    [r"לחלק ב-$P(B)$ במקום ב-$P(\overline B)$", r"לכתוב $P(A\cap\overline B)=q$"],
+    [CH(r"איזה מאורע הוא $A\cap\overline B$?",
+        [r"$A\setminus B$, בהסתברות $p$", r"$A\cap B$, בהסתברות $q$", r"$\overline A\cap B$, בהסתברות $P(B)-q$"], 0,
+        r"השנייה היא החלק של $A$ שבתוך $B$, והשלישית אינה חלק מ-$A$ כלל."),
+     NU(Q2S + r"מהי הסתברות התנאי $P(\overline B)=1-\frac qs$?", Fr(1, 2), r"$1-0.5=0.5$."),
+     NU(r"מהי $P(A\cap\overline B)$?", Fr(1, 5), r"$p=0.2$."),
+     NU(r"מהי $P(A\mid\overline B)$?", Fr(2, 5), r"$\frac{0.2}{0.5}=0.4$, כלומר $\frac{ps}{s-q}$.")])
+
+ADD(2, "ד",
+    RB((r"משלים בתוך ההתניה", 2), (r"$P(\overline A\mid B)=1-s$", 1)),
+    [r"להחסיר מ-$1$ את $P(A)$ במקום את $P(A\mid B)$"],
+    [CH(r"איך מחשבים את $P(\overline A\mid B)$?",
+        [r"$1-P(A\mid B)=1-s$", r"$1-P(A)=1-p-q$", r"$1-P(B)$"], 0,
+        r"השנייה והשלישית אינן מותנות ב-$B$ (שתיהן נותנות $0.5$ במקום $0.4$)."),
+     NU(Q2S + r"מהי $P(\overline A\mid B)$?", Fr(2, 5), r"$1-0.6=0.4$.")])
+
+ADD(2, "ה",
+    RB((r"משלים בתוך ההתניה על $\overline B$", 2), (r"שימוש בסעיף ג", 1)),
+    [r"לחסר מ-$1$ את $P(A\mid B)$ (התנאי הוא $\overline B$)"],
+    [CH(r"איך מחשבים את $P(\overline A\mid\overline B)$?",
+        [r"$1-P(A\mid\overline B)$", r"$1-P(A\mid B)=1-s$", r"$P(\overline A)=1-p-q$"], 0,
+        r"השנייה מותנית באירוע אחר ($0.4$), והשלישית אינה מותנית ($0.5$), בעוד שהנכון הוא $0.6$."),
+     NU(Q2S + r"מהי $P(A\mid\overline B)$ (סעיף ג)?", Fr(2, 5), r"$0.4$."),
+     NU(r"מהי $P(\overline A\mid\overline B)$?", Fr(3, 5), r"$1-0.4=0.6$.")])
+
+ADD(2, "ו",
+    RB((r"$P(B)=\frac qs\le1$", 3), (r"מסקנה: $q\le s$, ולכן $s<q$ בלתי אפשרי", 2)),
+    [r"לענות 'כן' בלי לבדוק ש-$P(B)\le1$"],
+    [CH(r"האם ייתכן $s<q$?",
+        [r"לא: $P(B)=\frac qs\le1$ מחייב $q\le s$", r"כן: אין קשר בין $s$ ל-$q$", r"כן: כאשר $P(A\cap B)<P(A)$"], 0,
+        r"$s=\frac{q}{P(B)}\ge q$ תמיד, כי מחלקים ב-$P(B)\le1$; לכן $s<q$ מובילה לסתירה."),
+     NU(r"עבור $q=0.5$ ו-$s=0.4$: מהו $P(B)=\frac qs$?", Fr(5, 4), r"$1.25>1$: לא יתכן.")])
+
+ADD(2, "ז",
+    RB((r"אי-תלות: $P(A\mid B)=P(A)$", 2), (r"$P(A)=p+q$", 1), (r"התנאי $s=p+q$", 2)),
+    [r"לדרוש $s=p$ או $s=q$", r"לבלבל בין אי-תלות לזרות"],
+    [CH(r"איזה תנאי שקול לאי-תלות של $A$ ו-$B$ (כש-$P(B)>0$)?",
+        [r"$P(A\mid B)=P(A)$", r"$P(A\cap B)=0$", r"$P(A\mid B)=P(B\mid A)$"], 0,
+        r"השני הוא זרות. השלישי נכון רק כש-$P(A)=P(B)$, ואינו שקול לאי-תלות."),
+     NU(r"עבור $p=0.2$ ו-$q=0.3$: מהי $P(A)$?", Fr(1, 2), r"$p+q=0.5$."),
+     NU(r"איזה $s=P(A\mid B)$ נדרש לאי-תלות?", Fr(1, 2), r"$s=P(A)=0.5=p+q$.")])
+
+# Q3: D = 5 red of N = 12
+ADD(3, "א",
+    RB((r"הגישה הקלאסית: מקרים רצויים חלקי כל המקרים", 3)),
+    [r"לחלק ב-$N-D$ במקום ב-$N$"],
+    [NU(r"בכד $N=12$ כדורים, מהם $D=5$ אדומים. כמה תוצאות שוות-הסתברות יש להוצאת כדור אחד?", 12, r"$N=12$."),
+     NU(r"מהי $P(R_1)$?", Fr(5, 12), r"$\frac DN=\frac5{12}$.")])
+
+ADD(3, "ב",
+    RB((r"נוסחת ההסתברות השלמה על הכדור הראשון", 2), (r"$P(R_2/R_1)=\frac{D-1}{N-1}$ ו-$P(R_2/\overline{R_1})=\frac D{N-1}$", 2), (r"פישוט ל-$\frac DN$", 1)),
+    [r"להניח שהכדור הראשון אדום", r"לשכוח את הגורם $P(\overline{R_1})$"],
+    [CH(r"הכדור הראשון אינו נבדק. כיצד מחשבים את $P(R_2)$?",
+        [r"נוסחת ההסתברות השלמה לפי צבע הכדור הראשון", r"$\dfrac{D-1}{N-1}$, כאילו הכדור הראשון היה אדום", r"$\left(\dfrac DN\right)^2$, כאילו ההוצאות בלתי תלויות"], 0,
+        r"השנייה מניחה מידע שאין ($0.364$). השלישית מתעלמת מהעובדה שההוצאה ללא החזרה ($0.174$ במקום $0.4167$)."),
+     NU(r"עבור $D=5$, $N=12$: מהי $P(R_2/R_1)$?", Fr(4, 11), r"$\frac4{11}$."),
+     NU(r"מהי $P(R_2/\overline{R_1})$?", Fr(5, 11), r"$\frac5{11}$."),
+     NU(r"מהי $P(R_2)$?", Fr(5, 12), r"$\frac4{11}\cdot\frac5{12}+\frac5{11}\cdot\frac7{12}=\frac5{12}$.")])
+
+ADD(3, "ג",
+    RB((r"התניה על תוצאות שני הכדורים הראשונים (4 מקרים)", 2), (r"ההסתברויות $P(R_1\cap R_2)$ וכו' והמותנות $\frac{D-2}{N-2}$ וכו'", 2), (r"פישוט ל-$\frac DN$", 2)),
+    [r"לשכוח אחד מארבעת המקרים", r"להשתמש במכנה $N-1$ במקום $N-2$ עבור ההוצאה השלישית"],
+    [CH(r"כיצד מחשבים את $P(R_3)$ כאשר שני הכדורים הראשונים אינם נראים?",
+        [r"נוסחת ההסתברות השלמה על תוצאות שני הכדורים הראשונים (ארבעה מקרים)", r"$P(R_3)=\dfrac{D-2}{N-2}$, כאילו שני הראשונים אדומים", r"$P(R_3)=P(R_1)P(R_2)P(R_3/R_1\cap R_2)$"], 0,
+        r"השנייה מניחה מידע שאין ($0.3$). השלישית היא $P(R_1\cap R_2\cap R_3)$, מאורע אחר ($0.0455$)."),
+     NU(r"עבור $D=5$, $N=12$: מהי $P(R_1\cap R_2)$?", Fr(5, 33), r"$\frac5{12}\cdot\frac4{11}=\frac5{33}$."),
+     NU(r"מהי $P(R_3/R_1\cap R_2)$?", Fr(3, 10), r"$\frac{D-2}{N-2}=\frac3{10}$."),
+     NU(r"מהי $P(R_3)$?", Fr(5, 12), r"סכום ארבעת המחוברים שווה $\frac DN=\frac5{12}$.")])
+
+ADD(3, "ד",
+    RB((r"התניה על $X$, מספר האדומים בין $n-1$ הכדורים הראשונים", 4), (r"$P(R_n/X=k)=\frac{D-k}{N-n+1}$", 3), (r"שימוש ב-$\mathbb{E}[X]=(n-1)\frac DN$", 2), (r"פישוט ל-$\frac DN$", 2)),
+    [r"להתעלם מכך שהצבעים הקודמים אינם ידועים", r"להניח אי-תלות בין ההוצאות"],
+    [CH(r"עבור $n$ כללי, על מה מתנים כדי לחשב את $P(R_n)$?",
+        [r"על מספר האדומים $X$ בין $n-1$ הכדורים הראשונים (היפרגיאומטרי)", r"על צבע הכדור הראשון בלבד", r"על כך שכל $n-1$ הכדורים הראשונים אדומים"], 0,
+        r"התניה על הראשון בלבד משאירה $n-2$ כדורים בלתי ידועים. התניה על 'כולם אדומים' היא מאורע שונה."),
+     NU(r"עבור $D=5$, $N=12$, $n=5$: מהי $\mathbb{E}[X]=(n-1)\frac DN$?", Fr(5, 3), r"$4\cdot\frac5{12}=\frac53$."),
+     NU(r"בהינתן $X=2$: מהי $P(R_5\mid X=2)=\frac{D-k}{N-n+1}$?", Fr(3, 8), r"נשארו $8$ כדורים, מהם $3$ אדומים."),
+     NU(r"מהי $P(R_5)$?", Fr(5, 12), r"$\frac{D-\mathbb{E}[X]}{N-n+1}=\frac{10/3}{8}=\frac5{12}$.")])
+
+ADD(3, "ה",
+    RB((r"התניה על $X$ מבין $m=n-2$ הכדורים הראשונים", 2), (r"$P(R_{n-1}\cap R_n/X=k)=\frac{(D-k)(D-k-1)}{M(M-1)}$", 1), (r"חישוב $\mathbb{E}[(D-X)(D-X-1)]$ והתשובה $\frac{D(D-1)}{N(N-1)}$", 2)),
+    [r"לכתוב $\left(\frac DN\right)^2$ (אי-תלות)", r"לחשוב שהתשובה תלויה ב-$n$"],
+    [CH(r"איזו תשובה סבירה להסתברות ששני הכדורים האחרונים אדומים?",
+        [r"$\dfrac{D(D-1)}{N(N-1)}$: כמו שני הכדורים הראשונים", r"$\left(\dfrac DN\right)^2$", r"$\dfrac{D(D-1)}{(N-n+2)(N-n+1)}$"], 0,
+        r"השנייה מניחה אי-תלות ($0.174$ במקום $0.1515$); השלישית תקפה רק אם כל $n-2$ הכדורים הקודמים אדומים."),
+     NU(r"עבור $D=5$, $N=12$, $n=5$ ($m=3$): מהי $\mathbb{E}[X]=\frac{mD}N$?", Fr(5, 4), r"$3\cdot\frac5{12}=1.25$."),
+     NU(r"בהינתן $X=1$ ($M=9$): מהי $P(R_4\cap R_5\mid X=1)=\frac{(D-k)(D-k-1)}{M(M-1)}$?", Fr(1, 6), r"$\frac{4\cdot3}{9\cdot8}=\frac16$."),
+     NU(r"מהי $P(R_4\cap R_5)$?", Fr(5, 33), r"$\frac{D(D-1)}{N(N-1)}=\frac{20}{132}=\frac5{33}\approx0.1515$.")])
+
+# Q4: a = 1, b = 5/4, c = 2
+ADD(4, "א",
+    RB((r"נרמול $\frac{ac}4+c(b-a)=1$ ושוויון השטחים: כל אחד $\frac12$", 4), (r"תנאי התוחלת $\frac{ca^2}6+c\frac{b^2-a^2}2=\frac{43}{48}$", 3), (r"פתרון: $a=1$, $b=\frac54$, $c=2$", 3)),
+    [r"לדרוש רציפות ב-$x=a$ (הצפיפות קופצת מ-$\frac c2$ ל-$c$)", r"לחשב את התוחלת של החלק הראשון עם $x\cdot\frac{c}{2a}$ במקום $x\cdot\frac{cx}{2a}$"],
+    [CH(r"אילו תנאים קובעים את $a,b,c$?",
+        [r"נרמול, שוויון שני השטחים ($\frac12$ כל אחד), ותנאי התוחלת: שלוש משוואות", r"נרמול ורציפות הצפיפות ב-$x=a$", r"נרמול בלבד"], 0,
+        r"הצפיפות קופצת ב-$x=a$ (מ-$\frac c2$ ל-$c$), ולכן רציפות אינה תנאי. נרמול לבדו הוא משוואה אחת לשלושה נעלמים."),
+     NU(r"מהו $a$? (מ-$\frac{ac}4=\frac12$ ו-$c(b-a)=\frac12$ ותוחלת)", 1, r"מתקבל $c=\frac2a$, $b=\frac54a$ והתוחלת $\frac{43}{48}a=\frac{43}{48}$, כלומר $a=1$."),
+     NU(r"מהו $b$?", Fr(5, 4), r"$b=\frac54a=\frac54$."),
+     NU(r"מהו $c$?", 2, r"$c=\frac2a=2$.")])
+
+ADD(4, "ב",
+    RB((r"$F_X(t)=\frac{t^2}2$ עבור $0\le t<1$", 3), (r"$F_X(t)=\frac12+2(t-1)$ עבור $1\le t<\frac54$", 4), (r"$F_X=0$ משמאל ו-$1$ מימין, ובדיקת רציפות", 3)),
+    [r"לשכוח את הקבוע $\frac12$ בענף האמצעי"],
+    [NU(r"מהו $F_X(1)$ (נקודת החיבור)?", Fr(1, 2), r"$\frac{1^2}2=\frac12$."),
+     NU(r"מהו $F_X(1.1)$?", Fr(7, 10), r"$\frac12+2(0.1)=0.7$."),
+     NU(r"מהו $F_X(\frac54)$?", 1, r"$\frac12+2\cdot\frac14=1$.")])
+
+ADD(4, "ג",
+    RB((r"$P(X>1)=1-F_X(1)$", 3), (r"$=\frac12$", 2)),
+    [r"לחשב $F_X(1)$ במקום המשלים"],
+    [NU(r"מהי $P(0\le X\le1)=F_X(1)$?", Fr(1, 2), r"שטח המשולש $\frac{ac}4=\frac12$."),
+     NU(r"מהי $P(X>1)$?", Fr(1, 2), r"$1-\frac12=\frac12$ (שטח המלבן $2\cdot\frac14$).")])
+
+# Q5: p = 0.6
+ADD(5, "א",
+    RB((r"זיהוי הדרכים: ישירות דרך $A$, או דרך $C,D,B$ יחד", 2), (r"$Q_E=A\cup(B\cap C\cap D)$", 2), (r"חיבור-חיסור: $p+p^3-p^4$", 2)),
+    [r"לכתוב $A\cup B\cup C\cup D$ (אף כביש בודד מלבד $A$ אינו מספיק)", r"לשכוח את חיסור החיתוך $A\cap B\cap C\cap D$"],
+    [CH(r"איזה ביטוי מתאר את הצלחתו של יוג'ין להגיע למכון?",
+        [r"$A\cup(B\cap C\cap D)$", r"$A\cap B\cap C\cap D$", r"$A\cup B\cup C\cup D$"], 0,
+        r"השנייה דורשת שכל הכבישים יהיו פתוחים (גם כשרק $A$ פתוח הוא מגיע), והשלישית מניחה שכל כביש בודד מספיק (אבל $B$ לבדו לא מביא אותו למכון)."),
+     NU(r"עבור $p=0.6$: מהי $P(B\cap C\cap D)$?", Fr(27, 125), r"$p^3=0.216$."),
+     NU(r"מהי $P_1=p+p^3-p^4$?", Fr(1716, 2500), r"$0.6+0.216-0.1296=0.6864$.")])
+
+ADD(5, "ב",
+    RB((r"התניה על $A$", 2), (r"$P(\tilde Q/A)=P(B\cup(C\cap D))$", 2), (r"$P(\tilde Q/\overline A)=p^3$ והרכבה", 2)),
+    [r"להניח ש-$Q_E,Q_S$ בלתי תלויים ולכפול", r"לשכוח שכש-$A$ כבוי, $Q_S$ מתקיים אוטומטית בתוך $Q_E$"],
+    [CH(r"כיצד מחשבים את $P(Q_E\cap Q_S)$ בצורה הנוחה ביותר?",
+        [r"נוסחת ההסתברות השלמה על $A$ (כש-$A$ פועל $Q_E$ מתקיים; כשהוא כבוי $Q_E$ דורש את $B\cap C\cap D$)", r"$P(Q_E)\cdot P(Q_S)$, כי שני האנשים בלתי תלויים", r"$P(Q_E)+P(Q_S)$"], 0,
+        r"האירועים תלויים (אותם כבישים): המכפלה נותנת $0.471$ במקום $0.533$. הסכום עולה על $1$."),
+     NU(r"עבור $p=0.6$: מהי $P(\tilde Q/A)=p+p^2-p^3$?", 0.744, r"$0.6+0.36-0.216=0.744$."),
+     NU(r"מהי $P(\tilde Q/\overline A)=p^3$?", 0.216, r"$B,C,D$ כולם פתוחים."),
+     NU(r"מהי $P_2$?", 0.5328, r"$0.6\cdot0.744+0.4\cdot0.216=0.5328$.")])
+
+ADD(5, "ג",
+    RB((r"$Q_E\cap\overline{Q_S}=Q_E\setminus(Q_E\cap Q_S)$", 3), (r"$P_3=P_1-P_2$", 2), (r"פישוט", 1)),
+    [r"לכתוב $P_1(1-P_1')$ בשל תלות"],
+    [CH(r"איך מחשבים את $P(Q_E\cap\overline{Q_S})$?",
+        [r"$P(Q_E)-P(Q_E\cap Q_S)$", r"$P(Q_E)\,(1-P(Q_S))$", r"$1-P(Q_E\cap Q_S)$"], 0,
+        r"השנייה מניחה אי-תלות ($0.2153$ במקום $0.1536$). השלישית כוללת מצבים בהם $Q_E$ לא קורה."),
+     NU(r"עבור $p=0.6$: מהי $P_1$?", 0.6864, r"סעיף א."),
+     NU(r"מהי $P_3=P_1-P_2$?", 0.1536, r"$0.6864-0.5328=0.1536$.")])
+
+ADD(5, "ד",
+    RB((r"הגדרת ההסתברות המותנית", 1), (r"$Q_{PUB}\cap Q_E\cap Q_S=A\cap B\cap C\cap D$", 2), (r"$P(\ldots)=p^4$", 2), (r"היחס $\frac{p^2}{1+2p-2p^2}$", 2)),
+    [r"לחלק ב-$P_1$ או ב-$P_3$ במקום ב-$P_2$", r"לשכוח ש-$P_2$ הוא המכנה (התנאי: שניהם הגיעו)"],
+    [CH(r"איזו קבוצת כבישים חייבת להיות פתוחה כדי ששניהם יגיעו ושניהם יעברו בפאב?",
+        [r"כל ארבעת הכבישים $A,B,C,D$", r"$A$ ו-$B$ בלבד", r"$C$ ו-$D$ בלבד"], 0,
+        r"דרך הפאב היא $C,D$ ועוד $B$ (יוג'ין) או $A$ (סרג'), ולשניהם יחד נדרשים כל ארבעת הכבישים. $C,D$ בלבד אינם מספיקים להגיע."),
+     NU(r"עבור $p=0.6$: מהי הסתברות התנאי $P_2=P(Q_E\cap Q_S)$?", 0.5328, r"סעיף ב."),
+     NU(r"מהי $P(A\cap B\cap C\cap D)=p^4$?", 0.1296, r"$0.6^4=0.1296$."),
+     NU(r"מהי $P_4$?", 0.1296 / 0.5328, r"$\frac{0.1296}{0.5328}=\frac{p^2}{1+2p-2p^2}\approx0.2432$.")])
+
+# Q6: m = 3 right, n = 2 up, p = 0.6
+ADD(6, "א",
+    RB((r"$m$ קפיצות ימינה ו-$n$ למעלה", 3), (r"סך הכול $n+m$", 2)),
+    [r"לספור $nm$ או $\max(n,m)$"],
+    [NU(r"עבור $m=3$ ו-$n=2$: כמה קפיצות נדרשות?", 5, r"$m+n=5$."),
+     NU(r"בכמה סדרים שונים אפשר לסדר $3$ קפיצות ימינה ו-$2$ קפיצות למעלה?", 10, r"$\binom53=10$.")])
+
+ADD(6, "ב",
+    RB((r"מספר הקפיצות ימינה מתוך $n+m$ הוא בינומי", 4), (r"ההסתברות היא $P(X=m)$", 3), (r"$\binom{n+m}mp^m(1-p)^n$", 3)),
+    [r"לשכוח את $\binom{n+m}m$ (מספר הסדרים)", r"להחליף את התפקידים של $p$ ו-$1-p$"],
+    [CH(r"כיצד מחשבים את ההסתברות להגיע לפינה הימנית העליונה?",
+        [r"$X\sim\mathrm{Bin}(n+m,p)$ ו-$P(X=m)$: כל סדר של $m$ ימינה ו-$n$ למעלה מתאים", r"$p^m(1-p)^n$: מסלול אחד בלבד", r"$P(X\ge m)$"], 0,
+        r"הראשון בלבד סופר את כל המסלולים. השני מתאים למסלול אחד ספציפי ($0.0346$ במקום $0.3456$). השלישי מכליל גם מקרים של יותר מ-$m$ קפיצות ימינה (שמחטיאים את הפינה)."),
+     NU(r"עבור $m=3$, $n=2$: כמה מסלולים אפשריים?", 10, r"$\binom53=10$."),
+     NU(r"מהי ההסתברות של מסלול ספציפי אחד, $p^3(1-p)^2$, עבור $p=0.6$?", 0.03456, r"$0.216\cdot0.16=0.03456$.", ),
+     NU(r"מהי ההסתברות להגיע לפינה?", 0.3456, r"$10\cdot0.03456=0.3456$.")])
+
+ADD(6, "ג",
+    RB((r"הגדרת ההסתברות המותנית ופירוק המסלול דרך הנקודה", 3), (r"אי-תלות בין שני החלקים", 2), (r"הצמצום של $p$ והתוצאה ההיפרגיאומטרית", 5)),
+    [r"לחשוב שהתשובה תלויה ב-$p$", r"לשכוח את המקדם הבינומי של אחד החלקים"],
+    [CH(r"בהינתן שהחלקיק הגיע לפינה, מדוע ההסתברות לעבור דרך נקודה נתונה אינה תלויה ב-$p$?",
+        [r"כל מסלול מוצלח כולל אותה כמות קפיצות ימינה ולמעלה, ולכן לכל המסלולים הסתברות זהה ו-$p$ מצטמצם", r"כי $p=\frac12$", r"כי העבר אינו משפיע על העתיד"], 0,
+        r"השנייה אינה נתונה. השלישית נכונה לגבי אי-התלות בין הצעדים, אך אינה מסבירה את הצמצום: צריך שלכל המסלולים המוצלחים אותה הסתברות."),
+     NU(r"עבור $m=3$, $n=2$, $p=0.6$, והנקודה $(1,1)$: מהי $P(A\to R)=\binom21p(1-p)$?", 0.48, r"$2\cdot0.6\cdot0.4=0.48$."),
+     NU(r"מהי $P(R\to B)=\binom32p^2(1-p)$?", 0.432, r"$3\cdot0.36\cdot0.4=0.432$."),
+     NU(r"מהי $P(Q_{A\to B})$?", 0.3456, r"סעיף ב."),
+     NU(r"מהי ההסתברות המותנית?", Fr(3, 5), r"$\frac{0.48\cdot0.432}{0.3456}=0.6=\frac{\binom21\binom32}{\binom53}$.")])
+
+for _q in questions:
+    _s = S.get((_q["num"], _q.get("part")))
+    if _s and not _q.get("hold"):
+        _q["rubric"], _q["pitfalls"], _q["steps"] = _s
+        _q["rubricSource"] = "ai-draft"
+        _q["stepsSource"] = "ai-draft"
 
 # ------------------------------------------------------------------ exam
 exam = {
