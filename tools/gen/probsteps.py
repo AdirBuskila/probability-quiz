@@ -12,8 +12,8 @@ LETTERS = "abcdefgh"
 
 
 def _tol(ans):
-    """Default tolerance for a numeric step: exact when the stored value has <= 6 decimals, else 0.2% relative."""
-    if round(ans, 6) == ans:
+    """Default tolerance for a numeric step: exact when the stored value has <= 3 decimals, else 0.2% relative."""
+    if round(ans, 3) == ans:
         return 0
     return max(abs(ans) * 0.002, 1e-6)
 

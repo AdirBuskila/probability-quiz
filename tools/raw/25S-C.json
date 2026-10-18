@@ -87,7 +87,82 @@
     "estimate": "P(a<1/4)",
     "exact": 0.125,
     "seed": 12345
-   }
+   },
+   "rubric": [
+    {
+     "text": "מתרגמים $a<\\frac14$ ל-$L<b+\\frac12$",
+     "points": 2
+    },
+    {
+     "text": "שטח מרחב המדגם $1$",
+     "points": 1
+    },
+    {
+     "text": "הישר $L=b+\\frac12$ חותך את $L=1$ ב-$b=\\frac12$ ויוצר משולש בפינה הימנית-תחתונה",
+     "points": 2
+    },
+    {
+     "text": "שטח $\\frac12\\cdot\\frac12\\cdot\\frac12=\\frac18$ והסתברות $\\frac18$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לפתור $a=\\frac{L-b}2<\\frac14$ ולקבל $L<b+\\frac14$ (שוכחים להכפיל ב-$2$).",
+    "לחשב את השטח של המשולש ההפוך ולקבל $\\frac78$."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "$a=\\frac{L-b}2$. איזה אי-שוויון שקול ל-$a<\\frac14$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "L<b+\\frac12",
+       "type": "math"
+      },
+      {
+       "id": "b",
+       "value": "L<b+2",
+       "type": "math"
+      },
+      {
+       "id": "c",
+       "value": "L>b+\\frac12",
+       "type": "math"
+      },
+      {
+       "id": "d",
+       "value": "L<2b+\\frac12",
+       "type": "math"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$\\frac{L-b}2<\\frac14$ שקול ל-$L-b<\\frac12$. האפשרות השנייה מתקיימת תמיד (הסתברות $1$), השלישית היא ההפך ($\\frac78$), והרביעית נותנת הסתברות אחרת."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו שטח מרחב המדגם $|\\Omega|$ (המלבן $0<b<1$, $1<L<2$)?",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "$1\\times1=1$, ולכן הסתברות שווה לשטח האזור."
+    },
+    {
+     "type": "numeric",
+     "prompt": "באיזה ערך של $b$ חותך הישר $L=b+\\frac12$ את הצלע התחתונה $L=1$?",
+     "answer": 0.5,
+     "tol": 0,
+     "explain": "$1=b+\\frac12$, לכן $b=\\frac12$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(a<\\frac14)$?",
+     "answer": 0.125,
+     "tol": 0,
+     "explain": "משולש ישר-זווית בניצבים $\\frac12$: $\\frac12\\cdot\\frac12\\cdot\\frac12=\\frac18$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 1,
@@ -134,7 +209,82 @@
     },
     "estimate": "P(a<2/3)",
     "exact": 0.7777777777777778
-   }
+   },
+   "rubric": [
+    {
+     "text": "מתרגמים $a<\\frac23$ ל-$L<b+\\frac43$",
+     "points": 2
+    },
+    {
+     "text": "הישר חותך את $L=2$ ב-$b=\\frac23$: האזור שמעליו הוא משולש בפינה השמאלית-עליונה",
+     "points": 2
+    },
+    {
+     "text": "שטח המשולש $\\frac12\\left(\\frac23\\right)^2=\\frac29$",
+     "points": 2
+    },
+    {
+     "text": "משלים: $1-\\frac29=\\frac79$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לחשב את שטח המשולש $\\frac29$ ולהחזיר אותו כתשובה (הוא האירוע המשלים).",
+    "לטעות בנקודת החיבור של הישר עם הצלעות."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איזה אי-שוויון שקול ל-$a<\\frac23$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "L<b+\\frac43",
+       "type": "math"
+      },
+      {
+       "id": "b",
+       "value": "L<b+\\frac23",
+       "type": "math"
+      },
+      {
+       "id": "c",
+       "value": "L>b+\\frac43",
+       "type": "math"
+      },
+      {
+       "id": "d",
+       "value": "L<\\frac{4b}{3}+1",
+       "type": "math"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$\\frac{L-b}2<\\frac23$ שקול ל-$L-b<\\frac43$. השנייה נותנת הסתברות אחרת, והשלישית היא האירוע המשלים ($\\frac29$)."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו שטח מרחב המדגם $|\\Omega|$ (המלבן $0<b<1$, $1<L<2$)?",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "$1\\times1=1$, ולכן הסתברות שווה לשטח האזור."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו שטח האזור המשלים $\\{L>b+\\frac43\\}$ (משולש)?",
+     "answer": 0.2222222222222222,
+     "tol": 0.0004444444444444444,
+     "explain": "ניצבים $\\frac23$: $\\frac12\\cdot\\frac49=\\frac29$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(a<\\frac23)$?",
+     "answer": 0.7777777777777778,
+     "tol": 0.0015555555555555557,
+     "explain": "$1-\\frac29=\\frac79$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 1,
@@ -166,7 +316,74 @@
     },
     "estimate": "Var[a]",
     "exact": 0.041666666666666664
-   }
+   },
+   "rubric": [
+    {
+     "text": "$E[a]=\\frac{E[L]-E[b]}2=\\frac12$",
+     "points": 2
+    },
+    {
+     "text": "פירוק $E[a^2]=\\frac14(E[L^2]-2E[L]E[b]+E[b^2])$ באי-תלות",
+     "points": 2
+    },
+    {
+     "text": "הרגעים השניים $E[L^2]=\\frac73$, $E[b^2]=\\frac13$",
+     "points": 2
+    },
+    {
+     "text": "שונות $\\frac7{24}-\\frac14=\\frac1{24}$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "להוציא את הגורם $\\frac12$ מהשונות בלי לרבע אותו: $\\frac12(\\mathrm{Var}[L]+\\mathrm{Var}[b])=\\frac1{12}$ במקום $\\frac1{24}$.",
+    "לבלבל בין $E[L^2]$ ל-$E[L]^2$."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מדוע אפשר לכתוב $E[Lb]=E[L]\\,E[b]$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "כי $L$ ו-$b$ בלתי תלויים"
+      },
+      {
+       "id": "b",
+       "value": "כי שניהם אחידים (גם אם תלויים)"
+      },
+      {
+       "id": "c",
+       "value": "כי $\\mathrm{Cov}[L,b]=1$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "השוויון נובע מאי-תלות. אילו $L=1+b$ (שניהם אחידים אך תלויים) היינו מקבלים $E[Lb]=0.833$ במקום $0.75$, ואם $\\mathrm{Cov}=1$ היה מתקבל $1.75$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו $E[a]$?",
+     "answer": 0.5,
+     "tol": 0,
+     "explain": "$\\frac12\\left(\\frac32-\\frac12\\right)=\\frac12$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו $E[a^2]$?",
+     "answer": 0.2916666666666667,
+     "tol": 0.0005833333333333334,
+     "explain": "$\\frac14\\left(\\frac73+\\frac13-2\\cdot\\frac12\\cdot\\frac32\\right)=\\frac14\\cdot\\frac76=\\frac7{24}$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $\\mathrm{Var}[a]$?",
+     "answer": 0.041666666666666664,
+     "tol": 8.333333333333333e-05,
+     "explain": "$\\frac7{24}-\\frac14=\\frac1{24}$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 1,
@@ -201,7 +418,63 @@
     },
     "estimate": "Cov[a,b]",
     "exact": -0.041666666666666664
-   }
+   },
+   "rubric": [
+    {
+     "text": "$E[ab]=\\frac12\\left(E[L]E[b]-E[b^2]\\right)=\\frac5{24}$",
+     "points": 1
+    },
+    {
+     "text": "$\\mathrm{Cov}[a,b]=\\frac5{24}-\\frac14=-\\frac1{24}$",
+     "points": 1
+    },
+    {
+     "text": "מסקנה: מתואמים (Cov שונה מאפס)",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "להסיק שהמשתנים בלתי מתואמים כי $L$ ו-$b$ בלתי תלויים: $a$ תלוי ב-$b$.",
+    "לטעות בסימן של $\\mathrm{Cov}$."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "מהו $E[ab]$?",
+     "answer": 0.20833333333333334,
+     "tol": 0.0004166666666666667,
+     "explain": "$\\frac12\\left(\\frac32\\cdot\\frac12-\\frac13\\right)=\\frac12\\cdot\\frac5{12}=\\frac5{24}$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $\\mathrm{Cov}[a,b]$?",
+     "answer": -0.041666666666666664,
+     "tol": 8.333333333333333e-05,
+     "explain": "$\\frac5{24}-\\frac12\\cdot\\frac12=-\\frac1{24}$."
+    },
+    {
+     "type": "choice",
+     "prompt": "האם $a$ ו-$b$ מתואמים?",
+     "options": [
+      {
+       "id": "a",
+       "value": "מתואמים, כי $\\mathrm{Cov}[a,b]\\ne0$ ($a$ תלוי ב-$b$ דרך $a=\\frac{L-b}2$)"
+      },
+      {
+       "id": "b",
+       "value": "בלתי מתואמים, כי $L$ ו-$b$ בלתי תלויים"
+      },
+      {
+       "id": "c",
+       "value": "בלתי מתואמים, כי $a$ אחיד"
+      }
+     ],
+     "correctId": "a",
+     "explain": "מקדם המתאם הוא $\\approx-0.707$. אי-תלות של $L,b$ אינה גוררת אי-תלות של $a,b$, ו-$a$ אינו אחיד."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -235,7 +508,74 @@
     },
     "estimate": "P(odd)",
     "exact": 0.5555555555555556
-   }
+   },
+   "rubric": [
+    {
+     "text": "מרחב המדגם $9\\cdot8=72$",
+     "points": 1
+    },
+    {
+     "text": "המספר אי-זוגי אם ספרת האחדות אי-זוגית",
+     "points": 2
+    },
+    {
+     "text": "$5$ אפשרויות לאחדות ו-$8$ לעשרות: $40$",
+     "points": 2
+    },
+    {
+     "text": "הסתברות $\\frac{40}{72}=\\frac59$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לספור $5\\cdot9$ (שוכחים שהעשרות שונה מהאחדות).",
+    "לבדוק את זוגיות ספרת העשרות."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מוצאים ללא החזרה שתי ספרות מ-$\\{1,\\ldots,9\\}$; הראשונה היא העשרות והשנייה היא האחדות. מהו מרחב המדגם?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$72$ זוגות סדורים של ספרות שונות, כולם שווי סיכוי"
+      },
+      {
+       "id": "b",
+       "value": "$81$ זוגות סדורים (עם חזרה)"
+      },
+      {
+       "id": "c",
+       "value": "$36$ זוגות לא סדורים"
+      }
+     ],
+     "correctId": "a",
+     "explain": "ללא החזרה: $9\\cdot8=72$. הסדר חשוב כי '$23$' ו-'$32$' הם מספרים שונים, ולכן לא $36$; ובלי חזרה אין '$11$', ולכן לא $81$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו $|\\Omega|$, מספר הזוגות הסדורים של ספרות שונות?",
+     "answer": 72.0,
+     "tol": 0,
+     "explain": "$9\\cdot8=72$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "כמה זוגות סדורים נותנים מספר אי-זוגי (אחדות אי-זוגית)?",
+     "answer": 40.0,
+     "tol": 0,
+     "explain": "$5\\cdot8=40$ (העשרות: כל ספרה אחרת)."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי ההסתברות שהמספר אי-זוגי?",
+     "answer": 0.5555555555555556,
+     "tol": 0.0011111111111111111,
+     "explain": "$\\frac{40}{72}=\\frac59$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -269,7 +609,74 @@
     },
     "estimate": "P(divisible by 3)",
     "exact": 0.3333333333333333
-   }
+   },
+   "rubric": [
+    {
+     "text": "מספר מתחלק ב-$3$ אם ורק אם סכום ספרותיו מתחלק ב-$3$",
+     "points": 2
+    },
+    {
+     "text": "חלוקה לפי שאריות: $0,1,2$ — שלוש ספרות בכל קבוצה",
+     "points": 1
+    },
+    {
+     "text": "שתי ספרות מקבוצת $0$: $6$ זוגות סדורים; ספרה מקבוצה $1$ ואחת מקבוצה $2$: $18$",
+     "points": 3
+    },
+    {
+     "text": "$\\frac{24}{72}=\\frac13$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לבדוק רק את ספרת האחדות.",
+    "לספור זוגות לא סדורים ולהחסיר חצי."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איזה כלל מזהה מספר דו-ספרתי המתחלק ב-$3$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "סכום הספרות מתחלק ב-$3$"
+      },
+      {
+       "id": "b",
+       "value": "ספרת האחדות מתחלקת ב-$3$"
+      },
+      {
+       "id": "c",
+       "value": "ספרת העשרות מתחלקת ב-$3$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "זהו כלל ההתחלקות ב-$3$. הכללים האחרים שגויים: למשל $13$ (אחדות $3$) אינו מתחלק ב-$3$, ו-$21$ מתחלק אך העשרות $2$ אינה מתחלקת."
+    },
+    {
+     "type": "numeric",
+     "prompt": "כמה זוגות סדורים כוללים שתי ספרות מקבוצת השארית $0$ ($\\{3,6,9\\}$)?",
+     "answer": 6.0,
+     "tol": 0,
+     "explain": "$3\\cdot2=6$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "כמה זוגות סדורים כוללים ספרה אחת בשארית $1$ ואחת בשארית $2$?",
+     "answer": 18.0,
+     "tol": 0,
+     "explain": "$3\\cdot3$ זוגות, בשני סדרים: $18$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי ההסתברות שהמספר מתחלק ב-$3$?",
+     "answer": 0.3333333333333333,
+     "tol": 0.0006666666666666666,
+     "explain": "$\\frac{6+18}{72}=\\frac13$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -303,7 +710,63 @@
     },
     "estimate": "P(divisible by 5)",
     "exact": 0.1111111111111111
-   }
+   },
+   "rubric": [
+    {
+     "text": "מתחלק ב-$5$ אם ורק אם ספרת האחדות $5$ (אין $0$ באוסף)",
+     "points": 3
+    },
+    {
+     "text": "$8$ אפשרויות לספרת העשרות",
+     "points": 2
+    },
+    {
+     "text": "הסתברות $\\frac8{72}=\\frac19$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לספור כל מספר שמכיל את הספרה $5$ בכל מקום.",
+    "לכלול ספרת אחדות $0$ שאינה באוסף."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מתי מספר דו-ספרתי מתחלק ב-$5$ (באוסף $1..9$)?",
+     "options": [
+      {
+       "id": "a",
+       "value": "כאשר ספרת האחדות היא $5$"
+      },
+      {
+       "id": "b",
+       "value": "כאשר אחת הספרות היא $5$"
+      },
+      {
+       "id": "c",
+       "value": "כאשר סכום הספרות מתחלק ב-$5$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "ללא $0$ באוסף, האחדות חייבת להיות $5$. '$52$' מכיל $5$ אבל אינו מתחלק ב-$5$; '$19$' סכום $10$ אבל אינו מתחלק."
+    },
+    {
+     "type": "numeric",
+     "prompt": "כמה זוגות סדורים נותנים אחדות $5$?",
+     "answer": 8.0,
+     "tol": 0,
+     "explain": "העשרות: אחת משמונה הספרות האחרות."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי ההסתברות?",
+     "answer": 0.1111111111111111,
+     "tol": 0.0002222222222222222,
+     "explain": "$\\frac8{72}=\\frac19$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 2,
@@ -338,7 +801,74 @@
     },
     "estimate": "P(odd | digit sum even)",
     "exact": 0.625
-   }
+   },
+   "rubric": [
+    {
+     "text": "סכום זוגי אם ורק אם שתי הספרות באותה זוגיות: $20+12=32$ זוגות",
+     "points": 1
+    },
+    {
+     "text": "חישוב $P(\\text{sum even})=\\frac{32}{72}$ (המכנה)",
+     "points": 1
+    },
+    {
+     "text": "החיתוך עם 'אי-זוגי': $20$ זוגות",
+     "points": 1
+    },
+    {
+     "text": "המנה $\\frac{20}{32}=\\frac58$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "להניח שאי-זוגי וסכום זוגי הם בלתי תלויים ולחשב $\\frac59$.",
+    "לספור $5\\cdot5$ במקום $5\\cdot4$ לשתי ספרות אי-זוגיות שונות."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "מתי סכום שתי ספרות הוא מספר זוגי?",
+     "options": [
+      {
+       "id": "a",
+       "value": "כאשר שתי הספרות באותה זוגיות"
+      },
+      {
+       "id": "b",
+       "value": "כאשר שתיהן אי-זוגיות בלבד"
+      },
+      {
+       "id": "c",
+       "value": "כאשר הראשונה זוגית"
+      }
+     ],
+     "correctId": "a",
+     "explain": "זוגי+זוגי ואי-זוגי+אי-זוגי נותנים סכום זוגי. '$3+5=8$' הוא סכום זוגי של שתיים אי-זוגיות, אבל גם '$2+4=6$' נותן סכום זוגי."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(\\text{sum even})$ (האירוע המותנה)?",
+     "answer": 0.4444444444444444,
+     "tol": 0.0008888888888888888,
+     "explain": "$\\frac{20+12}{72}=\\frac{32}{72}=\\frac49$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי ההסתברות שהמספר אי-זוגי וגם הסכום זוגי?",
+     "answer": 0.2777777777777778,
+     "tol": 0.0005555555555555556,
+     "explain": "שתיהן אי-זוגיות: $5\\cdot4=20$ זוגות, כלומר $\\frac{20}{72}=\\frac5{18}$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי ההסתברות המותנית?",
+     "answer": 0.625,
+     "tol": 0,
+     "explain": "$\\frac{20}{32}=\\frac58$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -351,7 +881,100 @@
    "confidence": "high",
    "points": 5,
    "part": "א",
-   "contextId": "c3"
+   "contextId": "c3",
+   "sim": {
+    "kind": "custom_discrete",
+    "params": {
+     "vars": {
+      "X": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      },
+      "Y": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      }
+     },
+     "event": "(X*Y*(X+Y-X*Y) + X*Y) == 0 and (X*Y + (X+Y-X*Y)) == 1"
+    },
+    "estimate": "P(D=0,T=1), p=0.3",
+    "exact": 0.42
+   },
+   "rubric": [
+    {
+     "text": "$X^2=X$, $Y^2=Y$ ולכן $D=2XY$ ו-$T=X+Y$",
+     "points": 2
+    },
+    {
+     "text": "מונים את ארבע התוצאות של $(X,Y)$ וחושבים $D,T$",
+     "points": 2
+    },
+    {
+     "text": "הטבלה המשותפת",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לשכוח ש-$X,Y\\in\\{0,1\\}$ ולא לפשט את הדטרמיננטה.",
+    "לכתוב הסתברות שגויה למקרה $T=1$ (הוא כולל שתי תוצאות)."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איך מחשבים את ההתפלגות המשותפת של $(D,T)$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "מונים את ארבע התוצאות של $(X,Y)$ ($X,Y\\in\\{0,1\\}$) ומחשבים $D,T$ לכל אחת"
+      },
+      {
+       "id": "b",
+       "value": "משתמשים בצפיפות רציפה של המטריצה"
+      },
+      {
+       "id": "c",
+       "value": "מניחים ש-$D,T$ בלתי תלויים ומכפילים"
+      }
+     ],
+     "correctId": "a",
+     "explain": "ל-$(X,Y)$ יש רק ארבע תוצאות, ולכן ספירה ישירה היא הדרך הנכונה. ההנחה על אי-תלות שגויה: $P(D=2,T=0)=0$ בעוד המכפלה חיובית."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו $D=\\det\\begin{pmatrix}XY&-X\\\\Y&X+Y-XY\\end{pmatrix}$ עבור $X=Y=1$?",
+     "answer": 2.0,
+     "tol": 0,
+     "explain": "המטריצה $\\begin{pmatrix}1&-1\\\\1&1\\end{pmatrix}$, דטרמיננטה $1+1=2$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי העקבה $T$ עבור $X=1,\\ Y=0$?",
+     "answer": 1.0,
+     "tol": 0,
+     "explain": "המטריצה $\\begin{pmatrix}0&-1\\\\0&1\\end{pmatrix}$, עקבה $0+1=1$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $p=0.3$: מהי $P(D=0,\\ T=1)$?",
+     "answer": 0.42,
+     "tol": 0,
+     "explain": "$(X,Y)\\in\\{(1,0),(0,1)\\}$: $2p(1-p)=0.42$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -364,7 +987,93 @@
    "confidence": "high",
    "points": 5,
    "part": "ב",
-   "contextId": "c3"
+   "contextId": "c3",
+   "sim": {
+    "kind": "custom_discrete",
+    "params": {
+     "vars": {
+      "X": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      },
+      "Y": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      }
+     },
+     "event": "(X*Y*(X+Y-X*Y) + X*Y) == 2"
+    },
+    "estimate": "P(D=2), p=0.3",
+    "exact": 0.09
+   },
+   "rubric": [
+    {
+     "text": "$D=2XY$ מקבל רק את הערכים $0,2$",
+     "points": 2
+    },
+    {
+     "text": "$P(D=2)=P(X=Y=1)=p^2$",
+     "points": 2
+    },
+    {
+     "text": "שם ההתפלגות: $D/2\\sim\\mathrm{Ber}(p^2)$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לכתוב $D\\sim\\mathrm{Ber}(p^2)$ בלי לכפול ב-$2$ (הערכים הם $0,2$).",
+    "להתבלבל עם $T\\sim\\mathrm{Bin}(2,p)$."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איך מתפלג $D$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$D/2\\sim\\mathrm{Ber}(p^2)$ (ערכים $0,2$)"
+      },
+      {
+       "id": "b",
+       "value": "$D\\sim\\mathrm{Bin}(2,p)$"
+      },
+      {
+       "id": "c",
+       "value": "$D\\sim\\mathrm{Ber}(p)$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$P(D=1)=0$ כי $D\\in\\{0,2\\}$; בבינומית $\\mathrm{Bin}(2,p)$ יש $P(1)=0.42$, ובברנולי $P(1)=0.3$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $p=0.3$: מהי $P(D=2)$?",
+     "answer": 0.09,
+     "tol": 0,
+     "explain": "$p^2=0.09$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $p=0.3$: מהי $P(D=0)$?",
+     "answer": 0.91,
+     "tol": 0,
+     "explain": "$1-p^2=0.91$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -377,7 +1086,93 @@
    "confidence": "high",
    "points": 5,
    "part": "ג",
-   "contextId": "c3"
+   "contextId": "c3",
+   "sim": {
+    "kind": "custom_discrete",
+    "params": {
+     "vars": {
+      "X": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      },
+      "Y": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      }
+     },
+     "event": "(X*Y + (X+Y-X*Y)) == 1"
+    },
+    "estimate": "P(T=1), p=0.3",
+    "exact": 0.42
+   },
+   "rubric": [
+    {
+     "text": "$T=X+Y$, סכום שני ברנולי בלתי תלויים",
+     "points": 2
+    },
+    {
+     "text": "$T\\sim\\mathrm{Bin}(2,p)$",
+     "points": 2
+    },
+    {
+     "text": "התפלגות: $(1-p)^2,\\ 2p(1-p),\\ p^2$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לשכוח את המקדם $2$ בהסתברות של $T=1$.",
+    "לחשוב ש-$T$ פואסוני."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איך מתפלג $T=X+Y$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$\\mathrm{Bin}(2,p)$"
+      },
+      {
+       "id": "b",
+       "value": "$\\mathrm{Ber}(p)$"
+      },
+      {
+       "id": "c",
+       "value": "פואסון עם פרמטר $2p$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "סכום של שני ברנולי בלתי תלויים בהסתברות $p$. עבור $p=0.3$: $P(T=1)=0.42$ בבינומית, $0.3$ בברנולי ו-$0.329$ בפואסון."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $p=0.3$: מהי $P(T=1)$?",
+     "answer": 0.42,
+     "tol": 0,
+     "explain": "$2\\cdot0.3\\cdot0.7=0.42$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $p=0.3$: מהי $P(T=2)$?",
+     "answer": 0.09,
+     "tol": 0,
+     "explain": "$p^2=0.09$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -390,7 +1185,67 @@
    "confidence": "high",
    "points": 5,
    "part": "ד",
-   "contextId": "c3"
+   "contextId": "c3",
+   "rubric": [
+    {
+     "text": "ממצאים זוג ערכים שבו המשותפת שונה ממכפלת השוליים",
+     "points": 2
+    },
+    {
+     "text": "$P(D=2,T=0)=0$",
+     "points": 1
+    },
+    {
+     "text": "$P(D=2)P(T=0)=p^2(1-p)^2>0$",
+     "points": 1
+    },
+    {
+     "text": "מסקנה: תלויים",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לטעון אי-תלות כי $X,Y$ בלתי תלויים: $D,T$ הן פונקציות משותפות של שניהם.",
+    "לבדוק זוג ערכים שבו שני הצדדים שווים."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(D=2,\\ T=0)$?",
+     "answer": 0.0,
+     "tol": 0,
+     "explain": "$D=2$ דורש $X=Y=1$, אז $T=2$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $p=0.3$: מהי המכפלה $P(D=2)\\,P(T=0)$?",
+     "answer": 0.0441,
+     "tol": 8.82e-05,
+     "explain": "$0.09\\cdot0.49=0.0441$."
+    },
+    {
+     "type": "choice",
+     "prompt": "האם $D,T$ בלתי תלויים?",
+     "options": [
+      {
+       "id": "a",
+       "value": "לא: $0\\neq0.0441$"
+      },
+      {
+       "id": "b",
+       "value": "כן, כי $X,Y$ בלתי תלויים"
+      },
+      {
+       "id": "c",
+       "value": "כן, כי $P(D=2,T=0)=0$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "אי-תלות דורשת שוויון לכל זוג ערכים; מספיק זוג אחד שבו נכשל השוויון."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 3,
@@ -403,7 +1258,108 @@
    "confidence": "high",
    "points": 5,
    "part": "ה",
-   "contextId": "c3"
+   "contextId": "c3",
+   "sim": {
+    "kind": "custom_discrete",
+    "params": {
+     "vars": {
+      "X": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      },
+      "Y": {
+       "values": [
+        0,
+        1
+       ],
+       "probs": [
+        0.7,
+        0.3
+       ]
+      }
+     },
+     "measure": "cov",
+     "expr": [
+      "(X*Y*(X+Y-X*Y) + X*Y)",
+      "(X*Y + (X+Y-X*Y))"
+     ]
+    },
+    "estimate": "Cov(D,T), p=0.3",
+    "exact": 0.252
+   },
+   "rubric": [
+    {
+     "text": "$\\mathrm{Cov}=E[DT]-E[D]E[T]$",
+     "points": 1
+    },
+    {
+     "text": "$E[D]=2p^2$, $E[T]=2p$",
+     "points": 1
+    },
+    {
+     "text": "$E[DT]=4p^2$ (כי $X^2=X$)",
+     "points": 2
+    },
+    {
+     "text": "$\\mathrm{Cov}=4p^2(1-p)\\neq0$: מתואמים",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "להסיק אי-מתאם מכך שהתלות 'חלשה'.",
+    "לחשב $E[DT]=E[D]E[T]$ בטענה לאי-תלות."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "עבור $p=0.3$: מהו $E[DT]=E[2XY(X+Y)]$?",
+     "answer": 0.36,
+     "tol": 0,
+     "explain": "$2E[X^2Y+XY^2]=4E[XY]=4p^2=0.36$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $p=0.3$: מהו $E[D]\\,E[T]$?",
+     "answer": 0.108,
+     "tol": 0,
+     "explain": "$0.18\\cdot0.6=0.108$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $\\mathrm{Cov}(D,T)$?",
+     "answer": 0.252,
+     "tol": 0,
+     "explain": "$0.36-0.108=0.252=4p^2(1-p)$."
+    },
+    {
+     "type": "choice",
+     "prompt": "האם $D,T$ בלתי מתואמים?",
+     "options": [
+      {
+       "id": "a",
+       "value": "לא: $\\mathrm{Cov}\\ne0$"
+      },
+      {
+       "id": "b",
+       "value": "כן, כי $\\mathrm{Cov}=E[DT]-E[D]E[T]=0$"
+      },
+      {
+       "id": "c",
+       "value": "כן, כי הם תלויים"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$\\mathrm{Cov}=0.252\\ne0$, ולכן מתואמים. תלות אינה גוררת אי-מתאם."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 4,
@@ -416,7 +1372,70 @@
    "confidence": "high",
    "points": 10,
    "part": "א",
-   "contextId": "c4"
+   "contextId": "c4",
+   "rubric": [
+    {
+     "text": "נרמול: שטח משולש + מלבן $\\frac a2+(b-a)=1$",
+     "points": 2
+    },
+    {
+     "text": "תוחלת: $\\frac{b^2}2-\\frac{a^2}6=\\frac{23}{24}$",
+     "points": 3
+    },
+    {
+     "text": "פתרון: $a=2b-2$ והמשוואה הריבועית $b^2-8b+\\frac{39}4=0$",
+     "points": 3
+    },
+    {
+     "text": "בחירת השורש עם $a<b$: $a=1,\\ b=\\frac32$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לקבל שתי תשובות ולא לפסול את $(11,\\frac{13}2)$ (שבו $a>b$, שאינו מתאים לגרף).",
+    "לטעות בשטח המשולש: $\\frac a2$ ולא $a$."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "אם $a=1$: מהו $b$ מתוך הנרמול $b-\\frac a2=1$?",
+     "answer": 1.5,
+     "tol": 0,
+     "explain": "$b=1+\\frac12=1.5$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $a=1,\\ b=\\frac32$: מהי $E[X]$?",
+     "answer": 0.9583333333333334,
+     "tol": 0.0019166666666666668,
+     "explain": "$\\frac{a^2}3+\\frac{b^2-a^2}2=\\frac13+\\frac{1.25}2=\\frac{23}{24}$."
+    },
+    {
+     "type": "choice",
+     "prompt": "איזה זוג הוא הפתרון המתאים לגרף?",
+     "options": [
+      {
+       "id": "a",
+       "value": "(a,b)=\\left(1,\\tfrac32\\right)",
+       "type": "math"
+      },
+      {
+       "id": "b",
+       "value": "(a,b)=\\left(11,\\tfrac{13}2\\right)",
+       "type": "math"
+      },
+      {
+       "id": "c",
+       "value": "(a,b)=\\left(2,\\tfrac52\\right)",
+       "type": "math"
+      }
+     ],
+     "correctId": "a",
+     "explain": "שני הזוגות הראשונים פותרים את שתי המשוואות, אך ב-$(11,\\frac{13}2)$ מתקבל $a>b$, בניגוד לגרף. הזוג $(2,\\frac52)$ אינו מקיים אפילו את הנרמול (שטח $2.5$)."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 4,
@@ -429,7 +1448,75 @@
    "confidence": "high",
    "points": 10,
    "part": "ב",
-   "contextId": "c4"
+   "contextId": "c4",
+   "rubric": [
+    {
+     "text": "ענף $0\\le t<1$: $F=\\frac{t^2}2$",
+     "points": 3
+    },
+    {
+     "text": "ענף $1\\le t<\\frac32$: $F=t-\\frac12$",
+     "points": 3
+    },
+    {
+     "text": "$F=0$ לפני $0$ ו-$1$ אחרי $\\frac32$",
+     "points": 2
+    },
+    {
+     "text": "שרטוט: פרבולה ואז ישר, רציף ב-$t=1$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לשכוח את הקבוע $\\frac12$ בענף השני ולכתוב $t$.",
+    "לטעות בגבול התחתון של האינטגרל בענף השני."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "מהו $F_X(1)$?",
+     "answer": 0.5,
+     "tol": 0,
+     "explain": "$\\int_0^1x\\,dx=\\frac12$."
+    },
+    {
+     "type": "choice",
+     "prompt": "מהו $F_X(t)$ ב-$1\\le t<\\frac32$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "t-\\frac12",
+       "type": "math"
+      },
+      {
+       "id": "b",
+       "value": "\\frac{t^2}{2}",
+       "type": "math"
+      },
+      {
+       "id": "c",
+       "value": "t-1",
+       "type": "math"
+      },
+      {
+       "id": "d",
+       "value": "\\frac{t^2}{2}+\\frac12",
+       "type": "math"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$F(1)+\\int_1^t1\\,dx=\\frac12+(t-1)=t-\\frac12$. האפשרות השנייה נותנת $\\frac98$ ב-$t=\\frac32$, השלישית אינה רציפה ב-$t=1$, והרביעית חורגת מ-$1$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו $F_X(\\frac54)$?",
+     "answer": 0.75,
+     "tol": 0,
+     "explain": "$\\frac54-\\frac12=\\frac34$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 4,
@@ -463,7 +1550,50 @@
     },
     "estimate": "P(X<=5/4 | X>1/2)",
     "exact": 0.7142857142857143
-   }
+   },
+   "rubric": [
+    {
+     "text": "המכנה: $P(X>\\frac12)=1-F(\\frac12)=\\frac78$",
+     "points": 2
+    },
+    {
+     "text": "המונה: $P(\\frac12<X\\le\\frac54)=F(\\frac54)-F(\\frac12)=\\frac58$",
+     "points": 2
+    },
+    {
+     "text": "המנה $\\frac57$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "לחלק ב-$P(X\\le\\frac54)$ במקום ב-$P(X>\\frac12)$.",
+    "לשכוח שהמונה הוא ההפרש של שתי התפלגויות מצטברות."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(X>\\frac12)$ (האירוע המותנה)?",
+     "answer": 0.875,
+     "tol": 0,
+     "explain": "$1-F(\\frac12)=1-\\frac18=\\frac78$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי $P(\\frac12<X\\le\\frac54)$?",
+     "answer": 0.625,
+     "tol": 0,
+     "explain": "$\\frac34-\\frac18=\\frac58$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהי ההסתברות המותנית?",
+     "answer": 0.7142857142857143,
+     "tol": 0.0014285714285714286,
+     "explain": "$\\frac{5/8}{7/8}=\\frac57$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 5,
@@ -476,7 +1606,120 @@
    "confidence": "high",
    "points": 9,
    "part": "א",
-   "contextId": "c5"
+   "contextId": "c5",
+   "sim": {
+    "kind": "circuit",
+    "params": {
+     "edges": [
+      {
+       "id": "A",
+       "from": "s",
+       "to": "u",
+       "p": 0.6
+      },
+      {
+       "id": "B",
+       "from": "u",
+       "to": "t",
+       "p": 0.6
+      },
+      {
+       "id": "C",
+       "from": "s",
+       "to": "v",
+       "p": 0.6
+      },
+      {
+       "id": "D",
+       "from": "v",
+       "to": "t",
+       "p": 0.6
+      },
+      {
+       "id": "E",
+       "from": "u",
+       "to": "v",
+       "p": 0.6
+      }
+     ],
+     "source": "s",
+     "sink": "t",
+     "event": "S == 1"
+    },
+    "estimate": "P(Q1), p=0.6",
+    "exact": 0.6595200000000001
+   },
+   "rubric": [
+    {
+     "text": "הרכיב $E$ מגשר ולכן מפרקים לפי $E$ (הסתברות שלמה)",
+     "points": 2
+    },
+    {
+     "text": "אם $E$ פועל: $(A\\parallel C)$ בטור עם $(B\\parallel D)$, הסתברות $(2p-p^2)^2$",
+     "points": 2
+    },
+    {
+     "text": "אם $E$ לא פועל: $(A,B)$ בטור מקביל ל-$(C,D)$ בטור: $2p^2-p^4$",
+     "points": 2
+    },
+    {
+     "text": "שילוב: $p(2p-p^2)^2+(1-p)(2p^2-p^4)$",
+     "points": 2
+    },
+    {
+     "text": "פישוט: $(2+2p-5p^2+2p^3)p^2$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "להתייחס לגשר כאילו אינו קיים, או כאילו מחבר בחיבור קצר תמיד.",
+    "להניח שאפשר לחשב ישירות כטור/מקבילי בלי הפירוק."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "איך מחשבים את אמינות הגשר (חמש יחידות, $E$ מגשר בין שני ענפים)?",
+     "options": [
+      {
+       "id": "a",
+       "value": "מפרקים לפי $E$ (פועל / לא פועל), ובכל מקרה מקבלים מעגל טור-מקבילי"
+      },
+      {
+       "id": "b",
+       "value": "מתעלמים מ-$E$ ומחשבים $(A,B)$ במקביל ל-$(C,D)$"
+      },
+      {
+       "id": "c",
+       "value": "בינומית: לפחות $3$ יחידות מתוך $5$ פועלות"
+      }
+     ],
+     "correctId": "a",
+     "explain": "עבור $p=0.6$: התוצאה הנכונה $0.6595$, בעוד התעלמות מ-$E$ נותנת $0.5904$ ו'לפחות $3$ מתוך $5$' נותנת $0.6826$. הבינומית שגויה כי לרכיבים תפקידים שונים."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $p=0.6$: מהי האמינות כש-$E$ פועל, $(2p-p^2)^2$?",
+     "answer": 0.7055999999999999,
+     "tol": 0.0014111999999999998,
+     "explain": "$0.84^2=0.7056$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $p=0.6$: מהי האמינות כש-$E$ לא פועל, $2p^2-p^4$?",
+     "answer": 0.5904,
+     "tol": 0.0011808,
+     "explain": "$0.72-0.1296=0.5904$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $p=0.6$: מהי $P(Q_1)$?",
+     "answer": 0.65952,
+     "tol": 0.00131904,
+     "explain": "$0.6\\cdot0.7056+0.4\\cdot0.5904=0.42336+0.23616=0.65952$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 5,
@@ -489,7 +1732,125 @@
    "confidence": "high",
    "points": 9,
    "part": "ב",
-   "contextId": "c5"
+   "contextId": "c5",
+   "sim": {
+    "kind": "circuit",
+    "params": {
+     "network": {
+      "type": "series",
+      "children": [
+       {
+        "type": "parallel",
+        "children": [
+         {
+          "type": "comp",
+          "id": "A",
+          "p": 0.6
+         },
+         {
+          "type": "comp",
+          "id": "B",
+          "p": 0.6
+         }
+        ]
+       },
+       {
+        "type": "parallel",
+        "children": [
+         {
+          "type": "comp",
+          "id": "C",
+          "p": 0.6
+         },
+         {
+          "type": "comp",
+          "id": "D",
+          "p": 0.6
+         },
+         {
+          "type": "comp",
+          "id": "E",
+          "p": 0.6
+         }
+        ]
+       }
+      ]
+     },
+     "event": "S == 1"
+    },
+    "estimate": "P(Q2), p=0.6",
+    "exact": 0.7862399999999999
+   },
+   "rubric": [
+    {
+     "text": "$Q_2=(A\\cup B)\\cap(C\\cup D\\cup E)$",
+     "points": 3
+    },
+    {
+     "text": "הקבוצות בלתי תלויות: כפל",
+     "points": 2
+    },
+    {
+     "text": "$P(A\\cup B)=2p-p^2$ ו-$P(C\\cup D\\cup E)=1-(1-p)^3$",
+     "points": 3
+    },
+    {
+     "text": "פיתוח: $6p^2-9p^3+5p^4-p^5$",
+     "points": 1
+    }
+   ],
+   "pitfalls": [
+    "להפוך בין טור למקביל.",
+    "לחשב $P(A\\cup B)=2p$ בלי לחסר את החיתוך."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "$A,B$ במקביל, בטור עם $C,D,E$ במקביל. איזה תיאור נכון של $Q_2$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "(A\\cup B)\\cap(C\\cup D\\cup E)",
+       "type": "math"
+      },
+      {
+       "id": "b",
+       "value": "(A\\cap B)\\cup(C\\cap D\\cap E)",
+       "type": "math"
+      },
+      {
+       "id": "c",
+       "value": "(A\\cup B)\\cap C\\cap(D\\cup E)",
+       "type": "math"
+      }
+     ],
+     "correctId": "a",
+     "explain": "טור הוא חיתוך של שתי הקבוצות, ובכל קבוצה מקבילית יש איחוד. עבור $p=0.6$ האפשרות הראשונה נותנת $0.7862$, השנייה $0.4982$ והשלישית $0.4234$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $p=0.6$: מהי $P(A\\cup B)$?",
+     "answer": 0.84,
+     "tol": 0,
+     "explain": "$2p-p^2=0.84$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $p=0.6$: מהי $P(C\\cup D\\cup E)$?",
+     "answer": 0.936,
+     "tol": 0,
+     "explain": "$1-0.4^3=0.936$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $p=0.6$: מהי $P(Q_2)$?",
+     "answer": 0.78624,
+     "tol": 0.0015724800000000002,
+     "explain": "$0.84\\cdot0.936=0.78624$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 5,
@@ -502,7 +1863,117 @@
    "confidence": "high",
    "points": 7,
    "part": "ג",
-   "contextId": "c5"
+   "contextId": "c5",
+   "sim": {
+    "kind": "circuit",
+    "params": {
+     "edges": [
+      {
+       "id": "A",
+       "from": "s",
+       "to": "u",
+       "p": 0.6
+      },
+      {
+       "id": "B",
+       "from": "u",
+       "to": "t",
+       "p": 0.6
+      },
+      {
+       "id": "C",
+       "from": "s",
+       "to": "v",
+       "p": 0.6
+      },
+      {
+       "id": "D",
+       "from": "v",
+       "to": "t",
+       "p": 0.6
+      },
+      {
+       "id": "E",
+       "from": "u",
+       "to": "v",
+       "p": 0.6
+      }
+     ],
+     "source": "s",
+     "sink": "t",
+     "event": "S == 1",
+     "given": "(A == 1 or B == 1) and (C == 1 or D == 1 or E == 1)"
+    },
+    "estimate": "P(Q1 | Q2), p=0.6",
+    "exact": 0.7362637362637361
+   },
+   "rubric": [
+    {
+     "text": "הגדרת מותנה $\\frac{P(Q_1\\cap Q_2)}{P(Q_2)}$",
+     "points": 1
+    },
+    {
+     "text": "פירוק לפי $(A,B)$: כששניהם פועלים $Q_1$ פועל תמיד",
+     "points": 2
+    },
+    {
+     "text": "שאר המקרים: $\\bar A\\bar B\\Rightarrow0$ ושני המקרים הסימטריים $p(2p-p^2)$",
+     "points": 2
+    },
+    {
+     "text": "התוצאה $\\frac{p(7-9p+3p^2)}{6-9p+5p^2-p^3}$",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לחשב $P(Q_2\\mid Q_1)$ במקום $P(Q_1\\mid Q_2)$.",
+    "לחשב את המכנה כ-$P(Q_1)$."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "עבור $p=0.6$: מהי $P(Q_2)$ (האירוע המותנה)?",
+     "answer": 0.78624,
+     "tol": 0.0015724800000000002,
+     "explain": "מסעיף ב'."
+    },
+    {
+     "type": "choice",
+     "prompt": "כש-$A$ ו-$B$ פועלים: האם $Q_1$ פועל?",
+     "options": [
+      {
+       "id": "a",
+       "value": "כן, תמיד (דרך $A$ ואז $B$)"
+      },
+      {
+       "id": "b",
+       "value": "רק אם $E$ פועל"
+      },
+      {
+       "id": "c",
+       "value": "רק אם $C$ ו-$D$ פועלים"
+      }
+     ],
+     "correctId": "a",
+     "explain": "המסלול $A\\to B$ מחבר את הקצוות בלי צורך ב-$E$, $C$ או $D$. לכן $P(Q_1\\mid A,B)=1$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $p=0.6$: מהי $P(Q_1\\cap Q_2)=3p^5-9p^4+7p^3$?",
+     "answer": 0.5788799999999998,
+     "tol": 0.0011577599999999996,
+     "explain": "$0.23328-1.1664+1.512=0.57888$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור $p=0.6$: מהי $P(Q_1\\mid Q_2)$?",
+     "answer": 0.7362637362637362,
+     "tol": 0.0014725274725274724,
+     "explain": "$\\frac{0.57888}{0.78624}\\approx0.7363$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 6,
@@ -515,7 +1986,86 @@
    "confidence": "high",
    "points": 9,
    "part": "א",
-   "contextId": "c6"
+   "contextId": "c6",
+   "sim": {
+    "kind": "custom_discrete",
+    "params": {
+     "vars": {
+      "X": {
+       "values": [
+        2,
+        5,
+        9
+       ],
+       "probs": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+       ]
+      }
+     },
+     "measure": "mean",
+     "expr": "X"
+    },
+    "estimate": "E[X], sizes 2,5,9",
+    "exact": 5.333333333333333
+   },
+   "rubric": [
+    {
+     "text": "כל משפחה נבחרת בהסתברות $\\frac1N$",
+     "points": 3
+    },
+    {
+     "text": "טבלת ההתפלגות של $X$",
+     "points": 3
+    },
+    {
+     "text": "$E[X]=\\frac{n_1+\\cdots+n_N}N$",
+     "points": 3
+    }
+   ],
+   "pitfalls": [
+    "לשקלל את הגדלים בגודל המשפחה (זו תשובת סעיף ב').",
+    "לחלק במספר האנשים ולא במספר המשפחות."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "בוחרים משפחה באקראי. מהי ההתפלגות של גודלה $X$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "כל משפחה בהסתברות $\\frac1N$, כלומר $X$ אחיד על הגדלים"
+      },
+      {
+       "id": "b",
+       "value": "משפחה בגודל $n_i$ בהסתברות $\\frac{n_i}{n}$"
+      },
+      {
+       "id": "c",
+       "value": "$X\\equiv n_1$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "בחירת משפחה באקראי נותנת הסתברות שווה לכל משפחה. עבור הגדלים $2,5,9$: $E[X]=5.33$, בעוד ההסתברות $\\frac{n_i}n$ נותנת $6.875$, ו-$n_1$ נותן $2$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור גדלי המשפחות $2,5,9$: מהו $n=\\sum n_i$?",
+     "answer": 16.0,
+     "tol": 0,
+     "explain": "$2+5+9=16$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור אותם גדלים: מהו $E[X]$?",
+     "answer": 5.333333333333333,
+     "tol": 0.010666666666666666,
+     "explain": "$\\frac{16}3\\approx5.333$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 6,
@@ -528,7 +2078,138 @@
    "confidence": "high",
    "points": 10,
    "part": "ב",
-   "contextId": "c6"
+   "contextId": "c6",
+   "sim": {
+    "kind": "custom_discrete",
+    "params": {
+     "joint": [
+      {
+       "p": 0.0625,
+       "Y": 2
+      },
+      {
+       "p": 0.0625,
+       "Y": 2
+      },
+      {
+       "p": 0.0625,
+       "Y": 5
+      },
+      {
+       "p": 0.0625,
+       "Y": 5
+      },
+      {
+       "p": 0.0625,
+       "Y": 5
+      },
+      {
+       "p": 0.0625,
+       "Y": 5
+      },
+      {
+       "p": 0.0625,
+       "Y": 5
+      },
+      {
+       "p": 0.0625,
+       "Y": 9
+      },
+      {
+       "p": 0.0625,
+       "Y": 9
+      },
+      {
+       "p": 0.0625,
+       "Y": 9
+      },
+      {
+       "p": 0.0625,
+       "Y": 9
+      },
+      {
+       "p": 0.0625,
+       "Y": 9
+      },
+      {
+       "p": 0.0625,
+       "Y": 9
+      },
+      {
+       "p": 0.0625,
+       "Y": 9
+      },
+      {
+       "p": 0.0625,
+       "Y": 9
+      },
+      {
+       "p": 0.0625,
+       "Y": 9
+      }
+     ],
+     "measure": "mean",
+     "expr": "Y"
+    },
+    "estimate": "E[Y], sizes 2,5,9",
+    "exact": 6.875
+   },
+   "rubric": [
+    {
+     "text": "בוחרים אדם: משפחה בגודל $n_i$ נבחרת בהסתברות $\\frac{n_i}n$",
+     "points": 4
+    },
+    {
+     "text": "טבלת ההתפלגות של $Y$",
+     "points": 3
+    },
+    {
+     "text": "$E[Y]=\\frac{\\sum n_i^2}{\\sum n_i}$",
+     "points": 3
+    }
+   ],
+   "pitfalls": [
+    "להשתמש ב-$\\frac1N$ כמו בסעיף א'.",
+    "לחלק ב-$N$ במקום ב-$n$."
+   ],
+   "steps": [
+    {
+     "type": "choice",
+     "prompt": "בוחרים אדם באקראי ושואלים את גודל משפחתו. מהי $P(Y=n_i)$?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$\\frac{n_i}{n}$, כי למשפחה גדולה יותר יש יותר נציגים"
+      },
+      {
+       "id": "b",
+       "value": "$\\frac1N$"
+      },
+      {
+       "id": "c",
+       "value": "$\\frac{n_i}{N}$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "האדם נבחר באחידות מבין $n$ אנשים, ולמשפחה בגודל $n_i$ יש $n_i$ כאלה. עבור הגדלים $2,5,9$: $P(Y=9)=0.5625$, בעוד $\\frac1N=0.333$ ו-$\\frac{n_i}N=3$ (גדול מ-$1$, בלתי אפשרי)."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור גדלי המשפחות $2,5,9$: מהי $P(Y=9)$?",
+     "answer": 0.5625,
+     "tol": 0.0011250000000000001,
+     "explain": "$\\frac9{16}=0.5625$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "עבור אותם גדלים: מהו $E[Y]$?",
+     "answer": 6.875,
+     "tol": 0,
+     "explain": "$\\frac{4+25+81}{16}=\\frac{110}{16}=6.875$."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   },
   {
    "num": 6,
@@ -541,7 +2222,63 @@
    "confidence": "high",
    "points": 6,
    "part": "ג",
-   "contextId": "c6"
+   "contextId": "c6",
+   "rubric": [
+    {
+     "text": "$E[Y]=\\frac{E[X^2]}{E[X]}$",
+     "points": 2
+    },
+    {
+     "text": "$\\frac{E[Y]}{E[X]}=1+\\frac{\\mathrm{Var}[X]}{E[X]^2}\\ge1$",
+     "points": 2
+    },
+    {
+     "text": "הגדלים שונים, לכן $\\mathrm{Var}>0$ והאי-שוויון חזק",
+     "points": 2
+    }
+   ],
+   "pitfalls": [
+    "לענות 'שוויון' בהנחה שאין הבדל בין בחירת משפחה לבחירת אדם.",
+    "לא להזכיר ש-$\\mathrm{Var}[X]>0$ כאשר הגדלים שונים."
+   ],
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "עבור הגדלים $2,5,9$: מהו $\\frac{\\mathrm{Var}[X]}{E[X]^2}$?",
+     "answer": 0.2890625,
+     "tol": 0.000578125,
+     "explain": "$\\mathrm{Var}[X]=\\frac{110}3-\\frac{256}9=8.22$, ומחלקים ב-$28.44$: $0.2891$."
+    },
+    {
+     "type": "numeric",
+     "prompt": "מהו היחס $\\frac{E[Y]}{E[X]}$?",
+     "answer": 1.2890625,
+     "tol": 0.002578125,
+     "explain": "$1+0.2891=1.2891$."
+    },
+    {
+     "type": "choice",
+     "prompt": "הגדלים $n_i$ שונים זה מזה. מה נכון?",
+     "options": [
+      {
+       "id": "a",
+       "value": "$E[Y]>E[X]$ (חזק, כי $\\mathrm{Var}[X]>0$)"
+      },
+      {
+       "id": "b",
+       "value": "$E[Y]=E[X]$"
+      },
+      {
+       "id": "c",
+       "value": "$E[Y]<E[X]$"
+      }
+     ],
+     "correctId": "a",
+     "explain": "$E[Y]/E[X]=1+\\mathrm{Var}[X]/E[X]^2>1$. שוויון היה דורש $\\mathrm{Var}[X]=0$ (כל הגדלים שווים)."
+    }
+   ],
+   "rubricSource": "ai-draft",
+   "stepsSource": "ai-draft"
   }
  ]
 }

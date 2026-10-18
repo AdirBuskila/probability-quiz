@@ -16,7 +16,7 @@ Transcription notes
 - Q1 region data and the sim specs live in the REGIONS / SIMS blocks above the exam dict.
 - The page-1 cover (lecturer names) is not copied anywhere.
 """
-import json, pathlib
+import json, math, pathlib
 
 OUT = pathlib.Path(__file__).resolve().parents[1] / "raw" / "25S-C.json"
 CODE = "25S-C"
@@ -323,12 +323,52 @@ SIMS = {
                                         "event": "x <= 5/4", "given": "x > 1/2"}, "estimate": "P(X<=5/4 | X>1/2)", "exact": 5 / 7},
 }
 
+# ---- step-author additions: sims at sample parameter values for the symbolic answers
+_PB = 0.3                                                   # Q3: X, Y ~ Bernoulli(p = 0.3); the matrix is evaluated as printed
+_XY = {"vars": {"X": {"values": [0, 1], "probs": [1 - _PB, _PB]}, "Y": {"values": [0, 1], "probs": [1 - _PB, _PB]}}}
+_DET = "(X*Y*(X+Y-X*Y) + X*Y)"                              # det [[XY, -X], [Y, X+Y-XY]]
+_TR = "(X*Y + (X+Y-X*Y))"                                   # trace
+_PC = 0.6                                                   # Q5: every unit works with probability p = 0.6
+_BRIDGE = [("A", "s", "u"), ("B", "u", "t"), ("C", "s", "v"), ("D", "v", "t"), ("E", "u", "v")]   # Q1: A-B top, C-D bottom, E between
+_BRIDGE_NET = {"edges": [{"id": i, "from": f, "to": t, "p": _PC} for i, f, t in _BRIDGE], "source": "s", "sink": "t"}
+_COMP = lambda i: {"type": "comp", "id": i, "p": _PC}
+_Q2NET = {"type": "series", "children": [{"type": "parallel", "children": [_COMP("A"), _COMP("B")]},
+                                         {"type": "parallel", "children": [_COMP("C"), _COMP("D"), _COMP("E")]}]}
+_P1 = _PC ** 2 * (2 + 2 * _PC - 5 * _PC ** 2 + 2 * _PC ** 3)
+_P2 = (2 * _PC - _PC ** 2) * (1 - (1 - _PC) ** 3)
+_P12 = 3 * _PC ** 5 - 9 * _PC ** 4 + 7 * _PC ** 3
+_SZ = [2, 5, 9]                                             # Q6: three families of sizes 2, 5, 9
+SIMS.update({
+    (3, "א"): dict(kind="custom_discrete", params=dict(_XY, event=f"{_DET} == 0 and {_TR} == 1"),
+                   estimate="P(D=0,T=1), p=0.3", exact=2 * _PB * (1 - _PB)),
+    (3, "ב"): dict(kind="custom_discrete", params=dict(_XY, event=f"{_DET} == 2"), estimate="P(D=2), p=0.3", exact=_PB ** 2),
+    (3, "ג"): dict(kind="custom_discrete", params=dict(_XY, event=f"{_TR} == 1"), estimate="P(T=1), p=0.3", exact=2 * _PB * (1 - _PB)),
+    (3, "ה"): dict(kind="custom_discrete", params=dict(_XY, measure="cov", expr=[_DET, _TR]),
+                   estimate="Cov(D,T), p=0.3", exact=4 * _PB ** 2 * (1 - _PB)),
+    (5, "א"): dict(kind="circuit", params=dict(_BRIDGE_NET, event="S == 1"), estimate="P(Q1), p=0.6", exact=_P1),
+    (5, "ב"): dict(kind="circuit", params={"network": _Q2NET, "event": "S == 1"}, estimate="P(Q2), p=0.6", exact=_P2),
+    (5, "ג"): dict(kind="circuit", params=dict(_BRIDGE_NET, event="S == 1",
+                                               given="(A == 1 or B == 1) and (C == 1 or D == 1 or E == 1)"),
+                   estimate="P(Q1 | Q2), p=0.6", exact=_P12 / _P2),
+    (6, "א"): dict(kind="custom_discrete", params={"vars": {"X": {"values": _SZ, "probs": [1 / 3] * 3}}, "measure": "mean", "expr": "X"},
+                   estimate="E[X], sizes 2,5,9", exact=sum(_SZ) / 3),
+    (6, "ב"): dict(kind="custom_discrete", params={"joint": [{"p": 1 / sum(_SZ), "Y": s} for s in _SZ for _ in range(s)],
+                                                    "measure": "mean", "expr": "Y"},
+                   estimate="E[Y], sizes 2,5,9", exact=sum(s * s for s in _SZ) / sum(_SZ)),
+})
+
 for _q in questions:
     _k = (_q["num"], _q.get("part"))
     if _k in REGIONS:
         _q["region"] = REGIONS[_k]
     if _k in SIMS:
         _q["sim"] = SIMS[_k]
+
+# ---- step-author: rubric, pitfalls, guided steps. Data in steps_25S_C.py; every value is re-derived in
+# tools/verify/25S-C/steps_check.py (exact + Monte Carlo).
+import probsteps
+from steps_25S_C import DATA as _STEPS
+probsteps.apply(questions, _STEPS, CODE)
 
 # ------------------------------------------------------------------ exam
 exam = {
