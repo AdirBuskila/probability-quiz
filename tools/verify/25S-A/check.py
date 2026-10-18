@@ -2,7 +2,7 @@
 """Verification harness for 25S-A (probability). Run: PYTHONUTF8=1 py tools/verify/25S-A/check.py
 Each final answer: EXACT (fractions / enumeration / sympy) and MC (>= 10^6 trials, within 4 SE). ASCII output only.
 Symbolic answers are checked at sample parameter values (and as polynomial identities with sympy where possible).
-Q3 part e (bonus) has no official key: the solver value is only printed, never compared."""
+Q3 part e (bonus) has no official key: shipped as solved, D(D-1)/(N(N-1)), asserted exactly and by MC."""
 import itertools, math, sys
 from fractions import Fraction as Fr
 import numpy as np
@@ -108,10 +108,22 @@ for Nn, D, nn in ((8, 3, 4), (9, 5, 6), (7, 2, 3), (10, 7, 8)):
     rec("Q3b", "N=%d D=%d P(R_2)=D/N" % (Nn, D), Fr(D, Nn), Fr(sum(1 for perm in itertools.permutations(range(Nn), 2) if perm[1] < D), math.perm(Nn, 2)),
         float(red[:, 1].mean()), se_p(D / Nn, 1_000_000), tol=0)
     rec("Q3a", "N=%d D=%d P(R_1)=D/N" % (Nn, D), Fr(D, Nn), Fr(D, Nn), float(red[:, 0].mean()), se_p(D / Nn, 1_000_000), tol=0)
-    # bonus (no official key): informational solver value D(D-1)/(N(N-1))
-    solver = Fr(D * (D - 1), Nn * (Nn - 1))
+    # Q3e (bonus, no official key; shipped as solved): D(D-1)/(N(N-1)), exact by enumeration, MC on the draws
+    ship = Fr(D * (D - 1), Nn * (Nn - 1))
+    ex_e = Fr(sum(1 for perm in itertools.permutations(range(Nn), nn) if perm[-1] < D and perm[-2] < D), math.perm(Nn, nn))
     mcb = float((red[:, nn - 1] & red[:, nn - 2]).mean())
-    print("INFO Q3e (held, no key) N=%d D=%d n=%d: solver D(D-1)/(N(N-1))=%.6f mc=%.6f" % (Nn, D, nn, float(solver), mcb))
+    rec("Q3e", "N=%d D=%d n=%d P(R_{n-1} and R_n)=D(D-1)/(N(N-1))" % (Nn, D, nn), ship, ex_e, mcb, se_p(float(ship), 1_000_000), tol=0)
+    # the solution's hypergeometric route: E[(D-X)(D-X-1)]/(M(M-1)) with X~Hyp over the first n-2 draws
+    m_, M_ = nn - 2, Nn - nn + 2
+    hyp = sum(Fr(math.comb(D, k) * math.comb(Nn - D, m_ - k), math.comb(Nn, m_)) * (D - k) * (D - k - 1)
+              for k in range(0, min(D, m_) + 1) if 0 <= m_ - k <= Nn - D)
+    rows.append(("Q3e", "hypergeometric route E[(D-X)(D-X-1)]/(M(M-1)) = D(D-1)/(N(N-1)) N=%d D=%d n=%d" % (Nn, D, nn),
+                 hyp / (M_ * (M_ - 1)) == ship, True, "exact"))
+# extra MC point with 2*10^6 trials
+Nn, D, nn = 12, 5, 9
+draws = np.argsort(rng.random((N, Nn), dtype=np.float32), axis=1)[:, :nn] < D
+ship = Fr(D * (D - 1), Nn * (Nn - 1))
+rec("Q3e", "N=12 D=5 n=9 P(R_8 and R_9) (2e6 trials)", ship, ship, float((draws[:, nn - 1] & draws[:, nn - 2]).mean()), se_p(float(ship)), tol=0)
 
 # ============================================================ Q4
 a, b, c = sp.symbols("a b c", positive=True)

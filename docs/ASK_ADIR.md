@@ -20,13 +20,6 @@ Open questions for Adir. One entry per item; the orchestrator moves it to Resolv
 - Needed: confirm that max is intended (with min the answers would be 5/9 and 2/3, as in 24B-A).
 - Status: note only (items shipped)
 
-### 25S-A Q3 e - bonus part, official solution explicitly withheld
-- Path: official PDF of sitting 25S-A (handwritten solutions), see sitting code only
-- Page: exam p.2 (Q3 e, bonus 5 pts: n balls drawn without replacement, probability that the last two are both red); solution p.9 ends Q3 d with the note that the bonus solution will not be published
-- Question: no official answer. Solver value (pure symmetry): D(D-1)/(N(N-1)); confirmed by Monte Carlo (>= 10^6 trials) at four (N, D, n) in tools/verify/25S-A/check.py (printed as INFO, not compared with any key).
-- Needed: route to the solver (no-key); not a key dispute.
-- Status: hold (no-key; question text transcribed, not in the bank)
-
 ### 25B-B Q2 f - bonus (disjoint events): official key s = q is wrong or incomplete
 - Path: official PDF of sitting 25B-B (handwritten solutions), see sitting code only
 - Page: exam p.2 (Q2 d, printed as the bonus part "disjoint"); solution p.8 (last box)
@@ -35,6 +28,13 @@ Open questions for Adir. One entry per item; the orchestrator moves it to Resolv
 - Status: hold (key disagreement; question text transcribed, not in the bank)
 
 ## Resolved
+
+### 25S-A Q3 e - bonus part, official solution explicitly withheld
+- Path: official PDF of sitting 25S-A (handwritten solutions), see sitting code only
+- Page: exam p.2 (Q3 e, bonus 5 pts: n balls drawn without replacement, probability that the last two are both red); solution p.9 ends Q3 d with the note that the bonus solution will not be published
+- Question: no official answer. Solver value (pure symmetry): D(D-1)/(N(N-1)); confirmed by Monte Carlo (>= 10^6 trials) at four (N, D, n) in tools/verify/25S-A/check.py (printed as INFO, not compared with any key).
+- Needed: route to the solver (no-key); not a key dispute.
+- Status: resolved 2026-10-18 by the solver (no-key route). Shipped as solved, official:false, with the method of part d (hypergeometric over the first n-2 draws, then E[(D-X)(D-X-1)] via the factorial moment): P = D(D-1)/(N(N-1)), independent of n. check.py asserts it exactly (enumeration at four (N,D,n) points, plus the hypergeometric route) and by Monte Carlo (10^6 per point, plus 2*10^6 at N=12, D=5, n=9).
 
 ### 25A-B Q6 e, f - bonus parts with no official solution
 - Path: official PDF of sitting 25A-B (handwritten solutions), see sitting code only

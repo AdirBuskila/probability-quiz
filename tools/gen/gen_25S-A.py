@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Generator for tools/raw/25S-A.json -- probability (course 20021), summer 2025, moed A (20.10.2025). Choose 4 of 6
-questions, 25 points each. 26 items (Q1 4, Q2 7, Q3 5 (part ה held), Q4 3, Q5 4, Q6 3).
+questions, 25 points each. 26 items (Q1 4, Q2 7, Q3 5 (bonus part ה solved), Q4 3, Q5 4, Q6 3).
 Run: PYTHONUTF8=1 py -W error::SyntaxWarning tools/gen/gen_25S-A.py
 
 Source: exam pp.1-3 (pdf), handwritten official solutions on grid paper pp.4-15 (no text layer; rendered and read).
@@ -9,7 +9,8 @@ Transcription notes
 - Part keys: single letters. Q2 prints "א-1" ... "א-5", "ב", "ג" -> a b c d e (א-1..א-5), f (ב), g (ג); Q3 prints
   "א".."ה" -> a..e. The printed label (e.g. "א-3") is the first bold token of each question text.
 - Q3 part ה is the BONUS part. The official solution states explicitly that the bonus solution will not be published,
-  so there is no answer source: the item is held with reason "no-key" (see docs/ASK_ADIR.md). The question text is kept.
+  so there is no answer source: solved (solutionSource "solved", official:false) by the method of part ד,
+  answer D(D-1)/(N(N-1)); verified exactly and by Monte Carlo in tools/verify/25S-A/check.py.
 - Q5 part ד: the official solution defines the event "both travelled through the pub" as the intersection of the two
   pub routes; that definition is transcribed as printed.
 - Math never holds Hebrew.
@@ -188,12 +189,24 @@ $$P(R_n)=\sum_{k=0}^{n-1}\frac{D-k}{N-(n-1)}P(X=k)=\frac1{N-n+1}\left\{D\sum_{k=
 $$P(R_n)=\frac1{N-n+1}\left\{D-D\frac{n-1}N\right\}=\frac{D}{N-n+1}\cdot\frac{N-n+1}{N}=\frac DN.$$""",
     11, contextId="c3"))
 
-questions.append({
-    "num": 3, "part": "ה", "kind": "computation", "topic": "combinatorics",
-    "question": r"**סעיף בונוס:** מוציאים מהכד $n$ כדורים ללא החזרה. מהי ההסתברות ששני הכדורים האחרונים יהיו אדומים? (5 נק׳, הניקוד יינתן עבור פתרון מפורט בלבד.)",
-    "contextId": "c3", "points": 5,
-    "hold": "no-key",
-})
+questions.append(Q(
+    3, "ה", "combinatorics",
+    r"**סעיף בונוס:** מוציאים מהכד $n$ כדורים ללא החזרה. מהי ההסתברות ששני הכדורים האחרונים יהיו אדומים? (5 נק׳, הניקוד יינתן עבור פתרון מפורט בלבד.)",
+    r"""**פתרון (הפתרון הרשמי לסעיף הבונוס לא פורסם).**
+נפעל כמו בסעיף ד ($2\le n\le N$). נסמן ב-$X$ את מספר הכדורים האדומים בין $m=n-2$ הכדורים שהוצאו לפני שני האחרונים. אז $X\sim\mathrm{Hyp}(D,N,m)$, ולפי נוסחת ההסתברות השלמה:
+$$P(R_{n-1}\cap R_n)=\sum_kP(R_{n-1}\cap R_n/X=k)\,P(X=k).$$
+בהינתן $X=k$ נשארו בכד $M=N-m=N-n+2$ כדורים, ומתוכם $D-k$ אדומים, ולכן
+$$P(R_{n-1}\cap R_n/X=k)=\frac{D-k}{M}\cdot\frac{D-k-1}{M-1}.$$
+הצבה:
+$$P(R_{n-1}\cap R_n)=\frac{\mathbb{E}\big[(D-X)(D-X-1)\big]}{M(M-1)}.$$
+נפתח: $(D-X)(D-X-1)=D(D-1)-2(D-1)X+X(X-1)$. תוחלת ההיפרגאומטרי היא $\mathbb{E}[X]=\frac{mD}N$, ובעזרת $k(k-1)\binom Dk=D(D-1)\binom{D-2}{k-2}$ וזהות ונדרמונד,
+$$\mathbb{E}[X(X-1)]=\sum_kk(k-1)\frac{\binom Dk\binom{N-D}{m-k}}{\binom Nm}=D(D-1)\frac{\binom{N-2}{m-2}}{\binom Nm}=\frac{m(m-1)D(D-1)}{N(N-1)}.$$
+לכן
+$$\mathbb{E}\big[(D-X)(D-X-1)\big]=D(D-1)\cdot\frac{N(N-1)-2m(N-1)+m(m-1)}{N(N-1)}=D(D-1)\cdot\frac{(N-m)(N-m-1)}{N(N-1)}=\frac{D(D-1)\,M(M-1)}{N(N-1)}.$$
+ומכאן
+$$P(R_{n-1}\cap R_n)=\frac{D(D-1)}{N(N-1)}.$$
+כמו בסעיף ד, התשובה לא תלויה ב-$n$: היא שווה להסתברות ששני הכדורים הראשונים אדומים.""",
+    5, contextId="c3", solutionSource="solved", official=False))
 
 # ------------------------------------------------------------------ Q4
 Q4_CAP = (r"לפניך גרף עבור פונקציית צפיפות ההסתברות $f_X(x)$ של משתנה מקרי $X$: הצפיפות עולה ליניארית מ-$0$ ב-$x=0$ עד הגובה $\frac c2$ ב-$x=a$, "

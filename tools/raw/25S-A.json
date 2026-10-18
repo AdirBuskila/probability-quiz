@@ -240,13 +240,16 @@
   },
   {
    "num": 3,
-   "part": "ה",
    "kind": "computation",
    "topic": "combinatorics",
    "question": "**סעיף בונוס:** מוציאים מהכד $n$ כדורים ללא החזרה. מהי ההסתברות ששני הכדורים האחרונים יהיו אדומים? (5 נק׳, הניקוד יינתן עבור פתרון מפורט בלבד.)",
-   "contextId": "c3",
+   "solution": "**פתרון (הפתרון הרשמי לסעיף הבונוס לא פורסם).**\nנפעל כמו בסעיף ד ($2\\le n\\le N$). נסמן ב-$X$ את מספר הכדורים האדומים בין $m=n-2$ הכדורים שהוצאו לפני שני האחרונים. אז $X\\sim\\mathrm{Hyp}(D,N,m)$, ולפי נוסחת ההסתברות השלמה:\n$$P(R_{n-1}\\cap R_n)=\\sum_kP(R_{n-1}\\cap R_n/X=k)\\,P(X=k).$$\nבהינתן $X=k$ נשארו בכד $M=N-m=N-n+2$ כדורים, ומתוכם $D-k$ אדומים, ולכן\n$$P(R_{n-1}\\cap R_n/X=k)=\\frac{D-k}{M}\\cdot\\frac{D-k-1}{M-1}.$$\nהצבה:\n$$P(R_{n-1}\\cap R_n)=\\frac{\\mathbb{E}\\big[(D-X)(D-X-1)\\big]}{M(M-1)}.$$\nנפתח: $(D-X)(D-X-1)=D(D-1)-2(D-1)X+X(X-1)$. תוחלת ההיפרגאומטרי היא $\\mathbb{E}[X]=\\frac{mD}N$, ובעזרת $k(k-1)\\binom Dk=D(D-1)\\binom{D-2}{k-2}$ וזהות ונדרמונד,\n$$\\mathbb{E}[X(X-1)]=\\sum_kk(k-1)\\frac{\\binom Dk\\binom{N-D}{m-k}}{\\binom Nm}=D(D-1)\\frac{\\binom{N-2}{m-2}}{\\binom Nm}=\\frac{m(m-1)D(D-1)}{N(N-1)}.$$\nלכן\n$$\\mathbb{E}\\big[(D-X)(D-X-1)\\big]=D(D-1)\\cdot\\frac{N(N-1)-2m(N-1)+m(m-1)}{N(N-1)}=D(D-1)\\cdot\\frac{(N-m)(N-m-1)}{N(N-1)}=\\frac{D(D-1)\\,M(M-1)}{N(N-1)}.$$\nומכאן\n$$P(R_{n-1}\\cap R_n)=\\frac{D(D-1)}{N(N-1)}.$$\nכמו בסעיף ד, התשובה לא תלויה ב-$n$: היא שווה להסתברות ששני הכדורים הראשונים אדומים.",
+   "solutionSource": "solved",
+   "official": false,
+   "confidence": "high",
    "points": 5,
-   "hold": "no-key"
+   "part": "ה",
+   "contextId": "c3"
   },
   {
    "num": 4,
