@@ -20,14 +20,14 @@ Open questions for Adir. One entry per item; the orchestrator moves it to Resolv
 - Needed: confirm that max is intended (with min the answers would be 5/9 and 2/3, as in 24B-A).
 - Status: note only (items shipped)
 
+## Resolved
+
 ### 25B-B Q2 f - bonus (disjoint events): official key s = q is wrong or incomplete
 - Path: official PDF of sitting 25B-B (handwritten solutions), see sitting code only
 - Page: exam p.2 (Q2 d, printed as the bonus part "disjoint"); solution p.8 (last box)
 - Question: given P(not-A | B) = p, P(A | not-B) = q, P(A or B) = s, the official answer for "A and B disjoint" is s = q (from P(A and B) = (1-p)(s-q)/(1-q) = 0). But s = q makes P(B) = (s-q)/(1-q) = 0 (B has probability zero). For a non-trivial B (P(B) > 0), disjoint events have P(not-A | B) = 1, so the true condition is p = 1, with s and q free (check.py Q2f: A,B disjoint with p=1, q=5/16, s=9/20, while s != q). The other factor (1-p) = 0 was missed.
 - Needed: keep the official key (s = q) with the p = 1 caveat, or ship p = 1 (official:false, solved)? Not decided by the transcriber.
-- Status: hold (key disagreement; question text transcribed, not in the bank)
-
-## Resolved
+- Status: resolved 2026-10-18 by the arbiter under the standing rulings (the printed question wins; final-answer error -> typo ruling). Re-read from the rendered pages (exam p.2, solution p.7 last box): the print defines p = P(not-A | B), so P(B) > 0 is part of the givens, and the official s = q (which forces P(B) = 0) contradicts them. Not a statement ambiguity. Shipped p = 1 (q < s free) with the official method, P(A and B) = (1-p)(s-q)/(1-q) = 0 with the factor 1-p, solutionSource solved, official:false, prefix "הפתרון הרשמי עם תיקון". check.py asserts it exactly (sympy identity, a 429-distribution exact grid, validity of every p=1, q<s) and by Monte Carlo (2*10^6: a p=1 pair is disjoint and reproduces q, s; a p<1 pair is not). Adir can override.
 
 ### 25S-A Q3 e - bonus part, official solution explicitly withheld
 - Path: official PDF of sitting 25S-A (handwritten solutions), see sitting code only

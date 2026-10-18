@@ -2,8 +2,8 @@
 """Verification harness for 25B-B (probability). Run: PYTHONUTF8=1 py tools/verify/25B-B/check.py
 Each final answer: EXACT (fractions / enumeration / sympy) and MC (>= 10^6 trials, within 4 SE). ASCII output only.
 Symbolic answers are checked at sample parameter values (and as polynomial identities with sympy where possible).
-Q2 part f (bonus, disjoint events): the official key s=q DISAGREES with the exact analysis (see the end of this file);
-the item is held and the disagreement is reported, the official key is never changed."""
+Q2 part f (bonus, disjoint events): the official key s=q DISAGREES with the exact analysis (s=q gives P(B)=0).
+Shipped under the typo ruling: disjoint <=> p = 1 (q < s free); asserted exactly and by MC in the Q2 section."""
 import itertools, math, sys
 from fractions import Fraction as Fr
 import numpy as np
@@ -117,6 +117,46 @@ q2f_true = (p0 == 1)
 print("Q2f disjoint example: p=%s q=%s s=%s | official key (s=q) holds: %s | true condition (p=1) holds: %s" % (p0, q0, s0, q2f_official_ok, q2f_true))
 print("Q2f also: s=q gives P(B)=(s-q)/(1-q)=0, i.e. B has probability zero, not a nonempty-event disjointness condition.")
 Q2F_DISAGREES = (not q2f_official_ok) and q2f_true
+# SHIPPED (typo ruling): disjoint  <=>  p = 1  (q < s free).
+# exact 1: P(A&B) = (1-p) P(B) as a sympy identity, with P(B) = (s-q)/(1-q)
+ps_, qs_, ss_ = sp.symbols("p q s")
+PB_s = (ss_ - qs_) / (1 - qs_)
+PA_s = ss_ - ps_ * PB_s
+rows.append(("Q2f", "P(A&B) = P(A)+P(B)-s = (1-p)(s-q)/(1-q) (sympy)", sp.simplify(PA_s + PB_s - ss_ - (1 - ps_) * PB_s) == 0, True, ""))
+# exact 2: over a grid of exact 4-cell distributions with 0 < P(B) < 1, P(A&B)=0 <=> p=1
+grid = [Fr(k, 12) for k in range(13)]
+iff_ok = True; n_cases = 0
+for a in grid:
+    for b in grid:
+        for c in grid:
+            d = 1 - a - b - c
+            if d < 0 or a + c == 0 or b + d == 0:
+                continue
+            n_cases += 1
+            iff_ok &= ((a == 0) == (c / (a + c) == 1))
+rows.append(("Q2f", "exact grid (%d distributions, 0<P(B)<1): disjoint <=> p=1" % n_cases, iff_ok, True, ""))
+# exact 3: for p = 1 every 0 <= q < s <= 1 gives a valid disjoint pair (P(A) = q(1-s)/(1-q) >= 0)
+valid = all(PA_s.subs({ps_: 1, qs_: q_, ss_: s_}) >= 0 and PB_s.subs({qs_: q_, ss_: s_}) > 0
+            and sp.simplify(PA_s.subs({ps_: 1, qs_: q_, ss_: s_}) - q_ * (1 - s_) / (1 - q_)) == 0
+            for q_ in (Fr(0), Fr(1, 5), Fr(5, 16), Fr(1, 2)) for s_ in (Fr(11, 20), Fr(3, 4), Fr(1)) if q_ < s_)
+rows.append(("Q2f", "p=1 with any q<s: P(B)>0 and P(A)=q(1-s)/(1-q)>=0 (valid disjoint pair)", valid, True, ""))
+# MC: build the distribution from (p, q, s) = (1, 5/16, 9/20) and check the events are disjoint and reproduce p, q, s
+pf, qf, sf = Fr(1), Fr(5, 16), Fr(9, 20)
+PBf = (sf - qf) / (1 - qf); PAf = sf - pf * PBf; PABf = (1 - pf) * PBf
+cells = [PABf, PAf - PABf, PBf - PABf, 1 - PAf - PBf + PABf]       # A&B, A&~B, ~A&B, ~A&~B
+idx = np.searchsorted(np.cumsum([float(v) for v in cells]), rng.random(N))
+A = (idx == 0) | (idx == 1); B = (idx == 0) | (idx == 2)
+rec("Q2f", "p=1,q=5/16,s=9/20: P(A&B)=0 (MC)", 0, PABf, float((A & B).mean()), 1e-9, tol=0)
+rec("Q2f", "p=1,q=5/16,s=9/20: P(~A|B)=1 (MC)", 1, 1 - PABf / PBf, float((~A)[B].mean()), 1e-9, tol=0)
+rec("Q2f", "p=1,q=5/16,s=9/20: P(A|~B)=q (MC)", qf, cells[1] / (1 - PBf), float(A[~B].mean()), se_p(float(qf), int((~B).sum())), tol=0)
+rec("Q2f", "p=1,q=5/16,s=9/20: P(A or B)=s (MC)", sf, PAf + PBf - PABf, float((A | B).mean()), se_p(float(sf)), tol=0)
+# MC: a non-disjoint pair with p<1 has P(A&B) = (1-p)P(B) > 0
+pg, qg, sg = Fr(3, 5), Fr(1, 4), Fr(7, 10)
+PBg = (sg - qg) / (1 - qg); PAg = sg - pg * PBg; PABg = (1 - pg) * PBg
+cells = [PABg, PAg - PABg, PBg - PABg, 1 - PAg - PBg + PABg]
+idx = np.searchsorted(np.cumsum([float(v) for v in cells]), rng.random(N))
+A = (idx == 0) | (idx == 1); B = (idx == 0) | (idx == 2)
+rec("Q2f", "p=3/5<1: P(A&B)=(1-p)P(B)>0, not disjoint (MC)", PABg, cells[0], float((A & B).mean()), se_p(float(PABg)), tol=0)
 
 # ============================================================ Q3  (head's guess vs number, N^2 pairs)
 for n, m in ((5, 7), (9, 4), (2, 6)):
@@ -294,5 +334,5 @@ print()
 print("TOTAL checks: %d, failing: %d" % (len(rows), len(bad)))
 for r in bad:
     print("  FAIL:", r[0], r[1], r[4])
-print("Q2f official key (s=q) disagrees with exact analysis (true condition: p=1): %s -> item held" % Q2F_DISAGREES)
+print("Q2f official key (s=q) disagrees with exact analysis (true condition: p=1): %s -> shipped p=1 (typo ruling)" % Q2F_DISAGREES)
 sys.exit(1 if (bad or not Q2F_DISAGREES) else 0)

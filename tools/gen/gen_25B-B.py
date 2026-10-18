@@ -11,9 +11,10 @@ Transcription notes
   "א-3", "ב", "ג", "ד"(bonus) -> a b c d e f; Q3 prints "א-1", "א-2", "ב-1", "ב-2", "ב-3" -> a b c d e;
   Q5 prints "א", "ב-1".."ב-4" -> a b c d e; Q6 prints "א-1", "א-2", "ב" -> a b c. The printed label is the first bold
   token of each question text.
-- Q2 part ו (bonus, disjoint events): HELD. The official answer is s = q, but exact analysis shows that disjointness
-  with P(B) > 0 forces p = 1 (s = q would make P(B) = 0). Disagreement with the official key -> hold + ASK_ADIR entry;
-  the official key is not changed.
+- Q2 part ו (bonus, disjoint events) TYPO RULING (arbiter 2026-10-18, the printed question wins): the official answer
+  is s = q, but s = q makes P(B) = 0, so P(not-A | B) = p would be undefined; with P(B) > 0 disjointness forces
+  p = 1 (q < s free). Shipped p = 1 with the official method (P(A and B) = (1-p)(s-q)/(1-q) = 0, the factor 1-p),
+  solutionSource "solved", official:false, "הפתרון הרשמי עם תיקון" prefix; verified in tools/verify/25B-B/check.py.
 - Q3: the head of the school guesses at random; as in the official solution the sample space is the N^2 equally likely
   (guess, number) pairs.
 - Q6 part א-1/ב: the official solution is a formula that refers to the practice sheet; the one-line derivation (total
@@ -159,13 +160,17 @@ $A$ ו-$B$ בלתי תלויים אם ורק אם $P(A/\bar B)=P(A)$ וגם $P(A
 $$p=1-q.$$""",
     5, contextId="c2"))
 
-questions.append({
-    "num": 2, "part": "ו", "kind": "computation", "topic": "independence",
-    "question": r"**סעיף בונוס:** עבור אילו פרמטרים $p$, $q$ ו-$s$ המאורעות $A$ ו-$B$ יהיו **זרים**? (5 נק׳ – הניקוד יינתן עבור פתרון מלא בלבד.)",
-    "contextId": "c2", "points": 5,
-    "hold": ("key-disagreement: the official key is s = q (from P(A and B) = (1-p)(s-q)/(1-q) = 0), but s = q makes P(B) = 0, "
-             "and for P(B) > 0 disjointness forces p = P(not-A | B) = 1 with s, q free (tools/verify/25B-B/check.py, Q2f). See ASK_ADIR."),
-})
+questions.append(Q(
+    2, "ו", "independence",
+    r"**סעיף בונוס:** עבור אילו פרמטרים $p$, $q$ ו-$s$ המאורעות $A$ ו-$B$ יהיו **זרים**? (5 נק׳ – הניקוד יינתן עבור פתרון מלא בלבד.)",
+    r"""**הפתרון הרשמי עם תיקון:** בפתרון הרשמי התשובה היא $s=q$. אבל עבור $s=q$ מתקבל $P(B)=\frac{s-q}{1-q}=0$, ואז $P(\bar A/B)=p$ אינה מוגדרת, בניגוד לנתון. הגורם שמתאפס חייב להיות $1-p$, ולכן התשובה הנכונה היא $p=1$. התיקון נבדק (חישוב מדויק וסימולציה).
+**מאורעות זרים.**
+$A$ ו-$B$ זרים אם ורק אם $P(A\cap B)=0$. מסעיף א-3,
+$$P(A\cap B)=(1-p)\,\frac{s-q}{1-q}=(1-p)\,P(B).$$
+מאחר שהנתון $P(\bar A/B)=p$ מוגדר, $P(B)>0$, כלומר $s>q$ (ראו גם סעיף ב). לכן המכפלה מתאפסת רק כאשר
+$$p=1,$$
+כלומר $P(\bar A/B)=1$: כאשר $B$ מתרחש, $A$ לא מתרחש. הפרמטרים $q$ ו-$s$ חופשיים (עם $q<s$); למשל $p=1$, $q=\frac5{16}$, $s=\frac9{20}$ מתאימים לזוג מאורעות זרים.""",
+    5, contextId="c2", solutionSource="solved", official=False))
 
 # ------------------------------------------------------------------ Q3
 Q3_A = r"יוגיין בוחר באקראי מספר בין $1$ ל-$N$ ורושם אותו על הדף. ראש בית הספר למדעי המתמטיקה מנחש מהו מספרו של יוגיין."

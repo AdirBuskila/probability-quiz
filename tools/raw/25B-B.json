@@ -181,13 +181,16 @@
   },
   {
    "num": 2,
-   "part": "ו",
    "kind": "computation",
    "topic": "independence",
    "question": "**סעיף בונוס:** עבור אילו פרמטרים $p$, $q$ ו-$s$ המאורעות $A$ ו-$B$ יהיו **זרים**? (5 נק׳ – הניקוד יינתן עבור פתרון מלא בלבד.)",
-   "contextId": "c2",
+   "solution": "**הפתרון הרשמי עם תיקון:** בפתרון הרשמי התשובה היא $s=q$. אבל עבור $s=q$ מתקבל $P(B)=\\frac{s-q}{1-q}=0$, ואז $P(\\bar A/B)=p$ אינה מוגדרת, בניגוד לנתון. הגורם שמתאפס חייב להיות $1-p$, ולכן התשובה הנכונה היא $p=1$. התיקון נבדק (חישוב מדויק וסימולציה).\n**מאורעות זרים.**\n$A$ ו-$B$ זרים אם ורק אם $P(A\\cap B)=0$. מסעיף א-3,\n$$P(A\\cap B)=(1-p)\\,\\frac{s-q}{1-q}=(1-p)\\,P(B).$$\nמאחר שהנתון $P(\\bar A/B)=p$ מוגדר, $P(B)>0$, כלומר $s>q$ (ראו גם סעיף ב). לכן המכפלה מתאפסת רק כאשר\n$$p=1,$$\nכלומר $P(\\bar A/B)=1$: כאשר $B$ מתרחש, $A$ לא מתרחש. הפרמטרים $q$ ו-$s$ חופשיים (עם $q<s$); למשל $p=1$, $q=\\frac5{16}$, $s=\\frac9{20}$ מתאימים לזוג מאורעות זרים.",
+   "solutionSource": "solved",
+   "official": false,
+   "confidence": "high",
    "points": 5,
-   "hold": "key-disagreement: the official key is s = q (from P(A and B) = (1-p)(s-q)/(1-q) = 0), but s = q makes P(B) = 0, and for P(B) > 0 disjointness forces p = P(not-A | B) = 1 with s, q free (tools/verify/25B-B/check.py, Q2f). See ASK_ADIR."
+   "part": "ו",
+   "contextId": "c2"
   },
   {
    "num": 3,
