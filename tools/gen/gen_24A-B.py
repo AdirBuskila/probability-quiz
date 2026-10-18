@@ -411,7 +411,7 @@ def CH(prompt, opts, ans, explain):
 def NU(prompt, val, explain):
     val = Fr(val)
     small = abs(val) < Fr(1, 10)           # small values need more digits: a 0.0006 tolerance would accept 0.02 for 0.0206
-    a = round(float(val), 6 if small else 4)
+    a = round(float(val), 6)
     exact = (val * 10000).denominator == 1
     return {"type": "numeric", "prompt": prompt + ("" if exact else " (שבר או עשרוני)"), "answer": a,
             "tol": 0 if exact else (6e-5 if small else FRAC), "explain": explain}

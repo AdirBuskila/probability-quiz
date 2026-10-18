@@ -55,13 +55,13 @@ def num(qid, idx, exact, mc=None, se=None):
     rec("%s step%d numeric" % (qid, idx), ok_ex and ok_mc, info)
 
 
-def opts(qid, idx, vals, target):
+def opts(qid, idx, vals, target, se=None):
     """choice step whose options are numbers: vals[i] is the numeric value of option i."""
     COVERED.add((qid, idx))
     s = BYID[qid]["steps"][idx]
     assert s["type"] == "choice" and len(vals) == len(s["options"]), (qid, idx)
     ci = "abcdefgh".index(s["correctId"])
-    good = abs(vals[ci] - target) <= 1e-9 or abs(vals[ci] - target) <= 4 * se_p(target)
+    good = abs(vals[ci] - target) <= 1e-9 or abs(vals[ci] - target) <= 4 * (se if se is not None else se_p(target))
     bad = [i for i, v in enumerate(vals) if i != ci and abs(v - target) <= 1e-3]
     rec("%s step%d choice-values" % (qid, idx), good and not bad, "values=%s target=%.6f" % (["%.4f" % v for v in vals], target))
 
