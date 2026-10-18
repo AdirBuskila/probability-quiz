@@ -130,8 +130,8 @@
      "explain": "רצועה ברוחב $\\frac14$ לכל הגובה: $\\frac14$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -240,8 +240,8 @@
      "explain": "$1-\\frac18=\\frac78$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -343,8 +343,8 @@
      "explain": "משולש ישר-זווית בניצבים $1$: $\\frac12$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 1,
@@ -451,8 +451,8 @@
      "explain": "בסיס $1$ על ציר $y$ וגובה $\\frac12$: $\\frac14$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -528,8 +528,8 @@
      "explain": "$\\frac4{36}=\\frac19$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -613,8 +613,8 @@
      "explain": "$\\frac{1/36}{1/9}=\\frac14$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -676,8 +676,8 @@
      "explain": "$\\frac{28}{36}=\\frac79$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 2,
@@ -741,8 +741,8 @@
      "explain": "$\\frac{2/9}{7/9}=\\frac27$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -847,8 +847,8 @@
      "explain": "רק $(0,0),(0,1),(2,2)$ אפשריים; השלושה האחרים $(0,2),(2,0),(2,1)$ הם $0$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -908,23 +908,23 @@
    "steps": [
     {
      "type": "choice",
-     "prompt": "ב-$p=0.3$, מהי $P(D=2)$?",
+     "prompt": "מהי ההתפלגות של $\\frac D2=XY$?",
      "options": [
       {
        "id": "a",
-       "value": "$p^2=0.09$"
+       "value": "$\\mathrm{Ber}(p^2)$"
       },
       {
        "id": "b",
-       "value": "$p=0.3$"
+       "value": "$\\mathrm{Ber}(p)$"
       },
       {
        "id": "c",
-       "value": "$2p(1-p)=0.42$"
+       "value": "$\\mathrm{Bin}(2,p)$"
       }
      ],
      "correctId": "a",
-     "explain": "$D=2$ רק כש-$X=Y=1$ (הסתברות $p^2$). $p$ הוא $P(X=1)$, ו-$2p(1-p)$ הוא $P(X\\ne Y)$."
+     "explain": "$XY$ מקבל רק $0$ או $1$, ושווה ל-$1$ בדיוק כש-$X=Y=1$, כלומר בהסתברות $p^2$ (בלתי תלויים). לכן $\\mathrm{Ber}(p^2)$. $\\mathrm{Ber}(p)$ הוא ההתפלגות של $X$ לבדו, ו-$\\mathrm{Bin}(2,p)$ יכול לקבל גם $2$."
     },
     {
      "type": "numeric",
@@ -941,8 +941,8 @@
      "explain": "$2\\cdot p^2=0.18$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1039,8 +1039,8 @@
      "explain": "$2p(1-p)=0.42$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1133,8 +1133,8 @@
      "explain": "מספיק תא אחד שבו המשותפת שונה ממכפלת השוליות."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 3,
@@ -1222,8 +1222,8 @@
      "explain": "$0.36-0.108=0.252=4p^2(1-p)$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1319,8 +1319,8 @@
      "explain": "$ac=\\frac23$ ולכן $c=\\frac{2/3}{3/4}=\\frac89$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1369,7 +1369,7 @@
     }
    ],
    "pitfalls": [
-    "לרשום $F(t)=t$ על הקטע השני בלי להוסיף את הקבוע (חסרה המסה $\\frac23$ שנצברה)",
+    "לשכוח את המסה $\\frac23$ שנצברה עד $\\frac34$ ולרשום $t-\\frac34$ על הקטע השני (במקום $\\frac23+t-\\frac34=t-\\frac1{12}$)",
     "להפסיק את $F$ במקום להגיע ל-$1$ ב-$b$"
    ],
    "steps": [
@@ -1408,8 +1408,8 @@
      "explain": "$1-\\frac1{12}=\\frac{11}{12}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 4,
@@ -1496,8 +1496,8 @@
      "explain": "$\\frac89\\cdot\\frac59=\\frac{40}{81}$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -1583,8 +1583,8 @@
      "explain": "$\\binom42(0.4)^2(0.6)^2=6\\cdot0.16\\cdot0.36=0.3456$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -2035,8 +2035,8 @@
      "explain": "$\\frac{p(1-Q)}{1-(1-Q)(1-p)}=\\frac{0.3}{0.7}=\\frac37$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 5,
@@ -2480,8 +2480,8 @@
      "explain": "$\\frac{40}{343}\\approx0.1166$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2598,8 +2598,8 @@
      "explain": "$0.6\\cdot0.7056+0.4\\cdot0.5904=0.65952$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2709,8 +2709,8 @@
      "explain": "$0.84^2=0.7056$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   },
   {
    "num": 6,
@@ -2839,8 +2839,8 @@
      "explain": "$P(Q_1\\cap Q_2)=0.6\\cdot0.5904+0.4\\cdot0.4752=0.54432$, ולכן $\\frac{0.54432}{0.7056}=\\frac{p(3-2p)}{2-p}=\\frac{27}{35}\\approx0.7714$."
     }
    ],
-   "rubricSource": "ai-draft",
-   "stepsSource": "ai-draft"
+   "rubricSource": "ai-verified",
+   "stepsSource": "ai-verified"
   }
  ]
 }
