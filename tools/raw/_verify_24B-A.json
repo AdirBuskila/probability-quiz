@@ -1,0 +1,657 @@
+{
+ "examCode": "24B-A",
+ "refuter": "independent exact (sympy/fractions/brute force) + own Monte Carlo; scripts tools/verify/24B-A/refute_*.py",
+ "items": {
+  "Q1א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": "agree",
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q1ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": "agree",
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q1ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": "agree",
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q1ד": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": "agree",
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q1ה": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": "agree",
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q2א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": "n/a",
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q2ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": "n/a",
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q2ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": "n/a",
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q2ד": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": "n/a",
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q3א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": "n/a",
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q3ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": "n/a",
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q3ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": "n/a",
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q3ד": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": "n/a",
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q3ה": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": "n/a",
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "choice",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": "Re-checked against page-07.png: printed joint table, Cov!=0 for p!=0,1 are legible and match. The independence wording is illegible, but the zero-cell argument P(D=0,T=1)=0 vs P(D=0)P(T=1)=(1-p)p^2 is mathematically valid (also P(D=0,T=0)-P(D=0)P(T=0)=p(1-p)^2!=0). No error; medium label is only about transcription of the reasoning."
+  },
+  "Q3ו": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": "n/a",
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "choice",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q4א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": "n/a",
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q4ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": "n/a",
+   "sim": "n/a",
+   "steps": [
+    {
+     "index": 0,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q4ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": "n/a",
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q5א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": "n/a",
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": "Cosmetic: step0 explain uses n (total people) before n is defined (defined in the step1 prompt)."
+  },
+  "Q5ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": "n/a",
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q5ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": "n/a",
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "choice",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": "Minor completeness gap: the question asks three things (=, >=, <). Solution proves >= and rejects <, but never says explicitly that \"=\" is false. Since n_i are pairwise distinct and N>=2, Var[X]>0 so E[Y]>E[X] strictly (checked on 2000 random distinct-size sets). Key (>=) is not wrong."
+  },
+  "Q6א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": "n/a",
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q6ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": "n/a",
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "choice",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 3,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  },
+  "Q6ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "region": "n/a",
+   "sim": "agree",
+   "steps": [
+    {
+     "index": 0,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 1,
+     "type": "numeric",
+     "verdict": "agree"
+    },
+    {
+     "index": 2,
+     "type": "numeric",
+     "verdict": "agree"
+    }
+   ],
+   "firstDivergence": null,
+   "note": ""
+  }
+ },
+ "summary": {
+  "items": 24,
+  "steps": 76,
+  "agree": 24,
+  "disagree": 0,
+  "unclear": 0
+ }
+}
