@@ -597,7 +597,11 @@
    "rubric": [
     {
      "text": "פירוק $A$ לחלק שמחוץ ל-$B$ ולחלק שבתוכו",
-     "points": 2
+     "points": 1
+    },
+    {
+     "text": "שני החלקים זרים, ולכן מחברים",
+     "points": 1
     },
     {
      "text": "$P(A)=p+q$",
@@ -684,7 +688,11 @@
    "rubric": [
     {
      "text": "הגדרת ההסתברות המותנית: $s=\\frac{P(A\\cap B)}{P(B)}$",
-     "points": 2
+     "points": 1
+    },
+    {
+     "text": "חילוץ $P(B)$ מהמשוואה",
+     "points": 1
     },
     {
      "text": "$P(B)=\\frac qs$",
@@ -878,8 +886,12 @@
    },
    "rubric": [
     {
-     "text": "משלים בתוך ההתניה",
-     "points": 2
+     "text": "משלים בתוך ההתניה: $P(\\overline A\\mid B)=1-P(A\\mid B)$",
+     "points": 1
+    },
+    {
+     "text": "הצבת הנתון $P(A\\mid B)=s$",
+     "points": 1
     },
     {
      "text": "$P(\\overline A\\mid B)=1-s$",
@@ -967,10 +979,14 @@
    "rubric": [
     {
      "text": "משלים בתוך ההתניה על $\\overline B$",
-     "points": 2
+     "points": 1
     },
     {
      "text": "שימוש בסעיף ג",
+     "points": 1
+    },
+    {
+     "text": "$1-\\frac{ps}{s-q}$",
      "points": 1
     }
    ],
@@ -1030,11 +1046,15 @@
    "contextId": "c2",
    "rubric": [
     {
-     "text": "$P(B)=\\frac qs\\le1$",
-     "points": 3
+     "text": "$P(B)=\\frac qs$ מסעיף א-2",
+     "points": 1
     },
     {
-     "text": "מסקנה: $q\\le s$, ולכן $s<q$ בלתי אפשרי",
+     "text": "$P(B)\\le1$ מחייב $q\\le s$",
+     "points": 2
+    },
+    {
+     "text": "מסקנה: $s<q$ בלתי אפשרי",
      "points": 2
     }
    ],
@@ -1200,7 +1220,15 @@
    "rubric": [
     {
      "text": "הגישה הקלאסית: מקרים רצויים חלקי כל המקרים",
-     "points": 3
+     "points": 1
+    },
+    {
+     "text": "$D$ מקרים רצויים מתוך $N$",
+     "points": 1
+    },
+    {
+     "text": "התשובה $\\frac DN$",
+     "points": 1
     }
    ],
    "pitfalls": [
@@ -1792,11 +1820,15 @@
    "rubric": [
     {
      "text": "$P(X>1)=1-F_X(1)$",
-     "points": 3
+     "points": 2
     },
     {
-     "text": "$=\\frac12$",
+     "text": "הצבת $F_X(1)=\\frac12$",
      "points": 2
+    },
+    {
+     "text": "התשובה $\\frac12$",
+     "points": 1
     }
    ],
    "pitfalls": [
@@ -2261,12 +2293,16 @@
    "contextId": "c6",
    "rubric": [
     {
-     "text": "$m$ קפיצות ימינה ו-$n$ למעלה",
-     "points": 3
+     "text": "נדרשות $m$ קפיצות ימינה",
+     "points": 2
+    },
+    {
+     "text": "ו-$n$ קפיצות למעלה",
+     "points": 2
     },
     {
      "text": "סך הכול $n+m$",
-     "points": 2
+     "points": 1
     }
    ],
    "pitfalls": [

@@ -1379,8 +1379,12 @@
      "points": 2
     },
     {
-     "text": "$\\mu\\le1$ מ-$a\\ge0$ ו-$\\mu\\ge-\\frac12$ מ-$b\\ge0$",
-     "points": 2
+     "text": "$\\mu\\le1$ מ-$a\\ge0$",
+     "points": 1
+    },
+    {
+     "text": "$\\mu\\ge-\\frac12$ מ-$b\\ge0$",
+     "points": 1
     }
    ],
    "pitfalls": [
@@ -2085,7 +2089,15 @@
    "rubric": [
     {
      "text": "הגישה הקלאסית: מקרים רצויים חלקי כל המקרים",
-     "points": 3
+     "points": 1
+    },
+    {
+     "text": "$D$ מקרים רצויים מתוך $N$",
+     "points": 1
+    },
+    {
+     "text": "התשובה $\\frac DN$",
+     "points": 1
     }
    ],
    "pitfalls": [
