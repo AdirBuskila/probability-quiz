@@ -13,6 +13,13 @@ Open questions for Adir. One entry per item; the orchestrator moves it to Resolv
 - Status: hold
 -->
 
+### 24B-B Q3 d - official answer 5/9 disagrees with the exact value 1/2
+- Path: official PDF of sitting 24B-B, see sitting code only
+- Page: solution p.9 (printed Q3 d: P(number even | digit sum odd))
+- Question: the official solution gives 20/36 = 5/9. Two distinct digits from 1..9 give 72 ordered pairs; "digit sum odd" has 40 of them (5 odd x 4 even, both orders), and the number is even exactly when the units digit is even: 20 of the 40. So the exact value is 20/40 = 1/2 (exact enumeration and 2*10^6-trial Monte Carlo 0.5002 in tools/verify/24B-B/check.py). The official denominator 36 does not match any reading of the printed condition.
+- Needed: ship the corrected 1/2 (official:false, solved) or keep the printed 5/9?
+- Status: hold (Q3d held, in the raw JSON with the official text; not in the bank)
+
 ## Resolved
 
 ### 26A-B Q3 a, b, d - official key uses different q2/q4 labels than the printed question
