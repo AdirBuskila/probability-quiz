@@ -1,0 +1,12 @@
+{
+  "_note": "Region data for Q1-type (uniform/area) items of 26A-B. RAW_SCHEMA has no `region` field yet, so it lives here. Ids are the built question ids. Only Q1a is an area question: Q1b and Q1c are derived from F_D / independence and need no region.",
+  "26A-B-Q1a": {
+    "sampleSpace": {"x": [0, 1], "y": [0, 1]},
+    "distribution": "uniform on the sample space (X, Y independent U(0,1))",
+    "event": ["x*y <= t"],
+    "eventBoundary": "hyperbola y = t/x, meeting the top edge y=1 at x=t",
+    "params": {"t": {"min": 0, "max": 1, "example": 0.3}},
+    "areaFormula": "t - t*ln(t)",
+    "conditioning": null
+  }
+}
