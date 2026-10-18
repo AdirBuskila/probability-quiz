@@ -41,7 +41,7 @@ STEP_KEYS = {"type", "prompt", "explain", "code", "options", "correctId", "answe
              "normalize", "lines", "bugIndex", "blankIndex", "region"}
 RUBRIC_KEYS = {"text", "points"}
 OPTION_KEYS = {"id", "type", "value"}
-CODE_RE = re.compile(r"^(\d{2}[ABS]-[ABC]|SAMP-\d+|DEMO-[A-Z])$")
+CODE_RE = re.compile(r"^(\d{2}[ABS]-[A-H]|SAMP-\d+|DEMO-[A-Z])$")
 HEB = re.compile(r"[֐-׿]")
 TOKEN = re.compile(r"(\$\$.+?\$\$|\$[^$]+?\$|`[^`]+`)", re.S)
 
@@ -641,7 +641,7 @@ def check_file(fp):
         P(f"{fp.name}: missing examCode")
         code = fp.stem
     elif not CODE_RE.match(code):
-        W(f"{fp.name}: examCode {code} not YY[A|B|S]-[A|B|C] or SAMP-N")
+        W(f"{fp.name}: examCode {code} not YY[A|B|S]-[A..H] or SAMP-N")
     if code != fp.stem:
         P(f"{fp.name}: examCode {code} != file name")
     for k in ("examLabel", "year"):

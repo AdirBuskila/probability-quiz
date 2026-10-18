@@ -65,7 +65,7 @@ def locks_order(options):
 
 
 def exam_order(code):
-    m = re.match(r"^(\d{2})([ABS])-([ABC])$", code)
+    m = re.match(r"^(\d{2})([ABS])-([A-H])$", code)
     if code.startswith("SAMP-"):
         return (0, 0, code)
     if m:
