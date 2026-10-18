@@ -110,28 +110,26 @@
    "kind": "computation",
    "topic": "conditional_bayes",
    "question": "מצאו את ההסתברות שהרכיב $B$ תקין (פועל).",
-   "solution": "**ההסתברות שהרכיב $B$ פועל.**\nלפי נוסחת ההסתברות השלמה על ארבעת המקרים הזרים הנקבעים על ידי $A$ ו-$C$,\n$$\\begin{aligned}P(B)&=P(B\\mid A\\cap C)P(A\\cap C)+P(B\\mid\\bar A\\cap C)P(\\bar A\\cap C)\\\\&\\quad+P(B\\mid A\\cap\\bar C)P(A\\cap\\bar C)+P(B\\mid\\bar A\\cap\\bar C)P(\\bar A\\cap\\bar C).\\end{aligned}$$\nמאחר ש-$A$ ו-$C$ בלתי תלויים,\n$$P(A\\cap C)=p^2,\\quad P(\\bar A\\cap C)=(1-p)p,\\quad P(A\\cap\\bar C)=p(1-p),\\quad P(\\bar A\\cap\\bar C)=(1-p)^2.$$\nלכן\n$$P(B)=q_1p^2+q_2p(1-p)+q_3p(1-p)+q_4(1-p)^2.$$\nבאופן שקול,\n$$P(B)=q_1p^2+(q_2+q_3)p(1-p)+q_4(1-p)^2.$$",
-   "solutionSource": "official-pdf",
-   "official": true,
+   "solution": "**הפתרון הרשמי עם תיקון:** בפתרון הרשמי הוגדרו $q_2=P(B\\mid\\bar A\\cap C)$ ו-$q_4=P(B\\mid\\bar A\\cap\\bar C)$, הפוך מהשאלה כפי שהודפסה, שבה $q_2=P(B\\mid\\bar A\\cap\\bar C)$ ו-$q_4=P(B\\mid\\bar A\\cap C)$. הפתרון שלהלן הוא הפתרון הרשמי, עם $q_2$ ו-$q_4$ לפי ההגדרות המודפסות, ולכן התשובה הסופית שונה מהתשובה הרשמית $q_1p^2+(q_2+q_3)p(1-p)+q_4(1-p)^2$. התיקון נבדק (חישוב מדויק וסימולציה).\n**ההסתברות שהרכיב $B$ פועל.**\nלפי נוסחת ההסתברות השלמה על ארבעת המקרים הזרים הנקבעים על ידי $A$ ו-$C$,\n$$\\begin{aligned}P(B)&=P(B\\mid A\\cap C)P(A\\cap C)+P(B\\mid\\bar A\\cap C)P(\\bar A\\cap C)\\\\&\\quad+P(B\\mid A\\cap\\bar C)P(A\\cap\\bar C)+P(B\\mid\\bar A\\cap\\bar C)P(\\bar A\\cap\\bar C).\\end{aligned}$$\nמאחר ש-$A$ ו-$C$ בלתי תלויים,\n$$P(A\\cap C)=p^2,\\quad P(\\bar A\\cap C)=(1-p)p,\\quad P(A\\cap\\bar C)=p(1-p),\\quad P(\\bar A\\cap\\bar C)=(1-p)^2.$$\nלכן\n$$P(B)=q_1p^2+q_4p(1-p)+q_3p(1-p)+q_2(1-p)^2.$$\nבאופן שקול,\n$$P(B)=q_1p^2+(q_3+q_4)p(1-p)+q_2(1-p)^2.$$",
+   "solutionSource": "solved",
+   "official": false,
    "confidence": "high",
    "points": 5,
    "part": "א",
-   "contextId": "c3",
-   "hold": "The official solution (solution pp.8-9) defines q2 = P(B | not-A and C) and q4 = P(B | not-A and not-C), but the printed question (exam p.2) defines q2 = P(B | not-A and not-C) and q4 = P(B | not-A and C). The official key does not match the printed labelling; see ASK_ADIR."
+   "contextId": "c3"
   },
   {
    "num": 3,
    "kind": "computation",
    "topic": "independence",
    "question": "האם תקינות הרכיב $A$ תלויה בתקינות הרכיב $B$? אם כן, חשבו $P(A/B)$. אם לא, הסבירו מדוע.",
-   "solution": "**האם $A$ תלוי ב-$B$? מצאו $P(A\\mid B)$.**\nהמאורעות $A$ ו-$B$ בלתי תלויים רק תחת התנאי\n$$pq_1+(1-p)q_3=pq_2+(1-p)q_4.$$\nאחרת, הם תלויים זה בזה. בהנחה ש-$P(B)>0$,\n$$P(A\\mid B)=\\frac{P(A\\cap B)}{P(B)}.$$\nכעת\n$$\\begin{aligned}P(A\\cap B)&=P(A\\cap B\\cap C)+P(A\\cap B\\cap\\bar C)\\\\&=P(B\\mid A\\cap C)P(A\\cap C)+P(B\\mid A\\cap\\bar C)P(A\\cap\\bar C)\\\\&=q_1p^2+q_3p(1-p).\\end{aligned}$$\nולכן\n$$P(A\\mid B)=\\frac{q_1p^2+q_3p(1-p)}{q_1p^2+(q_2+q_3)p(1-p)+q_4(1-p)^2}.$$",
-   "solutionSource": "official-pdf",
-   "official": true,
+   "solution": "**הפתרון הרשמי עם תיקון:** בפתרון הרשמי הוגדרו $q_2=P(B\\mid\\bar A\\cap C)$ ו-$q_4=P(B\\mid\\bar A\\cap\\bar C)$, הפוך מהשאלה כפי שהודפסה, שבה $q_2=P(B\\mid\\bar A\\cap\\bar C)$ ו-$q_4=P(B\\mid\\bar A\\cap C)$. הפתרון שלהלן הוא הפתרון הרשמי, עם $q_2$ ו-$q_4$ לפי ההגדרות המודפסות, ולכן תנאי אי-התלות והמכנה של $P(A\\mid B)$ שונים מהתשובה הרשמית (שם: $pq_1+(1-p)q_3=pq_2+(1-p)q_4$, והמכנה $q_1p^2+(q_2+q_3)p(1-p)+q_4(1-p)^2$). התיקון נבדק (חישוב מדויק וסימולציה).\n**האם $A$ תלוי ב-$B$? מצאו $P(A\\mid B)$.**\nמתקיים $P(B\\mid A)=pq_1+(1-p)q_3$ ו-$P(B\\mid\\bar A)=pq_4+(1-p)q_2$. המאורעות $A$ ו-$B$ בלתי תלויים רק תחת התנאי\n$$pq_1+(1-p)q_3=pq_4+(1-p)q_2.$$\nאחרת, הם תלויים זה בזה. בהנחה ש-$P(B)>0$,\n$$P(A\\mid B)=\\frac{P(A\\cap B)}{P(B)}.$$\nכעת\n$$\\begin{aligned}P(A\\cap B)&=P(A\\cap B\\cap C)+P(A\\cap B\\cap\\bar C)\\\\&=P(B\\mid A\\cap C)P(A\\cap C)+P(B\\mid A\\cap\\bar C)P(A\\cap\\bar C)\\\\&=q_1p^2+q_3p(1-p).\\end{aligned}$$\nולכן\n$$P(A\\mid B)=\\frac{q_1p^2+q_3p(1-p)}{q_1p^2+(q_3+q_4)p(1-p)+q_2(1-p)^2}.$$",
+   "solutionSource": "solved",
+   "official": false,
    "confidence": "high",
    "points": 4,
    "part": "ב",
-   "contextId": "c3",
-   "hold": "The official solution (solution pp.8-9) defines q2 = P(B | not-A and C) and q4 = P(B | not-A and not-C), but the printed question (exam p.2) defines q2 = P(B | not-A and not-C) and q4 = P(B | not-A and C). The official key does not match the printed labelling; see ASK_ADIR."
+   "contextId": "c3"
   },
   {
    "num": 3,
@@ -151,14 +149,13 @@
    "kind": "computation",
    "topic": "circuits",
    "question": "מחברים את שלושת הרכיבים במקביל (כמתואר במעגל $Q_2$). מהי ההסתברות $P(Q_2)$ שהמעגל פועל?\n**הערה:** אין להשתמש בטבלאות אמת. יש לספק חישוב מפורט ומנומק לכל סעיף.",
-   "solution": "**חיבור במקביל.**\nבחיבור במקביל המעגל נכשל אם ורק אם שלושת הרכיבים נכשלים. לכן\n$$P(Q_2)=1-P(\\bar A\\cap\\bar B\\cap\\bar C).$$\nכעת\n$$P(\\bar A\\cap\\bar B\\cap\\bar C)=P(\\bar B\\mid\\bar A\\cap\\bar C)P(\\bar A\\cap\\bar C)=(1-q_4)(1-p)^2.$$\nומכאן\n$$P(Q_2)=1-(1-q_4)(1-p)^2.$$",
-   "solutionSource": "official-pdf",
-   "official": true,
+   "solution": "**הפתרון הרשמי עם תיקון:** בפתרון הרשמי הוגדרו $q_2=P(B\\mid\\bar A\\cap C)$ ו-$q_4=P(B\\mid\\bar A\\cap\\bar C)$, הפוך מהשאלה כפי שהודפסה, שבה $q_2=P(B\\mid\\bar A\\cap\\bar C)$ ו-$q_4=P(B\\mid\\bar A\\cap C)$. הפתרון שלהלן הוא הפתרון הרשמי, עם $q_2$ ו-$q_4$ לפי ההגדרות המודפסות, ולכן התשובה הסופית שונה מהתשובה הרשמית $1-(1-q_4)(1-p)^2$. התיקון נבדק (חישוב מדויק וסימולציה).\n**חיבור במקביל.**\nבחיבור במקביל המעגל נכשל אם ורק אם שלושת הרכיבים נכשלים. לכן\n$$P(Q_2)=1-P(\\bar A\\cap\\bar B\\cap\\bar C).$$\nכעת\n$$P(\\bar A\\cap\\bar B\\cap\\bar C)=P(\\bar B\\mid\\bar A\\cap\\bar C)P(\\bar A\\cap\\bar C)=(1-q_2)(1-p)^2.$$\nומכאן\n$$P(Q_2)=1-(1-q_2)(1-p)^2.$$",
+   "solutionSource": "solved",
+   "official": false,
    "confidence": "high",
    "points": 8,
    "part": "ד",
-   "contextId": "c3",
-   "hold": "The official solution (solution pp.8-9) defines q2 = P(B | not-A and C) and q4 = P(B | not-A and not-C), but the printed question (exam p.2) defines q2 = P(B | not-A and not-C) and q4 = P(B | not-A and C). The official key does not match the printed labelling; see ASK_ADIR."
+   "contextId": "c3"
   },
   {
    "num": 4,

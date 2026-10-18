@@ -6,7 +6,7 @@ For every final answer two independent checks:
           (fractions / enumeration / sympy / numerical quadrature).
   MC    : Monte Carlo simulation (>= 10^6 trials) agrees with the official formula within 4 standard errors.
 Symbolic answers are checked at sample parameter values. Official keys are never changed here:
-a disagreement is reported as MISMATCH and the item is held (see Q3 below).
+a disagreement is reported as MISMATCH (Q3 a,b,d: official key fits the swapped q2/q4 labelling; the shipped corrected formulas are checked as "corrected" rows).
 Output is ASCII only.
 """
 import itertools, math, sys
@@ -167,6 +167,46 @@ def indep_diff(lab):
 off_cond = pp * a1 + (1 - pp) * a3 - (pp * a2 + (1 - pp) * a4)       # official: p q1+(1-p) q3 = p q2+(1-p) q4
 indep_sol_ok = sp.simplify(indep_diff("solution") - pp * (1 - pp) * off_cond) == 0
 indep_prt_ok = sp.simplify(indep_diff("printed") - pp * (1 - pp) * off_cond) == 0
+
+# ---- SHIPPED (corrected, printed labelling; arbiter ruling 2026-10-18): official method with q2/q4 swapped back.
+#   P(B)   = q1 p^2 + (q3+q4) p(1-p) + q2 (1-p)^2
+#   cond.  : p q1 + (1-p) q3 = p q4 + (1-p) q2
+#   P(A|B) = (q1 p^2 + q3 p(1-p)) / P(B)
+#   P(Q2)  = 1 - (1-q2)(1-p)^2
+fix_cond = pp * a1 + (1 - pp) * a3 - (pp * a4 + (1 - pp) * a2)
+rows.append(("Q3b", "corrected indep. condition <=> P(AB)=P(A)P(B), printed labelling (sympy)",
+             sp.simplify(indep_diff("printed") - pp * (1 - pp) * fix_cond) == 0, True, "symbolic identity"))
+for pf, qs in ((Fr(3, 10), (Fr(9, 10), Fr(7, 10), Fr(1, 2), Fr(3, 10))),
+               (Fr(3, 5), (Fr(4, 5), Fr(1, 10), Fr(2, 5), Fr(3, 4))),
+               (Fr(1, 2), (Fr(1, 5), Fr(9, 10), Fr(3, 5), Fr(1, 4)))):
+    f1, f2, f3, f4 = qs
+    fPB = f1 * pf ** 2 + (f3 + f4) * pf * (1 - pf) + f2 * (1 - pf) ** 2
+    fPAgB = (f1 * pf ** 2 + f3 * pf * (1 - pf)) / fPB
+    fPQ2 = 1 - (1 - f2) * (1 - pf) ** 2
+    pr = {1: pf, 0: 1 - pf}
+    cnd = {(1, 1): f1, (0, 0): f2, (1, 0): f3, (0, 1): f4}      # printed labelling
+    ePB = sum(pr[a] * pr[c] * cnd[(a, c)] for a in (0, 1) for c in (0, 1))
+    ePAB = sum(pr[1] * pr[c] * cnd[(1, c)] for c in (0, 1))
+    eQ2 = 1 - pr[0] * pr[0] * (1 - cnd[(0, 0)])   # all three fail: ~A, ~C, then ~B given ~A~C
+    # independent brute force over (a,b,c) for Q2: P(at least one works)
+    eQ2b = sum(pr[a] * pr[c] * (cnd[(a, c)] if b else 1 - cnd[(a, c)])
+               for a in (0, 1) for b in (0, 1) for c in (0, 1) if a or b or c)
+    assert eQ2 == eQ2b
+    A = rng.random(N) < float(pf); Cc = rng.random(N) < float(pf)
+    pb = np.where(A & Cc, float(f1), np.where(A & ~Cc, float(f3), np.where(~A & Cc, float(f4), float(f2))))
+    B = rng.random(N) < pb
+    nB = int(B.sum())
+    tag = "p=%s q=(%s,%s,%s,%s)" % (pf, f1, f2, f3, f4)
+    rec("Q3a", "corrected P(B) " + tag, fPB, ePB, float(B.mean()), se_p(float(fPB)))
+    rec("Q3b", "corrected P(A|B) " + tag, fPAgB, ePAB / ePB, float((A & B).sum() / nB),
+        math.sqrt(float(fPAgB) * (1 - float(fPAgB)) / nB))
+    rec("Q3d", "corrected P(Q2) " + tag, fPQ2, eQ2b, float((A | B | Cc).mean()), se_p(float(fPQ2)))
+    fcond = (pf * f1 + (1 - pf) * f3) == (pf * f4 + (1 - pf) * f2)
+    rows.append(("Q3b", "corrected condition holds iff P(AB)=P(A)P(B) " + tag, fcond == (ePAB == pf * ePB), True, ""))
+# an independent instance: condition satisfied -> P(A|B) = p
+pf, f1, f2, f3, f4 = Fr(1, 2), Fr(3, 5), Fr(1, 5), Fr(2, 5), Fr(4, 5)   # p q1+(1-p) q3 = 1/2 = p q4+(1-p) q2
+fPB = f1 * pf ** 2 + (f3 + f4) * pf * (1 - pf) + f2 * (1 - pf) ** 2
+rows.append(("Q3b", "corrected: condition met => P(A|B)=p", (f1 * pf ** 2 + f3 * pf * (1 - pf)) / fPB == pf, True, ""))
 
 # ============================================================ Q4
 x = sp.symbols("x", real=True)
@@ -335,7 +375,8 @@ prt_mismatch_items = sorted(h[0] for h in hold_report if h[2] == "printed" and n
 print("  official key matches the SOLUTION labelling everywhere: %s" % sol_ok)
 print("  items whose official key does NOT match the PRINTED labelling: %s (independence condition: %s)" % (
     prt_mismatch_items, "ok" if indep_prt_ok else "wrong"))
-print("  => Q3a, Q3b, Q3d held (key vs printed question); Q3c unaffected.")
+print("  => official keys of Q3a, Q3b, Q3d are wrong for the printed question; shipped CORRECTED (official:false),")
+print("     checked above as 'corrected ...' rows (exact + MC, printed labelling); Q3c unaffected.")
 print()
 print("TOTAL checks: %d, failing: %d" % (len(rows), len(bad)))
 for r in bad:

@@ -13,10 +13,13 @@ Transcription notes
   Q6 a=א-1, b=א-2, c=ב-1, d=ב-2.
 - Math never holds Hebrew. Where the print has a Hebrew word inside a formula (P(X זוגי), "אחרת") the word is
   moved out of the math or replaced by an English word inside it (even / odd / else); the meaning is unchanged.
-- Q3 HOLD: the printed exam defines q2 = P(B | not-A and not-C) and q4 = P(B | not-A and C); the official
-  solution (and its translations) uses q2 = P(B | not-A and C) and q4 = P(B | not-A and not-C). Parts a, b and d
-  of Q3 depend on that labelling, so their official keys do not match the printed question. Held, see
-  docs/ASK_ADIR.md and tools/verify/26A-B/check.py (it shows the mismatch exactly). Part c is unaffected.
+- Q3 q2/q4 SWAP (arbiter ruling 2026-10-18, standing "official typo" ruling: the printed question wins):
+  the printed exam defines q2 = P(B | not-A and not-C) and q4 = P(B | not-A and C); the official solution
+  (and its translations) uses q2 = P(B | not-A and C) and q4 = P(B | not-A and not-C). The official final
+  answers of parts a, b and d are therefore wrong for the printed question (p=0.3, q=(.9,.7,.5,.3):
+  P(B) 0.480 official vs 0.592 true). Shipped with the official method, q2/q4 swapped back to the printed
+  definitions, solutionSource "solved", official:false and the "הפתרון הרשמי עם תיקון" prefix. Verified exactly
+  and by Monte Carlo in tools/verify/26A-B/check.py. Part c is unaffected (official).
 - Q1(a) region data is in tools/verify/26A-B/regions.json (RAW_SCHEMA has no `region` field).
 - The official solution header notes it is written for second-year level and that Q1 is solved with the
   classical-geometric approach as the question asked; that note is not part of any solution text.
@@ -144,44 +147,47 @@ $$P(Y\ \mathrm{odd})=\frac{1-(-1)^m\left(\frac{p}{2-p}\right)^m}{2}.$$
 עבור $p=1$ אותה נוסחה מפורשת במובן הדטרמיניסטי: $Y=m$.""",
     5))
 
-# ------------------------------------------------------------------ Q3  (a, b, d HELD: q2/q4 labelling)
+# ------------------------------------------------------------------ Q3  (a, b, d: q2/q4 swap corrected, official:false)
 Q3_NOTE = (r"בקו ייצור לרכיבים אלקטרוניים בטכנולוגיית הדפסת תלת-ממד, מדפיסים שלושה רכיבים $A$, $B$ ו-$C$ זה לצד זה. "
            r"תקינות הרכיבים הצדדיים ($A$ ו-$C$) לא תלויה זו בזו, וההסתברות של כל אחד מהם להיות תקין היא $P(A)=P(C)=p$. "
            r"בשל אופי התהליך הטכנולוגי, קיימת תלות בין תקינות הרכיב האמצעי $B$ לבין תקינות הרכיבים הצדדיים:"
            "\n"
            r"$$P(B/A\cap C)=q_1,\quad P(B/\overline{A}\cap\overline{C})=q_2,\quad P(B/A\cap\overline{C})=q_3,\quad P(B/\overline{A}\cap C)=q_4.$$")
 
-HOLD3 = ("The official solution (solution pp.8-9) defines q2 = P(B | not-A and C) and q4 = P(B | not-A and not-C), "
-         "but the printed question (exam p.2) defines q2 = P(B | not-A and not-C) and q4 = P(B | not-A and C). "
-         "The official key does not match the printed labelling; see ASK_ADIR.")
+# Typo-ruling prefix for Q3 a, b, d (the official solution swaps q2 and q4 relative to the printed question).
+FIX = (r"**הפתרון הרשמי עם תיקון:** בפתרון הרשמי הוגדרו $q_2=P(B\mid\bar A\cap C)$ ו-$q_4=P(B\mid\bar A\cap\bar C)$, "
+       r"הפוך מהשאלה כפי שהודפסה, שבה $q_2=P(B\mid\bar A\cap\bar C)$ ו-$q_4=P(B\mid\bar A\cap C)$. "
+       r"הפתרון שלהלן הוא הפתרון הרשמי, עם $q_2$ ו-$q_4$ לפי ההגדרות המודפסות, ולכן ")
 
 questions.append(Q(
     3, "א", "conditional_bayes",
     r"מצאו את ההסתברות שהרכיב $B$ תקין (פועל).",
-    r"""**ההסתברות שהרכיב $B$ פועל.**
+    FIX + r"""התשובה הסופית שונה מהתשובה הרשמית $q_1p^2+(q_2+q_3)p(1-p)+q_4(1-p)^2$. התיקון נבדק (חישוב מדויק וסימולציה).
+**ההסתברות שהרכיב $B$ פועל.**
 לפי נוסחת ההסתברות השלמה על ארבעת המקרים הזרים הנקבעים על ידי $A$ ו-$C$,
 $$\begin{aligned}P(B)&=P(B\mid A\cap C)P(A\cap C)+P(B\mid\bar A\cap C)P(\bar A\cap C)\\&\quad+P(B\mid A\cap\bar C)P(A\cap\bar C)+P(B\mid\bar A\cap\bar C)P(\bar A\cap\bar C).\end{aligned}$$
 מאחר ש-$A$ ו-$C$ בלתי תלויים,
 $$P(A\cap C)=p^2,\quad P(\bar A\cap C)=(1-p)p,\quad P(A\cap\bar C)=p(1-p),\quad P(\bar A\cap\bar C)=(1-p)^2.$$
 לכן
-$$P(B)=q_1p^2+q_2p(1-p)+q_3p(1-p)+q_4(1-p)^2.$$
+$$P(B)=q_1p^2+q_4p(1-p)+q_3p(1-p)+q_2(1-p)^2.$$
 באופן שקול,
-$$P(B)=q_1p^2+(q_2+q_3)p(1-p)+q_4(1-p)^2.$$""",
-    5, contextId="c3", hold=HOLD3))
+$$P(B)=q_1p^2+(q_3+q_4)p(1-p)+q_2(1-p)^2.$$""",
+    5, contextId="c3", solutionSource="solved", official=False))
 
 questions.append(Q(
     3, "ב", "independence",
     r"האם תקינות הרכיב $A$ תלויה בתקינות הרכיב $B$? אם כן, חשבו $P(A/B)$. אם לא, הסבירו מדוע.",
-    r"""**האם $A$ תלוי ב-$B$? מצאו $P(A\mid B)$.**
-המאורעות $A$ ו-$B$ בלתי תלויים רק תחת התנאי
-$$pq_1+(1-p)q_3=pq_2+(1-p)q_4.$$
+    FIX + r"""תנאי אי-התלות והמכנה של $P(A\mid B)$ שונים מהתשובה הרשמית (שם: $pq_1+(1-p)q_3=pq_2+(1-p)q_4$, והמכנה $q_1p^2+(q_2+q_3)p(1-p)+q_4(1-p)^2$). התיקון נבדק (חישוב מדויק וסימולציה).
+**האם $A$ תלוי ב-$B$? מצאו $P(A\mid B)$.**
+מתקיים $P(B\mid A)=pq_1+(1-p)q_3$ ו-$P(B\mid\bar A)=pq_4+(1-p)q_2$. המאורעות $A$ ו-$B$ בלתי תלויים רק תחת התנאי
+$$pq_1+(1-p)q_3=pq_4+(1-p)q_2.$$
 אחרת, הם תלויים זה בזה. בהנחה ש-$P(B)>0$,
 $$P(A\mid B)=\frac{P(A\cap B)}{P(B)}.$$
 כעת
 $$\begin{aligned}P(A\cap B)&=P(A\cap B\cap C)+P(A\cap B\cap\bar C)\\&=P(B\mid A\cap C)P(A\cap C)+P(B\mid A\cap\bar C)P(A\cap\bar C)\\&=q_1p^2+q_3p(1-p).\end{aligned}$$
 ולכן
-$$P(A\mid B)=\frac{q_1p^2+q_3p(1-p)}{q_1p^2+(q_2+q_3)p(1-p)+q_4(1-p)^2}.$$""",
-    4, contextId="c3", hold=HOLD3))
+$$P(A\mid B)=\frac{q_1p^2+q_3p(1-p)}{q_1p^2+(q_3+q_4)p(1-p)+q_2(1-p)^2}.$$""",
+    4, contextId="c3", solutionSource="solved", official=False))
 
 questions.append(Q(
     3, "ג", "circuits",
@@ -198,14 +204,15 @@ questions.append(Q(
     3, "ד", "circuits",
     r"מחברים את שלושת הרכיבים במקביל (כמתואר במעגל $Q_2$). מהי ההסתברות $P(Q_2)$ שהמעגל פועל?" "\n"
     r"**הערה:** אין להשתמש בטבלאות אמת. יש לספק חישוב מפורט ומנומק לכל סעיף.",
-    r"""**חיבור במקביל.**
+    FIX + r"""התשובה הסופית שונה מהתשובה הרשמית $1-(1-q_4)(1-p)^2$. התיקון נבדק (חישוב מדויק וסימולציה).
+**חיבור במקביל.**
 בחיבור במקביל המעגל נכשל אם ורק אם שלושת הרכיבים נכשלים. לכן
 $$P(Q_2)=1-P(\bar A\cap\bar B\cap\bar C).$$
 כעת
-$$P(\bar A\cap\bar B\cap\bar C)=P(\bar B\mid\bar A\cap\bar C)P(\bar A\cap\bar C)=(1-q_4)(1-p)^2.$$
+$$P(\bar A\cap\bar B\cap\bar C)=P(\bar B\mid\bar A\cap\bar C)P(\bar A\cap\bar C)=(1-q_2)(1-p)^2.$$
 ומכאן
-$$P(Q_2)=1-(1-q_4)(1-p)^2.$$""",
-    8, contextId="c3", hold=HOLD3))
+$$P(Q_2)=1-(1-q_2)(1-p)^2.$$""",
+    8, contextId="c3", solutionSource="solved", official=False))
 
 # ------------------------------------------------------------------ Q4
 Q4_FX = (r"משתנה מקרי $X$ מתואר על ידי פונקציית צפיפות ההסתברות הבאה:" "\n"
