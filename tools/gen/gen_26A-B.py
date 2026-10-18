@@ -24,7 +24,8 @@ Transcription notes
 - The official solution header notes it is written for second-year level and that Q1 is solved with the
   classical-geometric approach as the question asked; that note is not part of any solution text.
 """
-import json, math, pathlib
+import itertools, json, math, pathlib
+from fractions import Fraction
 
 OUT = pathlib.Path(__file__).resolve().parents[1] / "raw" / "26A-B.json"
 CODE = "26A-B"
@@ -419,10 +420,105 @@ SIMS = {
                "estimate": "Var[D]", "exact": 7 / 144},
 }
 
+# ---- step-author additions: sims at sample parameter values for the symbolic answers
+def _geom(p, K=80):
+    probs = [p * (1 - p) ** (k - 1) for k in range(1, K + 1)]
+    probs[-1] += 1 - sum(probs)          # tail mass (~1e-13) goes to the last value
+    return {"values": list(range(1, K + 1)), "probs": probs}
+
+
+def _negbin(m, p, K=140):
+    """Y = toss number of the m-th head; truncated at K (tail mass ~1e-30 for m=2, p=0.5)"""
+    ks = list(range(m, K + 1))
+    probs = [math.comb(k - 1, m - 1) * p ** m * (1 - p) ** (k - m) for k in ks]
+    probs[-1] += 1 - sum(probs)
+    return {"values": ks, "probs": probs}
+
+
+def _q3_rows(p=0.3, qs=None):
+    """A, C independent with P=p; B | (A,C) with the PRINTED definitions: q1=(A,C), q2=(not A,not C), q3=(A,not C), q4=(not A,C)"""
+    qs = qs or {(1, 1): 0.9, (0, 0): 0.7, (1, 0): 0.5, (0, 1): 0.3}
+    rows = []
+    for a in (0, 1):
+        for c in (0, 1):
+            w = (p if a else 1 - p) * (p if c else 1 - p)
+            rows.append({"p": w * qs[(a, c)], "A": a, "B": 1, "C": c})
+            rows.append({"p": w * (1 - qs[(a, c)]), "A": a, "B": 0, "C": c})
+    return rows
+
+
+def _vshapes(R, C):
+    sh = set()
+    for r in range(R - 1):
+        for c in range(C - 2):
+            sh.add(frozenset({(r, c), (r, c + 2), (r + 1, c + 1)}))
+            sh.add(frozenset({(r + 1, c), (r + 1, c + 2), (r, c + 1)}))
+    for r in range(R - 2):
+        for c in range(C - 1):
+            sh.add(frozenset({(r, c), (r + 2, c), (r + 1, c + 1)}))
+            sh.add(frozenset({(r, c + 1), (r + 2, c + 1), (r + 1, c)}))
+    return sh
+
+
+def _board_rows(R, C):
+    sh = _vshapes(R, C)
+    cells = [(r, c) for r in range(R) for c in range(C)]
+    tot = math.comb(R * C, 3)
+    return [{"p": 1 / tot, "v": 1 if frozenset(t) in sh else 0} for t in itertools.combinations(cells, 3)], len(sh) / tot
+
+
+def _two_urns():
+    """N1=10, D1=4, n=3 into urn 2 (N2=8, D2=3), then m=2 drawn: joint (X, Y) from the two hypergeometric stages"""
+    rows = []
+    for k in range(0, 4):
+        px = Fraction(math.comb(4, k) * math.comb(6, 3 - k), math.comb(10, 3))
+        for l in range(0, 3):
+            py = Fraction(math.comb(3 + k, l) * math.comb(8 - k, 2 - l), math.comb(11, 2))
+            if px * py:
+                rows.append({"p": float(px * py), "X": k, "Y": l})
+    return rows
+
+
+_BOARD34, _PV34 = _board_rows(3, 4)
+_BOARD45, _PV45 = _board_rows(4, 5)
+_BC = {"joint": _q3_rows()}
+_IS = lambda **kw: dict(kind="custom_discrete", **kw)
+SIMS.update({
+    (2, "א"): _IS(params={"vars": {"T%d" % i: {"values": [0, 1], "probs": [0.7, 0.3]} for i in range(1, 6)},
+                         "event": "T1 == 1 and T1+T2+T3+T4+T5 < 5"},
+                  estimate="P(first tail after a head), n=5 p=0.3 (1=head)", exact=0.3 * (1 - 0.3 ** 4)),
+    (2, "ב"): _IS(params={"vars": {"X": _geom(0.3)}, "event": "X % 2 == 0"}, estimate="P(X even), p=0.3", exact=0.7 / 1.7),
+    (2, "ג"): _IS(params={"vars": {"Y": _negbin(2, 0.5)}, "event": "Y % 2 == 1"}, estimate="P(Y odd), m=2 p=0.5", exact=4 / 9),
+    (3, "א"): _IS(params=dict(_BC, event="B == 1"), estimate="P(B), p=0.3 q=(0.9,0.7,0.5,0.3)", exact=0.592),
+    (3, "ב"): _IS(params=dict(_BC, event="A == 1", given="B == 1"), estimate="P(A | B), p=0.3 q=(0.9,0.7,0.5,0.3)", exact=0.186 / 0.592),
+    (3, "ג"): _IS(params=dict(_BC, event="A == 1 and B == 1 and C == 1"), estimate="P(Q1) series, p=0.3 q1=0.9", exact=0.081),
+    (3, "ד"): _IS(params=dict(_BC, event="A == 1 or B == 1 or C == 1"), estimate="P(Q2) parallel, p=0.3 q2=0.7", exact=0.853),
+    (4, "ד"): dict(kind="pdf", params={"pieces": [{"from": 0, "to": 1, "expr": "2.4*x^2"},
+                                                   {"from": 1, "to": 40, "expr": "0.2*exp(-(x-1))"}],
+                                      "event": "x > 0 and x < 0.5"},
+                   estimate="P(0<X<mu/2), mu=1", exact=0.1),
+    (5, "א"): dict(kind="urn", params={"counts": {"red": 4, "black": 6}, "draws": 3, "event": "red == 1"},
+                   estimate="P(X=1), N1=10 D1=4 n=3", exact=0.5),
+    (5, "ב"): dict(kind="urn", params={"counts": {"red": 4, "black": 6}, "draws": 3, "event": "black == 2"},
+                   estimate="P(X~=2), N1=10 D1=4 n=3", exact=0.5),
+    (5, "ד"): dict(kind="urn", params={"counts": {"red": 4, "black": 7}, "draws": 2, "event": "red == 1"},
+                   estimate="P(Y=1 | X=1), N2=8 D2=3 n=3 m=2", exact=28 / 55),
+    (5, "ה"): _IS(params={"joint": _two_urns(), "event": "X == 2 and Y == 1"},
+                  estimate="P(X=2,Y=1), N1=10 D1=4 n=3 N2=8 D2=3 m=2", exact=9 / 55),
+    (6, "ב"): _IS(params={"joint": _BOARD34, "event": "v == 1"}, estimate="P(V shape), 3x4 board", exact=_PV34),
+    (6, "ד"): _IS(params={"joint": _BOARD45, "event": "v == 1"}, estimate="P(V shape), 4x5 board", exact=_PV45),
+})
+
 for _q in questions:
     _k = (_q["num"], _q.get("part"))
     if _k in SIMS:
         _q["sim"] = SIMS[_k]
+
+# ---- step-author: rubric, pitfalls, guided steps. Data in steps_26A_B.py; every value is re-derived in
+# tools/verify/26A-B/steps_check.py (exact + Monte Carlo).
+import probsteps
+from steps_26A_B import DATA as _STEPS
+probsteps.apply(questions, _STEPS, CODE)
 
 # ------------------------------------------------------------------ exam
 exam = {
