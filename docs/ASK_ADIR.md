@@ -55,6 +55,27 @@ Open questions for Adir. One entry per item; the orchestrator moves it to Resolv
 - Needed: route to the solver (no-key); not a key dispute.
 - Status: hold (no-key; question text transcribed, not in the bank)
 
+### 25A-C Q3 c - official 1-1/e disagrees with the exact value 1-(4/13)e^(-1/2)
+- Path: official PDF of sitting 25A-C (handwritten solutions), see sitting code only
+- Page: solution p.7 (Q3 c); exam p.2
+- Question: with the official a=3/2, b=1/4 the cdf is F(t)=3/4 (1+t)^2 on [-1,0) and 1-(1/4)e^(-t) for t>=0. Then P(X<1/2 | X>-1/2) = (F(1/2)-F(-1/2))/(1-F(-1/2)) = (13/16 - e^(-1/2)/4)/(13/16) = 1-(4/13)e^(-1/2), about 0.813. The official answer is 1-1/e, about 0.63. Exact computation and Monte Carlo (2*10^6 trials) both give 0.813.
+- Needed: confirm the official answer is a slip (then ship 1-(4/13)e^(-1/2), marked official:false) or tell us what was intended.
+- Status: hold (Q3c held in the raw JSON with the official text transcribed; not in the bank)
+
+### 25A-C Q4 b, c - printed H works with probability q, the official polynomial is the q=p case
+- Path: official PDF of sitting 25A-C (handwritten solutions), see sitting code only
+- Page: exam p.2 (Q4 text); solution pp.9-13 (Q4 b, c)
+- Question: the exam says the added unit H works with probability q. The official solution uses P(H)=p and gets P(Q2)=p^3(2+4p-2p^2-13p^3+14p^4-4p^5) and the same polynomial for P(Q1 or Q2). Exact enumeration of the network shows these are correct only when q=p (at p=0.7, q=0.4 the official gives 0.703, the exact value is 0.624, Monte Carlo 0.623). The general answer is P(Q2)=q*P(Q2|H)+(1-q)*P(Q1); P(Q1 or Q2)=P(Q2) because Q1 implies Q2. Parts a and d (answer 1) do not depend on q and are shipped.
+- Needed: either the printed q is a typo for p (ship the official answers unchanged), or q stands (ship the general-q formulas, marked official:false).
+- Status: hold (Q4b, Q4c held, in the raw JSON with the official solution text transcribed; not in the bank)
+
+### 25A-B Q6 e, f - bonus parts with no official solution
+- Path: official PDF of sitting 25A-B (handwritten solutions), see sitting code only
+- Page: exam p.3 (Q6 bonus 1 and 2); the solution file ends after Q6 d (p.23)
+- Question: the variances var[X_L], var[X_R] (bonus 1) and the correlation rho[X_L,X_R] (bonus 2) have no worked solution.
+- Needed: the solver route (no-key); nothing from Adir unless a key exists.
+- Status: hold (no-key)
+
 ## Resolved
 
 ### 26A-B Q3 a, b, d - official key uses different q2/q4 labels than the printed question

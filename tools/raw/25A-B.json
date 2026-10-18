@@ -1,0 +1,541 @@
+{
+ "examCode": "25A-B",
+ "examLabel": "הסתברות, סמסטר א׳ תשפ״ה, מועד ב (12.03.2025)",
+ "year": 2025,
+ "examDate": "12.03.2025",
+ "sourceFile": "25A-B exam pp.1-3",
+ "solutionFile": "25A-B handwritten official solutions, pp.4-23",
+ "contexts": {
+  "c1": {
+   "kind": "text",
+   "title": "שאלה 1",
+   "text": "יהיו $X\\sim U_c(0,1)$ ו-$Y\\sim U_c(0,1)$ משתנים מקריים בלתי תלויים בעלי התפלגות אחידה. נגדיר משתנה מקרי חדש כיחס בין השניים:\n$$Z=\\frac XY.$$"
+  },
+  "c2": {
+   "kind": "text",
+   "title": "שאלה 2",
+   "text": "יהיו $A$ ו-$B$ מאורעות כלשהם בעלי הסתברות $P(A)=p$ ו-$P(B)=q$. בהינתן הסתברות מותנית $P(B/\\overline A)=s$,"
+  },
+  "c3": {
+   "kind": "image",
+   "title": "שאלה 3",
+   "image": "images/exams/25A-B-Q3-pdf.png",
+   "caption": "משתנה מקרי $X$ מתואר על ידי פונקציית צפיפות ההסתברות המשורטטת כאן. המקדמים $a$ ו-$b$ אינם ידועים.\n(בגרף: הצפיפות שווה לקבוע $a$ על $[-1,0)$; על $[0,2]$ היא משולש שקודקודו העליון בנקודה $(1,b)$, עולה ליניארית מ-$0$ ב-$x=0$ ויורדת ליניארית ל-$0$ ב-$x=2$; אפס בשאר המקומות.)"
+  },
+  "c4": {
+   "kind": "image",
+   "title": "שאלה 4: מעגלים",
+   "image": "images/exams/25A-B-Q4-circuits.png",
+   "caption": "סטודנט של המכון הטכנולוגי חולון הרכיב מעגל $\\boldsymbol{Q_1}$ מיחידות $A$, $B$, $C$, $D$ ו-$E$ הפועלות ללא תלות אחת בשנייה בהסתברויות הזהות $p$.\nלאחר מכן, הוא שינה את המעגל $\\boldsymbol{Q_1}$ על ידי ״הוספת״ שתי יחידות נוספות $F$ ו-$G$, אשר פועלות בהסתברויות הזהות $q$ וזאת ללא תלות אחת בשנייה וללא תלות בכל יחידה אחרת. המעגל שנוצר הינו $\\boldsymbol{Q_2}$."
+  },
+  "c5": {
+   "kind": "image",
+   "title": "שאלה 5: כד",
+   "image": "images/exams/25A-B-Q5-urn.png",
+   "caption": "בכד נמצאים $D$ כדורים אדומים ו-$(N-D)$ כדורים שחורים."
+  },
+  "c6": {
+   "kind": "text",
+   "title": "שאלה 6: כיסאות",
+   "text": "שני אנשים מתיישבים **באקראי** על שני כיסאות מתוך שורת כיסאות הממוספרים ברצף בין $1$ ל-$N$ (אין לראות בכך טענה שאחד מהם תמיד מתיישב שמאלה מהשני!)."
+  }
+ },
+ "questions": [
+  {
+   "num": 1,
+   "kind": "computation",
+   "topic": "minmax_transform",
+   "question": "חשבו את ההסתברויות (3 נק׳ לכל תת סעיף):\n**(א-1):** $P(Z<1/3)$.",
+   "points": 3,
+   "solution": "נשתמש בגישה הקלאסית: מרחב המדגם הוא ריבוע היחידה $\\Omega=(0,1)^2$ ו-$|\\Omega|=1$.\n$$P(Z<\\tfrac13)=P\\left(\\frac XY<\\frac13\\right)=P(Y>3X)=\\frac{|\\{Y>3X\\}|}{|\\Omega|}.$$\nהאזור $\\{y>3x\\}$ בתוך הריבוע הוא משולש בעל בסיס $\\frac13$ וגובה $1$, ושטחו $\\frac12\\cdot\\frac13\\cdot1=\\frac16$. לכן\n$$P(Z<\\tfrac13)=\\frac16.$$",
+   "solutionSource": "official-pdf",
+   "official": true,
+   "confidence": "high",
+   "part": "א",
+   "contextId": "c1",
+   "region": {
+    "space": {
+     "x": [
+      0,
+      1
+     ],
+     "y": [
+      0,
+      1
+     ]
+    },
+    "event": [
+     {
+      "a": 3,
+      "b": -1,
+      "c": 0,
+      "op": "<"
+     }
+    ],
+    "exact": 0.16666666666666666,
+    "caption": "X/Y<1/3, כלומר y>3x"
+   }
+  },
+  {
+   "num": 1,
+   "kind": "computation",
+   "topic": "minmax_transform",
+   "question": "חשבו את ההסתברויות (3 נק׳ לכל תת סעיף):\n**(א-2):** $P(Z<3)$.",
+   "points": 3,
+   "solution": "נשתמש בגישה הקלאסית: מרחב המדגם הוא ריבוע היחידה $\\Omega=(0,1)^2$ ו-$|\\Omega|=1$.\n$$P(Z<3)=P\\left(\\frac XY<3\\right)=P\\left(Y>\\frac X3\\right)=\\frac{|\\{Y>\\frac X3\\}|}{|\\Omega|}.$$\nמשלים: האזור $\\{y<\\frac x3\\}$ הוא משולש בעל בסיס $1$ וגובה $\\frac13$, ושטחו $\\frac12\\cdot1\\cdot\\frac13=\\frac16$. לכן\n$$P(Z<3)=1-\\frac16=\\frac56.$$",
+   "solutionSource": "official-pdf",
+   "official": true,
+   "confidence": "high",
+   "part": "ב",
+   "contextId": "c1",
+   "region": {
+    "space": {
+     "x": [
+      0,
+      1
+     ],
+     "y": [
+      0,
+      1
+     ]
+    },
+    "event": [
+     {
+      "a": 1,
+      "b": -3,
+      "c": 0,
+      "op": "<"
+     }
+    ],
+    "exact": 0.8333333333333334,
+    "caption": "X/Y<3, כלומר y>x/3"
+   }
+  },
+  {
+   "num": 1,
+   "kind": "computation",
+   "topic": "minmax_transform",
+   "question": "חשבו את ההסתברויות (3 נק׳ לכל תת סעיף):\n**(א-3):** $P(Z<1)$.",
+   "points": 3,
+   "solution": "נשתמש בגישה הקלאסית: מרחב המדגם הוא ריבוע היחידה $\\Omega=(0,1)^2$ ו-$|\\Omega|=1$.\n$$P(Z<1)=P\\left(\\frac XY<1\\right)=P(Y>X)=\\frac12$$\n(חצי מהריבוע נמצא מעל האלכסון $y=x$).",
+   "solutionSource": "official-pdf",
+   "official": true,
+   "confidence": "high",
+   "part": "ג",
+   "contextId": "c1",
+   "region": {
+    "space": {
+     "x": [
+      0,
+      1
+     ],
+     "y": [
+      0,
+      1
+     ]
+    },
+    "event": [
+     {
+      "a": 1,
+      "b": -1,
+      "c": 0,
+      "op": "<"
+     }
+    ],
+    "exact": 0.5,
+    "caption": "X/Y<1, כלומר y>x"
+   }
+  },
+  {
+   "num": 1,
+   "kind": "computation",
+   "topic": "minmax_transform",
+   "question": "מצאו את פונקציית ההתפלגות המצטברת $F_Z(t)$ של משתנה מקרי $Z$ ושרטטו אותה. (10 נק׳)",
+   "points": 10,
+   "solution": "נשתמש בגישה הקלאסית: מרחב המדגם הוא ריבוע היחידה $\\Omega=(0,1)^2$ ו-$|\\Omega|=1$.\n$$F_Z(t)=P(Z\\le t)=\\begin{cases}0,&t\\le0,\\\\P\\left(\\frac XY<t\\right),&t>0.\\end{cases}$$\nעבור $t>0$: $P\\left(\\frac XY<t\\right)=P\\left(Y>\\frac Xt\\right)$, ועל כן $|\\Omega|=1$ והתשובה היא שטח האזור $\\{y>\\frac xt\\}$ בתוך הריבוע.\n- **מקרה 1, $0<t\\le1$:** הישר $y=\\frac xt$ עולה בשיפוע $\\ge1$ ויוצא מהריבוע ב-$x=t$ (גובה $1$). האזור הוא משולש בעל בסיס $t$ וגובה $1$, ושטחו $\\frac t2$.\n- **מקרה 2, $t>1$:** הישר $y=\\frac xt$ יוצא מהריבוע בנקודה $\\left(1,\\frac1t\\right)$. השטח מתחת לישר הוא $\\frac12\\cdot1\\cdot\\frac1t=\\frac1{2t}$, ולכן השטח מעליו הוא $1-\\frac1{2t}$.\n\nלכן\n$$F_Z(t)=\\begin{cases}0,&t\\le0,\\\\\\dfrac t2,&0<t\\le1,\\\\1-\\dfrac1{2t},&t>1.\\end{cases}$$\nהגרף: אפס עד $0$, ישר עם שיפוע $\\frac12$ עד $(1,\\frac12)$, ואחר כך עלייה מתמתנת שואפת ל-$1$.",
+   "solutionSource": "official-pdf",
+   "official": true,
+   "confidence": "high",
+   "part": "ד",
+   "contextId": "c1",
+   "region": [
+    {
+     "space": {
+      "x": [
+       0,
+       1
+      ],
+      "y": [
+       0,
+       1
+      ]
+     },
+     "event": [
+      {
+       "a": 1,
+       "b": -0.4,
+       "c": 0,
+       "op": "<"
+      }
+     ],
+     "exact": 0.2,
+     "caption": "t=0.4: שטח t/2"
+    },
+    {
+     "space": {
+      "x": [
+       0,
+       1
+      ],
+      "y": [
+       0,
+       1
+      ]
+     },
+     "event": [
+      {
+       "a": 1,
+       "b": -2,
+       "c": 0,
+       "op": "<"
+      }
+     ],
+     "exact": 0.75,
+     "caption": "t=2: שטח 1-1/(2t)"
+    }
+   ]
+  },
+  {
+   "num": 1,
+   "kind": "computation",
+   "topic": "minmax_transform",
+   "question": "מצאו את פונקציית הצפיפות $f_Z(t)$. (2 נק׳)",
+   "points": 2,
+   "solution": "$f_Z(t)=\\frac{d}{dt}F_Z(t)$:\n$$f_Z(t)=\\begin{cases}0,&t\\le0,\\\\\\dfrac12,&0<t\\le1,\\\\\\dfrac1{2t^2},&t>1.\\end{cases}$$",
+   "solutionSource": "official-pdf",
+   "official": true,
+   "confidence": "high",
+   "part": "ה",
+   "contextId": "c1"
+  },
+  {
+   "num": 1,
+   "kind": "computation",
+   "topic": "continuous_rv",
+   "question": "חשבו את התוחלת $\\mathbb{E}\\left[\\sqrt Z\\right]$. (4 נק׳)",
+   "points": 4,
+   "solution": "**דרך א׳ (בלי הצפיפות של $Z$):** $\\sqrt Z=\\frac{\\sqrt X}{\\sqrt Y}$ ו-$X,Y$ בלתי תלויים:\n$$\\mathbb{E}\\left[\\sqrt Z\\right]=\\mathbb{E}\\left[\\sqrt X\\right]\\cdot\\mathbb{E}\\left[\\frac1{\\sqrt Y}\\right].$$\n$$\\mathbb{E}\\left[\\sqrt X\\right]=\\int_0^1\\sqrt x\\,dx=\\frac23,\\qquad\\mathbb{E}\\left[\\frac1{\\sqrt Y}\\right]=\\int_0^1\\frac{dy}{\\sqrt y}=2\\sqrt y\\Big|_0^1=2.$$\nלכן $\\mathbb{E}[\\sqrt Z]=\\frac43$.\n\n**דרך ב׳ (דרך הצפיפות):**\n$$\\mathbb{E}\\left[\\sqrt Z\\right]=\\int_{-\\infty}^{\\infty}\\sqrt t\\,f_Z(t)\\,dt=\\int_0^1\\sqrt t\\cdot\\frac12\\,dt+\\int_1^\\infty\\sqrt t\\cdot\\frac1{2t^2}\\,dt=\\frac13+\\frac12\\int_1^\\infty\\frac{dt}{t\\sqrt t}=\\frac13+1=\\frac43.$$",
+   "solutionSource": "official-pdf",
+   "official": true,
+   "confidence": "high",
+   "part": "ו",
+   "contextId": "c1"
+  },
+  {
+   "num": 2,
+   "kind": "computation",
+   "topic": "conditional_bayes",
+   "question": "חשבו את ההסתברויות הבאות (4 נק׳ לכל תת סעיף):\n**(א-1):** $P(\\overline{A}/B)$.",
+   "points": 4,
+   "solution": "לפי בייס, $P(B/\\overline A)=\\frac{P(\\overline A/B)\\,P(B)}{P(\\overline A)}$, כלומר $s=\\frac{P(\\overline A/B)\\,q}{1-p}$. לכן\n$$P(\\overline A/B)=\\frac{s(1-p)}{q}.$$",
+   "solutionSource": "official-pdf",
+   "official": true,
+   "confidence": "high",
+   "part": "א",
+   "contextId": "c2"
+  },
+  {
+   "num": 2,
+   "kind": "computation",
+   "topic": "conditional_bayes",
+   "question": "חשבו את ההסתברויות הבאות (4 נק׳ לכל תת סעיף):\n**(א-2):** $P(A/B)$.",
+   "points": 4,
+   "solution": "$$P(A/B)=1-P(\\overline A/B)=1-\\frac{s(1-p)}{q}.$$",
+   "solutionSource": "official-pdf",
+   "official": true,
+   "confidence": "high",
+   "part": "ב",
+   "contextId": "c2"
+  },
+  {
+   "num": 2,
+   "kind": "computation",
+   "topic": "conditional_bayes",
+   "question": "חשבו את ההסתברויות הבאות (4 נק׳ לכל תת סעיף):\n**(א-3):** $P(A\\cap B)$.",
+   "points": 4,
+   "solution": "$P(A\\cap B)=P(A/B)\\,P(B)$ ומכאן, לאחר הצבה,\n$$P(A\\cap B)=q-s(1-p).$$",
+   "solutionSource": "official-pdf",
+   "official": true,
+   "confidence": "high",
+   "part": "ג",
+   "contextId": "c2"
+  },
+  {
+   "num": 2,
+   "kind": "computation",
+   "topic": "conditional_bayes",
+   "question": "חשבו את ההסתברויות הבאות (4 נק׳ לכל תת סעיף):\n**(א-4):** $P(A\\cup B)$.",
+   "points": 4,
+   "solution": "$$P(A\\cup B)=P(A)+P(B)-P(A\\cap B)=p+q-\\bigl[q-s(1-p)\\bigr]=p+s(1-p).$$",
+   "solutionSource": "official-pdf",
+   "official": true,
+   "confidence": "high",
+   "part": "ד",
+   "contextId": "c2"
+  },
+  {
+   "num": 2,
+   "kind": "computation",
+   "topic": "independence",
+   "question": "עבור אילו פרמטרים $p$, $q$ ו-$s$ המאורעות $A$ ו-$B$ יהיו מאורעות **בלתי תלויים**? (4 נק׳)",
+   "points": 4,
+   "solution": "בלתי תלויים אם ורק אם $P(A\\cap B)=P(A)P(B)$, כלומר\n$$q-s(1-p)=pq\\ \\Longleftrightarrow\\ q(1-p)=s(1-p).$$\n(בהנחה ש-$p\\ne1$) מתקבל\n$$q=s.$$",
+   "solutionSource": "official-pdf",
+   "official": true,
+   "confidence": "high",
+   "part": "ה",
+   "contextId": "c2"
+  },
+  {
+   "num": 2,
+   "kind": "computation",
+   "topic": "basics_events",
+   "question": "עבור אילו פרמטרים $p$, $q$ ו-$s$ המאורעות $A$ ו-$B$ יהיו מאורעות **זרים**? (5 נק׳)",
+   "points": 5,
+   "solution": "זרים אם ורק אם $P(A\\cap B)=0$, כלומר $q-s(1-p)=0$:\n$$q=s(1-p).$$",
+   "solutionSource": "official-pdf",
+   "official": true,
+   "confidence": "high",
+   "part": "ו",
+   "contextId": "c2"
+  },
+  {
+   "num": 3,
+   "kind": "computation",
+   "topic": "continuous_rv",
+   "question": "בהנחה כי $\\mathbb{E}[X]=\\mu$, מצאו את המקדמים ובטאו אותם באמצעות $\\mu$. (10 נק׳)",
+   "points": 10,
+   "solution": "**נרמול:** שטח המלבן $[-1,0)\\times[0,a]$ הוא $a$ ושטח המשולש (בסיס $2$, גובה $b$) הוא $b$, לכן\n$$a+b=1.\\qquad(*)$$\n**תוחלת:** על $[0,1)$ הצפיפות היא $bx$ ועל $[1,2]$ היא $b(2-x)$:\n$$\\mu=\\int_{-1}^0x\\,a\\,dx+\\int_0^1x\\cdot bx\\,dx+\\int_1^2x\\cdot b(2-x)\\,dx=-\\frac a2+\\frac b3+b\\left(x^2\\Big|_1^2-\\frac{x^3}3\\Big|_1^2\\right)=-\\frac a2+b.\\qquad(**)$$\nפתרון $(*)$ ו-$(**)$:\n$$a=\\frac23(1-\\mu),\\qquad b=\\frac{1+2\\mu}{3}.$$",
+   "solutionSource": "official-pdf",
+   "official": true,
+   "confidence": "high",
+   "part": "א",
+   "contextId": "c3"
+  },
+  {
+   "num": 3,
+   "kind": "computation",
+   "topic": "continuous_rv",
+   "question": "מהו הערך הקטן והגדול ביותר של התוחלת $\\mu$? נמקו! (4 נק׳)",
+   "points": 4,
+   "solution": "צפיפות חייבת להיות אי-שלילית, $a\\ge0$ ו-$b\\ge0$:\n$$1-\\mu\\ge0\\ \\Rightarrow\\ \\mu\\le1,\\qquad1+2\\mu\\ge0\\ \\Rightarrow\\ \\mu\\ge-\\frac12.$$\nלכן\n$$-\\frac12\\le\\mu\\le1.$$",
+   "solutionSource": "official-pdf",
+   "official": true,
+   "confidence": "high",
+   "part": "ב",
+   "contextId": "c3"
+  },
+  {
+   "num": 3,
+   "kind": "computation",
+   "topic": "continuous_rv",
+   "question": "חשבו את פונקציית ההתפלגות המצטברת $F_X(t)$ ושרטטו אותה. (7 נק׳)",
+   "points": 7,
+   "solution": "$F_X(t)=\\int_{-\\infty}^tf_X(x)\\,dx$, לכל $t\\in\\mathbb R$. נפרק לתחומים:\n- $t<-1$: $F_X(t)=0$.\n- $-1\\le t<0$: $F_X(t)=a(t+1)=\\frac23(1-\\mu)(t+1)$.\n- $0\\le t<1$: $F_X(t)=a+\\frac12\\cdot t\\cdot bt=\\frac23(1-\\mu)+\\frac{1+2\\mu}{6}t^2$.\n- $1\\le t<2$: $F_X(t)=1-\\frac12(2-t)\\cdot b(2-t)=1-\\frac{1+2\\mu}{6}(2-t)^2$.\n- $t\\ge2$: $F_X(t)=1$.\n\nכלומר\n$$F_X(t)=\\begin{cases}0,&t<-1,\\\\\\dfrac23(1-\\mu)(t+1),&-1\\le t<0,\\\\\\dfrac23(1-\\mu)+\\dfrac{1+2\\mu}6\\,t^2,&0\\le t<1,\\\\1-\\dfrac{1+2\\mu}6(2-t)^2,&1\\le t<2,\\\\1,&t\\ge2.\\end{cases}$$\nבגרף $F_X(0)=\\frac23(1-\\mu)$ ו-$F_X(1)=\\frac{5-2\\mu}{6}$.",
+   "solutionSource": "official-pdf",
+   "official": true,
+   "confidence": "high",
+   "part": "ג",
+   "contextId": "c3"
+  },
+  {
+   "num": 3,
+   "kind": "computation",
+   "topic": "continuous_rv",
+   "question": "חשבו את ההסתברות $P(X<1\\,/\\,X>0)$. (4 נק׳)",
+   "points": 4,
+   "solution": "$$P(X<1\\mid X>0)=\\frac{P(0<X<1)}{P(X>0)}=\\frac{F_X(1)-F_X(0)}{1-F_X(0)}=\\frac{\\frac b2}{b}=\\frac12.$$",
+   "solutionSource": "official-pdf",
+   "official": true,
+   "confidence": "high",
+   "part": "ד",
+   "contextId": "c3"
+  },
+  {
+   "num": 4,
+   "kind": "computation",
+   "topic": "circuits",
+   "question": "מהי ההסתברות שמעגל $Q_1$ פועל? (8 נק׳)",
+   "points": 8,
+   "solution": "נפעל לפי נוסחת ההסתברות השלמה על היחידה האמצעית $E$:\n$$P(Q_1)=P(Q_1/E)P(E)+P(Q_1/\\overline E)P(\\overline E),\\qquad P(E)=p.$$\n- $E$ פועלת: ($A\\,\\|\\,B$) בטור עם ($C\\,\\|\\,D$): $P(Q_1/E)=(2p-p^2)^2$.\n- $E$ לא פועלת: $(A,C)\\ \\|\\ (B,D)$: $P(Q_1/\\overline E)=2p^2-p^4$.\n\nלכן\n$$P(Q_1)=p(2p-p^2)^2+(1-p)(2p^2-p^4).$$",
+   "solutionSource": "official-pdf",
+   "official": true,
+   "confidence": "high",
+   "part": "א",
+   "contextId": "c4"
+  },
+  {
+   "num": 4,
+   "kind": "computation",
+   "topic": "circuits",
+   "question": "מהי ההסתברות שמעגל $Q_2$ פועל? (8 נק׳)",
+   "points": 8,
+   "solution": "נפעל לפי נוסחת ההסתברות השלמה על $F$:\n$$P(Q_2)=P(Q_2/F)P(F)+P(Q_2/\\overline F)P(\\overline F),\\qquad P(F)=q.$$\nכאשר $F$ פועלת, $Q_2$ הוא המעגל $Q_1$ בטור עם $G$: $P(Q_2/F)=q\\,P(Q_1)$.\nכאשר $F$ לא פועלת, $D$ מנותקת והמעגל הוא $\\bigl(A\\cup(B\\cap E)\\bigr)\\cap C\\cap G$:\n$$P(Q_2/\\overline F)=P(C)P(G)P\\bigl(A\\cup(B\\cap E)\\bigr)=p\\cdot q\\cdot(p+p^2-p^3)=p^2q(1+p-p^2).$$\nלכן\n$$P(Q_2)=q^2P(Q_1)+p^2q(1-q)(1+p-p^2)=q^2p^2(1+p-4p^2+2p^3)+qp^2(1+p-p^2).$$",
+   "solutionSource": "official-pdf",
+   "official": true,
+   "confidence": "high",
+   "part": "ב",
+   "contextId": "c4"
+  },
+  {
+   "num": 4,
+   "kind": "computation",
+   "topic": "circuits",
+   "question": "מהי ההסתברות שגם מעגל $Q_1$ וגם מעגל $Q_2$ פעלו? (6 נק׳)",
+   "points": 6,
+   "solution": "נסמן $\\widetilde Q=Q_1\\cap Q_2$ ונפעל לפי נוסחת ההסתברות השלמה על ארבעת המקרים של $E$ ו-$F$:\n$$P(\\widetilde Q)=P(\\widetilde Q/E\\cap F)\\,pq+P(\\widetilde Q/\\overline E\\cap\\overline F)\\,(1-p)(1-q)+P(\\widetilde Q/E\\cap\\overline F)\\,p(1-q)+P(\\widetilde Q/\\overline E\\cap F)\\,q(1-p).$$\n- $E\\cap F$: $(A\\cup B)\\cap(C\\cup D)\\cap G$, ולכן $(2p-p^2)^2q$.\n- $\\overline E\\cap\\overline F$: $\\bigl((A\\cap C)\\cup(B\\cap D)\\bigr)\\cap A\\cap C\\cap G=A\\cap C\\cap G$, ולכן $p^2q$.\n- $E\\cap\\overline F$: $(A\\cup B)\\cap(C\\cup D)\\cap C\\cap G=(A\\cup B)\\cap C\\cap G$, ולכן $pq(2p-p^2)$.\n- $\\overline E\\cap F$: $\\bigl((A\\cap C)\\cup(B\\cap D)\\bigr)\\cap G$, ולכן $q(2p^2-p^4)$.\n\nהצבה:\n$$P(\\widetilde Q)=pq(2p-p^2)^2q+(1-p)(1-q)p^2q+p(1-q)pq(2p-p^2)+q(1-p)q(2p^2-p^4).$$\nלאחר פישוט\n$$P(\\widetilde Q)=qp^2(1+p-p^2)+q^2p^2(1+p-4p^2+2p^3)=P(Q_2).$$\n(כלומר $Q_2$ פועל רק אם גם $Q_1$ פועל.)",
+   "solutionSource": "official-pdf",
+   "official": true,
+   "confidence": "high",
+   "part": "ג",
+   "contextId": "c4"
+  },
+  {
+   "num": 4,
+   "kind": "computation",
+   "topic": "circuits",
+   "question": "**אם ידוע** כי מעגל $Q_1$ פעל, מהי ההסתברות שהמעגל $Q_2$ פעל גם כן? (3 נק׳)",
+   "points": 3,
+   "solution": "$$P(Q_2/Q_1)=\\frac{P(\\widetilde Q)}{P(Q_1)}=\\frac{P(Q_2)}{P(Q_1)}.$$\nכלומר, לפי סעיפים א׳, ב׳ ו-ג׳,\n$$P(Q_2/Q_1)=\\frac{q^2p^2(1+p-4p^2+2p^3)+qp^2(1+p-p^2)}{p(2p-p^2)^2+(1-p)(2p^2-p^4)}.$$",
+   "solutionSource": "official-pdf",
+   "official": true,
+   "confidence": "high",
+   "part": "ד",
+   "contextId": "c4"
+  },
+  {
+   "num": 5,
+   "kind": "computation",
+   "topic": "special_discrete",
+   "question": "מוציאים מהכד כדור אחד באקראי. מה ההסתברות $P(R_1)$ שצבעו אדום? (3 נק׳)",
+   "points": 3,
+   "solution": "לפי הגישה הקלאסית\n$$P(R_1)=\\frac DN.$$",
+   "solutionSource": "official-pdf",
+   "official": true,
+   "confidence": "high",
+   "part": "א",
+   "contextId": "c5"
+  },
+  {
+   "num": 5,
+   "kind": "computation",
+   "topic": "special_discrete",
+   "question": "מוציאים מהכד שני כדורים **ללא החזרה**. מהי ההסתברות $P(R_2)$ שהכדור **השני** יהיה אדום? שימו לב כי אין מידע על צבעו של הכדור הראשון. (7 נק׳)",
+   "points": 7,
+   "solution": "לפי נוסחת ההסתברות השלמה על צבע הכדור הראשון ($R_1$ אדום, $B_1$ שחור):\n$$P(R_2)=P(R_2/R_1)P(R_1)+P(R_2/B_1)P(B_1)=\\frac{D-1}{N-1}\\cdot\\frac DN+\\frac D{N-1}\\cdot\\frac{N-D}N.$$\n$$=\\frac{D(D-1)+D(N-D)}{N(N-1)}=\\frac{D(N-1)}{N(N-1)}=\\frac DN.$$",
+   "solutionSource": "official-pdf",
+   "official": true,
+   "confidence": "high",
+   "part": "ב",
+   "contextId": "c5"
+  },
+  {
+   "num": 5,
+   "kind": "computation",
+   "topic": "special_discrete",
+   "question": "מוציאים מהכד $n$ כדורים **ללא החזרה**. בהנחה כי $D\\ge n\\ge2$, מהי ההסתברות $P(R_n)$ **שהכדור ה-$n$** יהיה אדום? שימו לב כי אין מידע על צבעים של $(n-1)$ הכדורים הקודמים שהוצאו מהכד. (15 נק׳)",
+   "points": 15,
+   "solution": "נגדיר $X$ = מספר הכדורים האדומים ב-$(n-1)$ הכדורים הקודמים. כי הדגימה היא ללא החזרה, $X\\sim\\mathrm{Hyp}(N,D,n-1)$.\nלפי נוסחת ההסתברות השלמה:\n$$P(R_n)=\\sum_{k=0}^{n-1}P(R_n/X=k)\\,P(X=k).$$\nכאשר $X=k$, נשארו בכד $N-(n-1)$ כדורים, מהם $D-k$ אדומים, ולכן $P(R_n/X=k)=\\frac{D-k}{N-n+1}$:\n$$P(R_n)=\\sum_{k=0}^{n-1}\\frac{D-k}{N-n+1}P(X=k)=\\frac1{N-n+1}\\Bigl\\{D\\sum_{k=0}^{n-1}P(X=k)-\\sum_{k=0}^{n-1}k\\,P(X=k)\\Bigr\\}.$$\nהסכום הראשון שווה $1$ והשני הוא $\\mathbb{E}[X]=(n-1)\\frac DN$. לכן\n$$P(R_n)=\\frac{D-(n-1)\\frac DN}{N-n+1}=\\frac DN.$$",
+   "solutionSource": "official-pdf",
+   "official": true,
+   "confidence": "high",
+   "part": "ג",
+   "contextId": "c5"
+  },
+  {
+   "num": 5,
+   "kind": "computation",
+   "topic": "special_discrete",
+   "question": "**סעיף בונוס:** **אם ידוע** כי הכדור ה-$n$ שהוצא היה אדום, מהי ההסתברות שהכדור הבא שיוצא מהכד יהיה אדום גם הוא? עליך להניח כי $1\\le n\\le(D-1)$. (5 נק׳ - הניקוד יינתן רק עבור פתרון מלא.)",
+   "points": 5,
+   "solution": "$$P(R_{n+1}/R_n)=\\frac{P(R_n\\cap R_{n+1})}{P(R_n)},\\qquad P(R_n)=\\frac DN.$$\nנשתמש שוב ב-$X$ (מספר האדומים ב-$(n-1)$ הקודמים) ובנוסחת ההסתברות השלמה:\n$$P(R_n\\cap R_{n+1})=\\sum_{k=0}^{n-1}P(R_n\\cap R_{n+1}/X=k)P(X=k),\\qquad P(R_n\\cap R_{n+1}/X=k)=\\frac{D-k}{N-n+1}\\cdot\\frac{D-k-1}{N-n}.$$\nלכן\n$$P(R_n\\cap R_{n+1})=\\frac1{(N-n)(N-n+1)}\\sum_{k=0}^{n-1}(D-k)(D-1-k)P(X=k)=\\frac1{(N-n)(N-n+1)}\\Bigl\\{D(D-1)-(2D-1)\\mathbb{E}[X]+\\mathbb{E}[X^2]\\Bigr\\}.$$\nכאשר $\\mathbb{E}[X]=(n-1)\\frac DN$ ו-$\\mathbb{E}[X^2]=\\operatorname{Var}[X]+\\bigl(\\mathbb{E}[X]\\bigr)^2$ עם שונות היפרגיאומטרית $\\operatorname{Var}[X]=(n-1)\\frac DN\\cdot\\frac{N-D}N\\cdot\\frac{N-n+1}{N-1}$, מתקבל לאחר הצבה\n$$D(D-1)-(2D-1)\\mathbb{E}[X]+\\mathbb{E}[X^2]=\\frac{D(D-1)(N-n)(N-n+1)}{N(N-1)},$$\nולכן\n$$P(R_n\\cap R_{n+1})=\\frac DN\\cdot\\frac{D-1}{N-1}.$$\nלבסוף\n$$P(R_{n+1}/R_n)=\\frac{D-1}{N-1}.$$",
+   "solutionSource": "official-pdf",
+   "official": true,
+   "confidence": "high",
+   "part": "ד",
+   "contextId": "c5"
+  },
+  {
+   "num": 6,
+   "kind": "computation",
+   "topic": "special_discrete",
+   "question": "יהיו $X$ ו-$Y$ משתנים מקריים אשר מתארים את מספרי הכיסאות שהשניים תפסו. איך $X$ מפולג? איך $Y$ מפולג? **נמקו היטב!** (3 נק׳)",
+   "points": 3,
+   "solution": "כל אחד משני האנשים מתיישב באקראי באחד מ-$N$ הכיסאות, ובאופן שוויוני לכל כיסא; לכן\n$$X\\sim U_d(1,N),\\qquad Y\\sim U_d(1,N).$$\nההתפלגות המשותפת של $(X,Y)$ היא $P(X=x,Y=y)=\\frac1{N(N-1)}$ לכל $x\\ne y$ ו-$0$ על האלכסון $x=y$ (שני אנשים אינם יכולים לתפוס אותו כיסא). המשתנים אחידים אך **אינם** בלתי תלויים.\nההסתברות השולית של כל מספר כיסא היא $\\frac{N-1}{N(N-1)}=\\frac1N$.",
+   "solutionSource": "official-pdf",
+   "official": true,
+   "confidence": "high",
+   "part": "א",
+   "contextId": "c6"
+  },
+  {
+   "num": 6,
+   "kind": "computation",
+   "topic": "joint_discrete",
+   "question": "יהיו $X_R=\\max(X,Y)$ ו-$X_L=\\min(X,Y)$ משתנים מקריים אשר מתארים את מספר הכיסא התפוס השמאלי ביותר ($X_L$) ואת מספר הכיסא הימני ביותר ($X_R$) שנתפס. בהנחה כי $N\\ge2$, חשבו את פונקציית ההסתברות המשותפת של משתנה מקרי דו ממדי $(X_L,X_R)$. (10 נק׳)",
+   "points": 10,
+   "solution": "מכיוון ש-$X_L<X_R$ תמיד, ההסתברות שווה אפס עבור $j\\ge k$. עבור $j<k$ שני המאורעות $\\{X=j,Y=k\\}$ ו-$\\{X=k,Y=j\\}$ מרכיבים יחד את $\\{X_L=j,X_R=k\\}$:\n$$P(X_L=j,X_R=k)=P(X=j,Y=k)+P(X=k,Y=j)=\\frac1{N(N-1)}+\\frac1{N(N-1)}=\\frac2{N(N-1)}.$$\nלכן\n$$P(X_L=j,X_R=k)=\\begin{cases}0,&j\\ge k,\\\\\\dfrac2{N(N-1)},&j<k,\\end{cases}\\qquad j,k=1,2,\\ldots,N.$$\nבדיקה: מספר הזוגות $j<k$ הוא $\\frac{N(N-1)}2$, ולכן סכום ההסתברויות הוא $\\frac{N(N-1)}2\\cdot\\frac2{N(N-1)}=1$.",
+   "solutionSource": "official-pdf",
+   "official": true,
+   "confidence": "high",
+   "part": "ב",
+   "contextId": "c6"
+  },
+  {
+   "num": 6,
+   "kind": "computation",
+   "topic": "joint_discrete",
+   "question": "חשבו את פונקציית ההסתברות השוליות עבור משתנה מקרי $X_L$ ועבור משתנה מקרי $X_R$. (6 נק׳)",
+   "points": 6,
+   "solution": "נסכום את ההסתברות המשותפת לפי השורה והעמודה בטבלה.\n- **עבור $X_L$:** $X_L=k$ אפשרי עבור $k=1,2,\\ldots,N-1$. בשורה $k$ יש $N-k$ תאים בעלי הסתברות חיובית, ולכן\n$$P(X_L=k)=\\frac{2(N-k)}{N(N-1)},\\qquad k=1,\\ldots,N-1.$$\n- **עבור $X_R$:** $X_R=k$ אפשרי עבור $k=2,3,\\ldots,N$. בעמודה $k$ יש $k-1$ תאים בעלי הסתברות חיובית, ולכן\n$$P(X_R=k)=\\frac{2(k-1)}{N(N-1)},\\qquad k=2,\\ldots,N.$$",
+   "solutionSource": "official-pdf",
+   "official": true,
+   "confidence": "high",
+   "part": "ג",
+   "contextId": "c6"
+  },
+  {
+   "num": 6,
+   "kind": "computation",
+   "topic": "discrete_rv",
+   "question": "חשבו את התוחלות $\\mathbb{E}[X_L]$ ו-$\\mathbb{E}[X_R]$. הציבו $N=2$ והסבירו את התוצאה! (6 נק׳)\n**הערה:** לידיעתך,\n$$\\sum_{k=1}^{N}k=\\frac{N(N+1)}2,\\qquad\\sum_{k=1}^{N}k^2=\\frac{N(N+1)(2N+1)}6,\\qquad\\sum_{k=1}^{N}k^3=\\frac{N^2(N+1)^2}4.$$\n(הסכום $\\sum k^3$ נועד לסעיפי הבונוס.)",
+   "points": 6,
+   "solution": "$$\\mathbb{E}[X_L]=\\sum_{k=1}^{N-1}k\\cdot\\frac{2(N-k)}{N(N-1)}=\\frac2{N(N-1)}\\Bigl\\{N\\sum_{k=1}^{N-1}k-\\sum_{k=1}^{N-1}k^2\\Bigr\\}.$$\nעם $\\sum_{k=1}^{N-1}k=\\frac{N(N-1)}2$ ו-$\\sum_{k=1}^{N-1}k^2=\\frac{N(N-1)(2N-1)}6$:\n$$\\mathbb{E}[X_L]=N-\\frac{2N-1}3=\\frac{N+1}3.$$\n$$\\mathbb{E}[X_R]=\\sum_{k=2}^{N}k\\cdot\\frac{2(k-1)}{N(N-1)}=\\frac2{N(N-1)}\\Bigl\\{\\sum_{k=1}^{N}k^2-\\sum_{k=1}^{N}k\\Bigr\\}=\\frac2{N(N-1)}\\cdot\\frac{N(N+1)}6\\{2N+1-3\\}=\\frac{2(N+1)}3.$$\n**הצבת $N=2$:** $\\mathbb{E}[X_L]=1$ ו-$\\mathbb{E}[X_R]=2$.\nהסבר: כאשר $N=2$ יש רק שני כיסאות והאנשים תופסים את שניהם, ולכן תמיד $X_L=1$ ו-$X_R=2$ (משתנים דטרמיניסטיים).",
+   "solutionSource": "official-pdf",
+   "official": true,
+   "confidence": "high",
+   "part": "ד",
+   "contextId": "c6"
+  },
+  {
+   "num": 6,
+   "kind": "computation",
+   "topic": "discrete_rv",
+   "question": "**סעיף בונוס 1:** חשבו את השונויות $\\operatorname{var}[X_L]$ ו-$\\operatorname{var}[X_R]$. הציבו $N=2$ והסבירו את התוצאה! (5 נק׳ - הניקוד יינתן רק עבור פתרון מלא.)\n**הערה:** לידיעתך,\n$$\\sum_{k=1}^{N}k=\\frac{N(N+1)}2,\\qquad\\sum_{k=1}^{N}k^2=\\frac{N(N+1)(2N+1)}6,\\qquad\\sum_{k=1}^{N}k^3=\\frac{N^2(N+1)^2}4.$$\n(הסכום $\\sum k^3$ נועד לסעיפי הבונוס.)",
+   "points": 5,
+   "part": "ה",
+   "contextId": "c6",
+   "hold": "no-key: the official solution file (pp.4-23) ends after part Q6-ד; the bonus parts ה and ו have no worked solution."
+  },
+  {
+   "num": 6,
+   "kind": "computation",
+   "topic": "joint_discrete",
+   "question": "**סעיף בונוס 2:** חשבו את מקדם המתאם $\\rho[X_L,X_R]$. האם הנוסחה שפיתחת נכונה גם עבור $N=2$? נמקו! (5 נק׳ - הניקוד יינתן רק עבור פתרון מלא.)\n**הערה:** לידיעתך,\n$$\\sum_{k=1}^{N}k=\\frac{N(N+1)}2,\\qquad\\sum_{k=1}^{N}k^2=\\frac{N(N+1)(2N+1)}6,\\qquad\\sum_{k=1}^{N}k^3=\\frac{N^2(N+1)^2}4.$$\n(הסכום $\\sum k^3$ נועד לסעיפי הבונוס.)",
+   "points": 5,
+   "part": "ו",
+   "contextId": "c6",
+   "hold": "no-key: the official solution file (pp.4-23) ends after part Q6-ד; the bonus parts ה and ו have no worked solution."
+  }
+ ]
+}
