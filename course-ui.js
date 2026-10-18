@@ -150,6 +150,11 @@
     qt.dataset.key = it.key; qt.dataset.type = it.type;
     if(it.bank) qt.dataset.bank = q.id; else delete qt.dataset.bank;
     $("#crsQExtras").innerHTML = it.type === "step" ? "" : APP.extrasHtml(q);
+    if(window.Feedback) window.Feedback.slot($("#crsQExtras"), "crs", {
+      id: `${C.id}-L${S.L.order}-Q${S.i + 1}`,
+      exam: `${C.meta.titleHe} · ${levelName(S.L)}` + (it.bank ? ` · ${APP.examLabelOf(q)} (${q.id})` : ""),
+      html: it.type === "step" ? (q.step.promptHtml || esc(q.step.prompt || "")) : (q.questionHtml || esc(q.question || ""))
+    });
     $("#crsProgressFill").style.width = (S.i / n * 100) + "%";
     $("#crsQuizMeta").textContent = `שאלה ${S.i + 1} מתוך ${n}`;
     const nb = $("#crsNextBtn");

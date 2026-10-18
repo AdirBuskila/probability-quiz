@@ -121,6 +121,9 @@ function extrasHtml(q){
 /* bidi: Latin labels / formulas inside Hebrew are isolated at render time (Bidi lives in normalize.js, loaded first) */
 function iso(h){ return window.Bidi ? window.Bidi.render(h) : h; }
 function questionHtml(q){ return iso(q.questionHtml || escapeHtml(q.question||"")); }
+/* feedback.js: "report a mistake" mailto link for a question (renders nothing if the helper is absent) */
+function reportData(q){ return {id:q.id, exam:examLabelOf(q), html:q.questionHtml || escapeHtml(q.question||"")}; }
+function reportRowHtml(q){ return window.Feedback ? window.Feedback.reportRow(reportData(q)) : ""; }
 function optionHtml(o){
   if(!o) return "";
   const type = o.type || "text";
@@ -358,6 +361,7 @@ function solutionPanel(q){
     rubricHtml(q)+
     ((q.pitfallsHtml||[]).length?`<h4 class="sec-h">טעויות נפוצות</h4><ul class="pitfalls">${q.pitfallsHtml.map(p=>`<li>${iso(p)}</li>`).join("")}</ul>`:"")+
     `<div class="ai-grade-slot" data-qid="${escapeHtml(q.id)}"></div>`+
+    reportRowHtml(q)+
     `</div></details>`;
 }
 /* "Grade me with AI" slot (aiprompt.js): photo toggle + ChatGPT/Claude/Gemini buttons. Renders nothing without window.AiPrompt. */
@@ -410,6 +414,7 @@ function renderQuestion(){
   $("#questionText").innerHTML = questionHtml(q);
   $("#questionText").dataset.qid = q.id;   // read by tools/verify_dom.js / shoot.js
   $("#qExtras").innerHTML = extrasHtml(q);
+  if(window.Feedback) window.Feedback.slot($("#qExtras"), "q", reportData(q));
 
   let h="";
   if(q.kind==="mcq") h += mcqBlock(q);
@@ -527,7 +532,7 @@ function renderResults(){
     }
     return `<details class="rev" open data-qid="${escapeHtml(q.id)}"><summary><span class="rev-n">${Number.isInteger(q.num)?"שאלה "+q.num+(q.part?" "+q.part:""):q.id}</span> `+
       `<span class="chip soft">${labelHtml(topicLabelOf(q))}</span> <span class="chip">${maxOf(q)} נק׳</span></summary>`+
-      `<div class="rev-body"><div class="rq">${questionHtml(q)}</div>${q.contextId?contextHtml(CTX[q.contextId]):""}${extrasHtml(q)}${mine}</div></details>`;
+      `<div class="rev-body"><div class="rq">${questionHtml(q)}</div>${q.contextId?contextHtml(CTX[q.contextId]):""}${extrasHtml(q)}${mine}${reportRowHtml(q)}</div></details>`;
   }).join("");
   document.querySelectorAll("#resultsReview .rev").forEach(d=>{
     const q=S.pool.find(x=>x.id===d.dataset.qid);
