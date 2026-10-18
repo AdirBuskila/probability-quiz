@@ -21,7 +21,11 @@ Questions on hold are left out of the bank. Unless config includeDrafts is true,
 are stripped (the question still ships with its solution): stepsSource "ai-draft" removes `steps`;
 rubricSource "ai-draft" removes `rubric`, `pitfalls` and `pointsTotal`. Listed in build_report.md.
 
-Run:  PYTHONUTF8=1 py tools/build_questions.py
+Probability extras: a question's `region` / `sim` and a step's `region` pass through to the bank unchanged
+(region.js / sim.js render them; validate.py checks their shape, tools/check_sim_specs.py runs them).
+DEMO-* raw files are skipped unless --demo is given (they never ship; verify_dom.js uses them).
+
+Run:  PYTHONUTF8=1 py tools/build_questions.py [--demo]
 Prints ASCII only (the Windows console is cp1255); Hebrew goes to UTF-8 files.
 """
 import collections, datetime, json, pathlib, re, sys
@@ -77,7 +81,11 @@ def fail(lines, header):
 
 
 def main():
-    raw_files = [p for p in sorted(RAW.glob("*.json")) if EXAM_RE.match(p.name)]
+    # DEMO-* exams (tools/gen/gen_DEMO-P.py: the region + sim demo) never ship: built only with --demo, for
+    # tools/verify_dom.js. Rebuild without the flag before committing questions.js.
+    demo = "--demo" in sys.argv[1:]
+    raw_files = [p for p in sorted(RAW.glob("*.json")) if EXAM_RE.match(p.name)
+                 and (demo or not p.name.startswith("DEMO-"))]
     bank = rt.MathBank()
     math_errors = []
     contexts, questions = {}, []
@@ -227,6 +235,9 @@ def main():
          f"- Shared context blocks: **{len(contexts)}**",
          f"- Math spans rendered (distinct): **{len(bank.items)}**",
          f"- Guided steps: **{sum(n_steps.values())}** {dict(n_steps)}",
+         f"- Area figures (region): **{sum(1 for q in questions if q.get('region'))}** questions, "
+         f"**{sum(1 for q in questions for s in q.get('steps', []) if s.get('region'))}** steps; "
+         f"simulations (sim): **{sum(1 for q in questions if q.get('sim'))}**",
          f"- includeDrafts: **{CFG['includeDrafts']}**",
          f"- **ai-draft parts stripped: {len(drafts)}** " + ", ".join(drafts),
          f"- **On hold (not in bank): {len(held)}**", ""] + [f"  - {h}" for h in held] + ["",

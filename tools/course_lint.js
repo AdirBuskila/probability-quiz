@@ -37,7 +37,7 @@ const OWN_KEYS = new Set(["id", "question", "options", "correctId", "acceptedIds
 const BANK_KEYS = new Set(["bankId", "recap"]);
 const STEP_Q_KEYS = new Set(["id", "step", "recap"]);
 const STEP_TYPES = new Set(["choice", "numeric", "text", "order", "findbug", "fillblank"]);
-const STEP_KEYS = new Set(["type", "prompt", "explain", "code", "options", "correctId", "answer", "tol", "accept", "normalize", "lines", "bugIndex", "blankIndex"]);
+const STEP_KEYS = new Set(["type", "prompt", "explain", "code", "options", "correctId", "answer", "tol", "accept", "normalize", "lines", "bugIndex", "blankIndex", "region"]);
 
 const cfg = JSON.parse(fs.readFileSync(path.join(ROOT, "course.config.json"), "utf8"));
 const needHelp = cfg.needHelp || [];

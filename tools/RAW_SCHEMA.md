@@ -32,6 +32,8 @@ step, rubric-item and option level) are errors, so a misspelt key such as `stepS
     "stepsSource": "ai-verified",      // official | ai-draft | ai-verified (required with steps)
     // kind "mcq" only:   options, correctId, acceptedIds, lockOrder, explanation  (as the mcq engine)
     // kind "truefalse":  verdict: true|false
+    "region": { /* area figure, see "Area regions" (probability app only) */ },
+    "sim": { /* "simulate it" spec, see "Simulations" (probability app only) */ }
   }]
 }
 ```
@@ -97,6 +99,89 @@ Every app has a learn mode: one Hebrew brief per topic, built to `learn.js` (nev
 - Deep link: `index.html?learn=<chapter_id>`. Files named `*demo*` under `docs/briefs/` are template demos; `new_app.py`
   does not copy them.
 
+## Area regions (`region`, probability extra; `region.js`)
+A question (shown at the top of its solution panel) or a step (shown under its prompt) may carry `region`: one
+object, or a list of them (one figure each). The figure is generated from this data, never hand-drawn.
+```jsonc
+"region": {
+  "space":  {"x": [0, 1], "y": [0, 2]},          // the sample-space rectangle; (X, Y) uniform on it
+  "event":  [ineq, ...],                          // A list is an AND; {"any": [[ineq..], [ineq..]]} is an OR of ANDs;
+  "given":  [ineq, ...],                          //   a string is a boolean expression of x and y. given is optional (P(A|B))
+  "labels": {"x": "X", "y": "Y"},                 // optional axis names
+  "exact":  0.25,                                 // optional: the probability P(A) or P(A|B), shown and CHECKED
+  "caption": "text",                              // optional heading (plain text, Hebrew ok)
+  "ticks":  {"x": [0, 0.5, 1], "y": [0, 1, 2]}    // optional; default: nice steps, labelled as fractions
+}
+```
+- `ineq`: linear `{"a": 1, "b": -1, "c": 0.5, "op": "<"}` meaning a·x + b·y op c (`a`/`b` default 0, at least one
+  given), or nonlinear `{"expr": "x*y", "op": "<", "c": 0.5}` / `{"expr": "y-x^2", "op": ">", "c": 0}`. `op` is one
+  of `< <= > >=`. `a`, `b`, `c` and the space bounds may be numbers or constant strings (`"1/3"`, `"sqrt(2)/2"`).
+- Drawing: the event is shaded in the accent colour, the given is outlined and hatched, the intersection is a
+  stronger shade; linear boundaries are dashed lines. Polygonal sets are clipped exactly from the rectangle
+  (half-plane clipping, unions by inclusion-exclusion), so the printed areas are exact fractions; a set with any
+  nonlinear part is drawn from a fine column grid (bisection-refined boundaries) and its area is printed with "≈".
+- Printed under the figure: |Ω|, S(A) (or S(A∩B) and S(B)), the ratio, and `exact` when given.
+- Checks: `validate.py` checks the shape; `check_sim_specs.py` recomputes every region that has `exact` (polygon: to
+  1e-9; grid: to 2e-3) and fails on a mismatch.
+- **Expression language** (shared with `sim`, no `eval`): numbers, names, `+ - * / % ^`, unary `-`, parentheses;
+  `< <= > >= == !=` (chains such as `0<x<1` work), `and or not` (also `&& || !`); functions `abs sqrt exp log ln
+  floor ceil round min max sin cos`; constants `pi`, `e`. No implicit product (`2*x`, never `2x`); `-x^2` = -(x²).
+  An unknown name or function is an error.
+- **Learn mode**: a fenced block with the language `region` and the JSON object as its body becomes the figure
+  (`build_learn.py` checks it):
+  ````
+  ```region
+  {"space": {"x": [0, 1], "y": [0, 1]}, "event": [{"a": 1, "b": 1, "c": 1, "op": "<"}], "exact": 0.5}
+  ```
+  ````
+- **Guided courses**: a step question's `step` may carry `region` (validated like a bank step). In `lesson.html` write
+  `<div class="region-fig" data-region='{"space": ..., "event": ...}'></div>` (single-quoted attribute, JSON inside;
+  `build_courses.py` checks it). A boss `bankId` question shows the bank question's `region` in its solution.
+
+## Simulations (`sim`, probability extra; `sim.js`)
+A question may carry `sim`. Its solution panel then shows a "🎲 הריצו סימולציה" button: N trials in
+requestAnimationFrame chunks, a live convergence chart (running estimate against trials on a log axis, the exact value
+dashed, a ±2·SE funnel), and the final estimate ± 2·SE. The PRNG is mulberry32 with a fixed seed, so the first run is
+deterministic; "run again" moves to the next seed.
+```jsonc
+"sim": {
+  "kind": "area",            // area | pdf | circuit | dice | urn | bernoulli_matrix | custom_discrete
+  "params": { ... },         // kind params + the measure (below)
+  "estimate": "P(X+Y<1)",    // the label shown next to the button (LTR text)
+  "exact": 0.5,              // the key; REQUIRED and checked
+  "trials": 100000,          // optional (1000..2000000, default 100000)
+  "seed": 20240325           // optional
+}
+```
+**Measure** (in `params`): `"measure": "prob"` (default; needs `"event"`), `"mean"` / `"var"` (need `"expr"`), `"cov"`
+(needs `"expr": [e1, e2]`). Optional `"given"`: everything is conditional on it (P(A|B), E[X|B] ...). Events, givens and
+exprs are strings in the expression language above, over the kind's variables:
+
+| kind | params | variables |
+|---|---|---|
+| `area` | `space`; `event`/`given` as region forms or strings; or `"fromRegion": true` (reuse the question's `region`: space, event, given) | `x`, `y` |
+| `pdf` | `pieces: [{"from": 0, "to": 1, "expr": "3*x^2"}]` (finite bounds; sampled by numeric inverse CDF on a fine table) | `x` |
+| `circuit` | `network`: `{"type": "series"\|"parallel", "children": [...]}`, `{"type": "kofn", "k": 2, "children": [...]}`, `{"type": "comp", "id": "Q1", "p": 0.9}`; or a bridge: `edges: [{"id","from","to","p"}]`, `source`, `sink` (undirected) | each component id (1 = works), `S` (the system works) |
+| `dice` | `n`, `faces` (default 6), `weights` (one list for every die, or one list per die) | `d1..dn`, `sum`, `prod`, `max`, `min`, `n` |
+| `urn` | `counts: {"red": 3, "black": 5}` or `values: [1, 2, ...]` (numbered balls); `draws`; `replace` (default false) | colors: `red` (count), `red_1` (draw 1 is red); values: `v1..vk`, `sum`, `max`, `min` |
+| `bernoulli_matrix` | `n` (1..4), `p` (number or n×n array), `vals` (default `[0, 1]`) | `a11..ann`, `det`, `trace` |
+| `custom_discrete` | `vars: {"X": {"values": [...], "probs": [...]}, ...}` (independent) or `joint: [{"p": 0.1, "X": 0, "Y": 1}, ...]` | the names |
+
+Examples: P(det=1, trace=2) of a 2×2 Bernoulli(1/2) matrix: `{"kind": "bernoulli_matrix", "params": {"n": 2, "p": 0.5,
+"event": "det == 1 and trace == 2"}, "exact": 0.1875}`; P(2nd red | 1st red) without replacement: `{"kind": "urn",
+"params": {"counts": {"red": 3, "black": 5}, "draws": 2, "event": "red_2", "given": "red_1"}, "exact": 0.2857142857}`.
+
+**The button can never disagree with the key.** `tools/check_sim_specs.py` (run by `validate.py`) loads the page's own
+`sim.js` in Node (`tools/sim_check.js`) and for every `sim`: (1) runs exactly the button's first run (same seed and
+trials) and requires |estimate - exact| <= 4·SE; (2) computes the value deterministically (exact enumeration for the
+discrete kinds, exact polygon area for linear `area` probabilities, Gauss quadrature otherwise) and requires it to
+match `exact` (1e-9; quadrature 2e-4); (3) a `pdf` must integrate to 1 and be non-negative; (4) at least 1000 trials
+must meet `given`. Unit tests: `node tools/test_sim.js`.
+
+**Demo** (never shipped): `tools/gen/gen_DEMO-P.py` writes `tools/raw/DEMO-P.json` (regions, a conditional, a
+nonlinear region, a step region, and area/circuit/pdf/dice sims). `build_questions.py` skips `DEMO-*` files unless it
+runs with `--demo`: `py tools/build_questions.py --demo && node tools/verify_dom.js`, then rebuild without the flag.
+
 ## Derived at build (do NOT put in raw)
 `id`, `partKey`, `examCode`, `examLabel`, `year`, `source`, `topicLabel`, `pointsTotal` (sum of rubric
 points; falls back to `points`), `lockOrder` (mcq, auto), namespaced `contextId`, and the Html twins:
@@ -138,7 +223,7 @@ bank stats. The last level is the **boss** (`boss: true`): built from real exam 
 practice on the course topic.
 
 **Config** (`course.config.json`): `"needHelp": [{"id","titleHe","icon","topic","entryLabelHe","introHe?"}]`
-(0-5 entries; `id` = the folder `courses/<id>/`, `[A-Za-z0-9_-]+`; `topic` from the closed topics list). An empty list
+(0-8 entries; `id` = the folder `courses/<id>/`, `[A-Za-z0-9_-]+`; `topic` from the closed topics list). An empty list
 hides the header entry and the start-screen cards.
 
 **Files**: `courses/<id>/<LEVEL>.js` (source, hand-written -- like `tools/raw`, they are the source of truth) ->

@@ -29,6 +29,7 @@ MathBank, HEB, rich_html = rt.MathBank, rt.HEB, rt.rich_html
 
 LESSON_MATH = re.compile(r"\$\$([\s\S]+?)\$\$|(?<![$\\])\$([^$\n]+?)\$")
 ESC = "\x00"
+REGION_ATTR = re.compile(r"""data-region=(['"])(.*?)\1""", re.S)
 
 
 def lesson_html(h, bank, where, errs):
@@ -80,6 +81,12 @@ def main():
         L["boss"] = lv.get("boss") is True
         lesson = dict(lv.get("lesson") or {})
         lesson["html"] = lesson_html(str(lesson.get("html") or ""), bank, w + " lesson", errs)
+        # area figures in a lesson: <div class="region-fig" data-region='{...JSON...}'></div> (drawn by region.js)
+        for m in REGION_ATTR.finditer(lesson["html"]):
+            try:
+                validate.check_region(w + " lesson", json.loads(html.unescape(m.group(2))), step_problems.append)
+            except ValueError as e:
+                step_problems.append(f"{w} lesson: data-region is not valid JSON ({e})")
         L["lesson"] = lesson
         qs = []
         for i, q in enumerate(lv.get("questions") or []):

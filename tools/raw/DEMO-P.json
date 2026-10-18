@@ -1,0 +1,300 @@
+{
+ "examCode": "DEMO-P",
+ "examLabel": "[דמו] הדגמת שיטת השטח והסימולציה",
+ "year": 2026,
+ "questions": [
+  {
+   "num": 1,
+   "kind": "computation",
+   "topic": "uniform_geometric",
+   "question": "[דמו] $X,Y\\sim U(0,1)$ בלתי תלויים. חשבו את $P(|X-Y|<\\tfrac12)$.",
+   "solution": "ההסתברות שווה לשטח. המשלים הוא שני משולשים ששטח כל אחד $\\tfrac18$, ולכן $P=1-\\tfrac14=\\tfrac34$.",
+   "solutionSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "points": 5,
+   "part": "א",
+   "region": {
+    "space": {
+     "x": [
+      0,
+      1
+     ],
+     "y": [
+      0,
+      1
+     ]
+    },
+    "labels": {
+     "x": "X",
+     "y": "Y"
+    },
+    "exact": 0.75,
+    "event": [
+     {
+      "a": 1,
+      "b": -1,
+      "c": 0.5,
+      "op": "<"
+     },
+     {
+      "a": 1,
+      "b": -1,
+      "c": -0.5,
+      "op": ">"
+     }
+    ],
+    "caption": "המאורע |X-Y|<1/2 בתוך ריבוע היחידה"
+   },
+   "sim": {
+    "kind": "area",
+    "params": {
+     "fromRegion": true
+    },
+    "estimate": "P(|X-Y|<1/2)",
+    "exact": 0.75
+   },
+   "steps": [
+    {
+     "type": "numeric",
+     "prompt": "מה השטח של אחד משני המשולשים הלבנים באיור?",
+     "answer": 0.125,
+     "tol": 1e-09,
+     "region": {
+      "space": {
+       "x": [
+        0,
+        1
+       ],
+       "y": [
+        0,
+        1
+       ]
+      },
+      "labels": {
+       "x": "X",
+       "y": "Y"
+      },
+      "exact": 0.75,
+      "event": [
+       {
+        "a": 1,
+        "b": -1,
+        "c": 0.5,
+        "op": "<"
+       },
+       {
+        "a": 1,
+        "b": -1,
+        "c": -0.5,
+        "op": ">"
+       }
+      ],
+      "caption": "המאורע |X-Y|<1/2 בתוך ריבוע היחידה"
+     },
+     "explain": "משולש ישר זווית עם ניצבים $\\tfrac12$: שטחו $\\tfrac18$."
+    }
+   ],
+   "stepsSource": "ai-verified"
+  },
+  {
+   "num": 1,
+   "kind": "computation",
+   "topic": "uniform_geometric",
+   "question": "[דמו] חשבו את $P(X<\\tfrac12 \\mid X+Y>1)$.",
+   "solution": "השטח של התנאי הוא $\\tfrac12$ והשטח של החיתוך הוא $\\tfrac18$, ולכן $P=\\tfrac{1/8}{1/2}=\\tfrac14$.",
+   "solutionSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "points": 5,
+   "part": "ב",
+   "region": {
+    "space": {
+     "x": [
+      0,
+      1
+     ],
+     "y": [
+      0,
+      1
+     ]
+    },
+    "labels": {
+     "x": "X",
+     "y": "Y"
+    },
+    "exact": 0.25,
+    "event": [
+     {
+      "a": 1,
+      "c": 0.5,
+      "op": "<"
+     }
+    ],
+    "given": [
+     {
+      "a": 1,
+      "b": 1,
+      "c": 1,
+      "op": ">"
+     }
+    ],
+    "caption": "המאורע X<1/2 בהינתן X+Y>1"
+   },
+   "sim": {
+    "kind": "area",
+    "params": {
+     "fromRegion": true
+    },
+    "estimate": "P(X<1/2 | X+Y>1)",
+    "exact": 0.25
+   }
+  },
+  {
+   "num": 1,
+   "kind": "computation",
+   "topic": "uniform_geometric",
+   "question": "[דמו] חשבו את $P(XY<\\tfrac12)$.",
+   "solution": "$P=\\tfrac12+\\int_{1/2}^1\\frac{1}{2x}\\,dx=\\tfrac12+\\tfrac12\\ln 2$.",
+   "solutionSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "points": 5,
+   "part": "ג",
+   "region": {
+    "space": {
+     "x": [
+      0,
+      1
+     ],
+     "y": [
+      0,
+      1
+     ]
+    },
+    "labels": {
+     "x": "X",
+     "y": "Y"
+    },
+    "exact": 0.8465735902799727,
+    "event": [
+     {
+      "expr": "x*y",
+      "op": "<",
+      "c": 0.5
+     }
+    ],
+    "caption": "המאורע XY<1/2 (שפה עקומה)"
+   },
+   "sim": {
+    "kind": "area",
+    "params": {
+     "space": {
+      "x": [
+       0,
+       1
+      ],
+      "y": [
+       0,
+       1
+      ]
+     },
+     "event": "x*y < 1/2"
+    },
+    "estimate": "P(XY<1/2)",
+    "exact": 0.8465735902799727
+   }
+  },
+  {
+   "num": 2,
+   "kind": "computation",
+   "topic": "circuits",
+   "question": "[דמו] רכיב $A$ (אמינות $0.9$) מחובר בטור למקבץ מקבילי של $B$ ($0.8$) ו-$C$ ($0.7$). מה ההסתברות שהמעגל עובד?",
+   "solution": "$P=0.9\\cdot(1-0.2\\cdot 0.3)=0.846$.",
+   "solutionSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "points": 5,
+   "sim": {
+    "kind": "circuit",
+    "estimate": "P(S)",
+    "exact": 0.846,
+    "params": {
+     "event": "S",
+     "network": {
+      "type": "series",
+      "children": [
+       {
+        "type": "comp",
+        "id": "A",
+        "p": 0.9
+       },
+       {
+        "type": "parallel",
+        "children": [
+         {
+          "type": "comp",
+          "id": "B",
+          "p": 0.8
+         },
+         {
+          "type": "comp",
+          "id": "C",
+          "p": 0.7
+         }
+        ]
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "num": 3,
+   "kind": "computation",
+   "topic": "continuous_rv",
+   "question": "[דמו] ל-$X$ צפיפות $f(x)=3x^2$ על $(0,1)$. חשבו את $P(X>\\tfrac12)$.",
+   "solution": "$P=\\int_{1/2}^1 3x^2\\,dx=1-\\tfrac18=\\tfrac78$.",
+   "solutionSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "points": 5,
+   "sim": {
+    "kind": "pdf",
+    "estimate": "P(X>1/2)",
+    "exact": 0.875,
+    "params": {
+     "pieces": [
+      {
+       "from": 0,
+       "to": 1,
+       "expr": "3*x^2"
+      }
+     ],
+     "event": "x > 1/2"
+    }
+   }
+  },
+  {
+   "num": 4,
+   "kind": "computation",
+   "topic": "conditional_bayes",
+   "question": "[דמו] מטילים שתי קוביות הוגנות. מה ההסתברות שסכומן $7$, בהינתן שהקובייה הראשונה זוגית?",
+   "solution": "לכל ערך של הקובייה הראשונה יש בדיוק ערך אחד של השנייה שמשלים ל-$7$, ולכן $P=\\tfrac16$.",
+   "solutionSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "points": 5,
+   "sim": {
+    "kind": "dice",
+    "estimate": "P(sum = 7 | d1 even)",
+    "exact": 0.16666666666666666,
+    "params": {
+     "n": 2,
+     "event": "sum == 7",
+     "given": "d1 % 2 == 0"
+    }
+   }
+  }
+ ]
+}

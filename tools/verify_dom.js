@@ -126,7 +126,7 @@ console.log("1. boot");
   const A = boot();
   const B = A.window.OPEN_BANK;
   assert(B && Array.isArray(B.questions) && B.questions.length > 0, "OPEN_BANK loaded with questions: " + QS.length);
-  const SCRIPTS = ["questions.js", "learn.js", "courses.js", "normalize.js", "steps.js", "aiprompt.js", "app.js", "course-ui.js"];
+  const SCRIPTS = ["questions.js", "learn.js", "courses.js", "normalize.js", "region.js", "sim.js", "steps.js", "aiprompt.js", "app.js", "course-ui.js"];
   assert(A.scripts.join() === SCRIPTS.join(), "scripts: " + A.scripts.join(", "));
   assert(A.doc.documentElement.getAttribute("dir") === "rtl", "page is dir=rtl");
   assert(B.meta.course.storePrefix === CFG.storePrefix, `bank meta storePrefix == course.config.json (${CFG.storePrefix})`);
@@ -627,5 +627,62 @@ console.log("9. inline figures");
   assert(badPre.length === 0, `${pres.length} .code-block <pre> in the bank, all dir=ltr`);
 }
 
-console.log(fail ? `\n${fail} FAILED` : "\nall ok");
-process.exit(fail ? 1 : 0);
+/* 10. probability extras: area figure (region.js) in the solution panel and in steps; "simulate it" (sim.js).
+   Uses the first bank question with a region / sim (the DEMO-P exam when built with --demo). */
+async function extras() {
+  console.log("10. area figures and simulation");
+  const regQ = QS.find(q => q.region), stepRegQ = QS.find(q => (q.steps || []).some(s => s.region));
+  const condQ = QS.find(q => q.region && !Array.isArray(q.region) && q.region.given);
+  const simQs = QS.filter(q => q.sim);
+  if (!regQ) console.log("no region in the bank (skipped; build with --demo for the DEMO-P checks)");
+  else {
+    const A = boot();
+    openQ(A, regQ);
+    const fig = A.$("#qBody .sol-panel .region-fig");
+    assert(!!fig && !!fig.querySelector("svg.rg-svg"), `${regQ.id}: solution panel holds the region svg`);
+    assert(fig && fig.querySelector(".rg-plot").getAttribute("dir") === "ltr" && fig.querySelector("svg").getAttribute("direction") === "ltr", `${regQ.id}: the figure is an LTR island`);
+    const ev = fig && fig.querySelector("path.rg-event");
+    assert(!!ev && (ev.getAttribute("d") || "").length > 10, `${regQ.id}: the event region is shaded`);
+    assert(fig && /P\(A/.test(fig.querySelector(".rg-nums").textContent), `${regQ.id}: the area ratio is printed`);
+    assert(!fig.querySelector(".rg-error"), `${regQ.id}: no region error`);
+    if (regQ.region.exact != null) assert(!!fig.querySelector(".rg-exact"), `${regQ.id}: the exact answer is shown`);
+    assert(A.errors.length === 0, "no errors: " + A.errors.join(" | "));
+  }
+  if (condQ) {
+    const A = boot(); openQ(A, condQ);
+    const fig = A.$("#qBody .sol-panel .region-fig");
+    assert(fig && fig.querySelector(".rg-given") && fig.querySelector(".rg-both") && fig.querySelector("pattern"), `${condQ.id}: conditional figure: hatched given + stronger intersection`);
+    assert(fig && /P\(A \| B\)/.test(fig.textContent), `${condQ.id}: P(A | B) ratio printed`);
+  }
+  if (stepRegQ) {
+    const A = boot(); openQ(A, stepRegQ);
+    assert(!!A.$("#qBody .steps-panel .s-region svg.rg-svg"), `${stepRegQ.id}: a step with region renders the figure under its prompt`);
+  }
+  if (!simQs.length) { console.log("no sim in the bank (skipped)"); return; }
+  for (const q of simQs.slice(0, 3)) {
+    const A = boot();
+    openQ(A, q);
+    const box = A.$("#qBody .sol-panel .mc-box"), btn = box && box.querySelector(".mc-run");
+    assert(!!btn && /הריצו סימולציה/.test(btn.textContent), `${q.id}: the simulate button is there`);
+    if (!btn) continue;
+    A.click(btn);
+    assert(btn.disabled, `${q.id}: button disabled while running`);
+    const t0 = Date.now();
+    while (!box.parentElement.dataset.done && Date.now() - t0 < 30000) await new Promise(r => setTimeout(r, 20));
+    const res = box.querySelector(".mc-result");
+    assert(box.parentElement.dataset.done === "1", `${q.id}: the run finished (${Date.now() - t0} ms)`);
+    assert(/±/.test(res.textContent) && /N = 100,000|N = [0-9,]+/.test(res.textContent), `${q.id}: estimate ± 2SE and N shown`);
+    assert(!!box.querySelector(".mc-chart svg polyline.mc-line") && !!box.querySelector(".mc-chart line.mc-exact"), `${q.id}: convergence chart with the dashed exact line`);
+    assert(!!box.querySelector(".mc-verdict.good"), `${q.id}: verdict agrees with the exact value`);
+    const est = parseFloat(box.querySelector(".mc-est").textContent);
+    const mc = A.window.Sim.run(q.sim, { item: q });
+    assert(Math.abs(est - mc.est) < 1e-3, `${q.id}: the UI's first run is the checked run (${est} vs ${mc.est.toFixed(5)})`);
+    assert(!btn.disabled && /הרצה נוספת/.test(btn.textContent), `${q.id}: button re-enabled for another run`);
+    assert(A.errors.length === 0, "no errors: " + A.errors.join(" | "));
+  }
+}
+
+extras().then(() => {
+  console.log(fail ? `\n${fail} FAILED` : "\nall ok");
+  process.exit(fail ? 1 : 0);
+}, e => { console.log("FAIL  extras crashed: " + e.stack); process.exit(1); });

@@ -137,7 +137,7 @@
     nb.focus({ preventScroll: true });
   }
   const solutionPanel = (q, open) => (q.solutionHtml || q.solution)
-    ? `<details class="panel crs-sol"${open ? " open" : ""}><summary><span class="sum-t">פתרון מלא</span></summary><div class="panel-body"><div class="solution-text">${isolate(q.solutionHtml || esc(q.solution))}</div>${srcNote(q)}</div></details>` : "";
+    ? `<details class="panel crs-sol"${open ? " open" : ""}><summary><span class="sum-t">פתרון מלא</span></summary><div class="panel-body">${q.region && window.Region ? window.Region.figure(q.region) : ""}<div class="solution-text">${isolate(q.solutionHtml || esc(q.solution))}</div>${srcNote(q)}</div></details>` : "";
 
   function renderQuestion(){
     const it = S.items[S.i], q = it.q, n = S.items.length;

@@ -47,7 +47,12 @@
     const prompt = doc.createElement("div"); prompt.className = "s-prompt"; prompt.innerHTML = promptHtml(step);
     const work = doc.createElement("div"); work.className = "s-work";
     const fb = doc.createElement("div"); fb.className = "s-feedback"; fb.setAttribute("aria-live", "polite");
-    body.append(prompt, work, fb);
+    body.append(prompt);
+    if (step.region && root.Region) {   // probability extra: the step's area figure (region.js), under the prompt
+      const fig = doc.createElement("div"); fig.className = "s-region"; fig.innerHTML = root.Region.figure(step.region);
+      body.append(fig);
+    }
+    body.append(work, fb);
     mountEl.appendChild(body);
 
     /* settle the step: verdict, optional reveal of the right answer, explanation, one callback */

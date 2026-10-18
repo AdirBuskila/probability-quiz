@@ -41,7 +41,32 @@
    "confidence": "high",
    "points": 12,
    "part": "א",
-   "contextId": "c1"
+   "contextId": "c1",
+   "region": {
+    "space": {
+     "x": [
+      0,
+      1
+     ],
+     "y": [
+      0,
+      1
+     ]
+    },
+    "labels": {
+     "x": "X",
+     "y": "Y"
+    },
+    "event": [
+     {
+      "expr": "x*y",
+      "op": "<=",
+      "c": 0.3
+     }
+    ],
+    "exact": 0.6611918412977809,
+    "caption": "האזור XY ≤ t בריבוע היחידה, עבור t = 0.3 לדוגמה"
+   }
   },
   {
    "num": 1,

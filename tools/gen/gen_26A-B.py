@@ -20,11 +20,11 @@ Transcription notes
   P(B) 0.480 official vs 0.592 true). Shipped with the official method, q2/q4 swapped back to the printed
   definitions, solutionSource "solved", official:false and the "הפתרון הרשמי עם תיקון" prefix. Verified exactly
   and by Monte Carlo in tools/verify/26A-B/check.py. Part c is unaffected (official).
-- Q1(a) region data is in tools/verify/26A-B/regions.json (RAW_SCHEMA has no `region` field).
+- Q1(a) carries a `region` (the area figure, t = 0.3); the source notes stay in tools/verify/26A-B/regions.json.
 - The official solution header notes it is written for second-year level and that Q1 is solved with the
   classical-geometric approach as the question asked; that note is not part of any solution text.
 """
-import json, pathlib
+import json, math, pathlib
 
 OUT = pathlib.Path(__file__).resolve().parents[1] / "raw" / "26A-B.json"
 CODE = "26A-B"
@@ -64,7 +64,13 @@ $$\begin{aligned}F_D(t)&=P(D\le t)\\&=\operatorname{area}\{(x,y)\in(0,1)^2:xy\le
 $$F_D(t)=\begin{cases}0,&t<0,\\t-t\ln t,&0\le t<1,\\1,&t\ge 1.\end{cases}$$
 ב-$t=0$ הביטוי $t-t\ln t$ מפורש לפי הגבול $0$ כאשר $t\downarrow 0$.
 ![גרף פונקציית ההתפלגות המצטברת של D=XY](images/exams/26A-B-Q1-cdf.png)""",
-    12, contextId="c1"))
+    12, contextId="c1",
+    # area figure (region.js), from tools/verify/26A-B/regions.json, drawn at the representative t = 0.3:
+    # P(XY <= 0.3) = t - t ln t at t = 0.3
+    region={"space": {"x": [0, 1], "y": [0, 1]}, "labels": {"x": "X", "y": "Y"},
+            "event": [{"expr": "x*y", "op": "<=", "c": 0.3}],
+            "exact": 0.3 - 0.3 * math.log(0.3),
+            "caption": "האזור XY ≤ t בריבוע היחידה, עבור t = 0.3 לדוגמה"}))
 
 questions.append(Q(
     1, "ב", "continuous_rv",

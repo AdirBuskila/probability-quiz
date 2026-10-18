@@ -350,7 +350,9 @@ function solutionPanel(q){
   const open = !!P.justShow;
   const src = SOL_SRC[q.solutionSource];
   return `<details class="panel sol-panel"${open?" open":""}><summary><span class="sum-t">פתרון מלא ומחוון</span></summary><div class="panel-body">`+
+    ((q.region && window.Region) ? window.Region.figure(q.region) : "")+
     `<div class="solution-text">${iso(q.solutionHtml || escapeHtml(q.solution||""))}</div>`+
+    ((q.sim && window.Sim) ? `<div class="mc-slot"></div>` : "")+
     (src?`<div class="src-note">${src}</div>`:"")+
     (q.confidence==="low"?`<div class="src-note warn">⚠ רמת ביטחון נמוכה בפתרון — מומלץ לאמת.</div>`:"")+
     rubricHtml(q)+
@@ -433,6 +435,8 @@ function renderQuestion(){
       if(document.querySelector(".steps-panel")) mountSteps(q);
       bindRubric(document, q);
       mountAiGrade(q);
+      /* probability extra: the "simulate it" box (sim.js) inside the solution panel */
+      if(q.sim && window.Sim) window.Sim.mount(document.querySelector("#qBody .mc-slot"), q.sim, { item:q });
     }
   }
 

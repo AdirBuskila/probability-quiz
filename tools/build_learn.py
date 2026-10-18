@@ -12,6 +12,8 @@ Static + offline, same contract as build_questions.py (open engine):
     <mrow class="ovl"> by richtext.fix_overlines(). Hebrew inside math, or a KaTeX error, fails.
   - ``` fenced code -> <pre class="code-block" dir="ltr"> (same markup as the question rich text);
     inline `code` -> <code class="tok" dir="ltr">.
+  - ```region fence (JSON, the RAW_SCHEMA "Area regions" format) -> <div class="region-fig" data-region>,
+    drawn by region.js at run time; checked with validate.check_region.
   - tools/redact.txt (validate.load_redact): a listed author name in a brief fails the build.
   - `24B-A-Q3` / `24B-A-Q3b` (backticked question id) -> <button class="qref"> that peeks at the
     question. An id that is not in questions.json fails the build (it would open an empty panel).
@@ -166,6 +168,24 @@ def code_markup(h):
     parts = re.split(r"(<pre .*?</pre>)", h, flags=re.S)
     return "".join(p if p.startswith("<pre ") else p.replace("<code>", '<code class="tok" dir="ltr">')
                    for p in parts)
+
+
+REGION_PRE = re.compile(r'<pre class="code-block" dir="ltr" data-lang="region"><code>(.*?)</code></pre>', re.S)
+
+
+def region_figures(h, where):
+    """A ```region fence (JSON body, the RAW_SCHEMA region format) -> <div class="region-fig" data-region="...">,
+    drawn at run time by region.js. Bad JSON or a bad shape fails the build."""
+    def sub(m):
+        src = htmlmod.unescape(m.group(1))
+        try:
+            obj = json.loads(src)
+        except ValueError as e:
+            fail(f"{where}: region fence is not valid JSON ({e})")
+            return ""
+        validate.check_region(where, obj, fail)
+        return f'<div class="region-fig" data-region="{htmlmod.escape(json.dumps(obj, ensure_ascii=False), quote=True)}"></div>'
+    return REGION_PRE.sub(sub, h)
 
 
 def redact_check(where, text):
@@ -333,6 +353,7 @@ def main():
         h = tag_callouts(h)
         h = linkify_qids(h, known, cid)
         h = code_markup(h)
+        h = region_figures(h, cid)
         cited |= set(re.findall(r'data-q="([^"]+)"', h))
         h = inject_math(h, rendered)
         h = isolate_rel(h)

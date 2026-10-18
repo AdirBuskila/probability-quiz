@@ -912,3 +912,65 @@ pre.code-block code{font:inherit;white-space:pre;direction:ltr;text-align:left;b
   .learn-content{padding:1.2rem 1.1rem}
   .learn-content h2.learn-h{font-size:1.3rem}
 }
+
+/* ============================================================
+   Probability extras (app-local): area-method figure (region.js) and the "simulate it" box (sim.js).
+   SVGs are LTR islands inside the RTL page and scale down to the container (fits 390px).
+   ============================================================ */
+.region-fig{margin:.6rem auto .9rem;max-width:380px;min-width:0;padding:.6rem .6rem .5rem;
+  border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--card2)}
+.rg-caption{font-size:.86rem;font-weight:600;margin:0 0 .3rem;text-align:center}
+.rg-plot{direction:ltr;text-align:center}
+.rg-svg{display:block;width:100%;height:auto;max-width:100%;margin:0 auto;font-family:inherit}
+.rg-space{fill:var(--card-solid);stroke:none}
+.rg-grid{stroke:var(--line);stroke-width:1}
+.rg-tick,.rg-frame{stroke:var(--muted);stroke-width:1.2;fill:none}
+.rg-tl{fill:var(--muted);font-size:10.5px}
+.rg-ax{fill:var(--ink);font-size:12px;font-weight:700;font-style:italic}
+.rg-event{fill:var(--brand);fill-opacity:.42;stroke:none}
+.rg-event.rg-event-soft{fill-opacity:.2}
+.rg-given{stroke:none}
+.rg-hatch{stroke:var(--brand2);stroke-width:1.4;stroke-opacity:.75}
+.rg-both{fill:var(--brand);fill-opacity:.78;stroke:none}
+.rg-given-line{fill:none;stroke:var(--brand2);stroke-width:1.8}
+.rg-bound{stroke:var(--ink);stroke-opacity:.45;stroke-width:1;stroke-dasharray:4 3}
+.rg-legend{display:flex;flex-wrap:wrap;justify-content:center;gap:.25rem .9rem;font-size:.8rem;color:var(--muted);margin-top:.35rem}
+.rg-key{display:inline-flex;align-items:center;gap:.3rem}
+.rg-sw{display:inline-block;width:14px;height:10px;border-radius:2px;border:1px solid var(--line-strong)}
+.rg-sw-e{background:color-mix(in srgb,var(--brand) 42%,transparent)}
+.rg-sw-e.soft{background:color-mix(in srgb,var(--brand) 20%,transparent)}
+.rg-sw-g{background:repeating-linear-gradient(45deg,var(--brand2) 0 1.5px,transparent 1.5px 5px);border-color:var(--brand2)}
+.rg-sw-eg{background:color-mix(in srgb,var(--brand) 78%,transparent)}
+.rg-nums{direction:ltr;display:flex;flex-wrap:wrap;justify-content:center;gap:.15rem .8rem;margin-top:.35rem;
+  font-size:.82rem;font-variant-numeric:tabular-nums;color:var(--ink)}
+.rg-nums .rg-p{font-weight:700;flex-basis:100%;text-align:center}
+.rg-exact{text-align:center;font-size:.85rem;margin-top:.2rem}
+.rg-note{text-align:center;font-size:.74rem;color:var(--muted);margin-top:.2rem}
+.rg-error{color:var(--bad);font-size:.85rem}
+.s-region .region-fig{margin:.5rem auto}
+
+.mc-box{margin:.9rem 0;padding:.75rem .8rem;border:1px solid var(--line-strong);border-radius:var(--radius-sm);
+  background:var(--card2);min-width:0;max-width:100%}
+.mc-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.5rem;font-weight:700}
+.mc-what{font-weight:600;color:var(--brand);overflow-wrap:anywhere}
+.mc-desc{margin:.3rem 0 .55rem;font-size:.85rem;color:var(--muted)}
+.mc-chart{direction:ltr;margin:.6rem auto 0;max-width:360px}
+.mc-chart:empty{display:none}
+.mc-svg{display:block;width:100%;height:auto;font-family:inherit}
+.mc-bg{fill:var(--card-solid)}
+.mc-grid{stroke:var(--line);stroke-width:1}
+.mc-tl{fill:var(--muted);font-size:10px;font-variant-numeric:tabular-nums}
+.mc-tl-exact{fill:var(--ink);font-weight:700}
+.mc-band{fill:var(--brand);fill-opacity:.13;stroke:none}
+.mc-exact{stroke:var(--ink);stroke-opacity:.7;stroke-width:1.2;stroke-dasharray:5 4}
+.mc-line{fill:none;stroke:var(--brand);stroke-width:2;stroke-linejoin:round}
+.mc-dot{fill:var(--brand)}
+.mc-dot.done{fill:var(--ok)}
+.mc-result{margin-top:.5rem;font-size:.9rem;line-height:1.6}
+.mc-result:empty{display:none}
+.mc-est{font-weight:700;font-variant-numeric:tabular-nums}
+.mc-n,.mc-note,.mc-line3{color:var(--muted);font-size:.8rem}
+.mc-verdict{margin-top:.25rem;font-weight:700}
+.mc-verdict.good{color:var(--ok)}
+.mc-verdict.bad{color:var(--warn)}
+.mc-err{color:var(--bad)}

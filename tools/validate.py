@@ -36,9 +36,9 @@ CONTEXT_KEYS = {"kind", "title", "text", "image", "caption", "code"}
 QUESTION_KEYS = {"num", "part", "kind", "topic", "points", "question", "contextId", "image", "solution",
                  "solutionSource", "official", "confidence", "hold", "rubric", "rubricSource", "pitfalls",
                  "steps", "stepsSource", "options", "correctId", "acceptedIds", "lockOrder", "explanation",
-                 "verdict"}
+                 "verdict", "region", "sim"}
 STEP_KEYS = {"type", "prompt", "explain", "code", "options", "correctId", "answer", "tol", "accept",
-             "normalize", "lines", "bugIndex", "blankIndex"}
+             "normalize", "lines", "bugIndex", "blankIndex", "region"}
 RUBRIC_KEYS = {"text", "points"}
 OPTION_KEYS = {"id", "type", "value"}
 CODE_RE = re.compile(r"^(\d{2}[ABS]-[ABC]|SAMP-\d+|DEMO-[A-Z])$")
@@ -273,6 +273,8 @@ def check_step(w, s, P, root):
     if s.get("explain"):
         for x in rich_problems(s["explain"], w + " explain"):
             P(x)
+    if "region" in s:
+        check_region(w, s["region"], P)
     if "code" in s and not isinstance(s["code"], bool):
         P(f"{w}: code must be true/false")
     code = s.get("code") is True
@@ -325,6 +327,143 @@ def check_step(w, s, P, root):
         ids = check_options(w, s.get("options"), P, root, rich=not code)
         if s.get("correctId") not in ids:
             P(f"{w}: correctId {s.get('correctId')} not among option ids")
+
+
+# ---------------------------------------------------------------- region / sim (probability extras)
+REGION_KEYS = {"space", "event", "given", "labels", "exact", "caption", "ticks"}
+INEQ_OPS = {"<", "<=", ">", ">="}
+SIM_KINDS = {"area", "pdf", "circuit", "dice", "urn", "bernoulli_matrix", "custom_discrete"}
+SIM_KEYS = {"kind", "params", "estimate", "exact", "trials", "seed"}
+SIM_MEASURES = {"prob", "mean", "var", "cov"}
+SIM_REQUIRED = {"area": (), "pdf": ("pieces",), "circuit": (), "dice": ("n",), "urn": ("draws",),
+                "bernoulli_matrix": ("n", "p"), "custom_discrete": ()}
+
+
+def _const_ok(v):
+    return is_num(v) or nonblank(v)
+
+
+def _check_set(w, s, P):
+    """event/given: list of inequalities (AND), {"any": [list, ...]} (OR of ANDs) or an expression string."""
+    if isinstance(s, str):
+        if not s.strip():
+            P(f"{w}: empty expression")
+        return
+    if isinstance(s, dict) and set(s) == {"any"} and isinstance(s["any"], list) and s["any"]:
+        for i, c in enumerate(s["any"]):
+            _check_set(f"{w}.any[{i}]", c if isinstance(c, list) else [c], P)
+        return
+    if not isinstance(s, list) or not s:
+        P(f"{w}: must be a non-empty list of inequalities, {{any:[...]}} or an expression string")
+        return
+    for i, q in enumerate(s):
+        qw = f"{w}[{i}]"
+        if isinstance(q, str):
+            if not q.strip():
+                P(f"{qw}: empty expression")
+            continue
+        if not isinstance(q, dict):
+            P(f"{qw}: inequality must be an object or a string")
+            continue
+        extra = set(q) - ({"expr", "op", "c"} if "expr" in q else {"a", "b", "c", "op"})
+        if extra:
+            P(f"{qw}: unknown inequality key(s) {sorted(extra)}")
+        if q.get("op") not in INEQ_OPS:
+            P(f"{qw}: op must be one of < <= > >=")
+        for k in ("a", "b", "c"):
+            if k in q and not _const_ok(q[k]):
+                P(f"{qw}: {k} must be a number or a constant expression string")
+        if "expr" in q and not nonblank(q["expr"]):
+            P(f"{qw}: expr must be a non-blank string")
+        if "expr" not in q and not any(k in q for k in ("a", "b")):
+            P(f"{qw}: a linear inequality needs a and/or b")
+
+
+def _check_space(w, sp, P):
+    if not isinstance(sp, dict) or set(sp) != {"x", "y"} or not all(
+            isinstance(sp[k], list) and len(sp[k]) == 2 and all(_const_ok(v) for v in sp[k]) for k in ("x", "y")):
+        P(f'{w}: space must be {{"x":[a,b], "y":[c,d]}}')
+
+
+def check_region(w, r, P):
+    """Shape of a `region` (an object or a non-empty list of them). Geometry and `exact` are checked by
+    tools/check_sim_specs.py (Node, region.js), which validate.py main runs."""
+    if isinstance(r, list):
+        if not r:
+            P(f"{w}: region list is empty")
+        for i, x in enumerate(r):
+            check_region(f"{w}[{i}]", x, P)
+        return
+    if not isinstance(r, dict):
+        P(f"{w}: region must be an object (or a list of them)")
+        return
+    unknown_keys(w + " region", r, REGION_KEYS, P)
+    _check_space(w + " region", r.get("space"), P)
+    if "event" not in r:
+        P(f"{w} region: needs event")
+    else:
+        _check_set(w + " region.event", r["event"], P)
+    if "given" in r:
+        _check_set(w + " region.given", r["given"], P)
+    if "exact" in r and not (is_num(r["exact"]) and 0 <= r["exact"] <= 1):
+        P(f"{w} region: exact must be a probability (number in [0,1])")
+    if "labels" in r and not (isinstance(r["labels"], dict) and set(r["labels"]) <= {"x", "y"}
+                              and all(isinstance(v, str) for v in r["labels"].values())):
+        P(f'{w} region: labels must be {{"x": str, "y": str}}')
+    if "caption" in r and not isinstance(r["caption"], str):
+        P(f"{w} region: caption must be a string")
+    if "ticks" in r and not (isinstance(r["ticks"], dict) and set(r["ticks"]) <= {"x", "y"}
+                             and all(isinstance(v, list) and all(_const_ok(t) for t in v) for v in r["ticks"].values())):
+        P(f'{w} region: ticks must be {{"x":[..], "y":[..]}} of numbers')
+
+
+def check_sim(w, s, P, has_region=False):
+    """Shape of a `sim`. Every sim is also RUN by tools/check_sim_specs.py (validate.py main calls it)."""
+    if not isinstance(s, dict):
+        P(f"{w}: sim must be an object")
+        return
+    unknown_keys(w + " sim", s, SIM_KEYS, P)
+    kind = s.get("kind")
+    if kind not in SIM_KINDS:
+        P(f"{w} sim: kind {kind!r} not in {sorted(SIM_KINDS)}")
+        return
+    if not is_num(s.get("exact")):
+        P(f"{w} sim: exact must be a number (the key the simulation is checked against)")
+    if "estimate" in s and not nonblank(s["estimate"]):
+        P(f"{w} sim: estimate must be a non-blank label")
+    if "trials" in s and not (is_int(s["trials"]) and 1000 <= s["trials"] <= 2000000):
+        P(f"{w} sim: trials must be an int in 1000..2000000")
+    if "seed" in s and not is_int(s["seed"]):
+        P(f"{w} sim: seed must be an int")
+    pr = s.get("params")
+    if not isinstance(pr, dict):
+        P(f"{w} sim: params must be an object")
+        return
+    for k in SIM_REQUIRED[kind]:
+        if k not in pr:
+            P(f"{w} sim: kind {kind} needs params.{k}")
+    m = pr.get("measure", "prob")
+    if m not in SIM_MEASURES:
+        P(f"{w} sim: measure {m!r} not in {sorted(SIM_MEASURES)}")
+    from_region = kind == "area" and bool(pr.get("fromRegion"))
+    if kind == "area":
+        if from_region:
+            if not has_region:
+                P(f"{w} sim: fromRegion but the item has no region")
+        else:
+            _check_space(w + " sim.params", pr.get("space"), P)
+    if m == "prob" and "event" not in pr and not from_region:
+        P(f"{w} sim: measure prob needs params.event")
+    for k in ("event", "given"):
+        if k in pr:
+            if kind == "area":
+                _check_set(f"{w} sim.params.{k}", pr[k], P)
+            elif not nonblank(pr[k]):
+                P(f"{w} sim: params.{k} must be an expression string")
+    if m in ("mean", "var") and not nonblank(pr.get("expr")):
+        P(f"{w} sim: measure {m} needs params.expr (string)")
+    if m == "cov" and not (isinstance(pr.get("expr"), list) and len(pr["expr"]) == 2 and all(nonblank(x) for x in pr["expr"])):
+        P(f"{w} sim: measure cov needs params.expr [expr1, expr2]")
 
 
 def check_question(code, q, ctxs, P, W, root):
@@ -455,6 +594,10 @@ def check_question(code, q, ctxs, P, W, root):
             P(f"{qid}: stepsSource {q.get('stepsSource')!r} not in {sorted(STEPS_SOURCES)}")
     elif kind != "mcq" and not hold:
         W(f"{qid}: no steps yet")
+    if "region" in q:
+        check_region(qid, q["region"], P)
+    if "sim" in q:
+        check_sim(qid, q["sim"], P, has_region="region" in q)
     if q.get("confidence") == "low":
         W(f"{qid}: confidence low")
 
@@ -574,6 +717,13 @@ def main():
                           capture_output=True, text=True, encoding="utf-8", cwd=str(ROOT))
     if lint.returncode:
         all_p += ["escape-lint: " + l for l in lint.stdout.splitlines() if not l.startswith("escape problems")]
+    # every sim / region in the raw files is run in Node (sim.js, region.js) and must agree with its exact
+    sims = subprocess.run([sys.executable, str(TOOLS / "check_sim_specs.py")] + [str(f) for f in files if f.is_file()],
+                          capture_output=True, text=True, encoding="utf-8", cwd=str(ROOT))
+    print(sims.stdout.rstrip())
+    if sims.returncode:
+        all_p += (["sim-check: " + l.strip() for l in sims.stdout.splitlines() if l.startswith("  FAIL")]
+                  or ["sim-check: " + (sims.stderr.strip() or "check_sim_specs.py failed")])
     print(f"\nPROBLEMS ({len(all_p)}):")
     for x in all_p:
         print("  -", x.encode("ascii", "backslashreplace").decode())
