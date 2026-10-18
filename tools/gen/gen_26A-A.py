@@ -16,7 +16,8 @@ Transcription notes
 - Q1 region data and the sim specs live in the REGIONS / SIMS blocks above the exam dict.
 - The page-1 cover (lecturer names) is not copied anywhere.
 """
-import json, pathlib
+import itertools, json, math, pathlib
+from fractions import Fraction
 
 OUT = pathlib.Path(__file__).resolve().parents[1] / "raw" / "26A-A.json"
 CODE = "26A-A"
@@ -436,12 +437,79 @@ SIMS = {
                "estimate": "P(diagonal or anti-diagonal)", "exact": 2 / 9},
 }
 
+# ---- step-author additions: sims at sample parameter values for the symbolic answers
+def _geom(p, K=80):
+    probs = [p * (1 - p) ** (k - 1) for k in range(1, K + 1)]
+    probs[-1] += 1 - sum(probs)          # tail mass (~1e-13) goes to the last value
+    return {"values": list(range(1, K + 1)), "probs": probs}
+
+
+_P2 = 0.3                                # Q2: coin bias p=0.3, so the tie probability is Q = p/(2-p) = 3/17
+_Q2 = Fraction(3, 17)
+_G2 = {"vars": {"X1": _geom(_P2), "X2": _geom(_P2)}}
+_AB = [{"p": 0.42, "A": 1, "B": 1}, {"p": 0.18, "A": 1, "B": 0}, {"p": 0.08, "A": 0, "B": 1}, {"p": 0.32, "A": 0, "B": 0}]  # Q3: p=0.6,q=0.7,s=0.2
+_C3 = {"joint": _AB}
+
+
+def _cells(n):
+    return [(r, c) for r in range(n) for c in range(n)]
+
+
+def _pairs(n):
+    cs = _cells(n)
+    return [{"p": 1 / math.comb(n * n, 2), "r1": a[0], "c1": a[1], "r2": b[0], "c2": b[1]}
+            for i, a in enumerate(cs) for b in cs[i + 1:]]
+
+
+def _lines3(n):
+    """all triples of cells of an n x n board; line=1 when they are 3 consecutive cells in a row, column or diagonal"""
+    rows = []
+    for a, b, c in itertools.combinations(sorted(_cells(n)), 3):
+        d1 = (b[0] - a[0], b[1] - a[1])
+        d2 = (c[0] - b[0], c[1] - b[1])
+        line = 1 if (d1 == d2 and d1 in ((0, 1), (1, 0), (1, 1), (1, -1))) else 0
+        rows.append({"p": 1 / math.comb(n * n, 3), "line": line})
+    return rows
+
+
+SIMS.update({
+    (2, "א"): dict(kind="custom_discrete", params=dict(_G2, event="X1 < X2"), estimate="P(Eugene wins), p=0.3", exact=float((1 - _Q2) / 2)),
+    (2, "ב"): dict(kind="custom_discrete", params=dict(_G2, event="X1 == X2"), estimate="P(tie) = p/(2-p) at p=0.3", exact=float(_Q2)),
+    (2, "ג"): dict(kind="custom_discrete", params=dict(_G2, event="X1 == 2 and X2 == 2", given="X1 == X2"),
+                   estimate="P(both at toss 2 | tie), p=0.3", exact=0.3 ** 2 * 0.7 ** 2 / float(_Q2)),
+    (2, "ד"): dict(kind="custom_discrete", params=dict(_G2, event="X2 == 2", given="X2 < X1"),
+                   estimate="P(X2=2 | Boris wins), p=0.3", exact=0.3 ** 2 * 0.7 ** 2 / float(_Q2)),
+    (2, "ה"): dict(kind="custom_discrete", params=dict(_G2, measure="mean", expr="X1", given="X1 == X2"),
+                   estimate="E[T | tie], p=0.3", exact=float((1 + _Q2) ** 2 / (4 * _Q2))),
+    (3, "א"): dict(kind="custom_discrete", params=dict(_C3, event="A == 1 and B == 1"), estimate="P(Q1), p=0.6 q=0.7 s=0.2", exact=0.42),
+    (3, "ב"): dict(kind="custom_discrete", params=dict(_C3, event="A == 1 or B == 1"), estimate="P(Q2), p=0.6 q=0.7 s=0.2", exact=0.68),
+    (3, "ג"): dict(kind="custom_discrete", params=dict(_C3, event="A == 1 and B == 1", given="A == 1 or B == 1"),
+                   estimate="P(Q1 | Q2), p=0.6 q=0.7 s=0.2", exact=21 / 34),
+    (3, "ד"): dict(kind="custom_discrete", params=dict(_C3, event="A == 1 or B == 1"), estimate="P(Q1 u Q2), p=0.6 q=0.7 s=0.2", exact=0.68),
+    (4, "ד"): dict(kind="pdf", params={"pieces": [{"from": -40, "to": 0, "expr": "0.25*exp(x)"},
+                                                   {"from": 0, "to": 2, "expr": "1.125*(1-x)^2"}],
+                                      "event": "x > 0 and x < 0.5"},
+                   estimate="P(0<X<|mu|), mu=0.5", exact=21 / 64),
+    (6, "ה"): dict(kind="custom_discrete", params={"joint": _pairs(4), "event": "abs(r1-r2)+abs(c1-c2) == 1"},
+                   estimate="P(horizontal or vertical), N=4", exact=4 / (4 * 5)),
+    (6, "ו"): dict(kind="custom_discrete", params={"joint": _pairs(4), "event": "abs(r1-r2) == 1 and abs(c1-c2) == 1"},
+                   estimate="P(diagonal or anti-diagonal), N=4", exact=4 * 3 / (16 * 5)),
+    (6, "ז"): dict(kind="custom_discrete", params={"joint": _lines3(4), "event": "line == 1"},
+                   estimate="P(3 marks in a line), N=4 k=3", exact=2 * 2 * 6 / math.comb(16, 3)),
+})
+
 for _q in questions:
     _k = (_q["num"], _q.get("part"))
     if _k in REGIONS:
         _q["region"] = REGIONS[_k]
     if _k in SIMS:
         _q["sim"] = SIMS[_k]
+
+# ---- step-author: rubric, pitfalls, guided steps. Data in steps_26A_A.py; every value is re-derived in
+# tools/verify/26A-A/steps_check.py (exact + Monte Carlo).
+import probsteps
+from steps_26A_A import DATA as _STEPS
+probsteps.apply(questions, _STEPS, CODE)
 
 # ------------------------------------------------------------------ exam
 exam = {
