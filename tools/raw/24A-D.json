@@ -41,7 +41,41 @@
    "confidence": "high",
    "points": 9,
    "part": "א",
-   "contextId": "c1"
+   "contextId": "c1",
+   "region": {
+    "space": {
+     "x": [
+      0,
+      1
+     ],
+     "y": [
+      0,
+      1
+     ]
+    },
+    "labels": {
+     "x": "X",
+     "y": "Y"
+    },
+    "event": [
+     {
+      "a": 1,
+      "b": 1,
+      "c": "2/3",
+      "op": "<="
+     }
+    ],
+    "exact": 0.2222222222222222,
+    "caption": "האירוע X1+X2<=2/3"
+   },
+   "sim": {
+    "kind": "area",
+    "estimate": "P(X1+X2<=2/3)",
+    "exact": 0.2222222222222222,
+    "params": {
+     "fromRegion": true
+    }
+   }
   },
   {
    "num": 1,
@@ -54,7 +88,47 @@
    "confidence": "high",
    "points": 9,
    "part": "ב",
-   "contextId": "c1"
+   "contextId": "c1",
+   "region": {
+    "space": {
+     "x": [
+      0,
+      1
+     ],
+     "y": [
+      0,
+      1
+     ]
+    },
+    "labels": {
+     "x": "X",
+     "y": "Y"
+    },
+    "event": [
+     {
+      "a": 1,
+      "b": 0,
+      "c": "2/3",
+      "op": "<"
+     },
+     {
+      "a": 0,
+      "b": 1,
+      "c": "2/3",
+      "op": "<"
+     }
+    ],
+    "exact": 0.4444444444444444,
+    "caption": "האירוע X1<2/3 וגם X2<2/3"
+   },
+   "sim": {
+    "kind": "area",
+    "estimate": "P(X1<2/3, X2<2/3)",
+    "exact": 0.4444444444444444,
+    "params": {
+     "fromRegion": true
+    }
+   }
   },
   {
    "num": 1,
@@ -67,7 +141,49 @@
    "confidence": "high",
    "points": 7,
    "part": "ג",
-   "contextId": "c1"
+   "contextId": "c1",
+   "region": {
+    "space": {
+     "x": [
+      0,
+      1
+     ],
+     "y": [
+      0,
+      1
+     ]
+    },
+    "labels": {
+     "x": "X",
+     "y": "Y"
+    },
+    "event": [
+     {
+      "a": 1,
+      "b": 1,
+      "c": 1,
+      "op": "<="
+     }
+    ],
+    "exact": 0.6666666666666666,
+    "caption": "האירוע X1+X2<=1 בהינתן X1<=2/3",
+    "given": [
+     {
+      "a": 1,
+      "b": 0,
+      "c": "2/3",
+      "op": "<="
+     }
+    ]
+   },
+   "sim": {
+    "kind": "area",
+    "estimate": "P(X1+X2<=1 | X1<=2/3)",
+    "exact": 0.6666666666666666,
+    "params": {
+     "fromRegion": true
+    }
+   }
   },
   {
    "num": 2,
@@ -79,7 +195,16 @@
    "official": true,
    "confidence": "high",
    "points": 5,
-   "part": "א"
+   "part": "א",
+   "sim": {
+    "kind": "dice",
+    "estimate": "P(sum = 6)",
+    "exact": 0.1388888888888889,
+    "params": {
+     "n": 2,
+     "event": "sum == 6"
+    }
+   }
   },
   {
    "num": 2,
@@ -91,7 +216,16 @@
    "official": true,
    "confidence": "high",
    "points": 5,
-   "part": "ב"
+   "part": "ב",
+   "sim": {
+    "kind": "dice",
+    "estimate": "P(sum = 6)",
+    "exact": 0.046296296296296294,
+    "params": {
+     "n": 3,
+     "event": "sum == 6"
+    }
+   }
   },
   {
    "num": 2,
@@ -103,7 +237,17 @@
    "official": true,
    "confidence": "high",
    "points": 5,
-   "part": "ג"
+   "part": "ג",
+   "sim": {
+    "kind": "dice",
+    "estimate": "P(sum = 6 | d1+d2 = 2)",
+    "exact": 0.16666666666666666,
+    "params": {
+     "n": 3,
+     "event": "sum == 6",
+     "given": "d1+d2 == 2"
+    }
+   }
   },
   {
    "num": 2,
@@ -115,7 +259,17 @@
    "official": true,
    "confidence": "high",
    "points": 5,
-   "part": "ד"
+   "part": "ד",
+   "sim": {
+    "kind": "dice",
+    "estimate": "P(sum = 6 | d1<d2)",
+    "exact": 0.044444444444444446,
+    "params": {
+     "n": 3,
+     "event": "sum == 6",
+     "given": "d1 < d2"
+    }
+   }
   },
   {
    "num": 2,
@@ -127,7 +281,17 @@
    "official": true,
    "confidence": "high",
    "points": 5,
-   "part": "ה"
+   "part": "ה",
+   "sim": {
+    "kind": "dice",
+    "estimate": "P(sum = 6 | d1=d2)",
+    "exact": 0.05555555555555555,
+    "params": {
+     "n": 3,
+     "event": "sum == 6",
+     "given": "d1 == d2"
+    }
+   }
   },
   {
    "num": 3,
@@ -199,7 +363,7 @@
    "kind": "computation",
    "topic": "continuous_rv",
    "question": "נתבונן במשתנה מקרי $X$ בעל פונקציית צפיפות ההסתברות מהצורה\n$$f(x)=\\begin{cases}a(b-|x|),&-b\\le x\\le b\\\\ 0,&\\text{else}\\end{cases}$$\nכאשר $a>0$ ו-$b>0$.\nבהינתן המקדמים $a$ ו-$b$ מהסעיף הקודם:\n**ג-1:** חשבו את פונקציית ההתפלגות המצטברת $F_X(t)$ ושרטטו אותה.",
-   "solution": "$f_X(x)=\\dfrac14(2-|x|)$ עבור $-2\\le x\\le2$ (שיא $\\frac12$ ב-$x=0$).\n$$F_X(t)=\\int_{-\\infty}^tf_X(x)\\,dx=\\begin{cases}0,&t<-2,\\\\ \\dfrac12(t+2)\\cdot\\dfrac{t+2}{4}=\\dfrac18(t+2)^2,&-2\\le t<0,\\\\ 1-\\dfrac12(2-t)\\cdot\\dfrac{2-t}{4}=1-\\dfrac18(2-t)^2,&0\\le t<2,\\\\ 1,&t\\ge2.\\end{cases}$$\n(שטח משולש קטן משמאל ל-$t$ או משמאל ל-$t$ המשלים; גובה הצפיפות ב-$t$ הוא $\\frac{t+2}{4}$ או $\\frac{2-t}{4}$.)\n![גרף פונקציית ההתפלגות המצטברת](images/exams/24A-D-Q4-cdf.png)",
+   "solution": "$f_X(x)=\\dfrac14(2-|x|)$ עבור $-2\\le x\\le2$ (שיא $\\frac12$ ב-$x=0$).\n$$F_X(t)=\\int_{-\\infty}^tf_X(x)\\,dx=\\begin{cases}0,&t<-2,\\\\ \\dfrac12(t+2)\\cdot\\dfrac{t+2}{4}=\\dfrac18(t+2)^2,&-2\\le t<0,\\\\ 1-\\dfrac12(2-t)\\cdot\\dfrac{2-t}{4}=1-\\dfrac18(2-t)^2,&0\\le t<2,\\\\ 1,&t\\ge2.\\end{cases}$$\n(לפי שטח המשולש משמאל ל-$t$, שגובהו $\\frac{t+2}{4}$, או $1$ פחות שטח המשולש מימין ל-$t$, שגובהו $\\frac{2-t}{4}$.)\n![גרף פונקציית ההתפלגות המצטברת](images/exams/24A-D-Q4-cdf.png)",
    "solutionSource": "official-pdf",
    "official": true,
    "confidence": "high",
@@ -218,7 +382,28 @@
    "confidence": "high",
    "points": 6,
    "part": "ד",
-   "image": "images/exams/24A-D-Q4-pdf.png"
+   "image": "images/exams/24A-D-Q4-pdf.png",
+   "sim": {
+    "kind": "pdf",
+    "estimate": "P(X>1/4 | |X|<1)",
+    "exact": 0.34375,
+    "params": {
+     "pieces": [
+      {
+       "from": -2,
+       "to": 0,
+       "expr": "(2+x)/4"
+      },
+      {
+       "from": 0,
+       "to": 2,
+       "expr": "(2-x)/4"
+      }
+     ],
+     "event": "x > 1/4",
+     "given": "abs(x) < 1"
+    }
+   }
   },
   {
    "num": 5,
