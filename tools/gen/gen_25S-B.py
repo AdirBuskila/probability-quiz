@@ -16,7 +16,7 @@ Transcription notes
 - Q1 region data and the sim specs live in the REGIONS / SIMS blocks above the exam dict.
 - The page-1 cover (lecturer names) is not copied anywhere.
 """
-import json, pathlib
+import json, math, pathlib
 
 OUT = pathlib.Path(__file__).resolve().parents[1] / "raw" / "25S-B.json"
 CODE = "25S-B"
@@ -301,12 +301,63 @@ SIMS = {
     (1, "ג"): {"kind": "area", "params": {"fromRegion": True}, "estimate": "P(|a1-a2|<pi/2 | a2>2a1)", "exact": 0.5},
 }
 
+# ---- step-author additions: sims at sample parameter values for the symbolic answers
+def _thinning_rows(lam=2.0, p=0.3, K=40):
+    """X ~ Poisson(lam) diners, each enjoys with probability p: joint (X, Y); tail beyond K is ~1e-38"""
+    rows = []
+    for x in range(K + 1):
+        px = math.exp(-lam) * lam ** x / math.factorial(x)
+        for y in range(x + 1):
+            rows.append({"p": px * math.comb(x, y) * p ** y * (1 - p) ** (x - y), "X": x, "Y": y})
+    tot = sum(r["p"] for r in rows)
+    rows[-1]["p"] += 1 - tot
+    return rows
+
+
+def _comp(i, p):
+    return {"type": "comp", "id": i, "p": p}
+
+
+_PC = 0.6                                                    # Q5: every unit works with probability p = 0.6
+_Q1NET = {"type": "series", "children": [_comp("D", _PC), {"type": "parallel", "children": [
+    {"type": "series", "children": [_comp("A", _PC), _comp("B", _PC)]}, _comp("C", _PC)]}]}
+_G = "S == 1 and B == 1 and (D == 1 or (A == 1 and C == 1))"   # Q1 works and Q2 = B and (D or (A and C)) works
+_NUMS = {"values": list(range(1, 10)), "draws": 2, "replace": False}
+SIMS.update({
+    (2, "א"): dict(kind="urn", params={"values": list(range(1, 10)), "draws": 1, "event": "v1 % 2 == 0"}, estimate="P(even), N=4", exact=4 / 9),
+    (2, "ב"): dict(kind="urn", params=dict(_NUMS, event="(v1+v2) % 2 == 0"), estimate="P(sum even), N=4", exact=4 / 9),
+    (2, "ג"): dict(kind="urn", params=dict(_NUMS, event="(v1+v2) % 2 == 0", given="v1 % 2 == 0"),
+                   estimate="P(sum even | first even), N=4", exact=3 / 8),
+    (3, "ב"): dict(kind="custom_discrete", params={"joint": _thinning_rows(), "event": "Y == 1"},
+                   estimate="P(Y=1), lambda=2 p=0.3", exact=0.6 * math.exp(-0.6)),
+    (3, "ג"): dict(kind="custom_discrete", params={"vars": {"Z%d" % i: {"values": [0, 1], "probs": [0.7, 0.3]} for i in range(1, 6)},
+                                                    "event": "Z1+Z2+Z3+Z4+Z5 == 2"},
+                   estimate="P(Y=2 | X=5), p=0.3", exact=math.comb(5, 2) * 0.3 ** 2 * 0.7 ** 3),
+    (3, "ד"): dict(kind="custom_discrete", params={"joint": _thinning_rows(), "event": "X == 3", "given": "Y == 1"},
+                   estimate="P(X=3 | Y=1), lambda=2 p=0.3", exact=math.exp(-1.4) * 1.4 ** 2 / 2),
+    (4, "ה"): dict(kind="pdf", params={"pieces": [{"from": 0, "to": 1, "expr": "1.6-1.2*x"}], "event": "x <= 0.5"},
+                   estimate="P(X<=1/2), mu=0.4", exact=0.65),
+    (5, "א"): dict(kind="circuit", params={"network": _Q1NET, "event": "S == 1"}, estimate="P(Q1), p=0.6", exact=_PC ** 3 + _PC ** 2 - _PC ** 4),
+    (5, "ב"): dict(kind="circuit", params={"network": _Q1NET, "event": _G}, estimate="P(Q1 and Q2), p=0.6", exact=2 * _PC ** 3 - _PC ** 4),
+    (5, "ג"): dict(kind="circuit", params={"network": _Q1NET, "event": "A+B+C+D == 4", "given": _G},
+                   estimate="P(all work | both circuits work), p=0.6", exact=_PC / (2 - _PC)),
+    (6, "א"): dict(kind="dice", params={"n": 2, "faces": 6, "event": "min == 2 and max == 5"}, estimate="P(min=2,max=5), N=6", exact=2 / 36),
+    (6, "ב"): dict(kind="dice", params={"n": 2, "faces": 6, "event": "min == 2"}, estimate="P(min=2), N=6", exact=9 / 36),
+    (6, "ג"): dict(kind="dice", params={"n": 2, "faces": 6, "event": "max == 4"}, estimate="P(max=4), N=6", exact=7 / 36),
+})
+
 for _q in questions:
     _k = (_q["num"], _q.get("part"))
     if _k in REGIONS:
         _q["region"] = REGIONS[_k]
     if _k in SIMS:
         _q["sim"] = SIMS[_k]
+
+# ---- step-author: rubric, pitfalls, guided steps. Data in steps_25S_B.py; every value is re-derived in
+# tools/verify/25S-B/steps_check.py (exact + Monte Carlo).
+import probsteps
+from steps_25S_B import DATA as _STEPS
+probsteps.apply(questions, _STEPS, CODE)
 
 # ------------------------------------------------------------------ exam
 exam = {
