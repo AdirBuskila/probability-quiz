@@ -55,7 +55,24 @@
       "מינימום, מקסימום ופונקציות של משתנים"
     ]
   ],
-  "briefs": [],
+  "briefs": [
+    ["00 - exam.md", "exam", "uniform_geometric", "cheat"],
+    ["01 - basics_events.md", "basics_events", "basics_events", "topic"],
+    ["02 - conditional_bayes.md", "conditional_bayes", "conditional_bayes", "topic"],
+    ["03 - independence.md", "independence", "independence", "topic"],
+    ["04 - combinatorics.md", "combinatorics", "combinatorics", "topic"],
+    ["05 - discrete_rv.md", "discrete_rv", "discrete_rv", "topic"],
+    ["06 - special_discrete.md", "special_discrete", "special_discrete", "topic"],
+    ["07 - joint_discrete.md", "joint_discrete", "joint_discrete", "topic"],
+    ["08 - continuous_rv.md", "continuous_rv", "continuous_rv", "topic"],
+    ["09 - exp_normal.md", "exp_normal", "exp_normal", "topic"],
+    ["10 - area_method.md", "area_method", "uniform_geometric", "topic"],
+    ["11 - pdf_constants.md", "pdf_constants", "continuous_rv", "cheat"],
+    ["12 - minmax_transform.md", "minmax_transform", "minmax_transform", "topic"],
+    ["13 - circuits.md", "circuits", "circuits", "topic"],
+    ["14 - traps.md", "traps", "conditional_bayes", "cheat"],
+    ["15 - cheat_sheet.md", "cheat_sheet", "uniform_geometric", "cheat"]
+  ],
   "needHelp": [
     {
       "id": "geo",
