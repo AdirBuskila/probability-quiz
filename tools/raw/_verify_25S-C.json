@@ -1,0 +1,326 @@
+{
+ "examCode": "25S-C",
+ "verifier": "refuter (own sympy/enumeration + own Monte Carlo)",
+ "answers": {
+  "1א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": "agree",
+   "sim": "agree",
+   "agrees": true,
+   "confident": true,
+   "note": "agree; modelling caveat: triangle validity L>2b fails on 1/4 of the space, ignored by the question too"
+  },
+  "1ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": "agree",
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "1ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "1ד": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "2א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "2ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "2ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "2ד": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "3א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "3ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "3ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "3ד": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": null,
+   "agrees": true,
+   "confident": true
+  },
+  "3ה": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "4א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "disagree (explain only): option c (2,5/2) has area a/2+(b-a)=1.5, not 2.5 as the explain says; correctId a still right"
+   },
+   "region": null,
+   "sim": null,
+   "agrees": true,
+   "confident": true
+  },
+  "4ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": null,
+   "agrees": true,
+   "confident": true
+  },
+  "4ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "5א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "5ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "5ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "6א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "6ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "6ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": null,
+   "agrees": true,
+   "confident": true
+  }
+ }
+}

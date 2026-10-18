@@ -1,0 +1,324 @@
+{
+ "examCode": "25S-B",
+ "verifier": "refuter (own sympy/enumeration + own Monte Carlo)",
+ "answers": {
+  "1א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": "agree",
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "1ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": "agree",
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "1ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": "agree",
+   "sim": "agree",
+   "agrees": true,
+   "confident": true,
+   "note": "agree; region figure prints S(B)=24637/9985 (pi^2 approximated by a fraction), cosmetic"
+  },
+  "2א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "2ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true,
+   "note": "agree with solution; printed question does not say without replacement, solution assumes X1!=X2 (official handwritten key also does). With replacement the answers differ: P(sum even)=((N+1)^2+N^2)/(2N+1)^2, P(.|first even)=N/(2N+1). Question text should say 'without replacement'"
+  },
+  "2ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true,
+   "note": "same ambiguity as 2ב"
+  },
+  "3א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree"
+   },
+   "region": null,
+   "sim": null,
+   "agrees": true,
+   "confident": true
+  },
+  "3ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "3ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "3ד": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "4א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": null,
+   "agrees": true,
+   "confident": true
+  },
+  "4ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": null,
+   "agrees": true,
+   "confident": true
+  },
+  "4ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": null,
+   "agrees": true,
+   "confident": true
+  },
+  "4ד": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": null,
+   "agrees": true,
+   "confident": true
+  },
+  "4ה": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "5א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "5ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "5ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "6א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "6ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "6ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "6ד": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": null,
+   "agrees": true,
+   "confident": true
+  }
+ }
+}

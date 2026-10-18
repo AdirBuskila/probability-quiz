@@ -1,0 +1,341 @@
+{
+ "examCode": "26A-B",
+ "verifier": "refuter (own sympy/enumeration + own Monte Carlo)",
+ "answers": {
+  "1א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree",
+    "4": "agree"
+   },
+   "region": "agree",
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "1ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": null,
+   "agrees": true,
+   "confident": true
+  },
+  "1ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "2א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "2ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "2ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "3א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true,
+   "note": "agree with the corrected (printed-label) solution. Verified against the PDF: printed exam q2=P(B|~A~C), q4=P(B|~A C); official solution has them swapped. Own exact+MC: P(B)=q1p^2+(q3+q4)p(1-p)+q2(1-p)^2"
+  },
+  "3ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true,
+   "note": "agree: independence iff pq1+(1-p)q3=pq4+(1-p)q2; P(A|B)=(q1p^2+q3p(1-p))/P(B)"
+  },
+  "3ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "3ד": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true,
+   "note": "agree: P(Q2)=1-(1-q2)(1-p)^2"
+  },
+  "4א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": null,
+   "agrees": true,
+   "confident": true
+  },
+  "4ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": null,
+   "agrees": true,
+   "confident": true
+  },
+  "4ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": null,
+   "agrees": true,
+   "confident": true
+  },
+  "4ד": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "5א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "5ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "5ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": null,
+   "agrees": true,
+   "confident": true
+  },
+  "5ד": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "5ה": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "6א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree"
+   },
+   "region": null,
+   "sim": null,
+   "agrees": true,
+   "confident": true
+  },
+  "6ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true,
+   "note": "agree 14/220; sim joint has 14 flagged of 220 (flag precomputed, circular)"
+  },
+  "6ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree"
+   },
+   "region": null,
+   "sim": null,
+   "agrees": true,
+   "confident": true
+  },
+  "6ד": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true,
+   "note": "agree 34/1140; sim flag precomputed (34 of 1140)"
+  }
+ }
+}

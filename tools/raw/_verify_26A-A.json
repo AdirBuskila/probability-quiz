@@ -1,0 +1,436 @@
+{
+ "examCode": "26A-A",
+ "verifier": "refuter (own sympy/enumeration + own Monte Carlo)",
+ "answers": {
+  "1א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": "agree",
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "1ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": "agree",
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "1ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": "agree",
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "1ד": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": "agree",
+   "sim": "agree",
+   "agrees": true,
+   "confident": true,
+   "note": "agree on 2/3; the solution's displayed derivation (1/4)(3/4-1/12) is not justified as 'square minus previous region' (previous region has area 1/48); correct route is square minus two triangles 1/24 each, or 1-1/6-1/6"
+  },
+  "1ה": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": null,
+   "agrees": true,
+   "confident": true
+  },
+  "2א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "2ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "2ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "2ד": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "disagree (explain only): says the third option is P(X1<=k); it is the fourth (d). correctId c is right",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "2ה": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "3א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "3ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "3ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "3ד": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "4א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": null,
+   "agrees": true,
+   "confident": true
+  },
+  "4ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": null,
+   "agrees": true,
+   "confident": true
+  },
+  "4ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": null,
+   "agrees": true,
+   "confident": true
+  },
+  "4ד": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "5א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": null,
+   "agrees": true,
+   "confident": true
+  },
+  "5ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": null,
+   "agrees": true,
+   "confident": true
+  },
+  "5ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": null,
+   "agrees": true,
+   "confident": true
+  },
+  "5ד": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": null,
+   "agrees": true,
+   "confident": true
+  },
+  "5ה": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": null,
+   "agrees": true,
+   "confident": true
+  },
+  "6א": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree"
+   },
+   "region": null,
+   "sim": null,
+   "agrees": true,
+   "confident": true
+  },
+  "6ב": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "6ג": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "6ד": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree"
+   },
+   "region": null,
+   "sim": null,
+   "agrees": true,
+   "confident": true
+  },
+  "6ה": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "6ו": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true
+  },
+  "6ז": {
+   "solution": "agree",
+   "rubric": "agree",
+   "pitfalls": "agree",
+   "steps": {
+    "0": "agree",
+    "1": "agree",
+    "2": "agree",
+    "3": "agree"
+   },
+   "region": null,
+   "sim": "agree",
+   "agrees": true,
+   "confident": true,
+   "note": "agree; sim is a 560-row joint with a precomputed 'line' flag (24 flagged, matches my count 24), so it does not model cell positions (circular)"
+  }
+ }
+}
