@@ -1,0 +1,70 @@
+/* events-course widgets (w_events.py), every class prefixed ev- */
+svg.ev-svg{overflow:visible;flex:none}
+svg.ev-svg .ev-om{fill:rgba(56,189,248,.06);stroke:#c9cdf0;stroke-width:3}
+svg.ev-svg .ev-c{fill:none;stroke:#c9cdf0;stroke-width:3.5}
+svg.ev-svg .ev-nm{font-family:"Cambria Math",serif;font-style:italic;font-size:40px;fill:var(--ink);text-anchor:middle}
+svg.ev-svg .ev-nm.om{font-style:normal;text-anchor:start;fill:var(--muted)}
+svg.ev-svg .ev-r{stroke:none}
+svg.ev-svg .ev-r.ev{fill:rgba(45,212,191,.45)}
+svg.ev-svg .ev-r.alt{fill:rgba(192,132,252,.45)}
+svg.ev-svg .ev-r.warn{fill:rgba(251,191,36,.45)}
+svg.ev-svg .ev-r.bad{fill:rgba(251,113,133,.42)}
+svg.ev-svg .ev-r.dim{fill:rgba(255,255,255,.10)}
+svg.ev-svg .ev-vt{font-family:"Cambria Math",serif;font-size:32px;fill:#fff;text-anchor:middle}
+svg.ev-svg .ev-vt.big{font-size:38px;font-weight:700}
+svg.ev-svg .ev-vt.mut{fill:var(--muted)}
+svg.ev-svg .ev-vt.it{font-style:italic}
+
+/* dice grid */
+svg.ev-svg .ev-bg{fill:var(--card);stroke:var(--line);stroke-width:1.5}
+svg.ev-svg .ev-cell.ev{fill:rgba(45,212,191,.42)}
+svg.ev-svg .ev-cell.both{fill:rgba(45,212,191,.85)}
+svg.ev-svg .ev-cell.cond{fill:none;stroke:#fbbf24;stroke-width:5}
+svg.ev-svg .ev-cell.warn{fill:rgba(251,191,36,.40)}
+svg.ev-svg .ev-cell.bad{fill:rgba(251,113,133,.45)}
+svg.ev-svg .ev-cell.dim{fill:rgba(10,12,24,.72)}
+svg.ev-svg .ev-gh{font-family:"Cambria Math",serif;font-size:28px;fill:var(--muted);text-anchor:middle}
+svg.ev-svg .ev-gt{font-family:"Segoe UI",sans-serif;font-size:26px;fill:var(--muted);text-anchor:middle}
+svg.ev-svg .ev-gv{font-family:"Cambria Math",serif;font-size:27px;fill:var(--ink);text-anchor:middle}
+
+/* tree */
+svg.ev-svg .ev-edge{stroke:#c9cdf0;stroke-width:3}
+svg.ev-svg .ev-edge-hi{stroke:var(--brand);stroke-width:9;stroke-linecap:round}
+svg.ev-svg .ev-pr{font-family:"Cambria Math",serif;font-size:29px;fill:#fbbf24;text-anchor:middle}
+svg.ev-svg .ev-nl{font-family:"Segoe UI",sans-serif;font-size:28px;fill:var(--ink);text-anchor:start}
+svg.ev-svg .ev-nl.mid{text-anchor:middle}
+svg.ev-svg .ev-lp{font-family:"Cambria Math",serif;font-size:29px;fill:var(--brand);text-anchor:start}
+svg.ev-svg .ev-root{fill:#c9cdf0}
+
+/* urn */
+svg.ev-svg .ev-jar{fill:rgba(255,255,255,.035);stroke:#c9cdf0;stroke-width:3}
+svg.ev-svg .ev-ball.r{fill:#e11d48}
+svg.ev-svg .ev-ball.k{fill:#3f4466}
+svg.ev-svg .ev-ball.t{fill:#0f9e8c}
+svg.ev-svg .ev-ball.g{fill:#3f4466}
+svg.ev-svg .ev-bl{font-family:"Cambria Math",serif;font-size:30px;fill:#fff;text-anchor:middle}
+svg.ev-svg .ev-ring{fill:none;stroke:#fbbf24;stroke-width:6}
+svg.ev-svg .ev-gone{fill:rgba(10,12,24,.78)}
+svg.ev-svg .ev-xl{stroke:var(--bad);stroke-width:5}
+
+/* four-cell table */
+.ev-tab{border-collapse:separate;border-spacing:0;background:var(--card2);border:1px solid var(--line);border-radius:14px;direction:ltr;font-size:34px}
+.ev-tab th,.ev-tab td{position:relative;padding:10px 26px;text-align:center;border-bottom:1px solid var(--line);white-space:nowrap;min-width:90px}
+.ev-tab tbody tr:last-child>*{border-bottom:none}
+.ev-tab thead th{color:var(--muted);font-weight:600}
+.ev-tab th.ev-rh{color:var(--muted);font-weight:600;border-right:2px solid var(--line)}
+.ev-tab .ev-mc{border-left:2px solid rgba(251,191,36,.35)}
+.ev-tab .ev-mr{border-top:2px solid rgba(251,191,36,.35)}
+.ev-tab .ev-m .ev-tv{color:var(--warn)}
+.ev-tv{position:relative}
+.ev-hl{position:absolute;inset:3px;border-radius:9px;background:rgba(45,212,191,.22);box-shadow:0 0 0 3px var(--brand) inset}
+
+/* stage layout helpers */
+.ev-stack{display:flex;flex-direction:column;align-items:center;gap:18px;width:100%}
+.ev-row{display:flex;flex-direction:row;align-items:center;justify-content:center;gap:30px;width:100%}
+.ev-big{font-size:44px;direction:ltr;text-align:center}
+.ev-mid{font-size:36px;direction:ltr;text-align:center}
+.ev-eqs{display:flex;flex-direction:column;gap:10px;font-size:34px;direction:ltr;align-items:center}
+.ev-eqs.lg{font-size:42px;gap:22px}
+.ev-swap{position:relative;width:100%;height:var(--swap-h,120px)}
+.ev-swap>div{position:absolute;left:0;right:0;top:0;display:flex;flex-direction:column;align-items:center;gap:14px}

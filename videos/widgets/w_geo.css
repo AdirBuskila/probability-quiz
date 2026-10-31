@@ -1,0 +1,42 @@
+/* geo widgets (w_geo.py): coordinate plane, regions, lines, curves, plots. Every class is prefixed geo- */
+svg.geo-svg{overflow:visible;flex:none}
+svg.geo-svg .geo-box{fill:rgba(255,255,255,.035)}
+svg.geo-svg .geo-edge{fill:none;stroke:#c9cdf0;stroke-width:3}
+svg.geo-svg .geo-axis{stroke:var(--muted);stroke-width:2.5;fill:none}
+svg.geo-svg .geo-tick{stroke:var(--muted);stroke-width:2.5}
+svg.geo-svg .geo-tk{font-family:"Cambria Math",serif;font-size:27px;fill:var(--muted)}
+svg.geo-svg .geo-ax{font-family:"Cambria Math",serif;font-style:italic;font-size:32px;fill:var(--ink)}
+svg.geo-svg .geo-r{stroke:none}
+svg.geo-svg .geo-r.ev{fill:rgba(45,212,191,.42)}
+svg.geo-svg .geo-r.both{fill:rgba(45,212,191,.78)}
+svg.geo-svg .geo-r.comp{fill:rgba(251,113,133,.40)}
+svg.geo-svg .geo-r.om{fill:rgba(56,189,248,.22)}
+svg.geo-svg .geo-r.warn{fill:rgba(251,191,36,.42)}
+svg.geo-svg .geo-line{stroke:#fbbf24;stroke-width:4;fill:none}
+svg.geo-svg .geo-dash{stroke-dasharray:10 9}
+svg.geo-svg .alt .geo-line,svg.geo-svg .geo-line.alt{stroke:#c084fc}
+svg.geo-svg .geo-lt{font-family:"Cambria Math",serif;font-size:28px;fill:#fbbf24}
+svg.geo-svg .alt .geo-lt{fill:#c084fc}
+svg.geo-svg .geo-dot{fill:#fff;stroke:#0a0c18;stroke-width:3}
+svg.geo-svg .geo-pt{font-family:"Cambria Math",serif;font-size:27px;fill:#fff}
+svg.geo-svg .geo-tag{font-family:"Cambria Math",serif;font-size:34px;font-weight:700;fill:#fff}
+svg.geo-svg .geo-tag.dark{fill:#0a0c18}
+
+/* stage layout helpers */
+.geo-stack{display:flex;flex-direction:column;align-items:center;gap:18px;width:100%}
+.geo-row{display:flex;flex-direction:row;align-items:center;justify-content:center;gap:34px;width:100%}
+.geo-big{font-size:44px;direction:ltr;text-align:center}
+.geo-mid{font-size:36px;direction:ltr;text-align:center}
+.geo-steps{display:flex;flex-direction:column;gap:10px;font-size:34px;direction:ltr;align-items:flex-start}
+.geo-fig{display:block;border-radius:12px;background:#fff}
+.geo-swap{position:relative;width:100%;height:var(--swap-h,120px)}
+.geo-swap>div{position:absolute;left:0;right:0;top:0;display:flex;justify-content:center}
+
+/* probability bar */
+.geo-bar{position:relative;height:64px;border:2px solid var(--line);border-radius:12px;background:var(--card2);margin-bottom:34px}
+.geo-seg{position:absolute;top:0;bottom:0;display:flex;align-items:center;justify-content:center;font-size:28px}
+.geo-seg.ev{background:rgba(45,212,191,.45)}
+.geo-seg.comp{background:rgba(251,113,133,.40)}
+.geo-b0,.geo-b1{position:absolute;top:70px;font-size:26px;color:var(--muted);font-weight:400}
+.geo-b0{left:-6px}
+.geo-b1{right:-6px}

@@ -1,0 +1,31 @@
+/* joint-course widgets (w_joint.py), every class prefixed jt- */
+.jt-tab{border-collapse:separate;border-spacing:0;background:var(--card2);border:1px solid var(--line);border-radius:14px;direction:ltr}
+.jt-tab th,.jt-tab td{position:relative;padding:var(--jt-pad,10px 22px);text-align:center;border-bottom:1px solid var(--line);white-space:nowrap}
+.jt-tab tbody tr:last-child>*{border-bottom:none}
+.jt-tab thead th{color:var(--muted);font-weight:600}
+.jt-tab th.jt-rh{color:var(--muted);font-weight:600;border-right:2px solid var(--line)}
+.jt-tab th.jt-corner{border-right:2px solid var(--line);font-weight:400}
+.jt-tab .jt-mc{border-left:2px solid rgba(251,191,36,.35)}
+.jt-tab .jt-mr{border-top:2px solid rgba(251,191,36,.35)}
+.jt-tab .jt-m{position:relative;color:var(--warn)}
+.jt-tab .jt-v{position:relative}
+.jt-tab td.jt-z .jt-v{color:var(--muted)}
+.jt-hl{position:absolute;inset:3px;border-radius:9px;background:rgba(45,212,191,.22);box-shadow:0 0 0 3px var(--brand) inset}
+.jt-hl.k-w{background:rgba(251,191,36,.18);box-shadow:0 0 0 3px var(--warn) inset}
+.jt-cards{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;direction:ltr;max-width:1040px}
+.jt-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 14px;
+  display:flex;flex-direction:column;align-items:center;gap:4px;line-height:1.3}
+.jt-cl{position:relative;white-space:nowrap}
+.jt-eqs{display:flex;flex-direction:column;align-items:center;width:100%;direction:ltr}
+.jt-eq{text-align:center;line-height:1.3;white-space:nowrap}
+.jt-col{display:flex;flex-direction:column;align-items:center;gap:20px;width:100%}
+.jt-row{display:flex;align-items:center;justify-content:center;gap:28px;width:100%}
+.jt-big{font-size:44px;direction:ltr;text-align:center}
+.jt-mid{font-size:34px;direction:ltr;text-align:center}
+.jt-note{font-size:28px;color:var(--muted);direction:rtl;text-align:center}
+.jt-chip{font-size:32px;font-weight:700;padding:6px 24px;border-radius:999px;direction:rtl;width:fit-content;white-space:nowrap}
+.jt-chip.ok{color:var(--ok);background:rgba(52,211,153,.13)}
+.jt-chip.bad{color:var(--bad);background:rgba(251,113,133,.13)}
+.jt-chip.warn{color:var(--warn);background:rgba(251,191,36,.12)}
+.jt-box{direction:rtl;background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:12px 22px;line-height:1.45}
+.panel .jt-eqs{align-items:center}

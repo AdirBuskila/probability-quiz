@@ -1,0 +1,50 @@
+/* pdf-course widgets (w_pdf.py), every class prefixed pd- */
+svg.pd-plot{overflow:visible;display:block}
+.pd-plot .pd-grid{stroke:rgba(255,255,255,.07);stroke-width:1.5}
+.pd-plot .pd-ax{stroke:#9aa0cf;stroke-width:2.6}
+.pd-plot .pd-tk{stroke:#9aa0cf;stroke-width:2.4}
+.pd-plot .pd-tl{fill:#9aa0cf;font-size:26px;font-family:"Segoe UI",Arial,sans-serif}
+.pd-plot .pd-an{fill:#c9cdf0;font-size:30px;font-family:"Cambria Math",serif;font-style:italic}
+.pd-plot .pd-fill{stroke:none}
+.pd-plot .pd-fill.k-a{fill:rgba(45,212,191,.32)}
+.pd-plot .pd-fill.k-b{fill:rgba(251,191,36,.30)}
+.pd-plot .pd-fill.k-c{fill:rgba(244,114,182,.30)}
+.pd-plot .pd-fill.k-d{fill:rgba(167,139,250,.32)}
+.pd-plot .pd-fill.k-ink{fill:rgba(255,255,255,.12)}
+.pd-plot .pd-cv{fill:none;stroke-width:4.5;stroke-linejoin:round;stroke-linecap:round}
+.pd-plot .pd-cv.dash{stroke-dasharray:12 9}
+.pd-plot .pd-cv.k-a{stroke:#38bdf8}
+.pd-plot .pd-cv.k-b{stroke:#fbbf24}
+.pd-plot .pd-cv.k-c{stroke:#f472b6}
+.pd-plot .pd-cv.k-d{stroke:#a78bfa}
+.pd-plot .pd-cv.k-bad{stroke:#fb7185}
+.pd-plot .pd-cv.k-ink{stroke:#eaedff}
+.pd-plot .pd-guide{stroke:#9aa0cf;stroke-width:2;stroke-dasharray:8 7}
+.pd-plot .pd-dot{fill:#eaedff;stroke:#0a0c18;stroke-width:3}
+.pd-plot .pd-dot.k-b{fill:#fbbf24}
+.pd-plot .pd-dot.k-a{fill:#38bdf8}
+.pd-plot .pd-dot.k-bad{fill:#fb7185}
+.pd-plot .pd-dot.open{fill:#0a0c18;stroke:#eaedff;stroke-width:3.5}
+.pd-plot .pd-pt{fill:#eaedff;font-size:27px;font-family:"Segoe UI",Arial,sans-serif;font-weight:600}
+.pd-plot .pd-lb{font-size:29px;font-family:"Cambria Math",serif;font-style:italic;fill:#eaedff}
+.pd-plot .pd-lb.k-a{fill:#38bdf8}
+.pd-plot .pd-lb.k-b{fill:#fbbf24}
+.pd-plot .pd-lb.k-c{fill:#f472b6}
+.pd-plot .pd-lb.k-d{fill:#a78bfa}
+.pd-plot .pd-lb.k-bad{fill:#fb7185}
+.pd-plot .pd-lb.k-ok{fill:#34d399;font-style:normal;font-weight:700}
+.pd-eqs{display:flex;flex-direction:column;align-items:center;width:100%;direction:ltr}
+.pd-eq{text-align:center;line-height:1.25;white-space:nowrap}
+.pd-col{display:flex;flex-direction:column;align-items:center;gap:18px;width:100%}
+.pd-row{display:flex;align-items:center;justify-content:center;gap:30px;width:100%}
+.pd-big{font-size:46px;direction:ltr;text-align:center}
+.pd-mid{font-size:36px;direction:ltr;text-align:center}
+.pd-note{font-size:28px;color:var(--muted);direction:rtl;text-align:center}
+.pd-chip{font-size:34px;font-weight:700;padding:6px 26px;border-radius:999px;direction:rtl;width:fit-content;white-space:nowrap}
+.pd-chip.ok{color:var(--ok);background:rgba(52,211,153,.13)}
+.pd-chip.bad{color:var(--bad);background:rgba(251,113,133,.13)}
+.pd-chip.warn{color:var(--warn);background:rgba(251,191,36,.12)}
+.pd-raster{overflow:hidden;border-radius:12px;background:#fff}
+.pd-raster img{display:block}
+.panel .pd-mid{text-align:center}
+.qstem .pd-mid{margin-top:10px}

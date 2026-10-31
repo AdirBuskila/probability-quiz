@@ -1,0 +1,35 @@
+/* circ widgets (w_circ.py): circuits drawn from the checker's tree, unit overlays, small tables. Prefix circ- */
+svg.circ-svg{overflow:visible;flex:none}
+svg.circ-svg .circ-wire line{stroke:#c9cdf0;stroke-width:3.5;fill:none}
+svg.circ-svg .circ-own{stroke:#c9cdf0;stroke-width:3.5}
+svg.circ-svg .circ-dot{fill:#c9cdf0}
+svg.circ-svg .circ-term{fill:var(--bg);stroke:#c9cdf0;stroke-width:3.5}
+svg.circ-svg .circ-unit{fill:#24284d;stroke:#c9cdf0;stroke-width:3.5}
+svg.circ-svg .circ-ul{font-family:"Cambria Math",serif;font-style:italic;font-size:32px;fill:var(--ink);text-anchor:middle}
+svg.circ-svg .circ-pl{font-family:"Cambria Math",serif;font-size:25px;fill:var(--warn);text-anchor:middle}
+svg.circ-svg .circ-ok{fill:rgba(52,211,153,.22);stroke:var(--ok);stroke-width:6}
+svg.circ-svg .circ-bad{fill:rgba(251,113,133,.20);stroke:var(--bad);stroke-width:6}
+svg.circ-svg .circ-cross{stroke:var(--bad);stroke-width:6;stroke-linecap:round;fill:none}
+svg.circ-svg .circ-short{stroke:var(--brand);stroke-width:8;stroke-linecap:round}
+svg.circ-svg .circ-ghost{stroke:var(--muted);stroke-width:3;stroke-dasharray:8 8}
+svg.circ-svg .circ-ghostu{fill:none;stroke:var(--muted);stroke-width:2.5;stroke-dasharray:8 8}
+svg.circ-svg .circ-blk{fill:rgba(56,189,248,.07);stroke:var(--brand2);stroke-width:3;stroke-dasharray:12 8}
+svg.circ-svg .circ-bt{font-family:"Cambria Math",serif;font-size:27px;fill:var(--brand2);text-anchor:middle}
+svg.circ-svg .circ-on{fill:rgba(52,211,153,.08);stroke:var(--ok);stroke-width:4}
+svg.circ-svg .circ-off{fill:rgba(10,12,24,.45);stroke:var(--bad);stroke-width:4}
+
+/* stage helpers */
+.circ-stack{display:flex;flex-direction:column;align-items:center;gap:20px;width:100%}
+.circ-row{display:flex;flex-direction:row;align-items:center;justify-content:center;gap:40px;width:100%}
+.circ-big{font-size:42px;direction:ltr;text-align:center}
+.circ-mid{font-size:34px;direction:ltr;text-align:center}
+.circ-cap{font-size:28px;color:var(--muted);direction:rtl;text-align:center}
+.circ-fig{display:block;border-radius:12px;background:#fff}
+.circ-swap{position:relative;width:100%;height:var(--swap-h,300px)}
+.circ-swap>div{position:absolute;left:0;right:0;top:0;display:flex;flex-direction:column;align-items:center;gap:14px}
+
+/* tables */
+table.circ-tab{border-collapse:separate;border-spacing:0;font-size:30px;background:var(--card2);border:1px solid var(--line);border-radius:14px}
+table.circ-tab th,table.circ-tab td{padding:6px 20px;text-align:center;border-bottom:1px solid var(--line)}
+table.circ-tab thead th{color:var(--muted);font-weight:600}
+table.circ-tab tbody tr:last-child>*{border-bottom:none}
